@@ -8,6 +8,10 @@ import com.medstudy.core.database.StudyDatabase
 import com.medstudy.core.model.AttemptResult
 import com.medstudy.core.model.PracticeContext
 import com.medstudy.core.model.QuestionAttempt
+import com.medstudy.core.model.StudyBlock
+import com.medstudy.core.model.StudyPlanKind
+import com.medstudy.core.model.StudySchedulePreferences
+import com.medstudy.core.model.WeeklyStudyPlan
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -86,5 +90,46 @@ class RoomRepositoriesTest {
 
         activityRepository.removeBookmark("demo.question.anatomy-image")
         assertFalse(activityRepository.isBookmarked("demo.question.anatomy-image"))
+    }
+
+    @Test
+    fun editedWeeklyPlanSurvivesRepositoryRoundTrip() = runBlocking {
+        val repository = RoomWeeklyStudyPlanRepository(database)
+        val plan = WeeklyStudyPlan(
+            id = "weekly",
+            weekStartDateIso = "2026-10-03",
+            generatedAtEpochMillis = 300L,
+            kind = StudyPlanKind.EDITED,
+            blocks = listOf(
+                StudyBlock(
+                    id = "block.demo.001",
+                    studyDateIso = "2026-10-04",
+                    subjectId = "subject.anatomy",
+                    topicId = "topic.anatomy.imaging",
+                    title = "Image display",
+                    questionTarget = 12,
+                    minuteTarget = 40,
+                    position = 0,
+                ),
+            ),
+        )
+
+        repository.save(plan)
+
+        assertEquals(plan, repository.get())
+    }
+
+    @Test
+    fun studyPreferencesSurviveRepositoryRoundTrip() = runBlocking {
+        val repository = RoomWeeklyStudyPlanRepository(database)
+        val preferences = StudySchedulePreferences(
+            availableWeekdays = setOf(1, 3, 5),
+            questionTargetPerDay = 12,
+            minuteTargetPerDay = 45,
+        )
+
+        repository.savePreferences(preferences)
+
+        assertEquals(preferences, repository.preferences())
     }
 }

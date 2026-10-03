@@ -109,6 +109,35 @@ data class QuestionAttemptEntity(
     val context: String,
 )
 
+@Entity(tableName = "weekly_study_plans")
+data class WeeklyStudyPlanEntity(
+    @PrimaryKey val id: String,
+    val weekStartDateIso: String,
+    val generatedAtEpochMillis: Long,
+    val kind: String,
+)
+
+@Entity(tableName = "study_blocks", indices = [Index("planId"), Index("studyDateIso")])
+data class StudyBlockEntity(
+    @PrimaryKey val id: String,
+    val planId: String,
+    val studyDateIso: String,
+    val subjectId: String,
+    val topicId: String?,
+    val title: String,
+    val questionTarget: Int,
+    val minuteTarget: Int,
+    val position: Int,
+)
+
+@Entity(tableName = "study_schedule_preferences")
+data class StudySchedulePreferencesEntity(
+    @PrimaryKey val id: Int = 1,
+    val availableWeekdays: List<Int>,
+    val questionTargetPerDay: Int,
+    val minuteTargetPerDay: Int,
+)
+
 data class QuestionWithDetails(
     @Embedded val question: QuestionEntity,
     @Relation(parentColumn = "id", entityColumn = "questionId")
@@ -121,4 +150,10 @@ data class QuestionWithDetails(
     val rationales: List<OptionRationaleEntity>,
     @Relation(parentColumn = "id", entityColumn = "questionId")
     val references: List<QuestionReferenceEntity>,
+)
+
+data class WeeklyStudyPlanWithBlocks(
+    @Embedded val plan: WeeklyStudyPlanEntity,
+    @Relation(parentColumn = "id", entityColumn = "planId")
+    val blocks: List<StudyBlockEntity>,
 )

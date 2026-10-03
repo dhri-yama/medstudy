@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId = "com.medstudy.app"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "0.1.0"
     }
@@ -30,6 +30,7 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:database"))
     implementation(project(":core:designsystem"))
+    implementation(project(":feature:progress"))
     implementation(project(":feature:categories"))
     implementation(project(":feature:practice"))
     implementation(project(":feature:progress"))

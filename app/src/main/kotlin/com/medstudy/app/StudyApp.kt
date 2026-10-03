@@ -45,7 +45,8 @@ import com.medstudy.feature.categories.CategoriesScreen
 import com.medstudy.feature.categories.CategoriesViewModel
 import com.medstudy.feature.practice.PracticeViewModel
 import com.medstudy.feature.practice.QuestionPracticeScreen
-import kotlinx.coroutines.Dispatchers
+import com.medstudy.feature.progress.ProgressScreen
+import com.medstudy.feature.progress.ProgressViewModel
 
 private enum class StudyDestination(val title: String) {
     HOME("Home"),
@@ -84,8 +85,16 @@ fun StudyApp(container: StudyAppContainer) {
     val practiceViewModel: PracticeViewModel = viewModel(
         factory = PracticeViewModel.factory(container.questionCatalog, container.learnerActivity),
     )
+    val progressViewModel: ProgressViewModel = viewModel(
+        factory = ProgressViewModel.factory(
+            container.questionCatalog,
+            container.learnerActivity,
+            container.weeklyStudyPlan,
+        ),
+    )
     val categoriesState by categoriesViewModel.state.collectAsState()
     val practiceState by practiceViewModel.state.collectAsState()
+    val progressState by progressViewModel.state.collectAsState()
     var destinationName by rememberSaveable { mutableStateOf(StudyDestination.HOME.name) }
     var isPracticing by rememberSaveable { mutableStateOf(false) }
     var savedQuestions by rememberSaveable { mutableStateOf(emptyList<Question>()) }
@@ -168,7 +177,22 @@ fun StudyApp(container: StudyAppContainer) {
                     onRetry = categoriesViewModel::load,
                     modifier = Modifier.padding(padding),
                 )
-                StudyDestination.PROGRESS -> ProgressPlaceholder(modifier = Modifier.padding(padding))
+                StudyDestination.PROGRESS -> ProgressScreen(
+                    state = progressState,
+                    onMonthChange = progressViewModel::changeMonth,
+                    onSelectDate = progressViewModel::selectDate,
+                    onToggleSubject = progressViewModel::toggleSubject,
+                    onReviewQuestion = { question -> startQuestionFlow(questionId = question.id) },
+                    onToggleStudyDay = progressViewModel::toggleStudyDay,
+                    onQuestionTargetChange = progressViewModel::adjustQuestionTargetPerDay,
+                    onMinuteTargetChange = progressViewModel::adjustMinuteTargetPerDay,
+                    onRegeneratePlan = progressViewModel::regeneratePlan,
+                    onMoveBlock = progressViewModel::moveBlock,
+                    onRemoveBlock = progressViewModel::removeBlock,
+                    onAddBlock = progressViewModel::addBlock,
+                    onRetry = progressViewModel::refresh,
+                    modifier = Modifier.padding(padding),
+                )
                 StudyDestination.BOOKMARKS -> BookmarksScreen(
                     questions = savedQuestions,
                     isLoading = savedLoading,
@@ -179,7 +203,6 @@ fun StudyApp(container: StudyAppContainer) {
         }
     }
 }
-
 @Composable
 private fun HomeScreen(
     onBrowse: () -> Unit,
@@ -261,13 +284,5 @@ private fun BookmarksScreen(
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun ProgressPlaceholder(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.fillMaxSize().padding(22.dp)) {
-        Text("Your progress", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.SemiBold)
-        Text("Your completed questions and weekly study plan will appear here.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp))
     }
 }

@@ -88,3 +88,25 @@ interface ActivityDao {
     @Query("SELECT * FROM question_attempts WHERE studyDateIso = :studyDateIso ORDER BY completedAtEpochMillis DESC")
     suspend fun getAttemptsForDate(studyDateIso: String): List<QuestionAttemptEntity>
 }
+
+@Dao
+interface StudyPlanDao {
+    @Transaction
+    @Query("SELECT * FROM weekly_study_plans WHERE id = :planId")
+    suspend fun getPlan(planId: String): WeeklyStudyPlanWithBlocks?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun putPlan(plan: WeeklyStudyPlanEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun putBlocks(blocks: List<StudyBlockEntity>)
+
+    @Query("DELETE FROM study_blocks WHERE planId = :planId")
+    suspend fun clearBlocks(planId: String)
+
+    @Query("SELECT * FROM study_schedule_preferences WHERE id = 1")
+    suspend fun getPreferences(): StudySchedulePreferencesEntity?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun putPreferences(preferences: StudySchedulePreferencesEntity)
+}

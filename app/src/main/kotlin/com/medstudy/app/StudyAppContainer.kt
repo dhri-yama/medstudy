@@ -11,8 +11,9 @@ class StudyAppContainer(context: Context) {
         context.applicationContext,
         StudyDatabase::class.java,
         "medstudy.db",
-    ).build()
+    ).addMigrations(StudyDatabase.MIGRATION_1_2, StudyDatabase.MIGRATION_2_3).build()
 
     val questionCatalog = RoomQuestionCatalogRepository(database)
     val learnerActivity = RoomLearnerActivityRepository(database.activityDao())
+    val weeklyStudyPlan = com.medstudy.core.data.RoomWeeklyStudyPlanRepository(database)
 }
