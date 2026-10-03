@@ -2,6 +2,7 @@
     <application
         android:allowBackup="true"
         android:label="MedStudy"
+        android:name=".MedStudyApplication"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <activity

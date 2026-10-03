@@ -31,6 +31,8 @@ class RoomQuestionCatalogRepository(
 ) : QuestionCatalogRepository {
     private val catalogDao = database.catalogDao()
 
+    override suspend fun isEmpty(): Boolean = catalogDao.questionCount() == 0
+
     override suspend fun categories(): List<Category> = catalogDao.getCategories().map { entity ->
         Category(entity.id, entity.parentId, entity.name, entity.description, entity.position)
     }

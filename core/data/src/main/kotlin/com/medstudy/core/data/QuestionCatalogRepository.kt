@@ -6,6 +6,7 @@ import com.medstudy.core.model.MediaAsset
 import com.medstudy.core.model.Question
 
 interface QuestionCatalogRepository {
+    suspend fun isEmpty(): Boolean
     suspend fun categories(): List<Category>
     suspend fun questions(filter: QuestionFilter = QuestionFilter()): List<Question>
     suspend fun question(questionId: String): Question?

@@ -1,9 +1,12 @@
 package com.medstudy.core.designsystem
 
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.unit.dp
 
 object StudyPalette {
     val Canvas = Color(0xFFFFFFFF)
@@ -29,15 +32,26 @@ private val LightStudyColors = lightColorScheme(
     onSurface = StudyPalette.Ink,
     surfaceVariant = StudyPalette.CardSurface,
     onSurfaceVariant = StudyPalette.Body,
+    secondaryContainer = StudyPalette.CardSurface,
+    onSecondaryContainer = StudyPalette.Ink,
     outline = StudyPalette.Hairline,
     error = StudyPalette.Error,
     onError = StudyPalette.Canvas,
+)
+
+private val StudyShapes = Shapes(
+    extraSmall = RoundedCornerShape(4.dp),
+    small = RoundedCornerShape(8.dp),
+    medium = RoundedCornerShape(12.dp),
+    large = RoundedCornerShape(12.dp),
+    extraLarge = RoundedCornerShape(16.dp),
 )
 
 @Composable
 fun MedStudyTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = LightStudyColors,
+        shapes = StudyShapes,
         content = content,
     )
 }
