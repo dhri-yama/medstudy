@@ -27,7 +27,7 @@ class CategoriesViewModel(
             mutableState.value = mutableState.value.copy(isLoading = true, error = null)
             runCatching {
                 val categories = repository.categories()
-                val questions = repository.questions(QuestionFilter(examId = ExamId.DEMO))
+                val questions = repository.questions(QuestionFilter()) // Get all questions, not just DEMO
                 CategoriesUiState(
                     isLoading = false,
                     categories = categories,

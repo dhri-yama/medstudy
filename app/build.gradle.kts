@@ -34,6 +34,10 @@ dependencies {
     implementation(project(":feature:categories"))
     implementation(project(":feature:practice"))
     implementation(project(":feature:progress"))
+    
+    // Gson for JSON parsing (MedMCQA data loading)
+    implementation("com.google.code.gson:gson:2.10.1")
+    
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)

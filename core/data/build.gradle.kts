@@ -15,6 +15,10 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:database"))
     implementation(libs.androidx.room.ktx)
+    
+    // Gson for JSON parsing (MedMCQA data loading)
+    implementation("com.google.code.gson:gson:2.10.1")
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(libs.androidx.test.core)

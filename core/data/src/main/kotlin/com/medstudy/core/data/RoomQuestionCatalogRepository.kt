@@ -25,44 +25,65 @@ import com.medstudy.core.model.QuestionOption
 import com.medstudy.core.model.QuestionReference
 import com.medstudy.core.model.ReviewStatus
 import com.medstudy.core.model.RightsStatus
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class RoomQuestionCatalogRepository(
     private val database: StudyDatabase,
 ) : QuestionCatalogRepository {
     private val catalogDao = database.catalogDao()
 
-    override suspend fun isEmpty(): Boolean = catalogDao.questionCount() == 0
-
-    override suspend fun categories(): List<Category> = catalogDao.getCategories().map { entity ->
-        Category(entity.id, entity.parentId, entity.name, entity.description, entity.position)
+    override suspend fun isEmpty(): Boolean = withContext(Dispatchers.IO) {
+        catalogDao.questionCount() == 0
     }
 
-    override suspend fun questions(filter: QuestionFilter): List<Question> {
-        val subjectIds = filter.subjectIds.takeIf(Set<String>::isNotEmpty) ?: setOf(null)
-        return subjectIds.flatMap { subjectId ->
-            catalogDao.getQuestions(filter.examId?.wireValue, filter.examYear, subjectId)
+    override suspend fun categories(): List<Category> = withContext(Dispatchers.IO) {
+        catalogDao.getCategories().map { entity ->
+            Category(entity.id, entity.parentId, entity.name, entity.description, entity.position)
         }
+    }
+
+    override suspend fun questions(filter: QuestionFilter): List<Question> = withContext(Dispatchers.IO) {
+        val questionEntities = if (filter.subjectIds.isNotEmpty()) {
+            // If specific subject IDs are requested, query for each
+            filter.subjectIds.flatMap { subjectId ->
+                catalogDao.getQuestions(filter.examId?.wireValue, filter.examYear, subjectId)
+            }
+        } else if (filter.examId == null && filter.examYear == null) {
+            // If no filters at all, get all questions efficiently
+            catalogDao.getAllQuestions()
+        } else {
+            // If only exam filters but no subject filters, get all questions matching exam
+            catalogDao.getQuestions(filter.examId?.wireValue, filter.examYear, null)
+        }
+
+        questionEntities
             .distinctBy { it.question.id }
             .map(QuestionWithDetails::toDomain)
             .filter { question -> filter.topicId == null || filter.topicId in question.topicIds }
     }
 
-    override suspend fun question(questionId: String): Question? =
+    override suspend fun question(questionId: String): Question? = withContext(Dispatchers.IO) {
         catalogDao.getQuestion(questionId)?.toDomain()
+    }
 
-    override suspend fun bookmarkedQuestions(): List<Question> =
+    override suspend fun bookmarkedQuestions(): List<Question> = withContext(Dispatchers.IO) {
         catalogDao.getBookmarkedQuestions().map(QuestionWithDetails::toDomain)
+    }
 
     override suspend fun saveCatalog(
         categories: List<Category>,
         mediaAssets: List<MediaAsset>,
         questions: List<Question>,
-    ) {
+    ) = withContext(Dispatchers.IO) {
         val issueList = com.medstudy.core.model.QuestionCatalogValidator()
             .validate(questions, categories, mediaAssets)
         require(issueList.isEmpty()) { issueList.joinToString { "${it.questionId ?: it.field}: ${it.message}" } }
 
         database.withTransaction {
+            // Clear existing data first to avoid duplicates
+            catalogDao.clearAllData()
+            
             catalogDao.putCategories(categories.map(Category::toEntity))
             catalogDao.putMediaAssets(mediaAssets.map(MediaAsset::toEntity))
             catalogDao.putQuestions(questions.map(Question::toEntity))

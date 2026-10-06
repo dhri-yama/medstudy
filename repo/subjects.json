@@ -1,0 +1,202 @@
+[
+  {
+    "id": "anaesthesia",
+    "name": "Anaesthesia",
+    "question_count": 27,
+    "topic_count": 3,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "anatomy",
+    "name": "Anatomy",
+    "question_count": 84,
+    "topic_count": 13,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "biochemistry",
+    "name": "Biochemistry",
+    "question_count": 88,
+    "topic_count": 6,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "dental",
+    "name": "Dental",
+    "question_count": 22,
+    "topic_count": 1,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "ent",
+    "name": "ENT",
+    "question_count": 44,
+    "topic_count": 5,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "forensic_medicine",
+    "name": "Forensic Medicine",
+    "question_count": 398,
+    "topic_count": 4,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "gynaecology_and_obstetrics",
+    "name": "Gynaecology & Obstetrics",
+    "question_count": 71,
+    "topic_count": 9,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "medicine",
+    "name": "Medicine",
+    "question_count": 140,
+    "topic_count": 11,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "microbiology",
+    "name": "Microbiology",
+    "question_count": 59,
+    "topic_count": 6,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "ophthalmology",
+    "name": "Ophthalmology",
+    "question_count": 31,
+    "topic_count": 10,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "orthopaedics",
+    "name": "Orthopaedics",
+    "question_count": 40,
+    "topic_count": 9,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "pathology",
+    "name": "Pathology",
+    "question_count": 116,
+    "topic_count": 17,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "pediatrics",
+    "name": "Pediatrics",
+    "question_count": 50,
+    "topic_count": 6,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "pharmacology",
+    "name": "Pharmacology",
+    "question_count": 126,
+    "topic_count": 11,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "physiology",
+    "name": "Physiology",
+    "question_count": 55,
+    "topic_count": 5,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "psychiatry",
+    "name": "Psychiatry",
+    "question_count": 28,
+    "topic_count": 1,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "radiology",
+    "name": "Radiology",
+    "question_count": 40,
+    "topic_count": 9,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "skin",
+    "name": "Skin",
+    "question_count": 3,
+    "topic_count": 2,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "social_and_preventive_medicine",
+    "name": "Social & Preventive Medicine",
+    "question_count": 67,
+    "topic_count": 8,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  },
+  {
+    "id": "surgery",
+    "name": "Surgery",
+    "question_count": 117,
+    "topic_count": 15,
+    "exam_types": [
+      "NEET PG",
+      "AIIMS"
+    ]
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "question": "In congenital dystrophic variety of epidermolysis bullosa, mutation is seen in the gene coding for aEUR'",
+    "exp": "Collagen type 7 [Ref .- Neeta Khanna 151/e p. 28-291 Epidermolysis bullosa (EB) is a group of inherited diseases that are characterised by blistering lesions on the skin and mucous membranes. These may occur anywhere on the body but most commonly appear at sites of friction and minor trauma such as the feet and hands. Blisters may also occur on internal organs, such as the oesophagus, stomach and respiratory tract, without any apparent. friction. EB should be distinguished from epidermolysis bullosa acquisita (EBA), which is an autoimmune blistering disease that is not inherited and often doesn't develop until adult life. The EB conditions result from genetic defects of molecules in the skin concerned with adhesion. Loss of adhesion results in blister, .formation. There are 3 major types of EB based on different sites of blister formation within the skin structure : Epidermolysis bullosa Site of blister formation within the skin Known targeted protein * Epidermolysis bullosa Intraepidermal Keratin 4 and 14 simplex (epidermolytic) plectin a 6134 inte? grin plakophillin -1 desmoplakin * Junctional epidermolysis Intra-lamina Weida Laminin - 332 bullosa (lamina lucidolytic) (laminin 5) : type XVII collagen, a 6134 integrin * Dystrophic epidennolysis Sublamina densa Type VII collagen bullosa (dermolytic)",
+    "cop": 2,
+    "opa": "Laminin 4",
+    "opb": "Collagen type 7",
+    "opc": "Alpha 6 integerin",
+    "opd": "Keratin 14",
+    "subject_name": "Skin",
+    "topic_name": null,
+    "id": "c76ffd7c-19d9-4712-a126-e27b8b59014d",
+    "choice_type": "single",
+    "source": "NEET PG",
+    "topic": null
+  },
+  {
+    "question": "Adenoma sebaceum & shagreen patches are seen in:",
+    "exp": "Ans: b (Tuberous sclerosis) Ref:Harrison, 16th ed, p. 2457; Nelson, 17th ed, p. 2017TUberous sclerosisIt is a neurocutaneous syndrome (Phakomatoses). It is otherwise known as Boumeville disease.Neurological features of seizures and mental retardation together with cutaneous manifestations in the form of sebaceous adenomas are characteristic of the neurocutaneous syndrome of tuberous sclerosis.It is genetically determined autosomal dominant.Skin (cutaneous) involvement include:Adenoma sebaceum -facial angiofibromaAsh leaf shaped hypopigmented maculesShagreen patches - yellowish thickening of skin over lumbosacral region of back.Depigmented nevi.Neurological featuresEpilepsy, seizuresMental retardationHydrocephalusSubependymal nodules with calcification on neuroimaging is characteristic.Benign neoplasms associated with tuberous sclerosisRhabdomyoma of myocardiumAngiomyoma of kidney/ liver/pancreas/adrenals.Ependymomas and childhood subependymal giant cell astrocytomas.Note:Typical & most common site of subependymal giant cell astrocytoma is at or near the foramen of munro.(AIIMS, Nov 2007)",
+    "cop": 2,
+    "opa": "Neurofibromatosis I",
+    "opb": "Tuberous sclerosis",
+    "opc": "Von Hippel Lindau disease",
+    "opd": "Li- fraumeni syndrome",
+    "subject_name": "Skin",
+    "topic_name": "Autoimmune Skin Disorders",
+    "id": "9fe89352-d142-47eb-aa79-12560ef662a9",
+    "choice_type": "single",
+    "source": "AIIMS",
+    "topic": "Autoimmune Skin Disorders"
+  },
+  {
+    "question": "Which of the following is the causative organism for kerion?",
+    "exp": "Ans. A. Tinea capitisExplanationRefer to Question Number 3 in AIIMS Question",
+    "cop": 1,
+    "opa": "Tinea capitis",
+    "opb": "Malassezia furfur",
+    "opc": "Tinea versicolor",
+    "opd": "Staphylococcus aureus",
+    "subject_name": "Skin",
+    "topic_name": "Fungal Infection",
+    "id": "28741366-a070-4105-830a-49119e20e272",
+    "choice_type": "single",
+    "source": "AIIMS",
+    "topic": "Fungal Infection"
+  }
+]

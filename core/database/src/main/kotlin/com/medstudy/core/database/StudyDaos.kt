@@ -43,6 +43,54 @@ interface CatalogDao {
     suspend fun putReferences(references: List<QuestionReferenceEntity>)
 
     @Transaction
+    @Query("DELETE FROM categories")
+    suspend fun clearCategories()
+
+    @Transaction
+    @Query("DELETE FROM media_assets")
+    suspend fun clearMediaAssets()
+
+    @Transaction
+    @Query("DELETE FROM questions")
+    suspend fun clearQuestions()
+
+    @Transaction
+    @Query("DELETE FROM question_content_blocks")
+    suspend fun clearContentBlocks()
+
+    @Transaction
+    @Query("DELETE FROM question_options")
+    suspend fun clearOptions()
+
+    @Transaction
+    @Query("DELETE FROM answer_keys")
+    suspend fun clearAnswerKeys()
+
+    @Transaction
+    @Query("DELETE FROM option_rationales")
+    suspend fun clearRationales()
+
+    @Transaction
+    @Query("DELETE FROM question_references")
+    suspend fun clearReferences()
+
+    @Transaction
+    suspend fun clearAllData() {
+        clearCategories()
+        clearMediaAssets()
+        clearQuestions()
+        clearContentBlocks()
+        clearOptions()
+        clearAnswerKeys()
+        clearRationales()
+        clearReferences()
+    }
+
+    @Transaction
+    @Query("SELECT * FROM questions ORDER BY subjectId, id")
+    suspend fun getAllQuestions(): List<QuestionWithDetails>
+
+    @Transaction
     @Query("""
         SELECT * FROM questions
         WHERE (:examId IS NULL OR examId = :examId)

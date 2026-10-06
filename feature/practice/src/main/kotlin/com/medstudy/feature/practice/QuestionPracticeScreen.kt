@@ -85,7 +85,11 @@ fun QuestionPracticeScreen(
     }
     if (question == null) {
         Column(modifier.fillMaxSize().padding(24.dp), verticalArrangement = Arrangement.Center) {
-            Text("No demo questions in this subject yet.", style = MaterialTheme.typography.titleLarge)
+            Text(
+                state.error ?: "No questions are available right now.",
+                style = MaterialTheme.typography.titleLarge,
+                color = if (state.error != null) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
+            )
             TextButton(onClick = onBack) { Text("Back to subjects") }
         }
         return
@@ -278,10 +282,13 @@ private fun AnswerReview(question: Question, result: AttemptResult?) {
                     fontWeight = FontWeight.SemiBold,
                     color = if (option.id in question.answerKey.correctOptionIds) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                Text(
-                    question.answerKey.optionRationales.first { it.optionId == option.id }.text,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
+                question.answerKey.optionRationales
+                    .firstOrNull { it.optionId == option.id }
+                    ?.text
+                    ?.takeIf(String::isNotBlank)
+                    ?.let { rationale ->
+                        Text(rationale, style = MaterialTheme.typography.bodyMedium)
+                    }
             }
         }
     }

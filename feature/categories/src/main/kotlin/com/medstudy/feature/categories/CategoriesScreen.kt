@@ -60,12 +60,11 @@ fun CategoriesScreen(
             Text(selectedSubject?.name ?: "Subjects", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.SemiBold)
         }
         Text(
-            if (selectedSubject == null) "Choose a subject to browse its topics." else "Choose a topic to practice the demo questions.",
+            if (selectedSubject == null) "Choose a subject to browse its topics." else "Choose a topic to practice questions.",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 4.dp, bottom = 16.dp),
         )
-        DemoContentNotice()
         when {
             state.isLoading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally).padding(32.dp))
             state.error != null -> Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -127,22 +126,4 @@ fun CategoriesScreen(
     }
 }
 
-@Composable
-private fun DemoContentNotice() {
-    Row(
-        modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            "DEMO CONTENT",
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.secondary,
-            fontWeight = FontWeight.SemiBold,
-        )
-        Text(
-            "  Fictional samples only",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
-}
+

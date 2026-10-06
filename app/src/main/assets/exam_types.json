@@ -1,0 +1,18 @@
+[
+  {
+    "id": "neet_pg",
+    "name": "NEET PG",
+    "description": "National Eligibility cum Entrance Test - Post Graduate",
+    "question_count": 857,
+    "subjects_covered": 21,
+    "topics_covered": 39
+  },
+  {
+    "id": "aiims",
+    "name": "AIIMS",
+    "description": "All India Institute of Medical Sciences Entrance Exam",
+    "question_count": 761,
+    "subjects_covered": 21,
+    "topics_covered": 114
+  }
+]

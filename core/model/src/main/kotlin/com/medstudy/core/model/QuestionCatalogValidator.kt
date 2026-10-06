@@ -73,14 +73,20 @@ class QuestionCatalogValidator {
         correctIds.filterNot(optionIds::contains).forEach { optionId ->
             issue("answerKey.correctOptionIds", "Unknown correct option ID: $optionId")
         }
-        if (question.answerKey.explanation.isBlank()) issue("answerKey.explanation", "Overall explanation is required.")
+        // Only require explanations for DEMO content; MedMCQA and other sources may not have them
+        if (question.provenance.contentKind == ContentKind.DEMO && question.answerKey.explanation.isBlank()) {
+            issue("answerKey.explanation", "Overall explanation is required.")
+        }
 
         val rationaleIds = question.answerKey.optionRationales.map(OptionRationale::optionId)
         if (rationaleIds.distinct().size != rationaleIds.size) {
             issue("answerKey.optionRationales", "Each option can have only one rationale.")
         }
-        (optionIds - rationaleIds.toSet()).forEach { optionId ->
-            issue("answerKey.optionRationales", "Missing rationale for option $optionId.")
+        // Only require rationales for DEMO content; MedMCQA and other sources may not have them
+        if (question.provenance.contentKind == ContentKind.DEMO) {
+            (optionIds - rationaleIds.toSet()).forEach { optionId ->
+                issue("answerKey.optionRationales", "Missing rationale for option $optionId.")
+            }
         }
         (rationaleIds - optionIds.toSet()).forEach { optionId ->
             issue("answerKey.optionRationales", "Rationale references unknown option $optionId.")

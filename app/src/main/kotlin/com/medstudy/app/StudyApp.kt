@@ -58,7 +58,7 @@ private enum class StudyDestination(val title: String) {
 @Composable
 fun StudyApp(container: StudyAppContainer) {
     val bootstrapViewModel: CatalogBootstrapViewModel = viewModel(
-        factory = CatalogBootstrapViewModel.factory(container.questionCatalog),
+        factory = CatalogBootstrapViewModel.factory(container.questionCatalog, container.medMcqaRepository),
     )
     val bootstrapState by bootstrapViewModel.state.collectAsState()
 
@@ -70,7 +70,7 @@ fun StudyApp(container: StudyAppContainer) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 if (bootstrapState.isLoading) CircularProgressIndicator()
-                Text(bootstrapState.error ?: "Preparing your offline demo catalog.", modifier = Modifier.padding(top = 12.dp))
+                Text(bootstrapState.error ?: "Loading MedMCQA questions...", modifier = Modifier.padding(top = 12.dp))
                 if (bootstrapState.error != null) {
                     TextButton(onClick = bootstrapViewModel::retry) { Text("Retry") }
                 }
@@ -110,6 +110,11 @@ fun StudyApp(container: StudyAppContainer) {
         isPracticing = true
     }
 
+    fun startRandomUnattemptedQuestion() {
+        practiceViewModel.startRandomUnattempted()
+        isPracticing = true
+    }
+
     LaunchedEffect(destination, isPracticing) {
         if (!isPracticing && destination == StudyDestination.BOOKMARKS) {
             savedLoading = true
@@ -120,12 +125,16 @@ fun StudyApp(container: StudyAppContainer) {
 
     BackHandler(enabled = isPracticing) {
         isPracticing = false
+        if (destination == StudyDestination.PROGRESS) progressViewModel.refresh()
     }
 
     if (isPracticing) {
         QuestionPracticeScreen(
             state = practiceState,
-            onBack = { isPracticing = false },
+            onBack = {
+                isPracticing = false
+                if (destination == StudyDestination.PROGRESS) progressViewModel.refresh()
+            },
             onSelectOption = practiceViewModel::selectOption,
             onSubmit = practiceViewModel::submit,
             onShowAnswer = practiceViewModel::showAnswer,
@@ -135,6 +144,7 @@ fun StudyApp(container: StudyAppContainer) {
             onFinish = {
                 isPracticing = false
                 destinationName = StudyDestination.PROGRESS.name
+                progressViewModel.refresh()
             },
             imageResource = { assetId ->
                 if (assetId == "demo.media.placeholder-landscape") R.drawable.demo_imaging_placeholder else null
@@ -168,7 +178,7 @@ fun StudyApp(container: StudyAppContainer) {
             when (destination) {
                 StudyDestination.HOME -> HomeScreen(
                     onBrowse = { destinationName = StudyDestination.CATEGORIES.name },
-                    onStart = { startQuestionFlow() },
+                    onStart = ::startRandomUnattemptedQuestion,
                     modifier = Modifier.padding(padding),
                 )
                 StudyDestination.CATEGORIES -> CategoriesScreen(
@@ -226,8 +236,8 @@ private fun HomeScreen(
         Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = MaterialTheme.shapes.medium) {
             Row(modifier = Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text("DEMO CONTENT", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.SemiBold)
-                    Text("Fictional questions for exploring the app.", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 4.dp))
+                    Text("MEDMCQA DATA", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.SemiBold)
+                    Text("1,618 real medical questions from NEET PG & AIIMS.", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 4.dp))
                 }
             }
         }

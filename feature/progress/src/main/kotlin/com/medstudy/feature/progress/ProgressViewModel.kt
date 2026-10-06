@@ -9,7 +9,6 @@ import com.medstudy.core.data.QuestionFilter
 import com.medstudy.core.data.WeeklyStudyPlanRepository
 import com.medstudy.core.model.AttemptResult
 import com.medstudy.core.model.Category
-import com.medstudy.core.model.ExamId
 import com.medstudy.core.model.Question
 import com.medstudy.core.model.QuestionAttempt
 import com.medstudy.core.model.StudySchedulePreferences
@@ -43,7 +42,8 @@ class ProgressViewModel(
             mutableState.value = mutableState.value.copy(isLoading = true, error = null)
             runCatching {
                 val categories = catalogRepository.categories()
-                val questions = catalogRepository.questions(QuestionFilter(examId = ExamId.DEMO))
+                // Progress must be able to resolve attempts against every imported question.
+                val questions = catalogRepository.questions(QuestionFilter())
                 val attempts = activityRepository.attempts()
                 val today = LocalDate.now()
                 val areas = insights.analyze(today, attempts, questions, categories)

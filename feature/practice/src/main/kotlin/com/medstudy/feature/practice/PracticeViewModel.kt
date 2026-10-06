@@ -35,7 +35,6 @@ class PracticeViewModel(
                     questionId != null -> listOfNotNull(catalogRepository.question(questionId))
                     else -> catalogRepository.questions(
                         QuestionFilter(
-                            examId = ExamId.DEMO,
                             subjectIds = subjectId?.let(::setOf).orEmpty(),
                             topicId = topicId,
                         ),
@@ -51,6 +50,38 @@ class PracticeViewModel(
                 )
             }.onFailure {
                 mutableState.value = PracticeUiState(isLoading = false, error = it.message)
+            }
+        }
+    }
+
+    fun startRandomUnattempted() {
+        viewModelScope.launch {
+            mutableState.value = PracticeUiState(isLoading = true)
+            runCatching {
+                val questions = catalogRepository.questions()
+                val attemptedQuestionIds = activityRepository.attempts()
+                    .asSequence()
+                    .map(QuestionAttempt::questionId)
+                    .toSet()
+                questions.filterNot { it.id in attemptedQuestionIds }.randomOrNull()
+            }.onSuccess { question ->
+                mutableState.value = if (question == null) {
+                    PracticeUiState(
+                        isLoading = false,
+                        error = "You’ve completed all available questions. Check back when more are added.",
+                    )
+                } else {
+                    PracticeUiState(
+                        isLoading = false,
+                        questions = listOf(question),
+                        isBookmarked = activityRepository.isBookmarked(question.id),
+                    )
+                }
+            }.onFailure { error ->
+                mutableState.value = PracticeUiState(
+                    isLoading = false,
+                    error = error.message ?: "Could not find an unattempted question.",
+                )
             }
         }
     }

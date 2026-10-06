@@ -1,0 +1,999 @@
+[
+  {
+    "name": "Upper limb",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 11
+  },
+  {
+    "name": "Forensic Toxicology - Concepts, Statutes, Evidence, and Techniques",
+    "subjects": [
+      "Forensic Medicine"
+    ],
+    "question_count": 8
+  },
+  {
+    "name": "Miscellaneous",
+    "subjects": [
+      "Pharmacology",
+      "Radiology",
+      "Surgery"
+    ],
+    "question_count": 7
+  },
+  {
+    "name": "Endocrinology",
+    "subjects": [
+      "Medicine",
+      "Pharmacology"
+    ],
+    "question_count": 4
+  },
+  {
+    "name": "G.I.T.",
+    "subjects": [
+      "Medicine",
+      "Physiology",
+      "Radiology"
+    ],
+    "question_count": 4
+  },
+  {
+    "name": "Lower limb",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "C.N.S",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "Miscellaneous (Local and Regional Anesthesia)",
+    "subjects": [
+      "Anaesthesia"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "Adverse Drug Effect",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "C.V.S.",
+    "subjects": [
+      "Medicine",
+      "Pediatrics"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "Stomach & Duodenum",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "Cholinergic System",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "Skeletal System",
+    "subjects": [
+      "Radiology"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "Regulation of Gene Expression",
+    "subjects": [
+      "Biochemistry"
+    ],
+    "question_count": 3
+  },
+  {
+    "name": "Inflammations of Conjunctiva - Infective",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Apoptosis",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Lipids",
+    "subjects": [
+      "Biochemistry"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Toxicology",
+    "subjects": [
+      "Forensic Medicine",
+      "Medicine"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Head and neck",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Liver",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Anti-Neoplastic Agents",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Ear",
+    "subjects": [
+      "ENT"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Congenital Lesions and Stridor",
+    "subjects": [
+      "ENT"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Communicable Diseases",
+    "subjects": [
+      "Social & Preventive Medicine"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Immunology and Rheumatology",
+    "subjects": [
+      "Medicine"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "General Considerations - Definition, Classification, Pathogenesis",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Anti-Anginal",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Management and Long-Term Consequences",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Injuries Around the Fore Arm & Wrist",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "General surgery",
+    "subjects": [
+      "Anatomy",
+      "Surgery"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Diagnosis of Pregnancy",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Nervous System",
+    "subjects": [
+      "Physiology",
+      "Radiology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Types of Errors of Refraction",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Electrolyte",
+    "subjects": [
+      "Medicine"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Benign Gastric Disease",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Molecular Genetics",
+    "subjects": [
+      "Biochemistry"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Cornea",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Breast",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "C.N.S.",
+    "subjects": [
+      "Medicine"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "All India exam",
+    "subjects": [
+      "Anatomy",
+      "Pathology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Disorders in Menstruation",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Rectum",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Biological Materials & Stains",
+    "subjects": [
+      "Forensic Medicine"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Blood",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Health education & planning",
+    "subjects": [
+      "Social & Preventive Medicine"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Endocrine",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 2
+  },
+  {
+    "name": "Head & Neck",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Anti Microbial",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Abdomen and pelvis",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Local and Regional Anesthesia",
+    "subjects": [
+      "Anaesthesia"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Anatomy and Physiology of Pharynx",
+    "subjects": [
+      "ENT"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Chemical Mediators and Regulators of Inflammation",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Miscellaneous (Gynae)",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Anti-Leprotic",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Vitamins",
+    "subjects": [
+      "Biochemistry"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Fungal infections",
+    "subjects": [
+      "Dental"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Regional Conditions of the Lower Limb",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Glomerular Diseases",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Anti Adrenergic System",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Ocular Motility",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Injuries Around the Thigh & Knee",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Sex Hormones",
+    "subjects": [
+      "Physiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Helminthology",
+    "subjects": [
+      "Microbiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Joints of Lower Extremity",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Transplantation",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Respiration",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Pelvis & Injuries",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Immunology Pa 1 (Immune Response, Antigen-Antibody Reactions, Hypersensitivity, Structure of Immune System, Immunodeficiency Disorders)",
+    "subjects": [
+      "Microbiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Gynaecological Diagnosis",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Statistical Tests",
+    "subjects": [
+      "Social & Preventive Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Cranial Nerves",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Misc. (R.B.C)",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Misc. (W.B.C)",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "NCDs: CHD, HTN, DM, RF, Cancers, Obesity, Blindness",
+    "subjects": [
+      "Social & Preventive Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Surgical Approaches to the Thyroid",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Health care of community & international health",
+    "subjects": [
+      "Social & Preventive Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Drugs",
+    "subjects": [
+      "Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Plastic & Reconstructive Surgery",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Mechanisms of Enzyme Action",
+    "subjects": [
+      "Biochemistry"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Major Depression",
+    "subjects": [
+      "Psychiatry"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Infection",
+    "subjects": [
+      "Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Haematology",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Advanced Fetal Ultrasonography and Therapy",
+    "subjects": [
+      "Radiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Imaging of Metabolic Bone Disease",
+    "subjects": [
+      "Radiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Peripheral Nerve & Skeletal Muscles",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Fracture Shaft Femur",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Testis & Scrotum",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Radiology Q Bank",
+    "subjects": [
+      "Radiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Structure of DNA",
+    "subjects": [
+      "Biochemistry"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Physics of Radiotherapy",
+    "subjects": [
+      "Radiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Vitreous Humour, Uveal Disorders",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Epidemiology",
+    "subjects": [
+      "Social & Preventive Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Chemical Messengers: Receptors",
+    "subjects": [
+      "Physiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Proteins",
+    "subjects": [
+      "Social & Preventive Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Neoplasia",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Autoimmune Skin Disorders",
+    "subjects": [
+      "Skin"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Respiratory Tract Disorders",
+    "subjects": [
+      "Pediatrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "G.I.T",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Vibrio",
+    "subjects": [
+      "Microbiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Lower Limb and Foot & Ankle Problems",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Retinal Detachment",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Kidney & Ureturs",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Fungal Infection",
+    "subjects": [
+      "Skin"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Dislocation of Shoulder",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Airway",
+    "subjects": [
+      "Anaesthesia"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Cardiovascular Disorders",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Tumors",
+    "subjects": [
+      "ENT"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Medical, surgical and gynaecological illness complicating pregnancy",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Neuro Ophthalmology",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Miscellaneous Nervous System",
+    "subjects": [
+      "Physiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Introduction and gametogenesis.",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Urolithiasis",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Mendelian Disorders: Single-Gene Defects",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Thyroid",
+    "subjects": [
+      "Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Radiotherapy & Chemotherapy",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Congenital Dislocation of Hip (C.D.H.)",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Anatomy",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Death and Medicolegal Aspects",
+    "subjects": [
+      "Forensic Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Retina",
+    "subjects": [
+      "Ophthalmology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Immunology",
+    "subjects": [
+      "Microbiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "General anatomy",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Nutrition",
+    "subjects": [
+      "Pediatrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Antepartum Haemorrhage",
+    "subjects": [
+      "Gynaecology & Obstetrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Respiratory System",
+    "subjects": [
+      "Pediatrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "C.V.S",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Mycology",
+    "subjects": [
+      "Microbiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "New Born Infants",
+    "subjects": [
+      "Pediatrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Clinical Presentation and Physiology",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Nose and PNS",
+    "subjects": [
+      "ENT"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Immunity",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "X-RAYS",
+    "subjects": [
+      "Radiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Parathyroid and adrenal glands",
+    "subjects": [
+      "Surgery"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Metabolic Bone Disease",
+    "subjects": [
+      "Orthopaedics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Newborn Infant - Physical Examination",
+    "subjects": [
+      "Pediatrics"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Kidney",
+    "subjects": [
+      "Medicine"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Lab Investigations",
+    "subjects": [
+      "Microbiology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Liver & Biliary Tract",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Asthma",
+    "subjects": [
+      "Pharmacology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Hemolytic anemia",
+    "subjects": [
+      "Pathology"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Embryology",
+    "subjects": [
+      "Anatomy"
+    ],
+    "question_count": 1
+  },
+  {
+    "name": "Principles of Epidemiology",
+    "subjects": [
+      "Social & Preventive Medicine"
+    ],
+    "question_count": 1
+  }
+]
