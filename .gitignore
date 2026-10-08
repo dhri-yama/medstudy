@@ -5,3 +5,4 @@ plan.md
 local.properties
 .idea/
 *.iml
+/hgdata

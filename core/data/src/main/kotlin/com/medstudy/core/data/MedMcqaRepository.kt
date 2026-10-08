@@ -80,7 +80,7 @@ class MedMcqaRepository(private val context: Context) {
 
             val subjectNameToId = subjectsJson.associate { subject ->
                 subject.name to subject.id
-            }
+            } + ("Unknown" to "unknown")
 
             questionsJson.toQuestions(topicsJson, subjectNameToId)
 
@@ -146,7 +146,7 @@ class MedMcqaRepository(private val context: Context) {
                     .use { it.readText() }
                 val subjectsType = object : TypeToken<List<MedMcqaSubjectJson>>() {}.type
                 val subjectsJson: List<MedMcqaSubjectJson> = gson.fromJson(subjectsJsonString, subjectsType)
-                val subjectNameToId = subjectsJson.associate { subject -> subject.name to subject.id }
+                val subjectNameToId = subjectsJson.associate { subject -> subject.name to subject.id } + ("Unknown" to "unknown")
 
                 questionsJson.toQuestions(topicsJson, subjectNameToId)
             } catch (e: IOException) {
@@ -183,7 +183,13 @@ class MedMcqaRepository(private val context: Context) {
                     description = "MedMCQA ${subject.name} questions (${subject.question_count})",
                     position = 0
                 )
-            }
+            } + Category(
+                id = "unknown",
+                parentId = null,
+                name = "Unclassified",
+                description = "MedMCQA questions without a subject label (12)",
+                position = subjectsJson.size,
+            )
 
         } catch (e: IOException) {
             e.printStackTrace()
@@ -222,7 +228,7 @@ class MedMcqaRepository(private val context: Context) {
             val subjectsJson: List<MedMcqaSubjectJson> = gson.fromJson(subjectsJsonString, subjectsType)
 
             // Create subject name to ID mapping for parent mapping
-            val subjectNameToId = subjectsJson.associate { subject -> subject.name to subject.id }
+            val subjectNameToId = subjectsJson.associate { subject -> subject.name to subject.id } + ("Unknown" to "unknown")
 
             // Load topics
             val topicsJsonString = context.assets.open("topics.json")
@@ -240,7 +246,13 @@ class MedMcqaRepository(private val context: Context) {
                     description = "MedMCQA ${subject.name} questions (${subject.question_count})",
                     position = 0
                 )
-            }
+            } + Category(
+                id = "unknown",
+                parentId = null,
+                name = "Unclassified",
+                description = "MedMCQA questions without a subject label (12)",
+                position = subjectsJson.size,
+            )
 
             // Create categories for topics - use index to ensure unique IDs
             val topicCategories = topicsJson.mapIndexed { index, topic ->

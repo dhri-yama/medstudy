@@ -1,6 +1,10 @@
 package com.medstudy.app
 
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import androidx.activity.compose.BackHandler
+import androidx.compose.material3.Slider
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,16 +31,22 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.medstudy.core.model.Category
@@ -56,7 +66,11 @@ private enum class StudyDestination(val title: String) {
 }
 
 @Composable
-fun StudyApp(container: StudyAppContainer) {
+fun StudyApp(
+    container: StudyAppContainer,
+    notificationQuestionId: String? = null,
+    onNotificationQuestionHandled: () -> Unit = {},
+) {
     val bootstrapViewModel: CatalogBootstrapViewModel = viewModel(
         factory = CatalogBootstrapViewModel.factory(container.questionCatalog, container.medMcqaRepository),
     )
@@ -99,7 +113,39 @@ fun StudyApp(container: StudyAppContainer) {
     var isPracticing by rememberSaveable { mutableStateOf(false) }
     var savedQuestions by rememberSaveable { mutableStateOf(emptyList<Question>()) }
     var savedLoading by rememberSaveable { mutableStateOf(false) }
+    var catalogQuestionCount by rememberSaveable { mutableIntStateOf(0) }
     val destination = StudyDestination.valueOf(destinationName)
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+    var overlayInterval by rememberSaveable {
+        mutableIntStateOf(context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0)
+            .getInt(QuestionOverlayService.KEY_INTERVAL, 10).coerceIn(1, 20))
+    }
+    var overlayEnabled by rememberSaveable {
+        mutableStateOf(context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0)
+            .getBoolean(QuestionOverlayService.KEY_ENABLED, false))
+    }
+    var overlayAccessGranted by rememberSaveable { mutableStateOf(Settings.canDrawOverlays(context)) }
+
+    DisposableEffect(lifecycleOwner, overlayEnabled) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                overlayAccessGranted = Settings.canDrawOverlays(context)
+                if (overlayEnabled && overlayAccessGranted) QuestionOverlayService.start(context)
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
+    LaunchedEffect(notificationQuestionId, bootstrapState.isReady) {
+        val questionId = notificationQuestionId
+        if (bootstrapState.isReady && questionId != null) {
+            practiceViewModel.start(questionId = questionId)
+            isPracticing = true
+            onNotificationQuestionHandled()
+        }
+    }
 
     fun startQuestionFlow(category: Category? = null, questionId: String? = null) {
         practiceViewModel.start(
@@ -120,6 +166,12 @@ fun StudyApp(container: StudyAppContainer) {
             savedLoading = true
             savedQuestions = runCatching { container.questionCatalog.bookmarkedQuestions() }.getOrDefault(emptyList())
             savedLoading = false
+        }
+    }
+
+    LaunchedEffect(bootstrapState.isReady) {
+        if (bootstrapState.isReady) {
+            catalogQuestionCount = runCatching { container.questionCatalog.questions().size }.getOrDefault(0)
         }
     }
 
@@ -179,6 +231,31 @@ fun StudyApp(container: StudyAppContainer) {
                 StudyDestination.HOME -> HomeScreen(
                     onBrowse = { destinationName = StudyDestination.CATEGORIES.name },
                     onStart = ::startRandomUnattemptedQuestion,
+                    overlayInterval = overlayInterval,
+                    questionCount = catalogQuestionCount,
+                    overlayEnabled = overlayEnabled,
+                    overlayAccessGranted = overlayAccessGranted,
+                    onOverlayIntervalChange = { minutes ->
+                        overlayInterval = minutes.toInt().coerceIn(1, 20)
+                        context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0).edit()
+                            .putInt(QuestionOverlayService.KEY_INTERVAL, overlayInterval).apply()
+                    },
+                    onEnableOverlay = {
+                        overlayEnabled = true
+                        context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0).edit()
+                            .putBoolean(QuestionOverlayService.KEY_ENABLED, true).apply()
+                        if (!Settings.canDrawOverlays(context)) {
+                            context.startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${context.packageName}")))
+                        } else {
+                            QuestionOverlayService.start(context)
+                        }
+                    },
+                    onDisableOverlay = {
+                        overlayEnabled = false
+                        context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0).edit()
+                            .putBoolean(QuestionOverlayService.KEY_ENABLED, false).apply()
+                        QuestionOverlayService.stop(context)
+                    },
                     modifier = Modifier.padding(padding),
                 )
                 StudyDestination.CATEGORIES -> CategoriesScreen(
@@ -217,6 +294,13 @@ fun StudyApp(container: StudyAppContainer) {
 private fun HomeScreen(
     onBrowse: () -> Unit,
     onStart: () -> Unit,
+    overlayInterval: Int,
+    questionCount: Int,
+    overlayEnabled: Boolean,
+    overlayAccessGranted: Boolean,
+    onOverlayIntervalChange: (Float) -> Unit,
+    onEnableOverlay: () -> Unit,
+    onDisableOverlay: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.fillMaxSize().padding(horizontal = 22.dp, vertical = 20.dp)) {
@@ -237,7 +321,7 @@ private fun HomeScreen(
             Row(modifier = Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text("MEDMCQA DATA", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.SemiBold)
-                    Text("1,618 real medical questions from NEET PG & AIIMS.", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 4.dp))
+                    Text("$questionCount questions across the available subjects.", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 4.dp))
                 }
             }
         }
@@ -252,6 +336,29 @@ private fun HomeScreen(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
         ) { Text("Browse subjects") }
+        Text("Question overlay", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 24.dp))
+        Text(
+            "A random unattempted question appears above other apps after the phone stays unlocked for this long. Locking the phone resets the timer.",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 4.dp),
+        )
+        Text("Every $overlayInterval minutes", style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 10.dp))
+        Slider(
+            value = overlayInterval.toFloat(),
+            onValueChange = onOverlayIntervalChange,
+            valueRange = 1f..20f,
+            steps = 18,
+            enabled = true,
+        )
+        if (overlayEnabled && !overlayAccessGranted) {
+            Text("Allow MedStudy to display over other apps to use this feature.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
+        }
+        if (overlayEnabled) {
+            OutlinedButton(onClick = onDisableOverlay, modifier = Modifier.fillMaxWidth()) { Text("Turn off question overlay") }
+        } else {
+            OutlinedButton(onClick = onEnableOverlay, modifier = Modifier.fillMaxWidth()) { Text("Enable question overlay") }
+        }
         Text(
             "Your question history stays on this device.",
             style = MaterialTheme.typography.bodySmall,
