@@ -46,7 +46,9 @@ class UserProfileStore(context: Context) {
     }
 
     companion object {
-        val EXAMS = listOf("NEET PG", "AIIMS", "INI-CET")
+        /** App label -> exams.id in the cloud database. */
+        val EXAM_IDS = mapOf("NEET PG" to "neet_pg", "AIIMS" to "aiims", "INI-CET" to "inicet")
+        val EXAMS = EXAM_IDS.keys.toList()
         private const val KEY_DONE = "onboarded"
         private const val KEY_NAME = "name"
         private const val KEY_EXAM = "exam"

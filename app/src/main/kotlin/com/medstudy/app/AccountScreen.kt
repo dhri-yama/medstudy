@@ -25,7 +25,12 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 @Composable
-fun AccountSection(account: SupabaseAccount, modifier: Modifier = Modifier) {
+fun AccountSection(
+    account: SupabaseAccount,
+    profile: UserProfile,
+    onProfileRestored: (UserProfile) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val scope = rememberCoroutineScope()
     var signedIn by remember { mutableStateOf(account.isSignedIn) }
     var email by rememberSaveable { mutableStateOf("") }
@@ -49,7 +54,7 @@ fun AccountSection(account: SupabaseAccount, modifier: Modifier = Modifier) {
                 Text("Signed in as ${account.email}", style = MaterialTheme.typography.bodyLarge)
                 Text("Your answers are backed up to your account.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 4.dp))
                 Button(
-                    onClick = { run { "Synced, ${account.sync()} new from the cloud" } },
+                    onClick = { run { account.pushProfile(profile); "Synced, ${account.sync()} new from the cloud" } },
                     enabled = !busy, shape = RoundedCornerShape(8.dp),
                     modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
                 ) { Text(if (busy) "Syncing…" else "Sync now") }
@@ -74,14 +79,14 @@ fun AccountSection(account: SupabaseAccount, modifier: Modifier = Modifier) {
                 )
                 val ready = email.isNotBlank() && password.length >= 6 && !busy
                 Button(
-                    onClick = { run { account.signIn(email.trim(), password); account.sync(); "Signed in" } },
+                    onClick = { run { account.signIn(email.trim(), password); syncAll(account, profile, onProfileRestored); "Signed in" } },
                     enabled = ready, shape = RoundedCornerShape(8.dp),
                     modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
                 ) { Text("Sign in") }
                 OutlinedButton(
                     onClick = {
                         run {
-                            if (account.signUp(email.trim(), password)) { account.sync(); "Account created" }
+                            if (account.signUp(email.trim(), password)) { syncAll(account, profile, onProfileRestored); "Account created" }
                             else "Check your email to confirm, then sign in"
                         }
                     },
@@ -92,4 +97,11 @@ fun AccountSection(account: SupabaseAccount, modifier: Modifier = Modifier) {
         }
         message?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 12.dp)) }
     }
+}
+
+/** Pull the saved profile if the account has one (new phone), otherwise save this phone's; then sync attempts. */
+private suspend fun syncAll(account: SupabaseAccount, profile: UserProfile, onProfileRestored: (UserProfile) -> Unit) {
+    val saved = account.pullProfile()
+    if (saved != null) onProfileRestored(saved) else account.pushProfile(profile)
+    account.sync()
 }

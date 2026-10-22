@@ -221,6 +221,20 @@ fun StudyApp(
         }
     }
 
+    fun applyProfile(updated: UserProfile, pushToCloud: Boolean) {
+        profileStore.save(updated)
+        profile = updated
+        scope.launch {
+            runCatching {
+                container.weeklyStudyPlan.savePreferences(
+                    container.weeklyStudyPlan.preferences().copy(questionTargetPerDay = updated.dailyQuestionGoal),
+                )
+            }
+            if (pushToCloud && container.account.isSignedIn) runCatching { container.account.pushProfile(updated) }
+            progressViewModel.refresh()
+        }
+    }
+
     fun leavePractice(toToday: Boolean = false) {
         isPracticing = false
         if (toToday) destinationName = StudyDestination.TODAY.name
@@ -341,18 +355,8 @@ fun StudyApp(
                 )
                 StudyDestination.ME -> MeScreen(
                     profile = profile!!,
-                    onSaveProfile = { updated ->
-                        profileStore.save(updated)
-                        profile = updated
-                        scope.launch {
-                            runCatching {
-                                container.weeklyStudyPlan.savePreferences(
-                                    container.weeklyStudyPlan.preferences().copy(questionTargetPerDay = updated.dailyQuestionGoal),
-                                )
-                            }
-                            progressViewModel.refresh()
-                        }
-                    },
+                    onSaveProfile = { updated -> applyProfile(updated, pushToCloud = true) },
+                    onProfileRestored = { restored -> applyProfile(restored, pushToCloud = false) },
                     account = container.account,
                     overlayInterval = overlayInterval,
                     overlayEnabled = overlayEnabled,

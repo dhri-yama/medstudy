@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 fun MeScreen(
     profile: UserProfile,
     onSaveProfile: (UserProfile) -> Unit,
+    onProfileRestored: (UserProfile) -> Unit,
     account: SupabaseAccount,
     overlayInterval: Int,
     overlayEnabled: Boolean,
@@ -51,7 +52,7 @@ fun MeScreen(
 
         HorizontalDivider()
         SectionTitle("Backup and sync")
-        AccountSection(account)
+        AccountSection(account, profile, onProfileRestored)
 
         HorizontalDivider()
         SectionTitle("Question overlay")

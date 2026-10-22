@@ -10,13 +10,16 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import java.time.Instant
+import java.time.OffsetDateTime
+import java.time.ZoneId
 
 class AuthException(message: String) : Exception(message)
 
 /**
  * Supabase email/password auth (GoTrue REST) plus attempt sync (PostgREST).
  * Plain HttpURLConnection keeps the app free of a new HTTP/serialization dependency.
- * shortcut: attempts only, full push/pull each sync, manual/launch trigger; add a watermark and WorkManager when history gets large.
+ * shortcut: attempts and profile only, full push/pull each sync, manual/launch trigger; add a watermark and WorkManager when history gets large.
  */
 class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
     private val prefs = context.applicationContext.getSharedPreferences("auth", Context.MODE_PRIVATE)
@@ -53,14 +56,26 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
             request(
                 "rest/v1/attempts?on_conflict=id", "POST",
                 JSONArray(chunk.map { it.toRow() }),
-                extraHeaders = mapOf("Prefer" to "resolution=ignore-duplicates,return=minimal"),
+                extraHeaders = IGNORE_DUPLICATES,
             )
+            val options = chunk.flatMap { attempt ->
+                attempt.selectedOptionIds.map { JSONObject().put("attempt_id", attempt.id).put("option_id", it) }
+            }
+            if (options.isNotEmpty()) {
+                request(
+                    "rest/v1/attempt_selected_options?on_conflict=attempt_id,option_id", "POST",
+                    JSONArray(options), extraHeaders = IGNORE_DUPLICATES,
+                )
+            }
         }
         val known = local.mapTo(HashSet()) { it.id }
         var offset = 0
         var pulled = 0
         while (true) {
-            val rows = requestArray("rest/v1/attempts?select=*&order=completed_at.asc&limit=$PAGE&offset=$offset")
+            val rows = requestArray(
+                "rest/v1/attempts?select=*,attempt_selected_options(option_id)" +
+                    "&order=completed_at.asc,id.asc&limit=$PAGE&offset=$offset",
+            )
             for (i in 0 until rows.length()) {
                 val row = rows.getJSONObject(i)
                 if (row.getString("id") in known) continue
@@ -70,6 +85,31 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
             offset += PAGE
         }
         pulled
+    }
+
+    suspend fun pushProfile(profile: UserProfile) = withContext(Dispatchers.IO) {
+        check(isSignedIn) { "Not signed in" }
+        val row = JSONObject()
+            .put("user_id", userId)
+            .put("display_name", profile.name)
+            .put("exam_id", UserProfileStore.EXAM_IDS.getValue(profile.exam))
+            .put("daily_question_goal", profile.dailyQuestionGoal)
+        request(
+            "rest/v1/profiles?on_conflict=user_id", "POST", JSONArray().put(row),
+            extraHeaders = mapOf("Prefer" to "resolution=merge-duplicates,return=minimal"),
+        )
+        Unit
+    }
+
+    /** The account's saved profile, or null if it has none yet. */
+    suspend fun pullProfile(): UserProfile? = withContext(Dispatchers.IO) {
+        check(isSignedIn) { "Not signed in" }
+        val rows = requestArray("rest/v1/profiles?select=display_name,exam_id,daily_question_goal&limit=1")
+        if (rows.length() == 0) return@withContext null
+        val row = rows.getJSONObject(0)
+        val exam = UserProfileStore.EXAM_IDS.entries.firstOrNull { it.value == row.getString("exam_id") }?.key
+            ?: return@withContext null
+        UserProfile(row.getString("display_name"), exam, row.getInt("daily_question_goal"))
     }
 
     private suspend fun adoptLocalData() {
@@ -142,30 +182,33 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
         const val KEY_USER = "user"
         const val KEY_EMAIL = "email"
         const val PAGE = 1000
+        val IGNORE_DUPLICATES = mapOf("Prefer" to "resolution=ignore-duplicates,return=minimal")
     }
 }
 
 private fun QuestionAttemptEntity.toRow() = JSONObject()
     .put("id", id)
     .put("question_id", questionId)
-    .put("selected_option_ids", JSONArray(selectedOptionIds))
     .put("result", result)
-    .put("completed_at", completedAtEpochMillis)
-    .put("study_date", studyDateIso)
-    .put("time_zone", timeZoneId)
     .put("context", context)
+    .put("completed_at", Instant.ofEpochMilli(completedAtEpochMillis).toString())
+    .put("time_zone", timeZoneId)
 
 private fun JSONObject.toEntity(userId: String): QuestionAttemptEntity {
-    val options = getJSONArray("selected_option_ids")
+    val options = getJSONArray("attempt_selected_options")
+    val completedAt = OffsetDateTime.parse(getString("completed_at")).toInstant()
+    val zone = getString("time_zone")
+    // study_date is not stored in the cloud; it is the local date at completion.
+    val studyDate = completedAt.atZone(runCatching { ZoneId.of(zone) }.getOrDefault(ZoneId.systemDefault())).toLocalDate()
     return QuestionAttemptEntity(
         id = getString("id"),
         userId = userId,
         questionId = getString("question_id"),
-        selectedOptionIds = List(options.length()) { options.getString(it) },
+        selectedOptionIds = List(options.length()) { options.getJSONObject(it).getString("option_id") },
         result = getString("result"),
-        completedAtEpochMillis = getLong("completed_at"),
-        studyDateIso = getString("study_date"),
-        timeZoneId = getString("time_zone"),
+        completedAtEpochMillis = completedAt.toEpochMilli(),
+        studyDateIso = studyDate.toString(),
+        timeZoneId = zone,
         context = getString("context"),
     )
 }
