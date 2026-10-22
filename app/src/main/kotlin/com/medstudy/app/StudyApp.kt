@@ -60,7 +60,11 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.medstudy.core.designsystem.BottomBarItem
+import com.medstudy.core.designsystem.StudyBottomBar
 import com.medstudy.core.model.Category
+import com.medstudy.core.model.pluralize
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.medstudy.core.model.Question
 import com.medstudy.feature.categories.CategoriesScreen
 import com.medstudy.feature.categories.CategoriesViewModel
@@ -69,11 +73,11 @@ import com.medstudy.feature.practice.QuestionPracticeScreen
 import com.medstudy.feature.progress.ProgressScreen
 import com.medstudy.feature.progress.ProgressViewModel
 
-private enum class StudyDestination(val title: String) {
-    TODAY("Today"),
-    PRACTICE("Practice"),
-    PROGRESS("Progress"),
-    ME("Me"),
+private enum class StudyDestination(val title: String, val icon: ImageVector) {
+    TODAY("Today", Icons.Outlined.Today),
+    PRACTICE("Practice", Icons.Outlined.Quiz),
+    PROGRESS("Progress", Icons.Outlined.Insights),
+    ME("Me", Icons.Outlined.Person),
 }
 
 private enum class PracticeView { HOME, SUBJECTS, SAVED }
@@ -204,6 +208,26 @@ fun StudyApp(
     val mistakeCount = SessionPlanner.mistakes(progressState.attempts).size
     val todayBlock = progressState.plan?.blocks?.firstOrNull { it.studyDateIso == today.toString() }
 
+    val subjects = remember(progressState.categories, progressState.questions, progressState.attempts) {
+        subjectSummaries(progressState.categories, progressState.questions, progressState.attempts)
+    }
+    val planRows = progressState.plan?.blocks.orEmpty()
+        .map { PlanRow(it, LocalDate.parse(it.studyDateIso)) }
+        .filter { !it.date.isBefore(today) }
+        .sortedBy(PlanRow::date).take(4)
+    // Continue where the plan says; otherwise the most-due topic; otherwise a fresh daily set.
+    val continueArea = dueAreas.firstOrNull()
+    val continueCategoryId = todayBlock?.let { it.topicId ?: it.subjectId } ?: continueArea?.let { it.topicId ?: it.subjectId }
+    val continueTarget = run {
+        val subjectId = todayBlock?.subjectId ?: continueArea?.subjectId
+        val subject = subjects.firstOrNull { it.id == subjectId }
+        when {
+            todayBlock != null -> ContinueTarget(todayBlock.title, subject?.name ?: "Today's plan", subject?.colorIndex ?: 0, "Plan")
+            continueArea != null -> ContinueTarget(continueArea.title, subject?.name ?: "Review", subject?.colorIndex ?: 0, "Due")
+            else -> ContinueTarget("Daily set", pluralize(goal, "fresh question"), 0, "Today")
+        }
+    }
+
     fun startDaily() = startSession(
         SessionPlanner.daily(progressState.questions, progressState.attempts, goal),
         "You've answered every available question. Try Review due or Mistakes.",
@@ -264,29 +288,14 @@ fun StudyApp(
     } else {
         Scaffold(
             bottomBar = {
-                NavigationBar(containerColor = MaterialTheme.colorScheme.surface) {
-                    StudyDestination.entries.forEach { item ->
-                        NavigationBarItem(
-                            selected = destination == item,
-                            onClick = {
-                                destinationName = item.name
-                                practiceViewName = PracticeView.HOME.name
-                            },
-                            icon = {
-                                Icon(
-                                    when (item) {
-                                        StudyDestination.TODAY -> Icons.Outlined.Today
-                                        StudyDestination.PRACTICE -> Icons.Outlined.Quiz
-                                        StudyDestination.PROGRESS -> Icons.Outlined.Insights
-                                        StudyDestination.ME -> Icons.Outlined.Person
-                                    },
-                                    contentDescription = item.title,
-                                )
-                            },
-                            label = { Text(item.title) },
-                        )
-                    }
-                }
+                StudyBottomBar(
+                    items = StudyDestination.entries.map { BottomBarItem(it.title, it.icon) },
+                    selectedIndex = destination.ordinal,
+                    onSelect = { index ->
+                        destinationName = StudyDestination.entries[index].name
+                        practiceViewName = PracticeView.HOME.name
+                    },
+                )
             },
         ) { padding ->
             val contentModifier = Modifier.padding(padding)
@@ -296,11 +305,20 @@ fun StudyApp(
                     goal = goal,
                     answeredToday = answeredToday,
                     streak = SessionPlanner.streak(progressState.attempts, today),
-                    todayBlock = todayBlock,
+                    continueTarget = continueTarget,
+                    subjects = subjects,
+                    planRows = planRows,
                     dueAreas = dueAreas,
+                    onContinue = {
+                        val category = progressState.categories.firstOrNull { it.id == continueCategoryId }
+                        if (category != null) startQuestionFlow(category) else startDaily()
+                    },
                     onStartDaily = ::startDaily,
-                    onStartBlock = {
-                        val category = progressState.categories.firstOrNull { it.id == (todayBlock?.topicId ?: todayBlock?.subjectId) }
+                    onOpenSubject = { id ->
+                        progressState.categories.firstOrNull { it.id == id }?.let { startQuestionFlow(it) }
+                    },
+                    onStartBlock = { block ->
+                        val category = progressState.categories.firstOrNull { it.id == (block.topicId ?: block.subjectId) }
                         if (category != null) startQuestionFlow(category) else startDaily()
                     },
                     onReviewDue = ::startDue,
@@ -311,6 +329,7 @@ fun StudyApp(
                         goal = goal,
                         dueCount = dueAreas.size,
                         mistakeCount = mistakeCount,
+                        subjectCount = subjects.size,
                         onDaily = ::startDaily,
                         onDue = ::startDue,
                         onMistakes = {

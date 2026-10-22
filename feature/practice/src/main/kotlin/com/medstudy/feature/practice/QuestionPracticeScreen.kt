@@ -58,6 +58,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.medstudy.core.designsystem.StudyTheme
 import com.medstudy.core.model.AttemptResult
 import com.medstudy.core.model.ContentBlock
 import com.medstudy.core.model.ContentKind
@@ -235,7 +236,7 @@ private fun AnswerOption(
         else -> MaterialTheme.colorScheme.surface
     }
     val borderColor = when {
-        revealed && correct -> MaterialTheme.colorScheme.secondary
+        revealed && correct -> StudyTheme.colors.success
         revealed && selected && !correct -> MaterialTheme.colorScheme.error
         selected -> MaterialTheme.colorScheme.primary
         else -> MaterialTheme.colorScheme.outline
@@ -257,7 +258,7 @@ private fun AnswerOption(
                     QuestionContentBlock(block, imageResource, onImageClick)
                 }
             }
-            if (revealed && correct) Text("Correct", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary)
+            if (revealed && correct) Text("Correct", style = MaterialTheme.typography.labelSmall, color = StudyTheme.colors.success)
             if (revealed && selected && !correct) Text("Your answer", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.error)
         }
     }
