@@ -18,6 +18,8 @@ import com.medstudy.core.model.RightsStatus
 import java.time.LocalDate
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import com.medstudy.core.model.StudyPlanKind
 import org.junit.Test
 
 class StudyInsightsTest {
@@ -71,6 +73,31 @@ class StudyInsightsTest {
         assertEquals(subject.id, result.single().id)
         assertNull(result.single().topicId)
         assertEquals(5, result.single().answeredAttempts)
+    }
+
+    @Test
+    fun `old answers lower retrievability and make an assessed-fine topic due in the plan`() {
+        val old = today.minusDays(60)
+        val attempts = (1..5).map { attempt(it, AttemptResult.CORRECT).copy(
+            completedAtEpochMillis = old.toEpochDay() * 86_400_000, studyDateIso = old.toString(),
+        ) }
+        val areas = StudyInsights(windowDays = 90).analyze(today, attempts, attempts.map { question(it.questionId) }, listOf(subject, topic))
+
+        assertEquals(WeakAreaStatus.ON_TRACK, areas.single().status)
+        assertTrue(areas.single().retrievability!! < 0.85)
+
+        val plan = WeeklyPlanGenerator().generate(today, areas, listOf(subject, topic), 0L)
+        assertEquals(StudyPlanKind.GENERATED, plan.kind)
+        assertTrue(plan.blocks.all { it.topicId == topic.id && it.questionTarget > 10 })
+    }
+
+    @Test
+    fun `fresh review keeps retrievability high and plan stays a starter`() {
+        val attempts = (1..5).map { attempt(it, AttemptResult.CORRECT) }
+        val areas = StudyInsights().analyze(today, attempts, attempts.map { question(it.questionId) }, listOf(subject, topic))
+
+        assertEquals(1.0, areas.single().retrievability!!, 1e-9)
+        assertEquals(StudyPlanKind.STARTER, WeeklyPlanGenerator().generate(today, areas, listOf(subject, topic), 0L).kind)
     }
 
     private fun attempt(index: Int, result: AttemptResult) = QuestionAttempt(

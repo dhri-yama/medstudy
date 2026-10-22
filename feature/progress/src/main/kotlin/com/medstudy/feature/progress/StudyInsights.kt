@@ -39,6 +39,16 @@ class StudyInsights(
                 attemptsByTopic.getOrPut(topicId, ::mutableListOf).add(attempt)
             }
         }
+        // Memory decays over the whole history, not just the accuracy window.
+        val reviewsByArea = mutableMapOf<String, MutableList<Review>>()
+        attempts.filter { it.result != AttemptResult.UNANSWERED }.forEach { attempt ->
+            val question = questionsById[attempt.questionId] ?: return@forEach
+            val review = Review(attempt.completedAtEpochMillis, attempt.result == AttemptResult.CORRECT)
+            (question.topicIds + question.subjectId).forEach { id ->
+                reviewsByArea.getOrPut(id, ::mutableListOf).add(review)
+            }
+        }
+        val nowEpochMillis = today.toEpochDay() * MS_PER_DAY
 
         val subjects = categories.filter { it.parentId == null }.sortedBy(Category::position)
         val topicsBySubject = categories.filter { it.parentId != null }.groupBy(Category::parentId)
@@ -54,15 +64,15 @@ class StudyInsights(
             }
             if (hasTopicEvidence) {
                 topicResults.forEach { (topic, topicAttempts) ->
-                    areas += topic.toWeakArea(subject, topicAttempts)
+                    areas += topic.toWeakArea(subject, topicAttempts, reviewsByArea, nowEpochMillis)
                 }
             } else {
                 val subjectAttempts = attemptsBySubject[subject.id].orEmpty()
                 if (subjectAttempts.size >= minimumAnsweredAttempts) {
-                    areas += subject.toWeakArea(subject, subjectAttempts)
+                    areas += subject.toWeakArea(subject, subjectAttempts, reviewsByArea, nowEpochMillis)
                 } else {
                     topicResults.forEach { (topic, topicAttempts) ->
-                        areas += topic.toWeakArea(subject, topicAttempts)
+                        areas += topic.toWeakArea(subject, topicAttempts, reviewsByArea, nowEpochMillis)
                     }
                 }
             }
@@ -70,7 +80,18 @@ class StudyInsights(
         return areas.sortedWith(compareBy<WeakArea>({ it.status.ordinal }, { it.accuracy ?: 1.0 }, { -it.answeredAttempts }, { it.title }))
     }
 
-    private fun Category.toWeakArea(subject: Category, attempts: List<QuestionAttempt>): WeakArea {
+    private fun Category.toWeakArea(
+        subject: Category,
+        attempts: List<QuestionAttempt>,
+        reviewsByArea: Map<String, List<Review>>,
+        nowEpochMillis: Long,
+    ): WeakArea {
+        val reviews = reviewsByArea[id].orEmpty()
+        val stability = MemoryModel.stability(reviews)
+        val retrievability = stability?.let {
+            val elapsedDays = (nowEpochMillis - reviews.maxOf(Review::atEpochMillis)) / MS_PER_DAY.toDouble()
+            MemoryModel.retrievability(elapsedDays, it)
+        }
         val sampleCount = attempts.size
         val accurateCount = attempts.count { it.result == AttemptResult.CORRECT }
         val accuracy = if (sampleCount == 0) null else accurateCount.toDouble() / sampleCount
@@ -88,7 +109,12 @@ class StudyInsights(
             answeredAttempts = sampleCount,
             accuracy = accuracy,
             status = status,
+            retrievability = retrievability,
         )
+    }
+
+    private companion object {
+        const val MS_PER_DAY = 86_400_000L
     }
 }
 
@@ -106,4 +132,6 @@ data class WeakArea(
     val answeredAttempts: Int,
     val accuracy: Double?,
     val status: WeakAreaStatus,
+    /** Estimated chance the topic is still remembered today (1.0 just reviewed); null if never answered. */
+    val retrievability: Double? = null,
 )

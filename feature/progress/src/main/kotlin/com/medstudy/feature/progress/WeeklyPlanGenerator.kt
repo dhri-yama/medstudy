@@ -7,6 +7,7 @@ import com.medstudy.core.model.StudySchedulePreferences
 import com.medstudy.core.model.WeeklyStudyPlan
 import java.time.LocalDate
 import java.util.UUID
+import kotlin.math.roundToInt
 
 class WeeklyPlanGenerator(
     private val defaultPreferences: StudySchedulePreferences = StudySchedulePreferences(),
@@ -19,7 +20,10 @@ class WeeklyPlanGenerator(
         preferences: StudySchedulePreferences = defaultPreferences,
     ): WeeklyStudyPlan {
         val categoryById = categories.associateBy(Category::id)
-        val reviewAreas = areas.filter { it.status == WeakAreaStatus.NEEDS_REVIEW }
+        // Review what is weak or likely forgotten, most-forgotten first.
+        val reviewAreas = areas
+            .filter { it.status == WeakAreaStatus.NEEDS_REVIEW || (it.retrievability ?: 1.0) < DUE_RETRIEVABILITY }
+            .sortedWith(compareBy({ it.retrievability ?: 1.0 }, { it.accuracy ?: 1.0 }))
         val topics = if (reviewAreas.isNotEmpty()) {
             reviewAreas
         } else {
@@ -48,7 +52,7 @@ class WeeklyPlanGenerator(
                 subjectId = area.subjectId,
                 topicId = area.topicId,
                 title = area.title,
-                questionTarget = preferences.questionTargetPerDay,
+                questionTarget = scaledTarget(preferences.questionTargetPerDay, area.retrievability),
                 minuteTarget = preferences.minuteTargetPerDay,
                 position = 0,
             )
@@ -60,5 +64,13 @@ class WeeklyPlanGenerator(
             kind = if (reviewAreas.isEmpty()) StudyPlanKind.STARTER else StudyPlanKind.GENERATED,
             blocks = blocks,
         )
+    }
+
+    /** The more likely a topic is forgotten, the more questions it gets (0.5x when fresh, up to 1.5x). */
+    private fun scaledTarget(base: Int, retrievability: Double?): Int =
+        if (retrievability == null) base else (base * (0.5 + (1.0 - retrievability))).roundToInt().coerceIn(1, 100)
+
+    private companion object {
+        const val DUE_RETRIEVABILITY = 0.85
     }
 }

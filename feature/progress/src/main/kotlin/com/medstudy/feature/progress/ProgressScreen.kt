@@ -383,7 +383,12 @@ private fun TargetStepper(
     }
 }
 
-private fun areaDescription(area: WeakArea): String = when (area.status) {
+private fun areaDescription(area: WeakArea): String = areaStatusText(area) + dueSuffix(area)
+
+private fun dueSuffix(area: WeakArea): String =
+    area.retrievability?.takeIf { it < 0.85 }?.let { " · ~${(it * 100).toInt()}% recall, due" }.orEmpty()
+
+private fun areaStatusText(area: WeakArea): String = when (area.status) {
     WeakAreaStatus.NEEDS_REVIEW -> "Needs review · ${area.accuracy?.let { "${(it * 100).toInt()}% correct" } ?: ""} · ${area.answeredAttempts} answered"
     WeakAreaStatus.ON_TRACK -> "On track · ${area.accuracy?.let { "${(it * 100).toInt()}% correct" } ?: ""} · ${area.answeredAttempts} answered"
     WeakAreaStatus.UNASSESSED -> "Unassessed · ${area.answeredAttempts} of 5 answered"
