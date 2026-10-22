@@ -2,6 +2,7 @@ package com.medstudy.core.data
 
 import com.medstudy.core.database.ActivityDao
 import com.medstudy.core.database.BookmarkEntity
+import com.medstudy.core.database.LOCAL_USER
 import com.medstudy.core.database.QuestionAttemptEntity
 import com.medstudy.core.model.AttemptResult
 import com.medstudy.core.model.Bookmark
@@ -12,22 +13,23 @@ import kotlinx.coroutines.withContext
 
 class RoomLearnerActivityRepository(
     private val activityDao: ActivityDao,
+    private val userId: () -> String = { LOCAL_USER },
 ) : LearnerActivityRepository {
     override suspend fun bookmark(questionId: String, savedAtEpochMillis: Long) {
         withContext(Dispatchers.IO) {
-            activityDao.putBookmark(BookmarkEntity(questionId, savedAtEpochMillis))
+            activityDao.putBookmark(BookmarkEntity(userId(), questionId, savedAtEpochMillis))
         }
     }
 
     override suspend fun removeBookmark(questionId: String) {
-        withContext(Dispatchers.IO) { activityDao.removeBookmark(questionId) }
+        withContext(Dispatchers.IO) { activityDao.removeBookmark(userId(), questionId) }
     }
 
     override suspend fun isBookmarked(questionId: String): Boolean =
-        withContext(Dispatchers.IO) { activityDao.getBookmark(questionId) != null }
+        withContext(Dispatchers.IO) { activityDao.getBookmark(userId(), questionId) != null }
 
     override suspend fun bookmarks(): List<Bookmark> = withContext(Dispatchers.IO) {
-        activityDao.getBookmarks().map { entity ->
+        activityDao.getBookmarks(userId()).map { entity ->
             Bookmark(entity.questionId, entity.savedAtEpochMillis)
         }
     }
@@ -37,6 +39,7 @@ class RoomLearnerActivityRepository(
             activityDao.putAttempt(
                 QuestionAttemptEntity(
                     id = attempt.id,
+                    userId = userId(),
                     questionId = attempt.questionId,
                     selectedOptionIds = attempt.selectedOptionIds,
                     result = attempt.result.name,
@@ -50,11 +53,11 @@ class RoomLearnerActivityRepository(
     }
 
     override suspend fun attempts(): List<QuestionAttempt> = withContext(Dispatchers.IO) {
-        activityDao.getAttempts().map(QuestionAttemptEntity::toDomain)
+        activityDao.getAttempts(userId()).map(QuestionAttemptEntity::toDomain)
     }
 
     override suspend fun attemptsForDate(studyDateIso: String): List<QuestionAttempt> = withContext(Dispatchers.IO) {
-        activityDao.getAttemptsForDate(studyDateIso).map(QuestionAttemptEntity::toDomain)
+        activityDao.getAttemptsForDate(userId(), studyDateIso).map(QuestionAttemptEntity::toDomain)
     }
 }
 

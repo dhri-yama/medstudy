@@ -88,18 +88,23 @@ data class QuestionReferenceEntity(
     val accessedOn: String?,
 )
 
-@Entity(tableName = "bookmarks")
+/** Owner of rows created before sign-in; re-keyed to the account id on first sign-in. */
+const val LOCAL_USER = "local"
+
+@Entity(tableName = "bookmarks", primaryKeys = ["userId", "questionId"])
 data class BookmarkEntity(
-    @PrimaryKey val questionId: String,
+    val userId: String,
+    val questionId: String,
     val savedAtEpochMillis: Long,
 )
 
 @Entity(
     tableName = "question_attempts",
-    indices = [Index("studyDateIso"), Index("questionId")],
+    indices = [Index("studyDateIso"), Index("questionId"), Index("userId")],
 )
 data class QuestionAttemptEntity(
     @PrimaryKey val id: String,
+    val userId: String,
     val questionId: String,
     val selectedOptionIds: List<String>,
     val result: String,

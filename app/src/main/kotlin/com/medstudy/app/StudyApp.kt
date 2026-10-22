@@ -19,6 +19,7 @@ import androidx.compose.material.icons.outlined.Bookmarks
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Category
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -38,7 +39,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -63,6 +67,7 @@ private enum class StudyDestination(val title: String) {
     CATEGORIES("Subjects"),
     PROGRESS("Progress"),
     BOOKMARKS("Saved"),
+    ACCOUNT("Account"),
 }
 
 @Composable
@@ -71,6 +76,25 @@ fun StudyApp(
     notificationQuestionId: String? = null,
     onNotificationQuestionHandled: () -> Unit = {},
 ) {
+    val context = LocalContext.current
+    val profileStore = remember { UserProfileStore(context) }
+    var profile by remember { mutableStateOf(profileStore.load()) }
+    if (profile == null) {
+        val scope = rememberCoroutineScope()
+        OnboardingScreen { created ->
+            profileStore.save(created)
+            scope.launch {
+                runCatching {
+                    container.weeklyStudyPlan.savePreferences(
+                        container.weeklyStudyPlan.preferences().copy(questionTargetPerDay = created.dailyQuestionGoal),
+                    )
+                }
+            }
+            profile = created
+        }
+        return
+    }
+
     val bootstrapViewModel: CatalogBootstrapViewModel = viewModel(
         factory = CatalogBootstrapViewModel.factory(container.questionCatalog, container.medMcqaRepository),
     )
@@ -91,6 +115,10 @@ fun StudyApp(
             }
         }
         return
+    }
+
+    LaunchedEffect(Unit) {
+        if (container.account.isSignedIn) runCatching { container.account.sync() }
     }
 
     val categoriesViewModel: CategoriesViewModel = viewModel(
@@ -115,7 +143,6 @@ fun StudyApp(
     var savedLoading by rememberSaveable { mutableStateOf(false) }
     var catalogQuestionCount by rememberSaveable { mutableIntStateOf(0) }
     val destination = StudyDestination.valueOf(destinationName)
-    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     var overlayInterval by rememberSaveable {
         mutableIntStateOf(context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0)
@@ -217,6 +244,7 @@ fun StudyApp(
                                         StudyDestination.CATEGORIES -> Icons.Outlined.Category
                                         StudyDestination.PROGRESS -> Icons.Outlined.CalendarMonth
                                         StudyDestination.BOOKMARKS -> Icons.Outlined.Bookmarks
+                                        StudyDestination.ACCOUNT -> Icons.Outlined.Person
                                     },
                                     contentDescription = item.title,
                                 )
@@ -280,6 +308,7 @@ fun StudyApp(
                     onRetry = progressViewModel::refresh,
                     modifier = Modifier.padding(padding),
                 )
+                StudyDestination.ACCOUNT -> AccountScreen(container.account, profile!!, Modifier.padding(padding))
                 StudyDestination.BOOKMARKS -> BookmarksScreen(
                     questions = savedQuestions,
                     isLoading = savedLoading,

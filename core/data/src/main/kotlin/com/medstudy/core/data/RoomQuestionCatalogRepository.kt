@@ -3,6 +3,7 @@ package com.medstudy.core.data
 import androidx.room.withTransaction
 import com.medstudy.core.database.AnswerKeyEntity
 import com.medstudy.core.database.CategoryEntity
+import com.medstudy.core.database.LOCAL_USER
 import com.medstudy.core.database.MediaAssetEntity
 import com.medstudy.core.database.OptionRationaleEntity
 import com.medstudy.core.database.QuestionContentBlockEntity
@@ -30,6 +31,7 @@ import kotlinx.coroutines.withContext
 
 class RoomQuestionCatalogRepository(
     private val database: StudyDatabase,
+    private val userId: () -> String = { LOCAL_USER },
 ) : QuestionCatalogRepository {
     private val catalogDao = database.catalogDao()
 
@@ -68,7 +70,7 @@ class RoomQuestionCatalogRepository(
     }
 
     override suspend fun bookmarkedQuestions(): List<Question> = withContext(Dispatchers.IO) {
-        catalogDao.getBookmarkedQuestions().map(QuestionWithDetails::toDomain)
+        catalogDao.getBookmarkedQuestions(userId()).map(QuestionWithDetails::toDomain)
     }
 
     override suspend fun saveCatalog(

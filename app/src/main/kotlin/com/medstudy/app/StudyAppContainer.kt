@@ -12,13 +12,14 @@ class StudyAppContainer(context: Context) {
         context.applicationContext,
         StudyDatabase::class.java,
         "medstudy.db",
-    ).addMigrations(StudyDatabase.MIGRATION_1_2, StudyDatabase.MIGRATION_2_3).build()
+    ).addMigrations(StudyDatabase.MIGRATION_1_2, StudyDatabase.MIGRATION_2_3, StudyDatabase.MIGRATION_3_4).build()
 
     // Production MedMCQA data repository
     val medMcqaRepository = MedMcqaRepository(context.applicationContext)
     
     // Room-based repositories for user data
-    val questionCatalog = RoomQuestionCatalogRepository(database)
-    val learnerActivity = RoomLearnerActivityRepository(database.activityDao())
+    val account = SupabaseAccount(context, database.activityDao())
+    val questionCatalog = RoomQuestionCatalogRepository(database) { account.userId }
+    val learnerActivity = RoomLearnerActivityRepository(database.activityDao()) { account.userId }
     val weeklyStudyPlan = com.medstudy.core.data.RoomWeeklyStudyPlanRepository(database)
 }

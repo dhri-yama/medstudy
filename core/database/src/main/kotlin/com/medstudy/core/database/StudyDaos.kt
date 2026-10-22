@@ -109,8 +109,8 @@ interface CatalogDao {
     suspend fun getQuestion(questionId: String): QuestionWithDetails?
 
     @Transaction
-    @Query("SELECT questions.* FROM questions INNER JOIN bookmarks ON questions.id = bookmarks.questionId ORDER BY bookmarks.savedAtEpochMillis DESC")
-    suspend fun getBookmarkedQuestions(): List<QuestionWithDetails>
+    @Query("SELECT questions.* FROM questions INNER JOIN bookmarks ON questions.id = bookmarks.questionId WHERE bookmarks.userId = :userId ORDER BY bookmarks.savedAtEpochMillis DESC")
+    suspend fun getBookmarkedQuestions(userId: String): List<QuestionWithDetails>
 }
 
 @Dao
@@ -118,23 +118,29 @@ interface ActivityDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun putBookmark(bookmark: BookmarkEntity)
 
-    @Query("DELETE FROM bookmarks WHERE questionId = :questionId")
-    suspend fun removeBookmark(questionId: String)
+    @Query("DELETE FROM bookmarks WHERE userId = :userId AND questionId = :questionId")
+    suspend fun removeBookmark(userId: String, questionId: String)
 
-    @Query("SELECT * FROM bookmarks WHERE questionId = :questionId")
-    suspend fun getBookmark(questionId: String): BookmarkEntity?
+    @Query("SELECT * FROM bookmarks WHERE userId = :userId AND questionId = :questionId")
+    suspend fun getBookmark(userId: String, questionId: String): BookmarkEntity?
 
-    @Query("SELECT * FROM bookmarks ORDER BY savedAtEpochMillis DESC")
-    suspend fun getBookmarks(): List<BookmarkEntity>
+    @Query("SELECT * FROM bookmarks WHERE userId = :userId ORDER BY savedAtEpochMillis DESC")
+    suspend fun getBookmarks(userId: String): List<BookmarkEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun putAttempt(attempt: QuestionAttemptEntity)
 
-    @Query("SELECT * FROM question_attempts ORDER BY completedAtEpochMillis DESC")
-    suspend fun getAttempts(): List<QuestionAttemptEntity>
+    @Query("UPDATE question_attempts SET userId = :userId WHERE userId = '$LOCAL_USER'")
+    suspend fun adoptLocalAttempts(userId: String)
 
-    @Query("SELECT * FROM question_attempts WHERE studyDateIso = :studyDateIso ORDER BY completedAtEpochMillis DESC")
-    suspend fun getAttemptsForDate(studyDateIso: String): List<QuestionAttemptEntity>
+    @Query("UPDATE OR IGNORE bookmarks SET userId = :userId WHERE userId = '$LOCAL_USER'")
+    suspend fun adoptLocalBookmarks(userId: String)
+
+    @Query("SELECT * FROM question_attempts WHERE userId = :userId ORDER BY completedAtEpochMillis DESC")
+    suspend fun getAttempts(userId: String): List<QuestionAttemptEntity>
+
+    @Query("SELECT * FROM question_attempts WHERE userId = :userId AND studyDateIso = :studyDateIso ORDER BY completedAtEpochMillis DESC")
+    suspend fun getAttemptsForDate(userId: String, studyDateIso: String): List<QuestionAttemptEntity>
 }
 
 @Dao

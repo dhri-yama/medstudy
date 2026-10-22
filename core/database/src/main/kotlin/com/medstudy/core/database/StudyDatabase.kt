@@ -48,7 +48,7 @@ class StudyConverters {
         StudyBlockEntity::class,
         StudySchedulePreferencesEntity::class,
     ],
-    version = 3,
+    version = 4,
     exportSchema = false,
 )
 @TypeConverters(StudyConverters::class)
@@ -83,6 +83,24 @@ abstract class StudyDatabase : RoomDatabase() {
                 )
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_study_blocks_planId ON study_blocks(planId)")
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_study_blocks_studyDateIso ON study_blocks(studyDateIso)")
+            }
+        }
+
+        val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE question_attempts ADD COLUMN userId TEXT NOT NULL DEFAULT 'local'")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_question_attempts_userId ON question_attempts(userId)")
+                db.execSQL(
+                    """CREATE TABLE bookmarks_new (
+                        userId TEXT NOT NULL,
+                        questionId TEXT NOT NULL,
+                        savedAtEpochMillis INTEGER NOT NULL,
+                        PRIMARY KEY(userId, questionId)
+                    )""".trimIndent(),
+                )
+                db.execSQL("INSERT INTO bookmarks_new SELECT 'local', questionId, savedAtEpochMillis FROM bookmarks")
+                db.execSQL("DROP TABLE bookmarks")
+                db.execSQL("ALTER TABLE bookmarks_new RENAME TO bookmarks")
             }
         }
 
