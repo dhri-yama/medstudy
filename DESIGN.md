@@ -1,269 +1,190 @@
-## Overview
+# MedStudy UI design guide (for agents)
 
-Cal.com's marketing surface is a clean, friendly modern-SaaS interface — white canvas (`{colors.canvas}` — #ffffff) with black primary CTAs (`{colors.primary}` — #111111), custom **Cal Sans** display typography, and `{colors.surface-card}` (#f5f5f5) light-gray cards holding product UI fragments. The system reads as confidently engineered without trying to impress — every band has clear hierarchy, generous whitespace, and a single primary action.
+Read this before touching any UI. It is the source of truth for how MedStudy should look and feel.
+Reference image: [docs/design/reference-screens.png](docs/design/reference-screens.png) (three phone screens: home, course detail, study group).
 
-Type voice splits cleanly into two roles: **Cal Sans** (the brand's custom geometric display face — used for h1, h2, h3, and hero headlines) and **Inter** (used for everything else — body, buttons, nav, captions). Cal Sans uses weight 600 with negative letter-spacing (-0.5px to -2px depending on size) — it feels modern, slightly condensed, distinctly Cal.com.
+**Status:** partly implemented.
+- Done: tokens and shared components in `core/designsystem` (`StudyTokens.kt`, `MedStudyTheme.kt`, `StudyComponents.kt`), the Today screen, the Practice mode grid, and the bottom bar.
+- Inherits the new theme but not yet redesigned: Subjects, Progress, Me, Onboarding, and the question screen (its correct-answer colors were updated).
+- Missing components from section 4: segmented control, accordion row, hero card, bottom-right tab variant.
+New and changed screens follow this document; migrate old screens when you touch them.
+- Font: system sans is used for now (Plus Jakarta Sans is not loaded yet).
 
-Component voltage comes from **product UI fragments shown directly inside cards** — calendar widgets, scheduling forms, automation diagrams, integration tiles. Cal.com doesn't paint marketing illustrations of the product; it shows the actual product chrome at small scale embedded in the marketing flow.
+## 1. Personality
 
-The footer flips to `{colors.surface-dark}` (#101010) — a deep near-black that visually closes every long-scroll page. The footer is the only dark surface in the system; everything above stays white-with-light-gray-cards.
+Friendly, colorful, calm. A study app that feels like a well-made planner, not a medical textbook or a dashboard.
+- Soft pastel cards, one per subject, each with its own color. Color means "which subject", never decoration.
+- Big rounded shapes, generous space, almost no borders or shadows.
+- One confident accent (indigo) for actions and progress. Everything else is ink on pastel or white.
+- Short copy. Numbers and progress up front ("2 of 10 questions"), explanations below.
 
-**Key Characteristics:**
-- White canvas with black primary CTA (`{colors.primary}` — #111111). Buttons are `{rounded.md}` (8px) with confident weight-600 labels. Standard friendly-SaaS button.
-- Custom `Cal Sans` display typeface for headlines (substituted with Inter weight 600 here). Negative letter-spacing on display sizes — geometric, precise, slightly condensed.
-- Light-gray card surfaces (`{colors.surface-card}` — #f5f5f5) for feature cards, testimonials, and pricing tiers (non-featured). The featured pricing tier flips to `{colors.surface-dark}` (the only dark card on light pages).
-- Product UI fragments embedded directly in cards — Cal.com shows real schedule pickers, calendar widgets, integration grids inside its marketing cards. Brand voltage from real product chrome at small scale.
-- Nav-pill-group (`{component.nav-pill-group}`) — a small pill-radius wrapper around grouped nav segments (e.g., the sub-nav switcher between product views). The pill wrapper is one of the system's signature interactive components.
-- Avatars are circular (`{rounded.full}`), 36px diameter, used in testimonial rows and team-listing surfaces.
-- Footer is dark navy (`{colors.surface-dark}` — #101010) with light text (`{colors.on-dark-soft}` — #a1a1aa). The dark footer closes every page even though the body above is white.
-- Spacing rhythm is `{spacing.section}` (96px) between major bands — tight enough to feel modern-SaaS but generous enough to breathe.
-- Border radius is hierarchical: `{rounded.md}` (8px) for buttons + inputs, `{rounded.lg}` (12px) for content cards, `{rounded.xl}` (16px) for the hero app-mockup container, `{rounded.pill}` for nav-pill-group + badges, `{rounded.full}` for avatars + icon buttons.
+## 2. What the reference shows, and how it maps to MedStudy
 
-## Colors
+| Reference element | Use in MedStudy |
+|---|---|
+| Home: greeting, date, bell | Today header: "Hey, {name}", date, streak chip (no bell, there are no notifications) |
+| "Continue learning" large pink card with progress bar | Continue card: today's plan topic or most-due topic, progress = answered today / daily goal |
+| Two half-visible subject cards (Biology, English) | Horizontal row of subject cards with question count and accuracy |
+| Study group avatar blobs | Not used (no social features). Do not add people or avatars |
+| Course detail: hero card with illustration | Subject detail hero: subject gradient, accuracy stat, optional illustration slot |
+| Segmented "Lesson / Assignment" | Segmented "Topics / Mistakes" and "Overview / Calendar / Plan" |
+| Accordion lessons with check / chevron | Topic rows: check = mastered, chevron = expandable with progress and a Practice button |
+| "Today's task" white rows with indigo "Details" pill | Today's plan rows with indigo "Start" pill |
+| "Live" card | "Due now" card: chip + topic + recall percent + "Review due topics" |
+| "Upcoming discussion" cards with bottom-right tab | Practice mode cards (Daily set, Review due, Mistakes, Saved) |
+| Tutor, host, "17 going", live classes, discussion requests | Not in the product. Do not invent these |
 
-### Brand & Accent
-- **Primary** (`{colors.primary}` — #111111): The dominant action color. All primary CTAs, h1/h2 display type. Press state shifts to `{colors.primary-active}` (#242424).
-- **Brand Accent** (`{colors.brand-accent}` — #3b82f6): Used sparely on inline links and on a small badge / "Customer story" highlight. Cal.com is a near-monochrome brand — the blue appears rarely.
-- **Badge Pastels** — A small pastel set for category badges and avatar fills: `{colors.badge-orange}` (#fb923c), `{colors.badge-pink}` (#ec4899), `{colors.badge-violet}` (#8b5cf6), `{colors.badge-emerald}` (#34d399). These appear on tag pills and small accent moments inside product UI fragments — never on hero CTAs.
+## 3. Design tokens
 
-### Surface
-- **Canvas** (`{colors.canvas}` — #ffffff): The default page floor.
-- **Surface Soft** (`{colors.surface-soft}` — #f8f9fa): Nav-pill-group background, very-soft section dividers.
-- **Surface Card** (`{colors.surface-card}` — #f5f5f5): Feature cards, testimonial cards, badge pills, default avatar fills.
-- **Surface Strong** (`{colors.surface-strong}` — #e5e7eb): Hairline border alternative; disabled button background.
-- **Surface Dark** (`{colors.surface-dark}` — #101010): The footer background — the only dark surface on every page. Also used for the featured pricing tier card.
-- **Surface Dark Elevated** (`{colors.surface-dark-elevated}` — #1a1a1a): Used for nested cards inside the dark footer or featured pricing card.
-- **Hairline** (`{colors.hairline}` — #e5e7eb): The 1px border tone on light surfaces. Used on input borders, table dividers, content card outlines (sometimes).
-- **Hairline Soft** (`{colors.hairline-soft}` — #f3f4f6): A barely-visible divider used between sections that share the white canvas.
+### 3.1 Color
 
-### Text
-- **Ink** (`{colors.ink}` — #111111): All headlines and primary text.
-- **Body** (`{colors.body}` — #374151): Default running-text color.
-- **Muted** (`{colors.muted}` — #6b7280): Secondary text — sub-headings, breadcrumbs, footer body.
-- **Muted Soft** (`{colors.muted-soft}` — #898989): Tertiary text — captions, fine-print, copyright lines.
-- **On Primary / On Dark** (`{colors.on-primary}` / `{colors.on-dark}` — #ffffff): Text on primary buttons and dark footer.
-- **On Dark Soft** (`{colors.on-dark-soft}` — #a1a1aa): Footer body text — slightly muted white for the link rows.
-
-### Semantic
-- **Success** (`{colors.success}` — #10b981): Confirmation states, success badges in product UI.
-- **Warning** (`{colors.warning}` — #f59e0b): Warning callouts.
-- **Error** (`{colors.error}` — #ef4444): Validation errors.
-
-## Typography
-
-### Font Family
-The system runs **Cal Sans** for display + brand wordmark and **Inter** for everything else. Cal Sans is Cal.com's custom geometric display typeface — slightly condensed, weight 600, negative letter-spacing. Inter handles body, buttons, navigation, captions, and tabular code blocks. The fallback stack walks `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif` for both families.
-
-The split is functional:
-- Cal Sans (display, 600 weight, -0.5 to -2px tracking) — h1, h2, h3
-- Inter (body + UI, 400-600 weight, 0 letter-spacing) — paragraphs, labels, buttons, nav
-
-### Hierarchy
-
-| Token | Size | Weight | Line Height | Letter Spacing | Use |
-|---|---|---|---|---|---|
-| `{typography.display-xl}` | 64px | 600 | 1.05 | -2px | Homepage h1 ("The better way to schedule your meetings") — Cal Sans |
-| `{typography.display-lg}` | 48px | 600 | 1.1 | -1.5px | Section heads ("Your all-purpose scheduling app") — Cal Sans |
-| `{typography.display-md}` | 36px | 600 | 1.15 | -1px | Sub-section heads, card titles — Cal Sans |
-| `{typography.display-sm}` | 28px | 600 | 1.2 | -0.5px | CTA-band heads, pricing tier prices — Cal Sans |
-| `{typography.title-lg}` | 22px | 600 | 1.3 | -0.3px | Pricing plan names — Inter |
-| `{typography.title-md}` | 18px | 600 | 1.4 | 0 | Feature card titles, intro paragraphs |
-| `{typography.title-sm}` | 16px | 600 | 1.4 | 0 | Small card titles, list labels |
-| `{typography.body-md}` | 16px | 400 | 1.5 | 0 | Default running-text |
-| `{typography.body-sm}` | 14px | 400 | 1.5 | 0 | Footer body, fine-print |
-| `{typography.caption}` | 13px | 500 | 1.4 | 0 | Badge labels, captions |
-| `{typography.code}` | 14px | 400 | 1.5 | 0 | Code snippets, API examples — JetBrains Mono |
-| `{typography.button}` | 14px | 600 | 1.0 | 0 | Standard button labels |
-| `{typography.nav-link}` | 14px | 500 | 1.4 | 0 | Top-nav menu items |
-
-### Principles
-Cal Sans is the brand voice — every display headline uses it. Inter handles the supporting type. The boundary is strict: never put body copy in Cal Sans, never put a display headline in Inter. Cal Sans without negative letter-spacing reads as off-brand — the -0.5 to -2px tracking is part of the voice.
-
-Display weight stays at 600 across all sizes — never 700, never 500. The middle weight is what makes Cal Sans feel modern and confident without becoming bombastic.
-
-### Note on Font Substitutes
-If Cal Sans is unavailable, **Inter** at weight 600 with -0.04em letter-spacing is a usable approximation. The geometric character of Cal Sans differs from Inter's humanist forms, but the substitution preserves the weight + tracking signature. **Manrope** at weight 700 is another close alternative.
-
-## Layout
-
-### Spacing System
-- **Base unit:** 4px.
-- **Tokens:** `{spacing.xxs}` 4px · `{spacing.xs}` 8px · `{spacing.sm}` 12px · `{spacing.md}` 16px · `{spacing.lg}` 24px · `{spacing.xl}` 32px · `{spacing.xxl}` 48px · `{spacing.section}` 96px.
-- **Section padding:** `{spacing.section}` (96px) — the universal vertical rhythm between editorial bands.
-- **Card internal padding:** `{spacing.xl}` (32px) for feature cards and pricing tier cards; `{spacing.lg}` (24px) for testimonial and product-mockup cards.
-- **Gutters:** `{spacing.lg}` (24px) between cards in 3-up grids; `{spacing.md}` (16px) inside footer columns.
-
-### Grid & Container
-- **Max content width:** ~1200px centered on marketing pages.
-- **Editorial body:** Single 12-column grid; hero band often uses 7/5 split (h1 left, app mockup card right).
-- **Feature card grids:** 3-up at desktop, 2-up at tablet, 1-up at mobile.
-- **Pricing grid:** 4-up at desktop, 2-up at tablet, 1-up at mobile.
-- **Footer:** 4-column link list at desktop, wrapping to 2-up at tablet, 1-up at mobile.
-
-### Whitespace Philosophy
-Cal.com uses generous but not excessive whitespace — section padding sits at 96px (modern-SaaS standard), and card internal padding stays at 32px. The rhythm is calibrated for fast scanning: every band has a single h1 + h2 + supporting cards, never densely packed lists. The result reads as confident-not-shouting.
-
-## Elevation & Depth
-
-| Level | Treatment | Use |
+| Token | Hex | Use |
 |---|---|---|
-| Flat | No shadow, no border | Body sections, top nav, hero bands |
-| Soft hairline | 1px `{colors.hairline}` border | Inputs, table dividers, occasionally on cards |
-| Card surface | `{colors.surface-card}` background — no shadow | Feature cards, testimonials |
-| Subtle drop shadow | Faint shadow at low alpha | Pricing tier cards, hover-elevated states (the system uses `0 1px 2px rgba(0,0,0,0.05)` and `0 4px 12px rgba(0,0,0,0.08)`) |
-| Featured tier | `{colors.surface-dark}` background, no shadow needed | The featured pricing tier inverts to dark surface — color contrast does the elevation work |
+| `canvas` | `#F6F6F8` | App background (light gray, not white) |
+| `surface` | `#FFFFFF` | Rows, inputs, bottom bar, sheets |
+| `ink` | `#14142B` | Headings and primary text |
+| `body` | `#3B3F51` | Running text |
+| `muted` | `#5F6675` | Secondary text (about 5:1 on canvas; do not go lighter for small text) |
+| `hairline` | `#E6E7EC` | Dividers, outlines when a border is unavoidable |
+| `accent` | `#5B5BD6` | Primary buttons, active nav, progress fill, checks, links |
+| `accent-soft` | `#D9D9F5` | Progress track, selected-row tint |
+| `on-accent` | `#FFFFFF` | Text on accent (about 5.3:1) |
+| `success` | `#167A61` / tint `#DDF3EA` | Correct answers, mastered |
+| `error` | `#B3261E` / tint `#FBE4E2` | Wrong answers, errors |
+| `warning` | `#9A6700` / tint `#FFF1CC` | Due / attention chips |
 
-The elevation philosophy is **soft and modern** — small drop shadows on elevated cards, color-block contrast for emphasis. No heavy shadows, no neumorphism, no glassmorphism.
+Rules: ink text on every pastel card. Accent is the only saturated color outside subject cards.
+Never use black filled buttons.
 
-### Decorative Depth
-- Calendar widgets and product UI fragments embedded inside marketing cards carry their own internal shadows from the product UI itself — these are not system tokens, they're product chrome shown as content.
-- Avatar circles in testimonial sections sometimes carry pastel fill colors (`{colors.badge-orange}`, `{colors.badge-pink}`, etc.) — adds a small chromatic flourish without breaking the monochrome brand voice.
+### 3.2 Subject palette (vertical two-stop gradient, top to bottom)
 
-## Shapes
+| Name | Top | Bottom | Notes |
+|---|---|---|---|
+| pink | `#E9569F` | `#F59AC5` | |
+| blue | `#8EC7F7` | `#C3E2FB` | |
+| green | `#4FC384` | `#8FE0AE` | |
+| yellow | `#F5C93B` | `#F9DE72` | |
+| sky | `#A5D3F6` | `#CDE8FB` | Also used for the "Due now" card |
+| lavender | `#B9A7F0` | `#D8CCF8` | |
+| peach | `#F7A66B` | `#FAC9A0` | |
+| teal | `#5FCFC7` | `#9EE4DF` | |
 
-### Border Radius Scale
+Assign by the subject's index in the catalog sorted by position, then name (`SubjectSummary.colorIndex`, `% 8`). Catalog `position` values are all 0 today, so name order decides.
+The same subject has the same color on every screen. Adding a subject can shift later subjects' colors.
+Fixed assignments: Practice modes use pink (Daily set), green (Review due), yellow (Mistakes), blue (Subjects), lavender (Saved); the "Due now" card uses sky.
+Notch tab: a 35% white overlay on the card (top tabs).
+Ink text on all of these is at least 5:1. Check contrast again if you change a hex.
 
-| Token | Value | Use |
-|---|---|---|
-| `{rounded.xs}` | 4px | Almost no use — reserved for badge accents |
-| `{rounded.sm}` | 6px | Small inline buttons, dropdown items |
-| `{rounded.md}` | 8px | Standard CTA buttons, text inputs, category tabs |
-| `{rounded.lg}` | 12px | Content cards (feature cards, testimonial cards, pricing tier cards) |
-| `{rounded.xl}` | 16px | Hero app-mockup card (a slightly larger radius for the marquee component) |
-| `{rounded.pill}` | 9999px | Nav-pill-group, badge pills |
-| `{rounded.full}` | 9999px / 50% | Avatars, icon buttons |
+### 3.3 Typography
 
-### Photography Geometry
-Avatar photos use `{rounded.full}` (perfect circles) at 36px or 40px. Product UI fragments inside marketing cards retain their native chrome (which often has its own internal radii — e.g., calendar grid cells, button rows). Hero illustration zones use 16:9 or 4:3 ratios with `{rounded.xl}` corners.
+Font: **Plus Jakarta Sans** (open license; load with `androidx.compose.ui:ui-text-google-fonts`, fall back to the system sans). Weights 400, 500, 600 only.
 
-## Components
+| Role | Size / line | Weight | Example |
+|---|---|---|---|
+| Screen title | 24 / 30 sp | 600 | "Practice" |
+| Card title | 22 / 28 sp | 500 | "Chemistry" |
+| Section title | 18 / 24 sp | 600 | "Continue learning" |
+| Body | 14 / 20 sp | 400 | Explanations, descriptions |
+| Row title | 15 / 20 sp | 600 | "Physics Assignment" |
+| Caption | 12 / 16 sp | 400 | "15 classes · 3 left" |
+| Button label | 13 / 16 sp | 600 | "Details" |
+| Nav label | 11 / 14 sp | 500 | "Home" |
 
-### Top Navigation
+Sentence case everywhere. Respect system font scaling; never fix text height in dp.
 
-**`top-nav`** — White nav bar pinned to the top of every page. 64px tall, `{colors.canvas}` background. Carries the Cal.com wordmark + logo at left (the lowercase "Cal.com" with the brand circle), primary horizontal menu (Product, Solutions, Resources, Pricing, Enterprise) center, right-side cluster with "Sign in" text-link, "Sign up free" `{component.button-primary}`, and a sometimes-visible language selector. Menu items in `{typography.nav-link}` (Inter 14px / 500).
+### 3.4 Spacing, shape, elevation, motion
+- 4dp grid. Screen side padding 20dp. Card padding 16dp. Gaps between cards 12dp, between sections 24dp.
+- Radii: cards 24dp, hero 28dp, rows 18dp, inputs 16dp, buttons / chips / segmented control: full pill, icon buttons: circle (44-48dp).
+- Elevation: essentially flat. White rows get a soft shadow (y 2dp, blur 8dp, 4% ink). Colored cards have none.
+- Touch targets 48dp minimum.
+- Motion: 150-250ms ease-out for expand/collapse and progress fill. Honor reduced motion. No decorative animation.
+- Icons: Material Symbols outlined, 20-24dp, ink or muted. Active nav icon is accent.
 
-**`nav-pill-group`** — A small pill-radius wrapper around 2-3 sub-nav segments (e.g., the product-mode switcher between "Personal" / "Teams" / "Enterprise"). Background `{colors.surface-soft}` with internal padding 6px, rounded `{rounded.pill}`. Active segment renders as a white-canvas pill with a subtle drop shadow inside the wrapper. The pill-in-pill treatment is one of Cal.com's signature interactive components.
+## 4. Components
 
-### Buttons
+**Notched card (signature shape).** A 24dp rounded card whose top-right corner is a lighter block (35% white) with 16dp inverted-corner fillets
+where it meets the top and right edges. It is not a hole: the card stays one solid shape. The tab holds a small label (a count, "Plan", "Due").
+Tab is 38% of the card width and 44dp tall. Implemented as `NotchedCard` with a private path `Shape`. Keep titles out of the tab area:
+on wide cards limit the title to about 60% width; on narrow cards add a 28dp spacer above the title. Not built yet: bottom-right action tab.
 
-**`button-primary`** — The signature primary CTA. Background `{colors.primary}` (#111111), text `{colors.on-primary}`, type `{typography.button}` (Inter 14px / 600), padding 12px × 20px, height 40px, rounded `{rounded.md}` (8px). Active state `button-primary-active` shifts to `{colors.primary-active}` (#242424).
+**Continue card.** Notched card, subject gradient. Title 22sp, subtitle caption, tab = "Due" or "Plan". Bottom: progress bar (accent fill on a white 40% track, 8dp tall, full radius) and caption "2 of 10 questions".
 
-**`button-secondary`** — White button with hairline outline. Background `{colors.canvas}`, text `{colors.ink}`, 1px hairline border, same padding + height + radius as primary.
+**Subject card.** Half-width notched card: name, "n questions", accuracy line, thin progress bar. Used in a horizontal row on Today and a 2-column grid in Subjects.
 
-**`button-icon-circular`** — 36 × 36px circular icon button. Background `{colors.canvas}`, hairline border, ink-color icon. Used for share, "view more", carousel arrows.
+**Task row.** White surface, 18dp radius, 12dp padding. Leading 40dp circular outlined icon, title + caption, trailing accent pill button ("Start") with 32dp height.
 
-**`button-text-link`** — Inline text button, no background. Used for "Sign in" in the top nav and inline CTA links inside cards.
+**Pill button.** Primary = accent fill, white label. Secondary = surface fill, ink label, hairline outline. Height 40dp (small 32dp). Never black.
 
-**`text-link`** — Inline body links in `{colors.ink}` (the brand keeps inline links monochrome). Underlined on hover (not documented per the no-hover policy, but mentioned for context).
+**Segmented control.** Light track (`#EBEBF0`), selected segment is a white pill with an optional leading icon, height 44dp.
 
-### Cards & Containers
+**Accordion row.** White, 18dp radius. Title + caption ("5 questions · 60% correct"). Trailing: filled accent check (mastered) or outlined chevron circle. Expanded: progress bar, "n left" caption, small Practice button.
 
-**`hero-band`** — White-canvas hero with a 7-5 grid: h1 + sub-headline + button row on the left, `{component.hero-app-mockup-card}` on the right. Vertical padding `{spacing.section}` (96px).
+**Chip.** Pill, 24dp tall, caption text. "Due" = warning tint, "Streak" = white with flame icon, "Live"-style state is not used.
 
-**`hero-app-mockup-card`** — A larger product-UI mockup card showing the actual Cal.com booking widget with calendar grid, time slots, and a primary "Confirm" button inside. Background `{colors.canvas}`, 1px hairline border, rounded `{rounded.xl}` (16px), subtle drop shadow. Used as the hero's right-side artifact.
+**Bottom navigation.** White bar, 4 items: Today, Practice, Progress, Me. Icon above label. Active = accent icon + label, inactive = muted. No indicator pill. Hidden during a practice session.
 
-**`feature-card`** — Used in 3-up feature grids ("With us, appointment scheduling is easy"). Background `{colors.surface-card}` (#f5f5f5), rounded `{rounded.lg}` (12px), internal padding `{spacing.xl}` (32px). Carries a small icon at top, an `{typography.title-md}` headline, and a body description in `{typography.body-md}`.
+**Hero card.** 28dp, subject gradient, circular white back button top-left, title 28sp, one stat (trophy icon + "62% correct"), right side reserved for an optional illustration (empty by default).
 
-**`feature-icon-card`** — A simpler card variant used in 4-up feature grids on lower-density bands. Background `{colors.canvas}` with hairline border, rounded `{rounded.lg}`, padding `{spacing.lg}` (24px). Carries a small icon, `{typography.title-sm}` title, short description.
+**Option row (question screen).** White, 16dp radius, radio at left. Selected = accent outline + `accent-soft` tint. After checking: correct = success tint with a "Correct" label, wrong selection = error tint with "Your answer".
 
-**`product-mockup-card`** — A card showing actual Cal.com product UI fragments (workflow editor, calendar grid, integration grid, automation flow). Background `{colors.canvas}`, rounded `{rounded.lg}`, padding `{spacing.lg}` (24px). The product UI inside has its own internal chrome — these cards display the product, they don't decorate around it.
+## 5. Screens
 
-**`testimonial-card`** — Used in customer-quote grids. Background `{colors.surface-card}`, rounded `{rounded.lg}`, padding `{spacing.lg}` (24px). Top row carries a `{component.avatar-circle}` + name + role; below sits the testimonial quote in `{typography.body-md}`.
+**Today.** Header (initial-letter circle in the subject-agnostic `accent-soft`, "Hey, {name}", date, streak chip) > "Continue learning" card >
+subject cards row > "Today's plan" task rows > "Due now" card (sky gradient, warning chip, recall percent, "Review due topics" button).
+Data: `answeredToday`, goal, streak, today's plan block, due areas.
 
-**`pricing-tier-card`** — Standard tier card. Background `{colors.canvas}`, rounded `{rounded.lg}`, padding `{spacing.xl}` (32px). Carries the plan name in `{typography.title-lg}`, price in `{typography.display-sm}`, feature checklist in `{typography.body-md}`, and a `{component.button-primary}` at the bottom.
+**Practice.** Title, then a 2-column grid of notched cards: Daily set (pink), Review due (green), Mistakes (yellow), Browse by subject (blue), Saved (sky).
+Each shows a count in the tab chip. A card with nothing to do is dimmed and not clickable.
 
-**`pricing-tier-card-featured`** — The featured tier (typically "Teams"). Background flips to `{colors.surface-dark}` (#101010), text inverts to `{colors.on-dark}`. The dark surface IS the featured-tier signal — no accent border, no badge, no scale shift.
+**Subjects.** Pill search field, then a 2-column grid of subject cards. Tap opens Subject detail.
 
-### Inputs & Forms
+**Subject detail.** Hero card > segmented "Topics / Mistakes" > accordion list of topics. Practice buttons start a session.
 
-**`text-input`** — Standard text input. Background `{colors.canvas}`, text `{colors.ink}`, type `{typography.body-md}`, rounded `{rounded.md}` (8px), padding 10px × 14px, height 40px. 1px hairline border in `{colors.hairline}`.
+**Progress.** Title, segmented "Overview / Calendar / Plan". Calendar sits on a white 24dp card; days with activity get an accent dot and the count.
+Plan uses task rows. Focus areas use subject-colored chips. Schedule preferences collapse into one white row.
 
-**`text-input-focused`** — Focus state. Border thickens or shifts to `{colors.ink}` for emphasis.
+**Question screen.** No bottom bar. Top: circular back button, a thin accent progress bar ("3 of 10"), bookmark icon button. Question text 18sp.
+Option rows. Sticky bottom pill button "Check answer" (accent), then "Next" after the review. Explanation in a white card under the options.
 
-### Tags / Badges
+**Me.** Large initial-letter avatar, name, exam chip. White rows for Profile, Backup and sync, Question overlay. Sign-in sits in a white card.
 
-**`badge-pill`** — Small pill label used for category tags ("Product", "Article", "New") and pastel-fill avatar substitutes. Background `{colors.surface-card}` or one of the badge pastels (`{colors.badge-orange}`, `{colors.badge-pink}`, etc.), text `{colors.ink}`, type `{typography.caption}` (13px / 500), rounded `{rounded.pill}`, padding 4px × 12px.
+**Onboarding.** Pastel hero, one question per step, pill option chips, one accent button. Keep to three steps.
 
-**`avatar-circle`** — 36px diameter, rounded `{rounded.full}`. Either holds a photo or a pastel fill with initials in `{typography.caption}`.
+## 6. Do and do not
 
-**`rating-stars`** — Inline star rating in `{colors.badge-orange}` (#fb923c). Used near testimonial avatars to display a 5-star satisfaction score.
+Do:
+- Use the subject palette consistently per subject.
+- Keep one primary action per screen, as an accent pill.
+- Put progress (numbers and bars) before prose.
+- Use white rows on the gray canvas to separate content, not borders.
 
-### Tab / Filter
+Do not:
+- Add black buttons, heavy shadows, outlined cards nested in cards, or more than the two-stop pastel gradient.
+- Put white text on a pastel card.
+- Invent tutors, groups, live classes, 3D art, photos, or emoji. Features need a product decision first.
+- Hard-code colors or sizes in screens. Read tokens from the theme.
 
-**`category-tab`** + **`category-tab-active`** — Used inside the nav-pill-group. Inactive: transparent background, `{colors.muted}` text. Active: `{colors.canvas}` background, `{colors.ink}` text, subtle drop shadow inside the pill-group wrapper. Padding 8px × 14px, rounded `{rounded.md}`.
+## 7. Compose implementation notes
 
-### CTA / Footer
+- Tokens live in `core/designsystem/MedStudyTheme.kt`. Extend it with a `StudyColors` holder exposed through a `CompositionLocal`
+  (`subjectGradients`, `accent`, `accentSoft`, `success`/`error`/`warning` tints, `canvas`). Keep `MaterialTheme` color roles in sync
+  (`primary = accent`, `background = canvas`, `surface = white`) so Material components inherit the right defaults.
+- Add reusable components to `core/designsystem`: `NotchedCard` (custom `Shape`), `StudyProgressBar`, `PillButton`, `TaskRow`,
+  `SegmentedTabs`, `AccordionRow`, `StudyChip`, `StudyBottomBar`. Feature modules use these and never re-style Material primitives inline.
+- Gradients: `Brush.verticalGradient(top, bottom)` from the subject palette. No other gradients.
+- Fonts: Google Fonts provider with a system fallback; no bundled font files for now.
+- Screens to migrate, in priority order: `TodayScreen.kt`, `PracticeHomeScreen.kt`, `QuestionPracticeScreen.kt`, `CategoriesScreen.kt`,
+  `ProgressScreen.kt`, `MeScreen.kt`, `Onboarding.kt`, the nav bar in `StudyApp.kt`.
+- Verify visually on the emulator at 411dp wide and at 1.3x font scale. Check contrast on every new text-on-color pair (4.5:1 for body text).
 
-**`cta-band-light`** — A pre-footer "Smarter, simpler scheduling" CTA card. Background `{colors.surface-card}`, rounded `{rounded.lg}`, padding `{spacing.xxl}` (48px). Carries an h2 in `{typography.display-sm}`, a sub-line, and a `{component.button-primary}` centered.
+## 8. Accessibility checklist
+- 4.5:1 contrast for text under 18sp, 3:1 for large text and icons.
+- Color is never the only signal: pair status colors with a word or icon (Correct, Due, Mastered).
+- Content descriptions on icon-only buttons (back, bookmark, streak).
+- 48dp touch targets; focus order follows reading order; text scales with system settings.
+- Progress bars expose a text value ("2 of 10 questions") to screen readers.
 
-**`footer`** — Dark navy footer that closes every page. Background `{colors.surface-dark}` (#101010), text `{colors.on-dark-soft}`. 4-column link list at desktop covering Product / Solutions / Company / Resources. Vertical padding 64px. The Cal.com wordmark sits at the top-left in `{colors.on-dark}`. The footer is the only dark surface on every page — the deliberate inversion visually closes the page.
-
-## Do's and Don'ts
-
-### Do
-- Reserve `{colors.primary}` (#111111) for primary CTAs and h1/h2 type. Cal.com's button is near-black, not blue.
-- Use Cal Sans for every display headline. Pair with Inter body. Never blur the boundary.
-- Apply negative letter-spacing on display sizes (-0.5 to -2px). Cal Sans without it reads as off-brand.
-- Use `{component.feature-card}` (light gray) and `{component.product-mockup-card}` (white with chrome) deliberately — the gray cards signal "abstract feature claim", white cards signal "look at the actual product".
-- Embed real product UI fragments inside marketing cards. Don't paint marketing illustrations of the product when you can show the product itself.
-- Keep avatar circles at 36px, perfect circles, sometimes with pastel fills. Avatars are the only place where badge pastels appear.
-- Use `{component.nav-pill-group}` for grouped sub-nav segments. The pill-in-pill treatment is signature.
-- End every page with the dark footer. The light-to-dark transition is part of the editorial rhythm.
-
-### Don't
-- Don't use accent colors (`{colors.brand-accent}`, badge pastels) on primary CTAs. The system is monochrome at the action layer.
-- Don't bold display weight beyond 600. Cal Sans at 700 reads as bombastic.
-- Don't use rounded radius beyond `{rounded.xl}` (16px) on cards. Larger radii read as consumer-app, not professional booking software.
-- Don't put dark surface cards anywhere except the footer and the featured pricing tier. The dark surface is a deliberate, scarce signal.
-- Don't repeat the same surface mode in two consecutive bands. Cal.com's pacing alternates white → light-gray → white → product-mockup-card → white → dark-footer.
-- Don't add hover state styling beyond what the system already encodes — primary darkens on press; nothing else changes.
-
-## Responsive Behavior
-
-### Breakpoints
-
-| Name | Width | Key Changes |
-|---|---|---|
-| Mobile | < 768px | Hamburger nav; hero h1 64→32px; hero-app-mockup-card stacks below content; feature grids 1-up; pricing 1-up; footer 4 cols → 1 |
-| Tablet | 768–1024px | Top nav stays horizontal but tightens; nav-pill-group wraps; feature cards 2-up; pricing 2-up |
-| Desktop | 1024–1440px | Full top-nav with all menu items; 3-up feature cards; 4-up pricing tiers |
-| Wide | > 1440px | Same as desktop with more outer breathing room; max content width caps at 1200px |
-
-### Touch Targets
-- `{component.button-primary}` at minimum 40 × 40px.
-- `{component.button-icon-circular}` at exactly 36 × 36 — slightly under WCAG's 44 × 44 but the centered icon and full-circle silhouette compensate.
-- `{component.text-input}` height is 40px.
-- `{component.category-tab}` rendered inside nav-pill-group has 8 × 14 padding; effective tap area meets 44px+ with the surrounding pill.
-
-### Collapsing Strategy
-- Top nav collapses to hamburger at < 768px; menu opens as a full-screen sheet.
-- Hero band's 7-5 grid collapses to single-column on mobile — h1 + sub-head + buttons first, then the app-mockup card below.
-- Feature grids reduce columns rather than scaling cards down.
-- Pricing tier cards collapse 4 → 2 → 1; featured-tier dark surface stays visually distinct at every breakpoint.
-- Nav-pill-group wraps to multi-row on tablet if the segments don't fit horizontally.
-- Avatar + testimonial card layouts stay grid-aligned at every breakpoint.
-
-### Image Behavior
-- Product UI fragments inside cards retain native aspect ratios; the cards themselves resize.
-- Avatar photos crop to circles at every breakpoint.
-- Hero app-mockup card scales proportionally on mobile — the calendar grid stays legible.
-
-## Iteration Guide
-
-1. Focus on ONE component at a time. Reference its YAML key directly (`{component.feature-card}`, `{component.pricing-tier-card-featured}`).
-2. Variants of an existing component (`-active`, `-disabled`, `-focused`) live as separate entries in `components:`.
-3. Use `{token.refs}` everywhere — never inline hex.
-4. Never document hover. Default and Active/Pressed states only.
-5. Display headlines stay Cal Sans 600 with negative letter-spacing. Body stays Inter 400. The trinity does not blur.
-6. The dark footer is the only dark surface on most pages. Don't add other dark cards casually.
-7. When in doubt about emphasis: bigger Cal Sans before bolder Cal Sans.
-
-## Known Gaps
-
-- The dembrandt frequency analyzer captured `Buttons: 0 variants` — Cal.com renders most CTAs as styled `<a>` link elements rather than `<button>` tags, which dembrandt's button selector doesn't capture. Button styles are documented from screenshot ground-truth + standard Cal Sans / Inter baselines.
-- Cal Sans is licensed to Cal.com and not available as a public web font; substitutes are documented in the typography section.
-- The badge pastel set (orange / pink / violet / emerald) is documented from observed avatar fill colors; exact hex values may shift seasonally.
-- Animation and transition timings (calendar slot picker, schedule confirmation, integration grid hover-reveal) are not in scope.
-- Form validation states beyond `{component.text-input-focused}` are not extracted — error / success states would need a sign-up or booking flow to confirm.
-- The actual booking widget surface (cal.com/{username}) is the product, not a marketing surface; its spec is out of scope.
-- Avatar photos in testimonial sections sometimes carry pastel circular fills with initials instead of photographs; both treatments coexist on the same page.
+## 9. Open questions
+- Dark theme is not designed yet. Do not add one without a palette review.
+- Whether subjects get illustrations (the reference uses a 3D virus on the Biology hero). Until decided, the hero's right side stays empty.
+- Real photos or avatars for the user. Until decided, use an initial-letter circle.
