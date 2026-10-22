@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.medstudy.core.model.Category
+import com.medstudy.core.model.pluralize
 
 @Composable
 fun CategoriesScreen(
@@ -105,15 +106,17 @@ fun CategoriesScreen(
                                 Icon(Icons.AutoMirrored.Outlined.MenuBook, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(subject.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Medium)
-                                    Text(
-                                        subject.description ?: "Medical subject",
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    )
+                                    if (hasTopics) {
+                                        Text(
+                                            pluralize(state.categories.count { it.parentId == subject.id }, "topic"),
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        )
+                                    }
                                 }
                                 Column(horizontalAlignment = Alignment.End) {
                                     Text(count.toString(), style = MaterialTheme.typography.titleMedium)
-                                    Text("questions", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    Text(if (count == 1) "question" else "questions", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 }
                                 Icon(Icons.AutoMirrored.Outlined.ArrowForward, contentDescription = "Open ${subject.name}")
                             }

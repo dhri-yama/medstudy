@@ -42,6 +42,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.medstudy.core.model.AttemptResult
+import com.medstudy.core.model.pluralize
+import com.medstudy.core.model.subjectDisplayName
 import com.medstudy.core.model.Category
 import com.medstudy.core.model.Question
 import com.medstudy.core.model.StudyBlock
@@ -160,7 +162,7 @@ fun ProgressScreen(
         item {
             val formattedDate = state.selectedDate.format(DateTimeFormatter.ofPattern("EEEE, d MMMM", Locale.getDefault()))
             Text(formattedDate, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-            Text("${state.selectedDayEntries.size} completed questions", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("${pluralize(state.selectedDayEntries.size, "question")} completed", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         if (state.selectedDayEntries.isEmpty()) {
             item {
@@ -245,7 +247,7 @@ fun ProgressScreen(
         if (state.areas.isEmpty()) {
             item { Text("No topic data yet.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
         } else {
-            items(state.areas.take(8), key = { "area-${it.id}" }) { area ->
+            items(state.areas.filter { it.answeredAttempts > 0 }.ifEmpty { state.areas }.take(8), key = { "area-${it.id}" }) { area ->
                 Surface(
                     shape = RoundedCornerShape(8.dp),
                     color = MaterialTheme.colorScheme.surface,
@@ -316,7 +318,7 @@ private fun QuestionHistoryRow(
     ) {
         Column(Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(question.subjectId.substringAfterLast('.').replaceFirstChar(Char::uppercase), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary, modifier = Modifier.weight(1f))
+                Text(subjectDisplayName(question.subjectId), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary, modifier = Modifier.weight(1f))
                 Text(result, style = MaterialTheme.typography.labelMedium, color = if (entry.attempt.result == AttemptResult.CORRECT) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Text(excerpt, style = MaterialTheme.typography.bodyMedium, maxLines = 2, modifier = Modifier.padding(top = 6.dp))
@@ -386,7 +388,7 @@ private fun TargetStepper(
 private fun areaDescription(area: WeakArea): String = areaStatusText(area) + dueSuffix(area)
 
 private fun dueSuffix(area: WeakArea): String =
-    area.retrievability?.takeIf { it < 0.85 }?.let { " · ~${(it * 100).toInt()}% recall, due" }.orEmpty()
+    area.retrievability?.takeIf { it < DUE_RETRIEVABILITY }?.let { " · ~${(it * 100).toInt()}% recall, due" }.orEmpty()
 
 private fun areaStatusText(area: WeakArea): String = when (area.status) {
     WeakAreaStatus.NEEDS_REVIEW -> "Needs review · ${area.accuracy?.let { "${(it * 100).toInt()}% correct" } ?: ""} · ${area.answeredAttempts} answered"

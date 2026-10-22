@@ -118,6 +118,12 @@ class StudyInsights(
     }
 }
 
+/** Recall below this means the topic is due for review. */
+const val DUE_RETRIEVABILITY = 0.85
+
+fun WeakArea.isDue(): Boolean =
+    status == WeakAreaStatus.NEEDS_REVIEW || (retrievability ?: 1.0) < DUE_RETRIEVABILITY
+
 enum class WeakAreaStatus {
     NEEDS_REVIEW,
     UNASSESSED,

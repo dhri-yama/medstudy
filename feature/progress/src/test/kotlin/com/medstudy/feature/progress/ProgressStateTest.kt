@@ -74,6 +74,21 @@ class ProgressStateTest {
     }
 
     @Test
+    fun `plan fills the week with distinct topics spread across subjects`() {
+        val categories = listOf(
+            Category("subject.a", null, "A"), Category("subject.b", null, "B"),
+        ) + (1..4).map { Category("topic.a$it", "subject.a", "A$it") } +
+            (1..4).map { Category("topic.b$it", "subject.b", "B$it") }
+        val weak = WeakArea("topic.a1", "subject.a", "topic.a1", "A1", 6, 0.2, WeakAreaStatus.NEEDS_REVIEW)
+
+        val plan = WeeklyPlanGenerator().generate(LocalDate.parse("2026-10-03"), listOf(weak), categories, 0L)
+
+        assertEquals("topic.a1", plan.blocks.first().topicId)
+        assertEquals(7, plan.blocks.mapNotNull { it.topicId }.distinct().size)
+        assertTrue(plan.blocks.take(3).map { it.subjectId }.toSet().size > 1)
+    }
+
+    @Test
     fun `generated blocks respect selected weekdays and daily targets`() {
         val startDate = LocalDate.parse("2026-10-03")
         val preferences = StudySchedulePreferences(

@@ -22,26 +22,25 @@ class WeeklyPlanGenerator(
         val categoryById = categories.associateBy(Category::id)
         // Review what is weak or likely forgotten, most-forgotten first.
         val reviewAreas = areas
-            .filter { it.status == WeakAreaStatus.NEEDS_REVIEW || (it.retrievability ?: 1.0) < DUE_RETRIEVABILITY }
+            .filter(WeakArea::isDue)
             .sortedWith(compareBy({ it.retrievability ?: 1.0 }, { it.accuracy ?: 1.0 }))
-        val topics = if (reviewAreas.isNotEmpty()) {
-            reviewAreas
-        } else {
-            areas.filter { it.topicId != null }.ifEmpty {
-                categories.filter { it.parentId != null }.map { topic ->
-                    val subject = categoryById[topic.parentId] ?: topic
-                    WeakArea(
-                        id = topic.id,
-                        subjectId = subject.id,
-                        topicId = topic.id,
-                        title = topic.name,
-                        answeredAttempts = 0,
-                        accuracy = null,
-                        status = WeakAreaStatus.UNASSESSED,
-                    )
-                }
-            }
-        }
+        // Fill the week with distinct topics: due/weak first, then other studied topics, then untouched
+        // catalog topics spread across subjects. Only a tiny catalog makes the list repeat.
+        val studied = areas.filter { it.topicId != null }
+            .sortedBy { it.retrievability ?: 1.0 }
+        val untouched = categories.filter { it.parentId != null }.map { topic ->
+            val subject = categoryById[topic.parentId] ?: topic
+            WeakArea(
+                id = topic.id,
+                subjectId = subject.id,
+                topicId = topic.id,
+                title = topic.name,
+                answeredAttempts = 0,
+                accuracy = null,
+                status = WeakAreaStatus.UNASSESSED,
+            )
+        }.groupBy(WeakArea::subjectId).values.let(::interleave)
+        val topics = (reviewAreas + studied + untouched).distinctBy(WeakArea::id)
         val studyDates = (0L..6L).map(startDate::plusDays)
             .filter { it.dayOfWeek.value in preferences.availableWeekdays }
         val blocks = studyDates.mapIndexedNotNull { position, date ->
@@ -70,7 +69,6 @@ class WeeklyPlanGenerator(
     private fun scaledTarget(base: Int, retrievability: Double?): Int =
         if (retrievability == null) base else (base * (0.5 + (1.0 - retrievability))).roundToInt().coerceIn(1, 100)
 
-    private companion object {
-        const val DUE_RETRIEVABILITY = 0.85
-    }
+    private fun <T> interleave(groups: Collection<List<T>>): List<T> =
+        (0 until (groups.maxOfOrNull(List<T>::size) ?: 0)).flatMap { i -> groups.mapNotNull { it.getOrNull(i) } }
 }

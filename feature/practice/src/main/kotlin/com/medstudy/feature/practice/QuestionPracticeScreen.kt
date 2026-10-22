@@ -60,6 +60,9 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.medstudy.core.model.AttemptResult
 import com.medstudy.core.model.ContentBlock
+import com.medstudy.core.model.ContentKind
+import com.medstudy.core.model.readableExplanation
+import com.medstudy.core.model.subjectDisplayName
 import com.medstudy.core.model.Question
 import com.medstudy.core.model.QuestionOption
 
@@ -107,8 +110,8 @@ fun QuestionPracticeScreen(
                 },
                 title = {
                     Column {
-                        Text(question.subjectId.substringAfterLast('.').replaceFirstChar(Char::uppercase), style = MaterialTheme.typography.titleMedium)
-                        Text("DEMO QUESTION  ·  ${state.position + 1} OF ${state.questions.size}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(subjectDisplayName(question.subjectId), style = MaterialTheme.typography.titleMedium)
+                        Text("Question ${state.position + 1} of ${state.questions.size}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 },
                 actions = {
@@ -170,7 +173,7 @@ fun QuestionPracticeScreen(
             ),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            item {
+            if (question.provenance.contentKind == ContentKind.DEMO) item {
                 Text("DEMO CONTENT ONLY", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.SemiBold)
                 Text("This fictional sample is for testing the app experience. It is not an actual exam question or medical advice.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 4.dp))
             }
@@ -273,8 +276,9 @@ private fun AnswerReview(question: Question, result: AttemptResult?) {
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.SemiBold,
         )
-        Text(question.answerKey.explanation, style = MaterialTheme.typography.bodyMedium)
-        question.options.sortedBy(QuestionOption::position).forEach { option ->
+        Text(readableExplanation(question.answerKey.explanation), style = MaterialTheme.typography.bodyMedium)
+        // Per-option rationales are empty for MedMCQA; skip the repeated "Incorrect option" rows then.
+        if (question.answerKey.optionRationales.any { it.text.isNotBlank() }) question.options.sortedBy(QuestionOption::position).forEach { option ->
             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Text(
                     "${option.label}  ${if (option.id in question.answerKey.correctOptionIds) "Correct answer" else "Incorrect option"}",
