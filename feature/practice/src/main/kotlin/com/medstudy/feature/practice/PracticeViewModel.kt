@@ -54,6 +54,26 @@ class PracticeViewModel(
         }
     }
 
+    /** Practice a prepared set of questions (daily set, review due, mistakes). */
+    fun startQuestions(ids: List<String>, emptyMessage: String) {
+        viewModelScope.launch {
+            mutableState.value = PracticeUiState(isLoading = true)
+            runCatching { ids.mapNotNull { catalogRepository.question(it) } }
+                .onSuccess { questions ->
+                    mutableState.value = if (questions.isEmpty()) {
+                        PracticeUiState(isLoading = false, error = emptyMessage)
+                    } else {
+                        PracticeUiState(
+                            isLoading = false,
+                            questions = questions,
+                            isBookmarked = activityRepository.isBookmarked(questions.first().id),
+                        )
+                    }
+                }
+                .onFailure { mutableState.value = PracticeUiState(isLoading = false, error = it.message) }
+        }
+    }
+
     fun startRandomUnattempted() {
         viewModelScope.launch {
             mutableState.value = PracticeUiState(isLoading = true)

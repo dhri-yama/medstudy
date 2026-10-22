@@ -19,6 +19,13 @@ import androidx.compose.material.icons.outlined.Bookmarks
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Category
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Insights
+import androidx.compose.material.icons.outlined.Quiz
+import androidx.compose.material.icons.outlined.Today
+import com.medstudy.feature.progress.SessionPlanner
+import com.medstudy.feature.progress.WeakArea
+import com.medstudy.feature.progress.isDue
+import java.time.LocalDate
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -63,12 +70,13 @@ import com.medstudy.feature.progress.ProgressScreen
 import com.medstudy.feature.progress.ProgressViewModel
 
 private enum class StudyDestination(val title: String) {
-    HOME("Home"),
-    CATEGORIES("Subjects"),
+    TODAY("Today"),
+    PRACTICE("Practice"),
     PROGRESS("Progress"),
-    BOOKMARKS("Saved"),
-    ACCOUNT("Account"),
+    ME("Me"),
 }
+
+private enum class PracticeView { HOME, SUBJECTS, SAVED }
 
 @Composable
 fun StudyApp(
@@ -77,10 +85,10 @@ fun StudyApp(
     onNotificationQuestionHandled: () -> Unit = {},
 ) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val profileStore = remember { UserProfileStore(context) }
     var profile by remember { mutableStateOf(profileStore.load()) }
     if (profile == null) {
-        val scope = rememberCoroutineScope()
         OnboardingScreen { created ->
             profileStore.save(created)
             scope.launch {
@@ -137,12 +145,13 @@ fun StudyApp(
     val categoriesState by categoriesViewModel.state.collectAsState()
     val practiceState by practiceViewModel.state.collectAsState()
     val progressState by progressViewModel.state.collectAsState()
-    var destinationName by rememberSaveable { mutableStateOf(StudyDestination.HOME.name) }
+    var destinationName by rememberSaveable { mutableStateOf(StudyDestination.TODAY.name) }
     var isPracticing by rememberSaveable { mutableStateOf(false) }
     var savedQuestions by rememberSaveable { mutableStateOf(emptyList<Question>()) }
     var savedLoading by rememberSaveable { mutableStateOf(false) }
-    var catalogQuestionCount by rememberSaveable { mutableIntStateOf(0) }
+    var practiceViewName by rememberSaveable { mutableStateOf(PracticeView.HOME.name) }
     val destination = StudyDestination.valueOf(destinationName)
+    val practiceView = PracticeView.valueOf(practiceViewName)
     val lifecycleOwner = LocalLifecycleOwner.current
     var overlayInterval by rememberSaveable {
         mutableIntStateOf(context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0)
@@ -183,48 +192,57 @@ fun StudyApp(
         isPracticing = true
     }
 
-    fun startRandomUnattemptedQuestion() {
-        practiceViewModel.startRandomUnattempted()
+    fun startSession(ids: List<String>, emptyMessage: String) {
+        practiceViewModel.startQuestions(ids, emptyMessage)
         isPracticing = true
     }
 
-    LaunchedEffect(destination, isPracticing) {
-        if (!isPracticing && destination == StudyDestination.BOOKMARKS) {
+    val goal = profile!!.dailyQuestionGoal
+    val today = LocalDate.now()
+    val answeredToday = progressState.attempts.count { it.studyDateIso == today.toString() }
+    val dueAreas = progressState.areas.filter(WeakArea::isDue)
+    val mistakeCount = SessionPlanner.mistakes(progressState.attempts).size
+    val todayBlock = progressState.plan?.blocks?.firstOrNull { it.studyDateIso == today.toString() }
+
+    fun startDaily() = startSession(
+        SessionPlanner.daily(progressState.questions, progressState.attempts, goal),
+        "You've answered every available question. Try Review due or Mistakes.",
+    )
+    fun startDue() = startSession(
+        SessionPlanner.due(progressState.areas, progressState.questions, progressState.attempts, goal),
+        "Nothing is due for review right now.",
+    )
+
+    LaunchedEffect(destination, practiceView, isPracticing) {
+        if (!isPracticing && destination == StudyDestination.PRACTICE && practiceView == PracticeView.SAVED) {
             savedLoading = true
             savedQuestions = runCatching { container.questionCatalog.bookmarkedQuestions() }.getOrDefault(emptyList())
             savedLoading = false
         }
     }
 
-    LaunchedEffect(bootstrapState.isReady) {
-        if (bootstrapState.isReady) {
-            catalogQuestionCount = runCatching { container.questionCatalog.questions().size }.getOrDefault(0)
-        }
+    fun leavePractice(toToday: Boolean = false) {
+        isPracticing = false
+        if (toToday) destinationName = StudyDestination.TODAY.name
+        progressViewModel.refresh()
     }
 
-    BackHandler(enabled = isPracticing) {
-        isPracticing = false
-        if (destination == StudyDestination.PROGRESS) progressViewModel.refresh()
+    BackHandler(enabled = isPracticing) { leavePractice() }
+    BackHandler(enabled = !isPracticing && destination == StudyDestination.PRACTICE && practiceView != PracticeView.HOME) {
+        practiceViewName = PracticeView.HOME.name
     }
 
     if (isPracticing) {
         QuestionPracticeScreen(
             state = practiceState,
-            onBack = {
-                isPracticing = false
-                if (destination == StudyDestination.PROGRESS) progressViewModel.refresh()
-            },
+            onBack = { leavePractice() },
             onSelectOption = practiceViewModel::selectOption,
             onSubmit = practiceViewModel::submit,
             onShowAnswer = practiceViewModel::showAnswer,
             onToggleBookmark = practiceViewModel::toggleBookmark,
             onPrevious = practiceViewModel::previous,
             onNext = practiceViewModel::next,
-            onFinish = {
-                isPracticing = false
-                destinationName = StudyDestination.PROGRESS.name
-                progressViewModel.refresh()
-            },
+            onFinish = { leavePractice(toToday = true) },
             imageResource = { assetId ->
                 if (assetId == "demo.media.placeholder-landscape") R.drawable.demo_imaging_placeholder else null
             },
@@ -236,15 +254,17 @@ fun StudyApp(
                     StudyDestination.entries.forEach { item ->
                         NavigationBarItem(
                             selected = destination == item,
-                            onClick = { destinationName = item.name },
+                            onClick = {
+                                destinationName = item.name
+                                practiceViewName = PracticeView.HOME.name
+                            },
                             icon = {
                                 Icon(
                                     when (item) {
-                                        StudyDestination.HOME -> Icons.Outlined.Home
-                                        StudyDestination.CATEGORIES -> Icons.Outlined.Category
-                                        StudyDestination.PROGRESS -> Icons.Outlined.CalendarMonth
-                                        StudyDestination.BOOKMARKS -> Icons.Outlined.Bookmarks
-                                        StudyDestination.ACCOUNT -> Icons.Outlined.Person
+                                        StudyDestination.TODAY -> Icons.Outlined.Today
+                                        StudyDestination.PRACTICE -> Icons.Outlined.Quiz
+                                        StudyDestination.PROGRESS -> Icons.Outlined.Insights
+                                        StudyDestination.ME -> Icons.Outlined.Person
                                     },
                                     contentDescription = item.title,
                                 )
@@ -255,12 +275,86 @@ fun StudyApp(
                 }
             },
         ) { padding ->
+            val contentModifier = Modifier.padding(padding)
             when (destination) {
-                StudyDestination.HOME -> HomeScreen(
-                    onBrowse = { destinationName = StudyDestination.CATEGORIES.name },
-                    onStart = ::startRandomUnattemptedQuestion,
+                StudyDestination.TODAY -> TodayScreen(
+                    name = profile!!.name,
+                    goal = goal,
+                    answeredToday = answeredToday,
+                    streak = SessionPlanner.streak(progressState.attempts, today),
+                    todayBlock = todayBlock,
+                    dueAreas = dueAreas,
+                    onStartDaily = ::startDaily,
+                    onStartBlock = {
+                        val category = progressState.categories.firstOrNull { it.id == (todayBlock?.topicId ?: todayBlock?.subjectId) }
+                        if (category != null) startQuestionFlow(category) else startDaily()
+                    },
+                    onReviewDue = ::startDue,
+                    modifier = contentModifier,
+                )
+                StudyDestination.PRACTICE -> when (practiceView) {
+                    PracticeView.HOME -> PracticeHomeScreen(
+                        goal = goal,
+                        dueCount = dueAreas.size,
+                        mistakeCount = mistakeCount,
+                        onDaily = ::startDaily,
+                        onDue = ::startDue,
+                        onMistakes = {
+                            startSession(SessionPlanner.mistakes(progressState.attempts), "No missed questions to review.")
+                        },
+                        onSubjects = { practiceViewName = PracticeView.SUBJECTS.name },
+                        onSaved = { practiceViewName = PracticeView.SAVED.name },
+                        modifier = contentModifier,
+                    )
+                    PracticeView.SUBJECTS -> Column(contentModifier) {
+                        TextButton(onClick = { practiceViewName = PracticeView.HOME.name }) { Text("\u2190 Practice") }
+                        CategoriesScreen(
+                            state = categoriesState,
+                            onCategorySelected = { category -> startQuestionFlow(category) },
+                            onRetry = categoriesViewModel::load,
+                        )
+                    }
+                    PracticeView.SAVED -> Column(contentModifier) {
+                        TextButton(onClick = { practiceViewName = PracticeView.HOME.name }) { Text("\u2190 Practice") }
+                        BookmarksScreen(
+                            questions = savedQuestions,
+                            isLoading = savedLoading,
+                            onOpen = { question -> startQuestionFlow(questionId = question.id) },
+                        )
+                    }
+                }
+                StudyDestination.PROGRESS -> ProgressScreen(
+                    state = progressState,
+                    onMonthChange = progressViewModel::changeMonth,
+                    onSelectDate = progressViewModel::selectDate,
+                    onToggleSubject = progressViewModel::toggleSubject,
+                    onReviewQuestion = { question -> startQuestionFlow(questionId = question.id) },
+                    onToggleStudyDay = progressViewModel::toggleStudyDay,
+                    onQuestionTargetChange = progressViewModel::adjustQuestionTargetPerDay,
+                    onMinuteTargetChange = progressViewModel::adjustMinuteTargetPerDay,
+                    onRegeneratePlan = progressViewModel::regeneratePlan,
+                    onMoveBlock = progressViewModel::moveBlock,
+                    onRemoveBlock = progressViewModel::removeBlock,
+                    onAddBlock = progressViewModel::addBlock,
+                    onRetry = progressViewModel::refresh,
+                    modifier = contentModifier,
+                )
+                StudyDestination.ME -> MeScreen(
+                    profile = profile!!,
+                    onSaveProfile = { updated ->
+                        profileStore.save(updated)
+                        profile = updated
+                        scope.launch {
+                            runCatching {
+                                container.weeklyStudyPlan.savePreferences(
+                                    container.weeklyStudyPlan.preferences().copy(questionTargetPerDay = updated.dailyQuestionGoal),
+                                )
+                            }
+                            progressViewModel.refresh()
+                        }
+                    },
+                    account = container.account,
                     overlayInterval = overlayInterval,
-                    questionCount = catalogQuestionCount,
                     overlayEnabled = overlayEnabled,
                     overlayAccessGranted = overlayAccessGranted,
                     onOverlayIntervalChange = { minutes ->
@@ -284,116 +378,10 @@ fun StudyApp(
                             .putBoolean(QuestionOverlayService.KEY_ENABLED, false).apply()
                         QuestionOverlayService.stop(context)
                     },
-                    modifier = Modifier.padding(padding),
-                )
-                StudyDestination.CATEGORIES -> CategoriesScreen(
-                    state = categoriesState,
-                    onCategorySelected = { category -> startQuestionFlow(category) },
-                    onRetry = categoriesViewModel::load,
-                    modifier = Modifier.padding(padding),
-                )
-                StudyDestination.PROGRESS -> ProgressScreen(
-                    state = progressState,
-                    onMonthChange = progressViewModel::changeMonth,
-                    onSelectDate = progressViewModel::selectDate,
-                    onToggleSubject = progressViewModel::toggleSubject,
-                    onReviewQuestion = { question -> startQuestionFlow(questionId = question.id) },
-                    onToggleStudyDay = progressViewModel::toggleStudyDay,
-                    onQuestionTargetChange = progressViewModel::adjustQuestionTargetPerDay,
-                    onMinuteTargetChange = progressViewModel::adjustMinuteTargetPerDay,
-                    onRegeneratePlan = progressViewModel::regeneratePlan,
-                    onMoveBlock = progressViewModel::moveBlock,
-                    onRemoveBlock = progressViewModel::removeBlock,
-                    onAddBlock = progressViewModel::addBlock,
-                    onRetry = progressViewModel::refresh,
-                    modifier = Modifier.padding(padding),
-                )
-                StudyDestination.ACCOUNT -> AccountScreen(container.account, profile!!, Modifier.padding(padding))
-                StudyDestination.BOOKMARKS -> BookmarksScreen(
-                    questions = savedQuestions,
-                    isLoading = savedLoading,
-                    onOpen = { question -> startQuestionFlow(questionId = question.id) },
-                    modifier = Modifier.padding(padding),
+                    modifier = contentModifier,
                 )
             }
         }
-    }
-}
-@Composable
-private fun HomeScreen(
-    onBrowse: () -> Unit,
-    onStart: () -> Unit,
-    overlayInterval: Int,
-    questionCount: Int,
-    overlayEnabled: Boolean,
-    overlayAccessGranted: Boolean,
-    onOverlayIntervalChange: (Float) -> Unit,
-    onEnableOverlay: () -> Unit,
-    onDisableOverlay: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Column(modifier = modifier.fillMaxSize().padding(horizontal = 22.dp, vertical = 20.dp)) {
-        Text("MedStudy", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.SemiBold)
-        Text(
-            "Make today count.",
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(top = 14.dp),
-        )
-        Text(
-            "A clear place to practise, review, and build consistency.",
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(top = 8.dp, bottom = 22.dp),
-        )
-        Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = MaterialTheme.shapes.medium) {
-            Row(modifier = Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text("MEDMCQA DATA", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.SemiBold)
-                    Text("$questionCount questions across the available subjects.", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 4.dp))
-                }
-            }
-        }
-        Text("Your study", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 26.dp, bottom = 10.dp))
-        Button(
-            onClick = onStart,
-            shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.fillMaxWidth(),
-        ) { Text("Start practice") }
-        OutlinedButton(
-            onClick = onBrowse,
-            shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-        ) { Text("Browse subjects") }
-        Text("Question overlay", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 24.dp))
-        Text(
-            "A random unattempted question appears above other apps after the phone stays unlocked for this long. Locking the phone resets the timer.",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(top = 4.dp),
-        )
-        Text("Every $overlayInterval minutes", style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 10.dp))
-        Slider(
-            value = overlayInterval.toFloat(),
-            onValueChange = onOverlayIntervalChange,
-            valueRange = 1f..20f,
-            steps = 18,
-            enabled = true,
-        )
-        if (overlayEnabled && !overlayAccessGranted) {
-            Text("Allow MedStudy to display over other apps to use this feature.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
-        }
-        if (overlayEnabled) {
-            OutlinedButton(onClick = onDisableOverlay, modifier = Modifier.fillMaxWidth()) { Text("Turn off question overlay") }
-        } else {
-            OutlinedButton(onClick = onEnableOverlay, modifier = Modifier.fillMaxWidth()) { Text("Enable question overlay") }
-        }
-        Text(
-            "Your question history stays on this device.",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(top = 20.dp),
-        )
     }
 }
 

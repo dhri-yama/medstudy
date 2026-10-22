@@ -3,6 +3,7 @@ package com.medstudy.app
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -78,7 +79,7 @@ fun OnboardingScreen(onDone: (UserProfile) -> Unit) {
             modifier = Modifier.fillMaxWidth(),
         )
         Text("Preparing for", style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 20.dp, bottom = 8.dp))
-        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             UserProfileStore.EXAMS.forEach { option ->
                 FilterChip(selected = exam == option, onClick = { exam = option }, label = { Text(option) })
             }

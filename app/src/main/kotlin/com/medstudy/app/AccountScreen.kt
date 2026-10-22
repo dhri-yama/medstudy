@@ -1,7 +1,6 @@
 package com.medstudy.app
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 @Composable
-fun AccountScreen(account: SupabaseAccount, profile: UserProfile, modifier: Modifier = Modifier) {
+fun AccountSection(account: SupabaseAccount, modifier: Modifier = Modifier) {
     val scope = rememberCoroutineScope()
     var signedIn by remember { mutableStateOf(account.isSignedIn) }
     var email by rememberSaveable { mutableStateOf("") }
@@ -43,14 +42,7 @@ fun AccountScreen(account: SupabaseAccount, profile: UserProfile, modifier: Modi
         }
     }
 
-    Column(modifier.fillMaxSize().padding(20.dp)) {
-        Text("Account", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.SemiBold)
-        Text(
-            "${profile.name} · ${profile.exam} · ${profile.dailyQuestionGoal} questions a day",
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(top = 4.dp, bottom = 20.dp),
-        )
+    Column(modifier.fillMaxWidth()) {
         when {
             !account.isConfigured -> Text("Cloud backup isn't configured in this build.")
             signedIn -> {
