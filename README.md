@@ -58,7 +58,6 @@ medstudy/
 │   └── designsystem/     # Material 3 theme tokens, typography, and reusable UI components
 ├── feature/
 │   ├── practice/         # Question practice flow, quiz UI, and review screens
-│   ├── categories/       # Subject explorer, topic browsing, and exam filters
 │   └── progress/         # Activity calendar, study insights, and weekly plan generator
 └── repo/                 # Organized MedMCQA JSON dataset (subjects, topics, questions)
 ```

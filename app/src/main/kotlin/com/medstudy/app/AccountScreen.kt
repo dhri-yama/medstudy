@@ -1,14 +1,10 @@
 package com.medstudy.app
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,10 +14,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.medstudy.core.designsystem.PillButton
+import com.medstudy.core.designsystem.PillStyle
+import com.medstudy.core.designsystem.StudyTextField
+import com.medstudy.core.designsystem.StudyTheme
 import kotlinx.coroutines.launch
 
 @Composable
@@ -30,6 +29,7 @@ fun AccountSection(
     profile: UserProfile,
     onProfileRestored: (UserProfile) -> Unit,
     modifier: Modifier = Modifier,
+    onSignedOut: () -> Unit = {},
 ) {
     val scope = rememberCoroutineScope()
     var signedIn by remember { mutableStateOf(account.isSignedIn) }
@@ -47,55 +47,46 @@ fun AccountSection(
         }
     }
 
-    Column(modifier.fillMaxWidth()) {
+    Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         when {
-            !account.isConfigured -> Text("Cloud backup isn't configured in this build.")
+            !account.isConfigured -> Text("Cloud backup isn't configured in this build.", color = StudyTheme.colors.body, style = MaterialTheme.typography.bodyMedium)
             signedIn -> {
-                Text("Signed in as ${account.email}", style = MaterialTheme.typography.bodyLarge)
-                Text("Your answers are backed up to your account.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 4.dp))
-                Button(
+                Text("Signed in as ${account.email}", style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink)
+                Text("Your answers are backed up to your account.", style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted)
+                PillButton(
+                    text = if (busy) "Syncing…" else "Sync now",
                     onClick = { run { account.pushProfile(profile); "Synced, ${account.sync()} new from the cloud" } },
-                    enabled = !busy, shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
-                ) { Text(if (busy) "Syncing…" else "Sync now") }
-                OutlinedButton(
-                    onClick = { account.signOut(); signedIn = false; message = null },
-                    shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-                ) { Text("Sign out") }
+                    enabled = !busy, modifier = Modifier.fillMaxWidth(),
+                )
+                PillButton("Sign out", onClick = { account.signOut(); signedIn = false; message = null; onSignedOut() }, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
             }
             else -> {
-                Text("Sign in to back up your progress and use it on another phone.", style = MaterialTheme.typography.bodyMedium)
-                OutlinedTextField(
-                    value = email, onValueChange = { email = it }, label = { Text("Email") }, singleLine = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                    modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
-                )
-                OutlinedTextField(
-                    value = password, onValueChange = { password = it }, label = { Text("Password (min 6 characters)") }, singleLine = true,
+                Text("Sign in to back up your progress and use it on another phone.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.body)
+                StudyTextField(email, { email = it }, "Email", keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email))
+                StudyTextField(
+                    password, { password = it }, "Password (min 6 characters)",
                     visualTransformation = PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                 )
                 val ready = email.isNotBlank() && password.length >= 6 && !busy
-                Button(
+                PillButton(
+                    "Sign in",
                     onClick = { run { account.signIn(email.trim(), password); syncAll(account, profile, onProfileRestored); "Signed in" } },
-                    enabled = ready, shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
-                ) { Text("Sign in") }
-                OutlinedButton(
+                    enabled = ready, modifier = Modifier.fillMaxWidth(),
+                )
+                PillButton(
+                    "Create account",
                     onClick = {
                         run {
                             if (account.signUp(email.trim(), password)) { syncAll(account, profile, onProfileRestored); "Account created" }
                             else "Check your email to confirm, then sign in"
                         }
                     },
-                    enabled = ready, shape = RoundedCornerShape(8.dp),
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-                ) { Text("Create account") }
+                    enabled = ready, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth(),
+                )
             }
         }
-        message?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 12.dp)) }
+        message?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.body) }
     }
 }
 

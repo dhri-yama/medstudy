@@ -19,6 +19,20 @@ class StudyAppContainer(context: Context) {
     
     // Room-based repositories for user data
     val account = SupabaseAccount(context, database.activityDao())
+    val entitlements = EntitlementStore(context)
+    /** What the app currently believes the user may do; updated from the server and cached for offline use. */
+    val entitlementState = kotlinx.coroutines.flow.MutableStateFlow(entitlements.load())
+
+    suspend fun refreshEntitlement() {
+        account.fetchEntitlement()?.let { entitlements.save(it); entitlementState.value = it }
+    }
+
+    fun clearEntitlement() {
+        entitlements.clear()
+        entitlementState.value = Entitlement.Unknown
+    }
+
+    val billing by lazy { BillingManager(context.applicationContext, account) { refreshEntitlement() } }
     val questionCatalog = RoomQuestionCatalogRepository(database) { account.userId }
     val learnerActivity = RoomLearnerActivityRepository(database.activityDao()) { account.userId }
     val weeklyStudyPlan = com.medstudy.core.data.RoomWeeklyStudyPlanRepository(database)

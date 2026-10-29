@@ -39,7 +39,6 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:designsystem"))
     implementation(project(":feature:progress"))
-    implementation(project(":feature:categories"))
     implementation(project(":feature:practice"))
     implementation(project(":feature:progress"))
     
@@ -54,5 +53,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.5")
     implementation(libs.androidx.compose.icons)
+    implementation(libs.android.billing)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    testImplementation(libs.junit)
 }

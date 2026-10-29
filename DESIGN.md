@@ -3,19 +3,18 @@
 Read this before touching any UI. It is the source of truth for how MedStudy should look and feel.
 Reference image: [docs/design/reference-screens.png](docs/design/reference-screens.png) (three phone screens: home, course detail, study group).
 
-**Status:** partly implemented.
-- Done: tokens and shared components in `core/designsystem` (`StudyTokens.kt`, `MedStudyTheme.kt`, `StudyComponents.kt`), the Today screen, the Practice mode grid, and the bottom bar.
-- Inherits the new theme but not yet redesigned: Subjects, Progress, Me, Onboarding, and the question screen (its correct-answer colors were updated).
-- Missing components from section 4: segmented control, accordion row, hero card, bottom-right tab variant.
-New and changed screens follow this document; migrate old screens when you touch them.
-- Font: system sans is used for now (Plus Jakarta Sans is not loaded yet).
+**Status:** implemented across the app.
+- Tokens and components: `core/designsystem` (`StudyTokens.kt`, `MedStudyTheme.kt`, `StudyComponents.kt`).
+- Screens built to this guide: Today, Practice, Subjects, Subject detail, Question screen, Progress (Overview / Calendar / Plan), Me, Saved, Onboarding, floating bottom bar.
+- Not built: bottom-right notch tab, subject illustrations, dark theme.
+- Font: system sans for now (Plus Jakarta Sans is not loaded yet).
 
 ## 1. Personality
 
 Friendly, colorful, calm. A study app that feels like a well-made planner, not a medical textbook or a dashboard.
 - Soft pastel cards, one per subject, each with its own color. Color means "which subject", never decoration.
 - Big rounded shapes, generous space, almost no borders or shadows.
-- One confident accent (indigo) for actions and progress. Everything else is ink on pastel or white.
+- One neutral action color (deep ink) for buttons, active nav and progress fill, so it sits with every pastel. Everything else is ink on pastel or white.
 - Short copy. Numbers and progress up front ("2 of 10 questions"), explanations below.
 
 ## 2. What the reference shows, and how it maps to MedStudy
@@ -29,7 +28,7 @@ Friendly, colorful, calm. A study app that feels like a well-made planner, not a
 | Course detail: hero card with illustration | Subject detail hero: subject gradient, accuracy stat, optional illustration slot |
 | Segmented "Lesson / Assignment" | Segmented "Topics / Mistakes" and "Overview / Calendar / Plan" |
 | Accordion lessons with check / chevron | Topic rows: check = mastered, chevron = expandable with progress and a Practice button |
-| "Today's task" white rows with indigo "Details" pill | Today's plan rows with indigo "Start" pill |
+| "Today's task" white rows with indigo "Details" pill | Today's plan rows with an ink "Start" pill |
 | "Live" card | "Due now" card: chip + topic + recall percent + "Review due topics" |
 | "Upcoming discussion" cards with bottom-right tab | Practice mode cards (Daily set, Review due, Mistakes, Saved) |
 | Tutor, host, "17 going", live classes, discussion requests | Not in the product. Do not invent these |
@@ -46,28 +45,34 @@ Friendly, colorful, calm. A study app that feels like a well-made planner, not a
 | `body` | `#3B3F51` | Running text |
 | `muted` | `#5F6675` | Secondary text (about 5:1 on canvas; do not go lighter for small text) |
 | `hairline` | `#E6E7EC` | Dividers, outlines when a border is unavoidable |
-| `accent` | `#5B5BD6` | Primary buttons, active nav, progress fill, checks, links |
-| `accent-soft` | `#D9D9F5` | Progress track, selected-row tint |
-| `on-accent` | `#FFFFFF` | Text on accent (about 5.3:1) |
+| `accent` | `#14142B` | The action color: primary buttons, active nav pill, progress fill, selected pills, checks |
+| `accent-soft` | `#E6E6EE` | Selected-row tint, avatar fill |
+| `on-accent` | `#FFFFFF` | Text on accent (about 16:1) |
+| `track` | `#EBEBF0` | Progress track on white/gray, segmented control track |
 | `success` | `#167A61` / tint `#DDF3EA` | Correct answers, mastered |
 | `error` | `#B3261E` / tint `#FBE4E2` | Wrong answers, errors |
 | `warning` | `#9A6700` / tint `#FFF1CC` | Due / attention chips |
 
-Rules: ink text on every pastel card. Accent is the only saturated color outside subject cards.
-Never use black filled buttons.
+Rules: ink text on every pastel card. Outside subject cards there are no saturated colors except the semantic ones (success, error, warning).
+Progress bars on white or gray: accent fill on a `track` background. On a pastel card: the card's `deep` shade on a 55% white track. Do not use blue or indigo as a global accent.
 
 ### 3.2 Subject palette (vertical two-stop gradient, top to bottom)
 
 | Name | Top | Bottom | Notes |
 |---|---|---|---|
-| pink | `#E9569F` | `#F59AC5` | |
-| blue | `#8EC7F7` | `#C3E2FB` | |
-| green | `#4FC384` | `#8FE0AE` | |
-| yellow | `#F5C93B` | `#F9DE72` | |
-| sky | `#A5D3F6` | `#CDE8FB` | Also used for the "Due now" card |
-| lavender | `#B9A7F0` | `#D8CCF8` | |
-| peach | `#F7A66B` | `#FAC9A0` | |
-| teal | `#5FCFC7` | `#9EE4DF` | |
+| pink | `#E9569F` | `#F59AC5` | deep `#A3226B` |
+| blue | `#8EC7F7` | `#C3E2FB` | deep `#1F5F99` |
+| green | `#4FC384` | `#8FE0AE` | deep `#12744A` |
+| yellow | `#F5C93B` | `#F9DE72` | deep `#8A6200` |
+| sky | `#A5D3F6` | `#CDE8FB` | deep `#2B6A9C`. Also used for the "Due now" card |
+| lavender | `#B9A7F0` | `#D8CCF8` | deep `#6B3FA0` |
+| peach | `#F7A66B` | `#FAC9A0` | deep `#A8450B` |
+| teal | `#5FCFC7` | `#9EE4DF` | deep `#0F766E` |
+
+**Deep shade.** Each subject also has a `deep` color (the last column): a darker shade of the same hue. Inside a subject-colored card
+(Continue card, subject cards, Subject detail header, "Due now" card), the progress bar fill and any primary button use that card's `deep`,
+with a white 55% track and white label. White on every deep shade is at least 5:1.
+On white or gray surfaces buttons and bars stay ink (`accent`). Implemented as `SubjectGradient.deep` and `PillButton(containerColor = ...)`.
 
 Assign by the subject's index in the catalog sorted by position, then name (`SubjectSummary.colorIndex`, `% 8`). Catalog `position` values are all 0 today, so name order decides.
 The same subject has the same color on every screen. Adding a subject can shift later subjects' colors.
@@ -107,13 +112,13 @@ where it meets the top and right edges. It is not a hole: the card stays one sol
 Tab is 38% of the card width and 44dp tall. Implemented as `NotchedCard` with a private path `Shape`. Keep titles out of the tab area:
 on wide cards limit the title to about 60% width; on narrow cards add a 28dp spacer above the title. Not built yet: bottom-right action tab.
 
-**Continue card.** Notched card, subject gradient. Title 22sp, subtitle caption, tab = "Due" or "Plan". Bottom: progress bar (accent fill on a white 40% track, 8dp tall, full radius) and caption "2 of 10 questions".
+**Continue card.** Notched card, subject gradient. Title 22sp, subtitle caption, tab = "Due" or "Plan". Bottom: progress bar (the card's deep shade on a white 55% track, 8dp tall, full radius) and caption "2 of 10 questions".
 
 **Subject card.** Half-width notched card: name, "n questions", accuracy line, thin progress bar. Used in a horizontal row on Today and a 2-column grid in Subjects.
 
 **Task row.** White surface, 18dp radius, 12dp padding. Leading 40dp circular outlined icon, title + caption, trailing accent pill button ("Start") with 32dp height.
 
-**Pill button.** Primary = accent fill, white label. Secondary = surface fill, ink label, hairline outline. Height 40dp (small 32dp). Never black.
+**Pill button.** Primary = accent (ink) fill, white label. Secondary = surface fill, ink label, hairline outline. Height 44dp (small 32dp).
 
 **Segmented control.** Light track (`#EBEBF0`), selected segment is a white pill with an optional leading icon, height 44dp.
 
@@ -121,34 +126,111 @@ on wide cards limit the title to about 60% width; on narrow cards add a 28dp spa
 
 **Chip.** Pill, 24dp tall, caption text. "Due" = warning tint, "Streak" = white with flame icon, "Live"-style state is not used.
 
-**Bottom navigation.** White bar, 4 items: Today, Practice, Progress, Me. Icon above label. Active = accent icon + label, inactive = muted. No indicator pill. Hidden during a practice session.
+**Bottom navigation.** A floating near-black pill (accent ink, 24dp side margin, soft shadow) with four icons: Today, Practice, Progress, Me.
+The active item is a white 54dp circle with an ink icon; the other icons are white on the black. No text labels (each item's label is its accessibility description).
+Hidden during a practice session. Component: `StudyBottomBar`.
+
+**Filter pill.** `FilterPill`: selected = accent fill with white label, otherwise white with a hairline. Used for subjects, weekdays, exam choice.
+
+**Text field.** `StudyTextField`: 16dp radius, white fill, hairline border, ink border when focused.
+
+**Card.** `StudyCard`: white, 24dp radius, 16dp padding, groups settings and form fields on the gray canvas.
 
 **Hero card.** 28dp, subject gradient, circular white back button top-left, title 28sp, one stat (trophy icon + "62% correct"), right side reserved for an optional illustration (empty by default).
 
-**Option row (question screen).** White, 16dp radius, radio at left. Selected = accent outline + `accent-soft` tint. After checking: correct = success tint with a "Correct" label, wrong selection = error tint with "Your answer".
+**Option row (question screen).** White, 16dp radius, a lettered circle (A-D) at left. Selected = accent outline + `accent-soft` tint with a filled ink letter circle. After checking: correct = success tint with a "Correct" label, wrong selection = error tint with "Your answer".
 
 ## 5. Screens
 
-**Today.** Header (initial-letter circle in the subject-agnostic `accent-soft`, "Hey, {name}", date, streak chip) > "Continue learning" card >
-subject cards row > "Today's plan" task rows > "Due now" card (sky gradient, warning chip, recall percent, "Review due topics" button).
-Data: `answeredToday`, goal, streak, today's plan block, due areas.
+**Today.** Header (initial-letter avatar, "Hey, {name}", date, streak chip) > Continue notched card (no heading) >
+day pills (no heading) > the selected day's plan > "Quick practice" > Subjects row > "Due now" card.
+- Continue card: at least 236dp tall with translucent decorative circles. Top: title, subject, a white chip with "10 questions · 30 min". Bottom: a 48sp count of questions answered today
+  ("3 / 10 questions today") above the deep-shade progress bar. Tab = "Plan", "Due" or "Today". Tapping it opens that topic.
+- This week: seven tall stadium-shaped day pills for Monday to Sunday of the current week. Only today is colored: it uses the Continue card's subject gradient.
+  Every other day is a white pill with a hairline border. A day you tap becomes solid ink with white text; if that is today it keeps its color and gains a 2dp ink ring (today is selected by default).
+  A small dot above the day name marks a day with answers (solid) or a scheduled plan (faded).
+- Plan section: "Today's plan" or "Plan for Fri, 23 Oct", driven by the selected day. Plan rows show a Start pill only for today.
+- Quick practice: two notched cards, each at least 184dp tall, "Quick 5" (five fresh questions, teal) and "Mistakes" (count in the tab, yellow, dimmed when 0).
+  The 22sp title sits near the top and the description at the bottom, with a soft translucent circle in the bottom-right corner.
+- Subjects row: cards 268dp wide and at least 192dp tall; the name and question count sit at the top, the progress bar and accuracy at the bottom, with the same corner circle.
+  (The Subjects grid screen keeps the compact version of the card.)
+- Tapping a subject card opens Subject detail.
 
-**Practice.** Title, then a 2-column grid of notched cards: Daily set (pink), Review due (green), Mistakes (yellow), Browse by subject (blue), Saved (sky).
-Each shows a count in the tab chip. A card with nothing to do is dimmed and not clickable.
+**Practice.** One scrolling page, no sub-menu. Header: title and subtitle, plus a white "Saved · n" pill (bookmark icon, live count) that opens Saved.
+- Daily set hero: a pink notched card, at least 208dp tall, title and "n fresh questions · about m min" at the top, a deep-pink "Start" pill at the bottom left, a large translucent circle, count in the tab.
+- Review due (green) and Mistakes (yellow): two notched cards side by side, at least 160dp tall, title near the top and description at the bottom, count in the tab, small corner circle. A card with nothing to do is dimmed and not tappable.
+- Subjects: a "Subjects" heading, a white search field with the hint inside, then every subject as a 2-column grid of subject cards (at least 184dp tall, name and count at the top, progress bar and accuracy at the bottom).
+  Tapping a subject opens Subject detail; Back returns to Practice. There is no separate Subjects screen.
 
-**Subjects.** Pill search field, then a 2-column grid of subject cards. Tap opens Subject detail.
+**Subject detail.** Hero card (back button, name, accuracy and answered chips, progress bar, "Practice all n") > top tabs "Topics / Mistakes" >
+a plain white card per topic: the name (with a green "Mastered" chip when earned), a progress bar in the subject's deep shade on a light track, "n questions · x% correct", and a small deep-shade "Practice" pill on the right.
+No chevrons or expand arrows. Mistakes lists missed questions with a "Practice n mistakes" button.
 
-**Subject detail.** Hero card > segmented "Topics / Mistakes" > accordion list of topics. Practice buttons start a session.
+**Arc header (Practice, Progress, Me).** The soft layered arcs from the profile header sit at the very top of these three tabs, behind the status bar: four lavender bands fading from a deeper tone at the top edge to the lightest nearest the content, ending in the canvas color (`ArcHeader` / `ArcBackdrop`, scaled to the header height; 196dp on Me, 150dp on Practice and Progress).
+The title sits at the bottom-left over the lightest band, ink on lavender. The header scrolls away with the content. Screens that use it pass no status-bar padding and let the header draw edge to edge (`Modifier.bleed`).
 
-**Progress.** Title, segmented "Overview / Calendar / Plan". Calendar sits on a white 24dp card; days with activity get an accent dot and the count.
-Plan uses task rows. Focus areas use subject-colored chips. Schedule preferences collapse into one white row.
+**Progress.** Arc header with the title, then top tabs "Overview / Calendar / Plan": three separate 46dp pills in the same language as the week pills and filter pills. The selected tab is solid ink with white text; the others are white with a hairline border and ink text.
+(`SegmentedTabs` is used everywhere top tabs appear, e.g. Subject detail's Topics / Mistakes.)
+- Overview: two stat notched cards (answered, accuracy), a "By subject" list (a subject-colored dot, answered and accuracy text, a thin accuracy bar), then "Needs attention":
+  topics you've missed (under 70% over 5+ answers) or may be forgetting (recall under 85%), each with a + to add it to the plan. Empty until a topic has 5 answers.
+- Calendar: a month header with round arrow buttons and "n days · n questions"; a white 28dp card holding the month as 42dp day circles.
+  Circles shade pink with the number of answers that day (1-4 light, 5-9 pink, 10+ deep), today has an ink ring, the selected day is solid ink; a small Fewer-to-More legend sits under the grid.
+  Subject filter pills, then a notched card for the selected day (date, "25 questions · 16% correct") and that day's questions as rows with a subject dot and a Correct / Missed / Shown chip.
+- Plan: a lavender notched hero ("Next 7 days", blocks, questions and minutes, a Smart or Starter tab, a deep-shade "Regenerate plan" pill);
+  each block is a white row with a gradient date tile (weekday and date, in the subject's color), the topic, "10 questions · 30 min" and a small "Edit" chip. There are no arrow buttons: tapping a row opens a dialog with day pills to move the block to another study day, a "Remove" pill and a "Done" pill;
+  then "Your schedule": a white card "Study days" with seven equal stadium pills (Mon to Sun; selected = solid ink with white text, others light gray; at least one day must stay on) and a "n study days a week" line;
+  two pastel notched tiles side by side, "Questions" (green) and "Minutes" (yellow), each with a 44sp number, a "per day" tab and round white - / + buttons in steps of 5 (dimmed at the limits);
+  and a closing line like "That's 70 questions and 3 h 30 min a week."
 
-**Question screen.** No bottom bar. Top: circular back button, a thin accent progress bar ("3 of 10"), bookmark icon button. Question text 18sp.
-Option rows. Sticky bottom pill button "Check answer" (accent), then "Next" after the review. Explanation in a white card under the options.
+**Question screen.** No bottom bar. The top is a colored header card in the question's subject gradient (bottom corners 28dp, under the status bar):
+a white circular back button (60dp with a 32dp arrow, the same size as the floating bookmark), the subject name, a progress bar in the subject's deep shade on a white track, and "Question n of N · k correct" (the count appears once you've answered something).
+There is generous space (about 34dp) between that row and the question. Below, in the same card: a chip with the source tag when the stem ends in one (e.g. "DNB 10; NEET 13", split off by `splitSourceTag`), then the question text at 19sp.
+Lettered option rows sit on the gray canvas (selected = the subject's deep shade for border and letter circle; correct = success tint, wrong pick = error tint).
+The bookmark is a floating 60dp circular button with a 32dp icon at the bottom right, above the answer buttons, on its own layer so it does not scroll with the content. The circle stays white; the icon is an outline in ink and becomes a solid fill in the subject's deep shade once saved.
+Sticky bottom pills: "Show answer" + "Check answer" (deep shade), then "Previous" + "Next", or "See results" on the last question.
+After checking: a white explanation card with a Correct / Not quite chip, and a muted "Something wrong with this question? Report it" link that opens a dialog (Wrong answer, Typo or missing text, Unclear question, Other).
+Reports are queued on the phone and sent to the `question_reports` table when signed in.
 
-**Me.** Large initial-letter avatar, name, exam chip. White rows for Profile, Backup and sync, Question overlay. Sign-in sits in a white card.
+**Results screen** (after "See results"): a notched card in the session's subject color (the first palette color if the session mixes subjects) with a headline (Great work / Nice effort / Keep going, from the percentage), a 64sp percent-correct, and the question count in the tab;
+three stat tiles (Correct in success tint, Missed in error tint, Shown in white); then a deep-shade "Retry n mistakes" pill (only when there are mistakes) and a white "Done" pill that returns to Today.
 
-**Onboarding.** Pastel hero, one question per step, pill option chips, one accent button. Keep to three steps.
+**Me.** Modeled on a profile screen with a layered color header. Content is edge to edge under the status bar.
+- Header: four concentric arch bands in the lavender ramp (darkest at the top edge, lightest nearest the content), ending in the canvas color. A white circular settings button sits top-left (opens Edit profile).
+  The 102dp avatar (initial letter for now; an avatar maker is planned) sits across the lightest arch with a canvas-colored ring.
+- Below: name (30sp), "Joined in {year}" (local only), exam and daily-goal chips.
+- Stats: three rows, each a 56dp rounded tile in a subject gradient (pink, blue, green) with a deep-shade icon, a 22sp value and a muted label: questions answered, correct overall, days you studied.
+- Study streak: an 84dp peach tile with a flame, a 40sp "n day(s)", and a one-line hint.
+- Backup and sync: a white `StudyCard` (sign in, sync, sign out).
+- Question overlay: a teal `NotchedCard` (min 280dp, decorative circle, tab "On" or "Off") with a 64sp minutes number between circular minus and plus buttons,
+  preset pills (1, 5, 10, 15, 20) and a deep-teal "Turn on overlay" button (white "Turn off overlay" when on). Replaces the old slider.
+- Edit profile (from the settings button): back button, then a white card with name, exam pills, daily goal slider and Save changes.
+
+**Question overlay (over other apps).** A bottom sheet built in Compose (`OverlaySheet.kt`, hosted in the service by `OverlayOwner`), not the old plain Android views.
+- The rest of the screen dims to 40% black; the sheet slides up from the bottom with 28dp top corners.
+- Colored header: the top of the sheet is a block in the question's subject gradient with 28dp bottom corners and a large translucent circle. On it: a white drag handle, a translucent-white subject chip, "Quick question", a translucent-white "Skip" pill (dismisses without recording an attempt), and the question text at 18sp (scrolls if long, max 190dp).
+- Below the header, on the canvas color: lettered option rows exactly like the in-app question screen (the selected row uses the subject's deep shade for its border and letter circle), scrolling up to 340dp.
+- Buttons: "Show answer" (secondary) and "Check answer" (the subject's deep shade, disabled until an option is chosen).
+- After answering: green and red rows with "Correct" or "Your answer", a white card with a Correct / Not quite / Answer shown verdict and the explanation, and a "Done" button in the deep shade that closes the sheet and restarts the timer.
+- If saving fails, an inline error appears and the buttons stay usable.
+
+**Plan banner (Today).** Under the greeting: a full-width pill. During the trial it reads "12 days left in your free trial" with "Plans" (white; amber for the last 3 days). On the free plan it reads "Free plan · 10 questions left today" with "Upgrade" (amber). Hidden when subscribed. Tapping opens the paywall.
+
+**Paywall.** Full screen, shown from the banner, from Me, and when a free user taps a locked feature (Review due, Mistakes, overlay, regenerate plan) or has used the daily allowance. Arc header with a close button and "Go unlimited"; one line on the user's state (days left in the trial, or that it has ended and the free plan allows 10 questions a day); a pink notched card "MedStudy Plus" with Google Play's localized price (or "Monthly plan" until it loads) and "per month, cancel any time"; four check-marked perks; a deep-pink "Subscribe" pill; "Restore purchase"; and a muted "Not now" / "Continue with the free plan". Billing errors show in red above the button.
+
+**Subscription card (Me).** Above Account: the plan name ("Free trial", "MedStudy Plus", "Free plan"), one line of detail (days left, "Active until 29 Nov 2026", or the free allowance) and a pill: "See plans" (ink) or "Manage in Google Play" (outlined) when subscribed.
+
+**Free tier rules** (one place: `Entitlement`): 10 new questions a day, no question overlay, no Review due or Mistakes sessions, no plan regeneration. Progress, calendar and Saved stay available. The overlay switches itself off when access drops to the free tier.
+
+**Saved.** Back button + title + count, then task rows; empty state in muted text.
+
+**Onboarding.** The one place color covers the whole screen. Three steps, each a full-screen subject gradient (pink, green, yellow) that cross-fades into the next (600ms),
+with three soft translucent circles that glide to new positions per step. A 3-segment step bar at the top uses the step's deep shade on a white track.
+Steps slide horizontally (forward from the right, back from the left). Buttons: white "Back" pill + a "Next / Get started" pill in the step's deep shade.
+- Step 1, name: large title, white text field (auto-focused, keyboard Next advances), a live avatar + "Hey, {name}" appears as you type.
+- Step 2, exam: big white selectable cards (name + one-line description); the chosen card scales up with a bounce, gets a deep-shade border and a check, and gives a haptic tick.
+- Step 3, daily goal: a 96sp number that updates live, "about {n x 3} minutes", a slider, preset pills (5, 10, 20, 30, 50) and a one-line summary.
+Keep it to these four steps; do not add more without a product reason.
+- Step 4, account (required, it is what the server-side trial is attached to): lavender step, "Create your account", subtitle "Your 15-day free trial starts now". White email and password fields (hint inside), a line "No card needed. After 15 days you can subscribe, or keep a limited free plan.", a "Already have an account? Sign in" toggle, and a deep-shade "Start free trial" pill (becomes "Sign in" in sign-in mode). Step 1 also has an "I already have an account" link that jumps here in sign-in mode. An existing user who is not signed in sees only this step, with their profile pre-filled and no Back button.
 
 ## 6. Do and do not
 
@@ -159,7 +241,7 @@ Do:
 - Use white rows on the gray canvas to separate content, not borders.
 
 Do not:
-- Add black buttons, heavy shadows, outlined cards nested in cards, or more than the two-stop pastel gradient.
+- Add blue or indigo accents, heavy shadows, outlined cards nested in cards, or more than the two-stop pastel gradient.
 - Put white text on a pastel card.
 - Invent tutors, groups, live classes, 3D art, photos, or emoji. Features need a product decision first.
 - Hard-code colors or sizes in screens. Read tokens from the theme.
@@ -169,12 +251,12 @@ Do not:
 - Tokens live in `core/designsystem/MedStudyTheme.kt`. Extend it with a `StudyColors` holder exposed through a `CompositionLocal`
   (`subjectGradients`, `accent`, `accentSoft`, `success`/`error`/`warning` tints, `canvas`). Keep `MaterialTheme` color roles in sync
   (`primary = accent`, `background = canvas`, `surface = white`) so Material components inherit the right defaults.
-- Add reusable components to `core/designsystem`: `NotchedCard` (custom `Shape`), `StudyProgressBar`, `PillButton`, `TaskRow`,
-  `SegmentedTabs`, `AccordionRow`, `StudyChip`, `StudyBottomBar`. Feature modules use these and never re-style Material primitives inline.
+- Shared components in `core/designsystem`: `NotchedCard`, `StudyProgressBar`, `PillButton`, `FilterPill`, `TaskRow`, `SegmentedTabs`,
+  `HeroCard`, `StudyCard`, `StudyChip`, `StudyAvatar`, `StudyTextField`, `IconCircleButton`, `StudyBottomBar`, `studySliderColors`. Feature modules use these and never re-style Material primitives inline.
 - Gradients: `Brush.verticalGradient(top, bottom)` from the subject palette. No other gradients.
 - Fonts: Google Fonts provider with a system fallback; no bundled font files for now.
-- Screens to migrate, in priority order: `TodayScreen.kt`, `PracticeHomeScreen.kt`, `QuestionPracticeScreen.kt`, `CategoriesScreen.kt`,
-  `ProgressScreen.kt`, `MeScreen.kt`, `Onboarding.kt`, the nav bar in `StudyApp.kt`.
+- Screen files: `TodayScreen.kt`, `PracticeHomeScreen.kt`, `SubjectScreens.kt`, `SavedScreen.kt`, `MeScreen.kt`, `AccountScreen.kt`, `Onboarding.kt` (app module);
+  `QuestionPracticeScreen.kt` (feature/practice); `ProgressScreen.kt` (feature/progress). The old `feature/categories` module was removed.
 - Verify visually on the emulator at 411dp wide and at 1.3x font scale. Check contrast on every new text-on-color pair (4.5:1 for body text).
 
 ## 8. Accessibility checklist

@@ -1,78 +1,165 @@
 package com.medstudy.app
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Bookmark
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.medstudy.core.designsystem.ArcHeader
 import com.medstudy.core.designsystem.NotchedCard
+import com.medstudy.core.designsystem.bleed
+import com.medstudy.core.designsystem.PillButton
+import com.medstudy.core.designsystem.StudyChip
+import com.medstudy.core.designsystem.StudyTextField
 import com.medstudy.core.designsystem.StudyTheme
 import com.medstudy.core.designsystem.dimmedIf
+import com.medstudy.feature.progress.SubjectSummary
 
-private data class ModeCard(
-    val title: String,
-    val subtitle: String,
-    val tab: String?,
-    val colorPosition: Int,
-    val enabled: Boolean,
-    val onClick: () -> Unit,
-)
-
+/**
+ * Practice tab: a Daily set hero, Review due and Mistakes cards, then every subject as a grid with search.
+ * Saved questions is a pill in the header with a live count.
+ */
 @Composable
 fun PracticeHomeScreen(
     goal: Int,
     dueCount: Int,
     mistakeCount: Int,
-    subjectCount: Int,
+    savedCount: Int,
+    subjects: List<SubjectSummary>,
     onDaily: () -> Unit,
     onDue: () -> Unit,
     onMistakes: () -> Unit,
-    onSubjects: () -> Unit,
+    onOpenSubject: (String) -> Unit,
     onSaved: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val cards = listOf(
-        ModeCard("Daily set", "$goal fresh questions", "$goal", 0, true, onDaily),
-        ModeCard("Review due", if (dueCount == 0) "Nothing due" else "Topics to revise", dueCount.toString(), 2, dueCount > 0, onDue),
-        ModeCard("Mistakes", if (mistakeCount == 0) "None yet" else "Questions you missed", mistakeCount.toString(), 3, mistakeCount > 0, onMistakes),
-        ModeCard("Subjects", "Pick a subject or topic", subjectCount.toString(), 1, true, onSubjects),
-        ModeCard("Saved", "Your bookmarks", null, 5, true, onSaved),
-    )
-    Column(
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(20.dp),
+    var query by rememberSaveable { mutableStateOf("") }
+    val visible = subjects.filter { it.name.contains(query, ignoreCase = true) }
+    val dailyGradient = StudyTheme.subjectGradient(0)
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(start = 20.dp, top = 0.dp, end = 20.dp, bottom = 20.dp + LocalNavBarInset.current),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Text("Practice", style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.ink)
-        Text(
-            "Pick how you want to study.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted,
-            modifier = Modifier.padding(bottom = 8.dp),
-        )
-        cards.chunked(2).forEach { pair ->
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                pair.forEach { card ->
-                    NotchedCard(
-                        gradient = StudyTheme.subjectGradient(card.colorPosition),
-                        modifier = Modifier.weight(1f).dimmedIf(!card.enabled),
-                        onClick = if (card.enabled) card.onClick else null,
-                        tab = card.tab?.let { label -> { Text(label, style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink) } },
-                    ) {
-                        Spacer(Modifier.height(28.dp))
-                        Text(card.title, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
-                        Text(card.subtitle, style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.ink, minLines = 2)
+        item(span = { GridItemSpan(2) }) {
+            ArcHeader(Modifier.bleed(20.dp), height = 150.dp) {
+                Row(
+                    Modifier.align(Alignment.BottomStart).fillMaxWidth().padding(start = 20.dp, end = 20.dp, bottom = 22.dp),
+                    verticalAlignment = Alignment.Bottom,
+                ) {
+                    Column(Modifier.weight(1f)) {
+                        Text("Practice", style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.ink)
+                        Text("Pick how you want to study.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink)
+                    }
+                    Box(Modifier.clip(CircleShape).background(StudyTheme.colors.surface).androidClickable(onSaved)) {
+                        StudyChip(
+                            text = "Saved · $savedCount",
+                            icon = Icons.Outlined.Bookmark,
+                            container = StudyTheme.colors.surface,
+                            modifier = Modifier.padding(horizontal = 4.dp, vertical = 6.dp),
+                        )
                     }
                 }
-                if (pair.size == 1) Spacer(Modifier.weight(1f))
             }
+        }
+
+        item(span = { GridItemSpan(2) }) {
+            NotchedCard(
+                gradient = dailyGradient,
+                modifier = Modifier.fillMaxWidth(),
+                onClick = onDaily,
+                minHeight = 208.dp,
+                verticalArrangement = Arrangement.SpaceBetween,
+                decoration = { Bubble(190.dp, 56.dp, 56.dp, 0.22f) },
+                tab = { Text("$goal", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink) },
+            ) {
+                Column {
+                    Text("Daily set", style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink, modifier = Modifier.fillMaxWidth(0.6f))
+                    Text("$goal fresh questions · about ${goal * 3} min", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink)
+                }
+                PillButton("Start", onClick = onDaily, containerColor = dailyGradient.deep, modifier = Modifier.fillMaxWidth(0.55f))
+            }
+        }
+
+        item {
+            ModeCard("Review due", if (dueCount == 0) "Nothing due" else "Topics to revise", dueCount, 2, dueCount > 0, onDue)
+        }
+        item {
+            ModeCard("Mistakes", if (mistakeCount == 0) "None yet" else "Questions you missed", mistakeCount, 3, mistakeCount > 0, onMistakes)
+        }
+
+        item(span = { GridItemSpan(2) }) {
+            Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text("Subjects", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
+                StudyTextField(query, { query = it }, "Search subjects", hintInside = true)
+            }
+        }
+        if (visible.isEmpty()) {
+            item(span = { GridItemSpan(2) }) {
+                Text("No subject matches \"$query\".", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted)
+            }
+        }
+        items(visible, key = SubjectSummary::id) { subject ->
+            SubjectCard(subject, minHeight = 184.dp, onClick = { onOpenSubject(subject.id) })
         }
     }
 }
+
+@Composable
+private fun ModeCard(title: String, subtitle: String, count: Int, colorIndex: Int, enabled: Boolean, onClick: () -> Unit) {
+    NotchedCard(
+        gradient = StudyTheme.subjectGradient(colorIndex),
+        modifier = Modifier.fillMaxWidth().dimmedIf(!enabled),
+        onClick = if (enabled) onClick else null,
+        minHeight = 160.dp,
+        verticalArrangement = Arrangement.SpaceBetween,
+        decoration = { Bubble(110.dp, 36.dp, 36.dp, 0.2f) },
+        tab = { Text("$count", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink) },
+    ) {
+        Column {
+            Spacer(Modifier.height(28.dp))
+            Text(title, style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink)
+        }
+        Text(subtitle, style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink)
+    }
+}
+
+@Composable
+private fun BoxScope.Bubble(size: androidx.compose.ui.unit.Dp, x: androidx.compose.ui.unit.Dp, y: androidx.compose.ui.unit.Dp, alpha: Float) {
+    Box(Modifier.align(Alignment.BottomEnd).offset(x = x, y = y).size(size).clip(CircleShape).background(Color.White.copy(alpha = alpha)))
+}
+
+private fun Modifier.androidClickable(onClick: () -> Unit): Modifier =
+    this.then(Modifier.clickable(role = androidx.compose.ui.semantics.Role.Button, onClick = onClick))

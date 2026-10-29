@@ -68,6 +68,7 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
                 )
             }
         }
+        runCatching { flushReports() }
         val known = local.mapTo(HashSet()) { it.id }
         var offset = 0
         var pulled = 0
@@ -85,6 +86,53 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
             offset += PAGE
         }
         pulled
+    }
+
+    /** Asks the server what this user may do (full access or the free tier). Null when offline or signed out. */
+    suspend fun fetchEntitlement(): Entitlement? = withContext(Dispatchers.IO) {
+        if (!isSignedIn) return@withContext null
+        runCatching {
+            val rows = JSONArray(rawRequest("rest/v1/rpc/my_entitlement", "POST", JSONObject(), true, emptyMap(), true))
+            if (rows.length() == 0) return@runCatching null
+            val row = rows.getJSONObject(0)
+            Entitlement(
+                isFull = row.getString("access") == "full",
+                inTrial = row.getBoolean("in_trial"),
+                endsAtMillis = OffsetDateTime.parse(row.getString("ends_at")).toInstant().toEpochMilli(),
+                serverNowMillis = OffsetDateTime.parse(row.getString("server_now")).toInstant().toEpochMilli(),
+            )
+        }.getOrNull()
+    }
+
+    /** Hands a Google Play purchase token to the backend, which checks it with Google and records the paid period. */
+    suspend fun verifyPurchase(productId: String, purchaseToken: String) = withContext(Dispatchers.IO) {
+        check(isSignedIn) { "Not signed in" }
+        request(
+            "functions/v1/verify-purchase", "POST",
+            JSONObject().put("productId", productId).put("purchaseToken", purchaseToken),
+        )
+        Unit
+    }
+
+    /** Reports waiting to be sent (not signed in, or offline), stored as "questionId|reason" lines. */
+    private val reportPrefs = context.applicationContext.getSharedPreferences("reports", Context.MODE_PRIVATE)
+
+    /** Queues a report and sends it right away when signed in; unsent reports go out on the next sync. */
+    suspend fun report(questionId: String, reason: String) = withContext(Dispatchers.IO) {
+        val pending = reportPrefs.getStringSet(KEY_PENDING, emptySet()).orEmpty() + "$questionId|$reason"
+        reportPrefs.edit().putStringSet(KEY_PENDING, pending).apply()
+        if (isSignedIn) runCatching { flushReports() }
+    }
+
+    private fun flushReports() {
+        val pending = reportPrefs.getStringSet(KEY_PENDING, emptySet()).orEmpty()
+        if (pending.isEmpty()) return
+        val rows = JSONArray(pending.map { line ->
+            val (id, reason) = line.split('|', limit = 2)
+            JSONObject().put("question_id", id).put("reason", reason)
+        })
+        request("rest/v1/question_reports", "POST", rows, extraHeaders = mapOf("Prefer" to "return=minimal"))
+        reportPrefs.edit().remove(KEY_PENDING).apply()
     }
 
     suspend fun pushProfile(profile: UserProfile) = withContext(Dispatchers.IO) {
@@ -181,6 +229,7 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
         const val KEY_REFRESH = "refresh"
         const val KEY_USER = "user"
         const val KEY_EMAIL = "email"
+        const val KEY_PENDING = "pending"
         const val PAGE = 1000
         val IGNORE_DUPLICATES = mapOf("Prefer" to "resolution=ignore-duplicates,return=minimal")
     }

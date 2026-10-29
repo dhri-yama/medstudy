@@ -1,11 +1,22 @@
 package com.medstudy.app
 
+import com.medstudy.feature.progress.SubjectSummary
+import com.medstudy.feature.progress.subjectSummaries
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import androidx.activity.compose.BackHandler
 import androidx.compose.material3.Slider
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.runtime.CompositionLocalProvider
+import com.medstudy.core.designsystem.StudyTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -66,8 +77,6 @@ import com.medstudy.core.model.Category
 import com.medstudy.core.model.pluralize
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.medstudy.core.model.Question
-import com.medstudy.feature.categories.CategoriesScreen
-import com.medstudy.feature.categories.CategoriesViewModel
 import com.medstudy.feature.practice.PracticeViewModel
 import com.medstudy.feature.practice.QuestionPracticeScreen
 import com.medstudy.feature.progress.ProgressScreen
@@ -80,7 +89,7 @@ private enum class StudyDestination(val title: String, val icon: ImageVector) {
     ME("Me", Icons.Outlined.Person),
 }
 
-private enum class PracticeView { HOME, SUBJECTS, SAVED }
+private enum class PracticeView { HOME, SUBJECT_DETAIL, SAVED }
 
 @Composable
 fun StudyApp(
@@ -92,8 +101,12 @@ fun StudyApp(
     val scope = rememberCoroutineScope()
     val profileStore = remember { UserProfileStore(context) }
     var profile by remember { mutableStateOf(profileStore.load()) }
-    if (profile == null) {
-        OnboardingScreen { created ->
+    // Bumped when the account changes (sign-in, sign-out) so the gate below re-checks it.
+    var accountVersion by remember { mutableIntStateOf(0) }
+    val signedIn = remember(accountVersion) { container.account.isSignedIn }
+    // An account is required: it is what the server-side free trial is attached to.
+    if (profile == null || !signedIn) {
+        OnboardingScreen(container.account, existingProfile = profile) { created ->
             profileStore.save(created)
             scope.launch {
                 runCatching {
@@ -103,6 +116,7 @@ fun StudyApp(
                 }
             }
             profile = created
+            accountVersion++
         }
         return
     }
@@ -133,9 +147,13 @@ fun StudyApp(
         if (container.account.isSignedIn) runCatching { container.account.sync() }
     }
 
-    val categoriesViewModel: CategoriesViewModel = viewModel(
-        factory = CategoriesViewModel.factory(container.questionCatalog),
-    )
+    val entitlement by container.entitlementState.collectAsState()
+    var showPaywall by remember { mutableStateOf(false) }
+    val billingPrice by container.billing.price.collectAsState()
+    val billingMessage by container.billing.message.collectAsState()
+    LaunchedEffect(accountVersion) { container.refreshEntitlement() }
+    LaunchedEffect(showPaywall) { if (showPaywall) container.billing.load() }
+
     val practiceViewModel: PracticeViewModel = viewModel(
         factory = PracticeViewModel.factory(container.questionCatalog, container.learnerActivity),
     )
@@ -146,7 +164,6 @@ fun StudyApp(
             container.weeklyStudyPlan,
         ),
     )
-    val categoriesState by categoriesViewModel.state.collectAsState()
     val practiceState by practiceViewModel.state.collectAsState()
     val progressState by progressViewModel.state.collectAsState()
     var destinationName by rememberSaveable { mutableStateOf(StudyDestination.TODAY.name) }
@@ -154,6 +171,7 @@ fun StudyApp(
     var savedQuestions by rememberSaveable { mutableStateOf(emptyList<Question>()) }
     var savedLoading by rememberSaveable { mutableStateOf(false) }
     var practiceViewName by rememberSaveable { mutableStateOf(PracticeView.HOME.name) }
+    var selectedSubjectId by rememberSaveable { mutableStateOf<String?>(null) }
     val destination = StudyDestination.valueOf(destinationName)
     val practiceView = PracticeView.valueOf(practiceViewName)
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -171,6 +189,7 @@ fun StudyApp(
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
                 overlayAccessGranted = Settings.canDrawOverlays(context)
+                scope.launch { container.refreshEntitlement() }
                 if (overlayEnabled && overlayAccessGranted) QuestionOverlayService.start(context)
             }
         }
@@ -187,20 +206,6 @@ fun StudyApp(
         }
     }
 
-    fun startQuestionFlow(category: Category? = null, questionId: String? = null) {
-        practiceViewModel.start(
-            subjectId = category?.let { if (it.parentId == null) it.id else it.parentId },
-            topicId = category?.takeIf { it.parentId != null }?.id,
-            questionId = questionId,
-        )
-        isPracticing = true
-    }
-
-    fun startSession(ids: List<String>, emptyMessage: String) {
-        practiceViewModel.startQuestions(ids, emptyMessage)
-        isPracticing = true
-    }
-
     val goal = profile!!.dailyQuestionGoal
     val today = LocalDate.now()
     val answeredToday = progressState.attempts.count { it.studyDateIso == today.toString() }
@@ -208,13 +213,61 @@ fun StudyApp(
     val mistakeCount = SessionPlanner.mistakes(progressState.attempts).size
     val todayBlock = progressState.plan?.blocks?.firstOrNull { it.studyDateIso == today.toString() }
 
+    // Entitlement: full access during the trial and while subscribed; otherwise the free tier (a daily allowance, no premium modes).
+    val nowMillis = System.currentTimeMillis()
+    val isFull = entitlement.isFullAt(nowMillis)
+    val trialDaysLeft = entitlement.trialDaysLeft(nowMillis)
+    val questionsLeft = entitlement.questionsLeftToday(answeredToday, nowMillis)
+    fun requireFull(block: () -> Unit) { if (isFull) block() else showPaywall = true }
+
+    // The overlay is part of the paid plan: when access drops to the free tier, switch it off so the toggle tells the truth.
+    LaunchedEffect(isFull) {
+        if (!isFull && overlayEnabled) {
+            overlayEnabled = false
+            context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0).edit()
+                .putBoolean(QuestionOverlayService.KEY_ENABLED, false).apply()
+            QuestionOverlayService.stop(context)
+        }
+    }
+
+    fun startQuestionFlow(category: Category? = null, questionId: String? = null) {
+        if (questionsLeft == 0) { showPaywall = true; return }
+        practiceViewModel.start(
+            subjectId = category?.let { if (it.parentId == null) it.id else it.parentId },
+            topicId = category?.takeIf { it.parentId != null }?.id,
+            questionId = questionId,
+            limit = questionsLeft.takeIf { it != Int.MAX_VALUE },
+        )
+        isPracticing = true
+    }
+
+    fun startSession(ids: List<String>, emptyMessage: String) {
+        if (questionsLeft == 0) { showPaywall = true; return }
+        practiceViewModel.startQuestions(ids.take(questionsLeft), emptyMessage)
+        isPracticing = true
+    }
+
     val subjects = remember(progressState.categories, progressState.questions, progressState.attempts) {
         subjectSummaries(progressState.categories, progressState.questions, progressState.attempts)
     }
     val planRows = progressState.plan?.blocks.orEmpty()
         .map { PlanRow(it, LocalDate.parse(it.studyDateIso)) }
-        .filter { !it.date.isBefore(today) }
-        .sortedBy(PlanRow::date).take(4)
+        .sortedBy(PlanRow::date)
+    val meStats = remember(progressState.attempts, today) {
+        val graded = progressState.attempts.filter { it.result != com.medstudy.core.model.AttemptResult.UNANSWERED }
+        MeStats(
+            answered = progressState.attempts.mapTo(HashSet()) { it.questionId }.size,
+            accuracyPercent = graded.takeIf { it.isNotEmpty() }
+                ?.let { list -> list.count { it.result == com.medstudy.core.model.AttemptResult.CORRECT } * 100 / list.size },
+            studyDays = progressState.attempts.mapTo(HashSet()) { it.studyDateIso }.size,
+            streak = SessionPlanner.streak(progressState.attempts, today),
+        )
+    }
+    val weekStart = today.with(java.time.DayOfWeek.MONDAY)
+    val weekDays = (0L..6L).map { offset ->
+        val date = weekStart.plusDays(offset)
+        WeekDay(date, progressState.attempts.count { it.studyDateIso == date.toString() })
+    }
     // Continue where the plan says; otherwise the most-due topic; otherwise a fresh daily set.
     val continueArea = dueAreas.firstOrNull()
     val continueCategoryId = todayBlock?.let { it.topicId ?: it.subjectId } ?: continueArea?.let { it.topicId ?: it.subjectId }
@@ -222,9 +275,15 @@ fun StudyApp(
         val subjectId = todayBlock?.subjectId ?: continueArea?.subjectId
         val subject = subjects.firstOrNull { it.id == subjectId }
         when {
-            todayBlock != null -> ContinueTarget(todayBlock.title, subject?.name ?: "Today's plan", subject?.colorIndex ?: 0, "Plan")
-            continueArea != null -> ContinueTarget(continueArea.title, subject?.name ?: "Review", subject?.colorIndex ?: 0, "Due")
-            else -> ContinueTarget("Daily set", pluralize(goal, "fresh question"), 0, "Today")
+            todayBlock != null -> ContinueTarget(
+                todayBlock.title, subject?.name ?: "Today's plan", subject?.colorIndex ?: 0, "Plan",
+                "${pluralize(todayBlock.questionTarget, "question")} · ${todayBlock.minuteTarget} min",
+            )
+            continueArea != null -> ContinueTarget(
+                continueArea.title, subject?.name ?: "Review", subject?.colorIndex ?: 0, "Due",
+                "${pluralize(goal, "question")} · about ${goal * 3} min",
+            )
+            else -> ContinueTarget("Daily set", pluralize(goal, "fresh question"), 0, "Today", "About ${goal * 3} min")
         }
     }
 
@@ -232,13 +291,13 @@ fun StudyApp(
         SessionPlanner.daily(progressState.questions, progressState.attempts, goal),
         "You've answered every available question. Try Review due or Mistakes.",
     )
-    fun startDue() = startSession(
+    fun startDue() = requireFull { startSession(
         SessionPlanner.due(progressState.areas, progressState.questions, progressState.attempts, goal),
         "Nothing is due for review right now.",
-    )
+    ) }
 
     LaunchedEffect(destination, practiceView, isPracticing) {
-        if (!isPracticing && destination == StudyDestination.PRACTICE && practiceView == PracticeView.SAVED) {
+        if (!isPracticing && destination == StudyDestination.PRACTICE) {
             savedLoading = true
             savedQuestions = runCatching { container.questionCatalog.bookmarkedQuestions() }.getOrDefault(emptyList())
             savedLoading = false
@@ -270,7 +329,18 @@ fun StudyApp(
         practiceViewName = PracticeView.HOME.name
     }
 
-    if (isPracticing) {
+    BackHandler(enabled = showPaywall) { showPaywall = false }
+    val activity = remember(context) { context.findActivity() }
+    if (showPaywall) {
+        PaywallScreen(
+            trialDaysLeft = trialDaysLeft,
+            price = billingPrice,
+            message = billingMessage,
+            onSubscribe = { activity?.let { container.billing.launch(it) } },
+            onRestore = { scope.launch { if (container.billing.restore()) showPaywall = false } },
+            onDismiss = { container.billing.clearMessage(); showPaywall = false },
+        )
+    } else if (isPracticing) {
         QuestionPracticeScreen(
             state = practiceState,
             onBack = { leavePractice() },
@@ -280,25 +350,25 @@ fun StudyApp(
             onToggleBookmark = practiceViewModel::toggleBookmark,
             onPrevious = practiceViewModel::previous,
             onNext = practiceViewModel::next,
-            onFinish = { leavePractice(toToday = true) },
+            onFinish = practiceViewModel::finish,
+            subjectColorIndex = { subjectId -> subjects.indexOfFirst { it.id == subjectId }.coerceAtLeast(0) },
+            onReport = { questionId, reason -> scope.launch { container.account.report(questionId, reason) } },
+            onReviewMissed = {
+                val missed = practiceState.missedQuestionIds
+                practiceViewModel.startQuestions(missed, "No missed questions to review.")
+            },
+            onExit = { leavePractice(toToday = true) },
             imageResource = { assetId ->
                 if (assetId == "demo.media.placeholder-landscape") R.drawable.demo_imaging_placeholder else null
             },
         )
     } else {
-        Scaffold(
-            bottomBar = {
-                StudyBottomBar(
-                    items = StudyDestination.entries.map { BottomBarItem(it.title, it.icon) },
-                    selectedIndex = destination.ordinal,
-                    onSelect = { index ->
-                        destinationName = StudyDestination.entries[index].name
-                        practiceViewName = PracticeView.HOME.name
-                    },
-                )
-            },
-        ) { padding ->
-            val contentModifier = Modifier.padding(padding)
+        // The bar floats over the content (no opaque band behind it); screens leave LocalNavBarInset of room at their end.
+        val navInset = 90.dp + WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+        Scaffold(containerColor = StudyTheme.colors.canvas) { padding ->
+            val contentModifier = Modifier.padding(top = padding.calculateTopPadding())
+            Box(Modifier.fillMaxSize()) {
+            CompositionLocalProvider(LocalNavBarInset provides navInset) {
             when (destination) {
                 StudyDestination.TODAY -> TodayScreen(
                     name = profile!!.name,
@@ -309,13 +379,28 @@ fun StudyApp(
                     subjects = subjects,
                     planRows = planRows,
                     dueAreas = dueAreas,
+                    weekDays = weekDays,
+                    mistakeCount = mistakeCount,
+                    trialDaysLeft = trialDaysLeft,
+                    freeQuestionsLeft = if (isFull) null else questionsLeft,
+                    onUpgrade = { showPaywall = true },
+                    onQuickFive = {
+                        startSession(
+                            SessionPlanner.daily(progressState.questions, progressState.attempts, 5),
+                            "You've answered every available question. Try Review due or Mistakes.",
+                        )
+                    },
+                    onMistakes = {
+                        requireFull { startSession(SessionPlanner.mistakes(progressState.attempts), "No missed questions to review.") }
+                    },
                     onContinue = {
                         val category = progressState.categories.firstOrNull { it.id == continueCategoryId }
                         if (category != null) startQuestionFlow(category) else startDaily()
                     },
-                    onStartDaily = ::startDaily,
                     onOpenSubject = { id ->
-                        progressState.categories.firstOrNull { it.id == id }?.let { startQuestionFlow(it) }
+                        selectedSubjectId = id
+                        practiceViewName = PracticeView.SUBJECT_DETAIL.name
+                        destinationName = StudyDestination.PRACTICE.name
                     },
                     onStartBlock = { block ->
                         val category = progressState.categories.firstOrNull { it.id == (block.topicId ?: block.subjectId) }
@@ -329,32 +414,56 @@ fun StudyApp(
                         goal = goal,
                         dueCount = dueAreas.size,
                         mistakeCount = mistakeCount,
-                        subjectCount = subjects.size,
+                        savedCount = savedQuestions.size,
+                        subjects = subjects,
                         onDaily = ::startDaily,
                         onDue = ::startDue,
                         onMistakes = {
-                            startSession(SessionPlanner.mistakes(progressState.attempts), "No missed questions to review.")
+                            requireFull { startSession(SessionPlanner.mistakes(progressState.attempts), "No missed questions to review.") }
                         },
-                        onSubjects = { practiceViewName = PracticeView.SUBJECTS.name },
+                        onOpenSubject = { id ->
+                            selectedSubjectId = id
+                            practiceViewName = PracticeView.SUBJECT_DETAIL.name
+                        },
                         onSaved = { practiceViewName = PracticeView.SAVED.name },
+                        modifier = Modifier,
+                    )
+                    PracticeView.SUBJECT_DETAIL -> {
+                        val subject = subjects.firstOrNull { it.id == selectedSubjectId }
+                        if (subject == null) {
+                            practiceViewName = PracticeView.HOME.name
+                        } else {
+                            val topics = remember(subject.id, progressState.categories, progressState.questions, progressState.attempts) {
+                                topicSummaries(subject.id, progressState.categories, progressState.questions, progressState.attempts)
+                            }
+                            val mistakes = remember(subject.id, progressState.questions, progressState.attempts) {
+                                val missed = SessionPlanner.mistakes(progressState.attempts).toSet()
+                                progressState.questions.filter { it.subjectId == subject.id && it.id in missed }
+                            }
+                            SubjectDetailScreen(
+                                subject = subject,
+                                topics = topics,
+                                mistakes = mistakes,
+                                onBack = { practiceViewName = PracticeView.HOME.name },
+                                onPracticeAll = {
+                                    progressState.categories.firstOrNull { it.id == subject.id }?.let { startQuestionFlow(it) }
+                                },
+                                onPracticeTopic = { id ->
+                                    progressState.categories.firstOrNull { it.id == id }?.let { startQuestionFlow(it) }
+                                },
+                                onPracticeMistakes = { startSession(mistakes.map { it.id }, "No missed questions to review.") },
+                                onOpenQuestion = { id -> startQuestionFlow(questionId = id) },
+                                modifier = contentModifier,
+                            )
+                        }
+                    }
+                    PracticeView.SAVED -> SavedScreen(
+                        questions = savedQuestions,
+                        isLoading = savedLoading,
+                        onBack = { practiceViewName = PracticeView.HOME.name },
+                        onOpen = { question -> startQuestionFlow(questionId = question.id) },
                         modifier = contentModifier,
                     )
-                    PracticeView.SUBJECTS -> Column(contentModifier) {
-                        TextButton(onClick = { practiceViewName = PracticeView.HOME.name }) { Text("\u2190 Practice") }
-                        CategoriesScreen(
-                            state = categoriesState,
-                            onCategorySelected = { category -> startQuestionFlow(category) },
-                            onRetry = categoriesViewModel::load,
-                        )
-                    }
-                    PracticeView.SAVED -> Column(contentModifier) {
-                        TextButton(onClick = { practiceViewName = PracticeView.HOME.name }) { Text("\u2190 Practice") }
-                        BookmarksScreen(
-                            questions = savedQuestions,
-                            isLoading = savedLoading,
-                            onOpen = { question -> startQuestionFlow(questionId = question.id) },
-                        )
-                    }
                 }
                 StudyDestination.PROGRESS -> ProgressScreen(
                     state = progressState,
@@ -365,18 +474,26 @@ fun StudyApp(
                     onToggleStudyDay = progressViewModel::toggleStudyDay,
                     onQuestionTargetChange = progressViewModel::adjustQuestionTargetPerDay,
                     onMinuteTargetChange = progressViewModel::adjustMinuteTargetPerDay,
-                    onRegeneratePlan = progressViewModel::regeneratePlan,
+                    onRegeneratePlan = { requireFull { progressViewModel.regeneratePlan() } },
                     onMoveBlock = progressViewModel::moveBlock,
                     onRemoveBlock = progressViewModel::removeBlock,
                     onAddBlock = progressViewModel::addBlock,
                     onRetry = progressViewModel::refresh,
-                    modifier = contentModifier,
+                    modifier = Modifier,
+                    bottomInset = navInset,
                 )
                 StudyDestination.ME -> MeScreen(
                     profile = profile!!,
+                    stats = meStats,
                     onSaveProfile = { updated -> applyProfile(updated, pushToCloud = true) },
                     onProfileRestored = { restored -> applyProfile(restored, pushToCloud = false) },
                     account = container.account,
+                    subscription = subscriptionSummary(entitlement, nowMillis),
+                    onSeePlans = { showPaywall = true },
+                    onManageSubscription = {
+                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/account/subscriptions")))
+                    },
+                    onSignedOut = { container.clearEntitlement(); accountVersion++ },
                     overlayInterval = overlayInterval,
                     overlayEnabled = overlayEnabled,
                     overlayAccessGranted = overlayAccessGranted,
@@ -386,6 +503,7 @@ fun StudyApp(
                             .putInt(QuestionOverlayService.KEY_INTERVAL, overlayInterval).apply()
                     },
                     onEnableOverlay = {
+                      requireFull {
                         overlayEnabled = true
                         context.getSharedPreferences(QuestionOverlayService.PREFS_NAME, 0).edit()
                             .putBoolean(QuestionOverlayService.KEY_ENABLED, true).apply()
@@ -394,6 +512,7 @@ fun StudyApp(
                         } else {
                             QuestionOverlayService.start(context)
                         }
+                      }
                     },
                     onDisableOverlay = {
                         overlayEnabled = false
@@ -401,45 +520,44 @@ fun StudyApp(
                             .putBoolean(QuestionOverlayService.KEY_ENABLED, false).apply()
                         QuestionOverlayService.stop(context)
                     },
-                    modifier = contentModifier,
+                    modifier = Modifier,
                 )
+            }
+            }
+            StudyBottomBar(
+                items = StudyDestination.entries.map { BottomBarItem(it.title, it.icon) },
+                selectedIndex = destination.ordinal,
+                onSelect = { index ->
+                    destinationName = StudyDestination.entries[index].name
+                    practiceViewName = PracticeView.HOME.name
+                },
+                modifier = Modifier.align(Alignment.BottomCenter),
+            )
             }
         }
     }
 }
 
-@Composable
-private fun BookmarksScreen(
-    questions: List<Question>,
-    isLoading: Boolean,
-    onOpen: (Question) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Column(modifier = modifier.fillMaxSize().padding(20.dp)) {
-        Text("Saved questions", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.SemiBold)
-        when {
-            isLoading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally).padding(32.dp))
-            questions.isEmpty() -> Text(
-                "Questions you bookmark will appear here.",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = 12.dp),
-            )
-            else -> LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 12.dp)) {
-                items(questions, key = Question::id) { question ->
-                    Surface(
-                        onClick = { onOpen(question) },
-                        shape = MaterialTheme.shapes.small,
-                        color = MaterialTheme.colorScheme.surfaceVariant,
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Column(Modifier.padding(16.dp)) {
-                            Text(question.subjectId.substringAfterLast('.').replaceFirstChar(Char::uppercase), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary)
-                            Text(question.content.filterIsInstance<com.medstudy.core.model.ContentBlock.Text>().firstOrNull()?.text.orEmpty(), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 6.dp))
-                        }
-                    }
-                }
-            }
-        }
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
+}
+
+/** Title and one line of detail for the Subscription card on Me. */
+fun subscriptionSummary(entitlement: Entitlement, nowMillis: Long): SubscriptionSummary {
+    val trialDays = entitlement.trialDaysLeft(nowMillis)
+    return when {
+        trialDays != null -> SubscriptionSummary("Free trial", "$trialDays days left. Subscribe any time to keep everything.", paid = false)
+        entitlement.isFullAt(nowMillis) && entitlement.endsAtMillis < Long.MAX_VALUE / 4 -> SubscriptionSummary(
+            "MedStudy Plus",
+            "Active until " + java.time.Instant.ofEpochMilli(entitlement.endsAtMillis).atZone(java.time.ZoneId.systemDefault())
+                .format(java.time.format.DateTimeFormatter.ofPattern("d MMM yyyy")),
+            paid = true,
+        )
+        entitlement.isFullAt(nowMillis) -> SubscriptionSummary("MedStudy", "Checking your plan…", paid = false)
+        else -> SubscriptionSummary("Free plan", "${Entitlement.FREE_DAILY_QUESTIONS} questions a day. Subscribe to unlock everything.", paid = false)
     }
 }
+
+data class SubscriptionSummary(val title: String, val detail: String, val paid: Boolean)

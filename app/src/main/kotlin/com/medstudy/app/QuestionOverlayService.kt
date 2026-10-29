@@ -35,6 +35,10 @@ import com.medstudy.core.model.AttemptResult
 import com.medstudy.core.model.PracticeContext
 import com.medstudy.core.model.Question
 import com.medstudy.core.model.QuestionAttempt
+import com.medstudy.core.model.subjectDisplayName
+import androidx.compose.ui.platform.ComposeView
+import androidx.lifecycle.setViewTreeLifecycleOwner
+import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -52,6 +56,7 @@ class QuestionOverlayService : Service() {
     private var screenUnlocked = false
     private var unlockedAtElapsed = 0L
     private var overlay: View? = null
+    private var overlayOwner: OverlayOwner? = null
     private var receiverRegistered = false
 
     private val screenReceiver = object : BroadcastReceiver() {
@@ -132,6 +137,11 @@ class QuestionOverlayService : Service() {
     private fun showRandomQuestion() {
         scope.launch {
             val container = (application as MedStudyApplication).container
+            // The overlay is part of the paid plan (and the trial).
+            if (!container.entitlementState.value.isFullAt(System.currentTimeMillis())) {
+                resetInterval()
+                return@launch
+            }
             val chosen = withContext(Dispatchers.IO) {
                 val attempted = container.learnerActivity.attempts().mapTo(mutableSetOf()) { it.questionId }
                 val seen = preferences().getStringSet(KEY_SEEN_IDS, emptySet()).orEmpty()
@@ -143,7 +153,12 @@ class QuestionOverlayService : Service() {
                 resetInterval()
             } else if (Settings.canDrawOverlays(this@QuestionOverlayService)) {
                 rememberAsSeen(chosen.id)
-                showQuestion(chosen)
+                val subjects = withContext(Dispatchers.IO) {
+                    container.questionCatalog.categories().filter { it.parentId == null }
+                        .sortedWith(compareBy(com.medstudy.core.model.Category::position, com.medstudy.core.model.Category::name))
+                }
+                val index = subjects.indexOfFirst { it.id == chosen.subjectId }.coerceAtLeast(0)
+                showQuestion(chosen, subjects.getOrNull(index)?.name ?: subjectDisplayName(chosen.subjectId), index)
             } else {
                 rememberAsSeen(chosen.id)
                 postReminder("A MedStudy question is ready. Tap to answer it.", chosen.id)
@@ -152,105 +167,48 @@ class QuestionOverlayService : Service() {
         }
     }
 
-    private fun showQuestion(question: Question) {
+    private fun showQuestion(question: Question, subjectName: String, colorIndex: Int) {
         if (overlay != null || !screenUnlocked) return
         val wm = getSystemService(WINDOW_SERVICE) as WindowManager
-        val panel = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(dp(20), dp(16), dp(20), dp(16))
-            setBackgroundColor(Color.WHITE)
-            elevation = dp(12).toFloat()
+        val owner = OverlayOwner()
+        val view = ComposeView(this).apply {
+            setViewTreeLifecycleOwner(owner)
+            setViewTreeSavedStateRegistryOwner(owner)
+            setContent {
+                OverlayQuestionSheet(
+                    question = question,
+                    subjectName = subjectName,
+                    colorIndex = colorIndex,
+                    onRecord = { selectedId, result -> recordAttempt(question, selectedId, result) },
+                    onSkip = { dismissOverlay(); resetInterval() },
+                    onDone = { dismissOverlay(); resetInterval() },
+                )
+            }
         }
-        val scroll = ScrollView(this)
-        val content = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
-        scroll.addView(content)
-        val title = textView("MedStudy · Quick question", 18f, true)
-        content.addView(title)
-        question.content.forEach { block ->
-            if (block is com.medstudy.core.model.ContentBlock.Text) content.addView(textView(block.text, 16f))
-        }
-        val choices = RadioGroup(this).apply { orientation = RadioGroup.VERTICAL }
-        question.options.sortedBy { it.position }.forEach { option ->
-            val label = option.content.filterIsInstance<com.medstudy.core.model.ContentBlock.Text>()
-                .joinToString(" ") { it.text }
-            choices.addView(RadioButton(this).apply {
-                id = View.generateViewId()
-                tag = option.id
-                text = "${option.label}. $label"
-                textSize = 15f
-                setPadding(0, dp(6), 0, dp(6))
-            })
-        }
-        content.addView(choices)
-        val response = textView("", 14f)
-        val actions = LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL
-            gravity = Gravity.END
-        }
-        val show = Button(this).apply { text = "Show answer" }
-        val check = Button(this).apply { text = "Check answer"; isEnabled = false }
-        actions.addView(show)
-        actions.addView(check)
-        panel.addView(scroll, LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f))
-        panel.addView(response, LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
-        panel.addView(actions, LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
         val params = LayoutParams(
             LayoutParams.MATCH_PARENT,
             LayoutParams.MATCH_PARENT,
             if (Build.VERSION.SDK_INT >= 26) LayoutParams.TYPE_APPLICATION_OVERLAY else @Suppress("DEPRECATION") LayoutParams.TYPE_PHONE,
-            LayoutParams.FLAG_LAYOUT_IN_SCREEN or LayoutParams.FLAG_NOT_TOUCH_MODAL,
+            LayoutParams.FLAG_LAYOUT_IN_SCREEN or LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             PixelFormat.TRANSLUCENT,
-        ).apply {
-            gravity = Gravity.FILL
-        }
-        overlay = panel
-        wm.addView(panel, params)
-        choices.setOnCheckedChangeListener { group, checkedId -> check.isEnabled = checkedId != -1 }
+        ).apply { gravity = Gravity.FILL }
+        overlay = view
+        overlayOwner = owner
+        wm.addView(view, params)
+    }
 
-        fun submit(showAnswer: Boolean) {
-            val selectedId = if (showAnswer) null else choices.findViewById<RadioButton>(choices.checkedRadioButtonId)?.tag as? String
-            check.isEnabled = false
-            show.isEnabled = false
-            scope.launch {
-                val result = when {
-                    showAnswer -> AttemptResult.UNANSWERED
-                    selectedId != null && selectedId in question.answerKey.correctOptionIds -> AttemptResult.CORRECT
-                    else -> AttemptResult.INCORRECT
-                }
-                val now = Instant.now()
-                val zone = ZoneId.systemDefault()
-                val saveResult = runCatching {
-                    (application as MedStudyApplication).container.learnerActivity.recordAttempt(
-                        QuestionAttempt(
-                        UUID.randomUUID().toString(), question.id, listOfNotNull(selectedId), result,
-                        now.toEpochMilli(), now.atZone(zone).toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
-                        zone.id, PracticeContext.TOPIC_PRACTICE,
-                        ),
-                    )
-                }
-                if (saveResult.isFailure) {
-                    response.text = "Could not save your response. Please try again."
-                    check.isEnabled = !showAnswer && choices.checkedRadioButtonId != -1
-                    show.isEnabled = true
-                    return@launch
-                }
-                response.text = buildString {
-                    append(if (showAnswer) "Answer revealed. " else if (result == AttemptResult.CORRECT) "Correct. " else "Review the answer. ")
-                    append(question.answerKey.explanation.ifBlank { "Answer: ${question.options.filter { it.id in question.answerKey.correctOptionIds }.joinToString { it.label }}" })
-                }
-                question.answerKey.optionRationales.forEach { rationale ->
-                    val option = question.options.firstOrNull { it.id == rationale.optionId }
-                    if (option != null && rationale.text.isNotBlank()) response.append("\n${option.label}: ${rationale.text}")
-                }
-                actions.removeAllViews()
-                actions.addView(Button(this@QuestionOverlayService).apply {
-                    text = "Done"
-                    setOnClickListener { dismissOverlay(); resetInterval() }
-                })
-            }
-        }
-        check.setOnClickListener { submit(false) }
-        show.setOnClickListener { submit(true) }
+    private suspend fun recordAttempt(question: Question, selectedId: String?, result: AttemptResult): Boolean {
+        val now = Instant.now()
+        val zone = ZoneId.systemDefault()
+        return runCatching {
+            (application as MedStudyApplication).container.learnerActivity.recordAttempt(
+                QuestionAttempt(
+                    UUID.randomUUID().toString(), question.id, listOfNotNull(selectedId), result,
+                    now.toEpochMilli(), now.atZone(zone).toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
+                    zone.id, PracticeContext.TOPIC_PRACTICE,
+                ),
+            )
+        }.isSuccess
     }
 
     private fun resetInterval() {
@@ -263,6 +221,8 @@ class QuestionOverlayService : Service() {
     private fun dismissOverlay() {
         val current = overlay ?: return
         overlay = null
+        overlayOwner?.destroy()
+        overlayOwner = null
         runCatching { (getSystemService(WINDOW_SERVICE) as WindowManager).removeView(current) }
     }
 
