@@ -1,7 +1,26 @@
 package com.medstudy.core.designsystem
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
+import androidx.compose.runtime.getValue
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.outlined.KeyboardArrowDown
+import androidx.compose.material.icons.outlined.KeyboardArrowUp
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +30,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -30,6 +50,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Rect
@@ -95,6 +116,11 @@ fun NotchedCard(
     gradient: SubjectGradient,
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
+    /** Minimum card height; with [verticalArrangement] = SpaceBetween the content spreads top and bottom. */
+    minHeight: Dp = 0.dp,
+    verticalArrangement: Arrangement.Vertical = Arrangement.Top,
+    /** Soft shapes drawn behind the content (e.g. translucent circles). */
+    decoration: (@Composable BoxScope.() -> Unit)? = null,
     tab: (@Composable BoxScope.() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
@@ -105,6 +131,7 @@ fun NotchedCard(
             .background(gradient.brush)
             .then(if (onClick != null) Modifier.clickable(role = Role.Button, onClick = onClick) else Modifier),
     ) {
+        decoration?.invoke(this)
         if (tab != null) {
             Box(
                 modifier = Modifier
@@ -116,7 +143,11 @@ fun NotchedCard(
                 content = tab,
             )
         }
-        Column(modifier = Modifier.padding(16.dp), content = content)
+        Column(
+            modifier = Modifier.fillMaxWidth().padding(16.dp).heightIn(min = (minHeight - 32.dp).coerceAtLeast(0.dp)),
+            verticalArrangement = verticalArrangement,
+            content = content,
+        )
     }
 }
 
@@ -127,7 +158,7 @@ fun StudyProgressBar(
     description: String,
     modifier: Modifier = Modifier,
     fill: Color = StudyTheme.colors.accent,
-    track: Color = StudyTheme.colors.accentSoft,
+    track: Color = StudyTheme.colors.track,
 ) {
     Box(
         modifier = modifier
@@ -151,6 +182,8 @@ fun PillButton(
     style: PillStyle = PillStyle.Primary,
     small: Boolean = false,
     enabled: Boolean = true,
+    /** Fill for the Primary style; pass a card's `deep` shade to match the card it sits in. */
+    containerColor: Color = StudyTheme.colors.accent,
 ) {
     val height = if (small) 32.dp else 44.dp
     val padding = PaddingValues(horizontal = if (small) 14.dp else 20.dp)
@@ -162,7 +195,7 @@ fun PillButton(
         PillStyle.Primary -> Button(
             onClick = onClick, modifier = sized, enabled = enabled, shape = CircleShape, contentPadding = padding,
             colors = ButtonDefaults.buttonColors(
-                containerColor = StudyTheme.colors.accent, contentColor = StudyTheme.colors.onAccent,
+                containerColor = containerColor, contentColor = StudyTheme.colors.onAccent,
             ),
         ) { label() }
         PillStyle.Secondary -> OutlinedButton(
@@ -246,7 +279,10 @@ fun TaskRow(
 
 data class BottomBarItem(val label: String, val icon: ImageVector)
 
-/** White bottom bar: icon above label, active item in the accent color, no indicator pill. */
+/**
+ * Floating black pill with four icons. The active item is a white circle with an ink icon; the others are
+ * white icons on the black. Labels are not shown but are each item's accessibility description.
+ */
 @Composable
 fun StudyBottomBar(
     items: List<BottomBarItem>,
@@ -254,31 +290,257 @@ fun StudyBottomBar(
     onSelect: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Surface(color = StudyTheme.colors.surface, shadowElevation = 8.dp, modifier = modifier) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp)) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .windowInsetsPadding(WindowInsets.navigationBars)
+            .padding(horizontal = 24.dp, vertical = 12.dp),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .shadow(14.dp, CircleShape, ambientColor = Color(0x3314142B), spotColor = Color(0x3314142B))
+                .clip(CircleShape)
+                .background(StudyTheme.colors.accent)
+                .padding(6.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             items.forEachIndexed { index, item ->
                 val selected = index == selectedIndex
-                val color = if (selected) StudyTheme.colors.accent else StudyTheme.colors.muted
-                Column(
+                val circle by animateColorAsState(if (selected) Color.White else Color.Transparent, tween(200), label = "navCircle")
+                val tint by animateColorAsState(if (selected) StudyTheme.colors.accent else Color.White.copy(alpha = 0.9f), tween(200), label = "navTint")
+                Box(
                     modifier = Modifier
-                        .weight(1f)
-                        .heightIn(min = 48.dp)
-                        .clip(RoundedCornerShape(12.dp))
+                        .size(54.dp)
+                        .clip(CircleShape)
+                        .background(circle)
                         .selectable(selected = selected, role = Role.Tab, onClick = { onSelect(index) })
-                        .padding(vertical = 4.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
+                        .semantics { contentDescription = item.label },
+                    contentAlignment = Alignment.Center,
                 ) {
-                    Icon(item.icon, contentDescription = null, tint = color, modifier = Modifier.size(24.dp))
-                    Text(
-                        item.label, style = MaterialTheme.typography.labelSmall, color = color,
-                        fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium,
-                        textAlign = TextAlign.Center,
-                    )
+                    Icon(item.icon, contentDescription = null, tint = tint, modifier = Modifier.size(26.dp))
                 }
             }
         }
     }
 }
 
+/**
+ * Top tabs in the same language as the week pills and filter pills: separate pills, the selected one solid ink with white text,
+ * the others white with a hairline border and ink text.
+ */
+@Composable
+fun SegmentedTabs(
+    labels: List<String>,
+    selectedIndex: Int,
+    onSelect: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        labels.forEachIndexed { index, label ->
+            val selected = index == selectedIndex
+            val fill by animateColorAsState(if (selected) StudyTheme.colors.accent else StudyTheme.colors.surface, tween(200), label = "tabFill")
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .height(46.dp)
+                    .clip(CircleShape)
+                    .background(fill)
+                    .border(1.dp, if (selected) StudyTheme.colors.accent else StudyTheme.colors.hairline, CircleShape)
+                    .selectable(selected = selected, role = Role.Tab, onClick = { onSelect(index) }),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    label, style = MaterialTheme.typography.labelLarge,
+                    color = if (selected) StudyTheme.colors.onAccent else StudyTheme.colors.ink, maxLines = 1,
+                )
+            }
+        }
+    }
+}
+
+/** White circular icon button (back, bookmark). 44dp, comfortably tappable. */
+@Composable
+fun IconCircleButton(
+    icon: ImageVector,
+    contentDescription: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    container: Color = StudyTheme.colors.surface,
+    tint: Color = StudyTheme.colors.ink,
+    size: Dp = 44.dp,
+    iconSize: Dp = 22.dp,
+) {
+    Box(
+        modifier = modifier
+            .size(size)
+            .clip(CircleShape)
+            .background(container)
+            .clickable(role = Role.Button, onClickLabel = contentDescription, onClick = onClick)
+            .semantics { this.contentDescription = contentDescription },
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(icon, contentDescription = null, tint = tint, modifier = Modifier.size(iconSize))
+    }
+}
+
+/** Large subject-colored header for detail screens: back button, title, then caller content. */
+@Composable
+fun HeroCard(
+    gradient: SubjectGradient,
+    onBack: () -> Unit,
+    title: String,
+    modifier: Modifier = Modifier,
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(28.dp))
+            .background(gradient.brush)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        IconCircleButton(Icons.AutoMirrored.Outlined.ArrowBack, "Back", onBack)
+        Text(title, style = MaterialTheme.typography.headlineLarge, color = StudyTheme.colors.ink)
+        content()
+    }
+}
+
+/** Rounded text field: white fill, hairline border, ink border when focused. */
+@Composable
+fun StudyTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    modifier: Modifier = Modifier,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    /** Show [label] as a hint inside the box instead of a floating label. Use it on colored or gradient backgrounds. */
+    hintInside: Boolean = false,
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = if (hintInside) null else ({ Text(label) }),
+        placeholder = if (hintInside) ({ Text(label) }) else null,
+        singleLine = true,
+        shape = RoundedCornerShape(16.dp),
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        visualTransformation = visualTransformation,
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedContainerColor = StudyTheme.colors.surface,
+            unfocusedContainerColor = StudyTheme.colors.surface,
+            focusedBorderColor = StudyTheme.colors.ink,
+            unfocusedBorderColor = StudyTheme.colors.hairline,
+            focusedLabelColor = StudyTheme.colors.ink,
+            unfocusedLabelColor = StudyTheme.colors.muted,
+            cursorColor = StudyTheme.colors.ink,
+            focusedPlaceholderColor = StudyTheme.colors.muted,
+            unfocusedPlaceholderColor = StudyTheme.colors.muted,
+        ),
+        modifier = modifier.fillMaxWidth().then(if (hintInside) Modifier.semantics { contentDescription = label } else Modifier),
+    )
+}
+
+/** Selectable pill for filters (subjects, weekdays): accent when selected, white with a hairline otherwise. */
+@Composable
+fun FilterPill(
+    label: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
+    Box(
+        modifier = modifier
+            .heightIn(min = 40.dp)
+            .clip(CircleShape)
+            .background(if (selected) StudyTheme.colors.accent else StudyTheme.colors.surface)
+            .border(1.dp, if (selected) StudyTheme.colors.accent else StudyTheme.colors.hairline, CircleShape)
+            .selectable(selected = selected, enabled = enabled, role = Role.Button, onClick = onClick)
+            .padding(horizontal = 16.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            label, style = MaterialTheme.typography.labelLarge, maxLines = 1,
+            color = (if (selected) StudyTheme.colors.onAccent else StudyTheme.colors.ink).copy(alpha = if (enabled) 1f else 0.4f),
+        )
+    }
+}
+
+@Composable
+fun studySliderColors() = SliderDefaults.colors(
+    thumbColor = StudyTheme.colors.accent,
+    activeTrackColor = StudyTheme.colors.accent,
+    inactiveTrackColor = StudyTheme.colors.track,
+    activeTickColor = StudyTheme.colors.onAccent,
+    inactiveTickColor = StudyTheme.colors.muted,
+)
+
+/** White rounded card for grouping settings or form fields on the gray canvas. */
+@Composable
+fun StudyCard(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+    Column(
+        modifier = modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(StudyTheme.colors.surface).padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        content = content,
+    )
+}
+
 /** Dim a control that has nothing to do right now, keeping it visible. */
 fun Modifier.dimmedIf(dimmed: Boolean): Modifier = if (dimmed) alpha(0.5f) else this
+
+/**
+ * Soft layered arcs that fade from a deeper tone at the top edge to the lightest tone nearest the content,
+ * in a subject gradient's ramp. Drawn in the canvas background color below, so the screen continues cleanly.
+ * Geometry is authored for 196dp and scales with [height].
+ */
+@Composable
+fun ArcBackdrop(gradient: SubjectGradient, modifier: Modifier = Modifier) {
+    val bands = listOf(
+        androidx.compose.ui.graphics.lerp(gradient.deep, gradient.top, 0.45f),
+        gradient.top,
+        androidx.compose.ui.graphics.lerp(gradient.top, gradient.bottom, 0.5f),
+        gradient.bottom,
+    )
+    androidx.compose.foundation.Canvas(modifier.fillMaxWidth()) {
+        val scale = size.height / 196.dp.toPx()
+        val rise = 160.dp.toPx() * scale
+        // lightest band reaches lowest; darker bands sit on top, higher up
+        val sides = listOf(112, 138, 164, 190).map { it.dp.toPx() * scale }
+        for (k in 3 downTo 0) {
+            val path = androidx.compose.ui.graphics.Path().apply {
+                moveTo(0f, 0f); lineTo(size.width, 0f); lineTo(size.width, sides[k])
+                quadraticTo(size.width / 2f, sides[k] - rise, 0f, sides[k])
+                close()
+            }
+            drawPath(path, bands[k])
+        }
+    }
+}
+
+/** A full-width header: the arc backdrop with [content] laid over it (use [BoxScope] alignment for the title row). */
+@Composable
+fun ArcHeader(
+    modifier: Modifier = Modifier,
+    gradient: SubjectGradient = StudyTheme.subjectGradient(5),
+    height: Dp = 196.dp,
+    content: @Composable BoxScope.() -> Unit = {},
+) {
+    Box(modifier.fillMaxWidth().height(height)) {
+        ArcBackdrop(gradient, Modifier.fillMaxSize())
+        content()
+    }
+}
+
+/** Lets one item of a padded list draw edge to edge by growing [horizontal] on each side. */
+fun Modifier.bleed(horizontal: Dp): Modifier = layout { measurable, constraints ->
+    val extra = horizontal.roundToPx()
+    val width = constraints.maxWidth + 2 * extra
+    val placeable = measurable.measure(constraints.copy(minWidth = width, maxWidth = width))
+    layout(constraints.maxWidth, placeable.height) { placeable.place(-extra, 0) }
+}
