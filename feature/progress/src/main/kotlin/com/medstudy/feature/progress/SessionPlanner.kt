@@ -42,3 +42,7 @@ object SessionPlanner {
         return count
     }
 }
+
+/** A study day can be switched on any time; it can only be switched off while at least one other day stays on. */
+fun canToggleStudyDay(isoWeekday: Int, selectedDays: Set<Int>): Boolean =
+    isoWeekday !in selectedDays || selectedDays.size > 1

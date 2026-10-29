@@ -26,9 +26,9 @@ class WeeklyPlanGenerator(
             .sortedWith(compareBy({ it.retrievability ?: 1.0 }, { it.accuracy ?: 1.0 }))
         // Fill the week with distinct topics: due/weak first, then other studied topics, then untouched
         // catalog topics spread across subjects. Only a tiny catalog makes the list repeat.
-        val studied = areas.filter { it.topicId != null }
+        val studied = areas.filter { it.topicId != null && it.title !in NotStudyTopics }
             .sortedBy { it.retrievability ?: 1.0 }
-        val untouched = categories.filter { it.parentId != null }.map { topic ->
+        val untouched = categories.filter { it.parentId != null && it.name !in NotStudyTopics }.map { topic ->
             val subject = categoryById[topic.parentId] ?: topic
             WeakArea(
                 id = topic.id,
@@ -68,6 +68,9 @@ class WeeklyPlanGenerator(
     /** The more likely a topic is forgotten, the more questions it gets (0.5x when fresh, up to 1.5x). */
     private fun scaledTarget(base: Int, retrievability: Double?): Int =
         if (retrievability == null) base else (base * (0.5 + (1.0 - retrievability))).roundToInt().coerceIn(1, 100)
+
+    /** Labels in the source data that are tags, not something a student can study. */
+    private val NotStudyTopics = setOf("All India exam")
 
     private fun <T> interleave(groups: Collection<List<T>>): List<T> =
         (0 until (groups.maxOfOrNull(List<T>::size) ?: 0)).flatMap { i -> groups.mapNotNull { it.getOrNull(i) } }

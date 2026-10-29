@@ -89,6 +89,17 @@ class ProgressStateTest {
     }
 
     @Test
+    fun `plan never schedules the All India exam label as a topic`() {
+        val categories = listOf(
+            Category("subject.a", null, "A"),
+            Category("topic.a1", "subject.a", "All India exam"),
+            Category("topic.a2", "subject.a", "Real topic"),
+        )
+        val plan = WeeklyPlanGenerator().generate(LocalDate.parse("2026-10-03"), emptyList(), categories, 0L)
+        assertTrue(plan.blocks.none { it.title == "All India exam" })
+    }
+
+    @Test
     fun `generated blocks respect selected weekdays and daily targets`() {
         val startDate = LocalDate.parse("2026-10-03")
         val preferences = StudySchedulePreferences(

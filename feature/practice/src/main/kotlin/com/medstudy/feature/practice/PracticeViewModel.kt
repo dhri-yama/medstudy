@@ -27,7 +27,7 @@ class PracticeViewModel(
     private val mutableState = MutableStateFlow(PracticeUiState())
     val state: StateFlow<PracticeUiState> = mutableState.asStateFlow()
 
-    fun start(subjectId: String? = null, topicId: String? = null, questionId: String? = null) {
+    fun start(subjectId: String? = null, topicId: String? = null, questionId: String? = null, limit: Int? = null) {
         viewModelScope.launch {
             mutableState.value = PracticeUiState(isLoading = true)
             runCatching {
@@ -38,7 +38,7 @@ class PracticeViewModel(
                             subjectIds = subjectId?.let(::setOf).orEmpty(),
                             topicId = topicId,
                         ),
-                    )
+                    ).let { all -> if (limit != null) all.take(limit) else all }
                 }
             }.onSuccess { questions ->
                 mutableState.value = PracticeUiState(
@@ -150,7 +150,12 @@ class PracticeViewModel(
             )
             runCatching { activityRepository.recordAttempt(attempt) }
                 .onSuccess {
-                    mutableState.value = currentState.copy(isRevealed = true, result = result, error = null)
+                    mutableState.value = currentState.copy(
+                        isRevealed = true,
+                        result = result,
+                        error = null,
+                        results = currentState.results + (question.id to result),
+                    )
                 }
                 .onFailure { mutableState.value = currentState.copy(error = it.message ?: "Could not save this attempt.") }
         }
@@ -171,6 +176,11 @@ class PracticeViewModel(
                 mutableState.value = mutableState.value.copy(error = it.message ?: "Could not update bookmark.")
             }
         }
+    }
+
+    /** Ends the session and shows the summary. */
+    fun finish() {
+        mutableState.value = mutableState.value.copy(isFinished = true)
     }
 
     fun next() {
@@ -219,6 +229,13 @@ data class PracticeUiState(
     val isBookmarked: Boolean = false,
     val result: AttemptResult? = null,
     val error: String? = null,
+    /** Outcome of each question answered this session, by question id (the latest attempt wins). */
+    val results: Map<String, AttemptResult> = emptyMap(),
+    val isFinished: Boolean = false,
 ) {
     val currentQuestion: Question? get() = questions.getOrNull(position)
+    val correctCount: Int get() = results.values.count { it == AttemptResult.CORRECT }
+    val missedCount: Int get() = results.values.count { it == AttemptResult.INCORRECT }
+    val shownCount: Int get() = results.values.count { it == AttemptResult.UNANSWERED }
+    val missedQuestionIds: List<String> get() = questions.map(Question::id).filter { results[it] == AttemptResult.INCORRECT }
 }

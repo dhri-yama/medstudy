@@ -1,4 +1,4 @@
-package com.medstudy.app
+package com.medstudy.feature.progress
 
 import com.medstudy.core.model.AttemptResult
 import com.medstudy.core.model.Category

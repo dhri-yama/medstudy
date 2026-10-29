@@ -112,7 +112,7 @@ class ProgressViewModel(
     fun toggleStudyDay(isoWeekday: Int) {
         val current = mutableState.value
         val selectedDays = current.preferences.availableWeekdays
-        if (isoWeekday in selectedDays && selectedDays.size == 1) return
+        if (!canToggleStudyDay(isoWeekday, selectedDays)) return
         val updated = current.preferences.copy(
             availableWeekdays = if (isoWeekday in selectedDays) selectedDays - isoWeekday else selectedDays + isoWeekday,
         )

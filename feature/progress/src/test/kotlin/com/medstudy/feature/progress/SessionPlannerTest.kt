@@ -33,4 +33,12 @@ class SessionPlannerTest {
         assertEquals(3, SessionPlanner.streak(attempts + attempt("q", AttemptResult.CORRECT, today), today))
         assertEquals(0, SessionPlanner.streak(emptyList(), today))
     }
+
+    @Test
+    fun `any day can be switched on, but the last selected day cannot be switched off`() {
+        assertEquals(true, canToggleStudyDay(1, setOf(7)))      // Monday on, only Sunday selected: must work
+        assertEquals(false, canToggleStudyDay(7, setOf(7)))     // can't turn off the last day
+        assertEquals(true, canToggleStudyDay(7, setOf(1, 7)))   // can turn off when another stays on
+        assertEquals(true, canToggleStudyDay(3, (1..7).toSet()))
+    }
 }

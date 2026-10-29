@@ -1,6 +1,26 @@
 package com.medstudy.feature.practice
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.ui.draw.shadow
+import com.medstudy.core.designsystem.NotchedCard
+import com.medstudy.core.model.pluralize
+import com.medstudy.core.model.splitSourceTag
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.background
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.unit.sp
+import com.medstudy.core.designsystem.IconCircleButton
+import com.medstudy.core.designsystem.PillButton
+import com.medstudy.core.designsystem.PillStyle
+import com.medstudy.core.designsystem.StudyChip
+import com.medstudy.core.designsystem.StudyProgressBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.rememberTransformableState
@@ -11,6 +31,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,7 +46,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.ArrowForward
-import androidx.compose.material.icons.outlined.Bookmark
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.Button
@@ -67,7 +88,8 @@ import com.medstudy.core.model.subjectDisplayName
 import com.medstudy.core.model.Question
 import com.medstudy.core.model.QuestionOption
 
-@OptIn(ExperimentalMaterial3Api::class)
+private val ReportReasons = listOf("Wrong answer", "Typo or missing text", "Unclear question", "Other")
+
 @Composable
 fun QuestionPracticeScreen(
     state: PracticeUiState,
@@ -81,105 +103,133 @@ fun QuestionPracticeScreen(
     onFinish: () -> Unit,
     imageResource: (String) -> Int?,
     modifier: Modifier = Modifier,
+    /** Index into the subject palette for a subject id, so the screen uses the same color as the rest of the app. */
+    subjectColorIndex: (String) -> Int = { 0 },
+    onReport: (questionId: String, reason: String) -> Unit = { _, _ -> },
+    onReviewMissed: () -> Unit = {},
+    onExit: () -> Unit = onBack,
 ) {
     val question = state.currentQuestion
     if (state.isLoading) {
-        Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
+        Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator(color = StudyTheme.colors.ink) }
         return
     }
     if (question == null) {
-        Column(modifier.fillMaxSize().padding(24.dp), verticalArrangement = Arrangement.Center) {
+        Column(
+            modifier.fillMaxSize().windowInsetsPadding(WindowInsets.systemBars).padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+        ) {
             Text(
                 state.error ?: "No questions are available right now.",
                 style = MaterialTheme.typography.titleLarge,
-                color = if (state.error != null) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (state.error != null) StudyTheme.colors.error else StudyTheme.colors.muted,
             )
-            TextButton(onClick = onBack) { Text("Back to subjects") }
+            PillButton("Go back", onClick = onBack)
         }
+        return
+    }
+    if (state.isFinished) {
+        // One subject in the session: use its color; a mix of subjects gets the neutral first palette color.
+        val summaryColor = state.questions.map { it.subjectId }.distinct().singleOrNull()?.let(subjectColorIndex) ?: 0
+        SessionSummary(state, summaryColor, onReviewMissed, onExit, modifier)
         return
     }
 
     var zoomedImage by remember(question.id) { mutableStateOf<ContentBlock.Image?>(null) }
+    var reporting by remember(question.id) { mutableStateOf(false) }
+    var reported by remember(question.id) { mutableStateOf(false) }
+    val gradient = StudyTheme.subjectGradient(subjectColorIndex(question.subjectId))
+    val isLast = state.position == state.questions.lastIndex
+    val stemText = question.content.filterIsInstance<ContentBlock.Text>().firstOrNull()?.text.orEmpty()
+    val (cleanStem, sourceTag) = remember(question.id) { splitSourceTag(stemText) }
+
     Scaffold(
         modifier = modifier.fillMaxSize(),
+        containerColor = StudyTheme.colors.canvas,
         topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Back to subjects")
-                    }
-                },
-                title = {
-                    Column {
-                        Text(subjectDisplayName(question.subjectId), style = MaterialTheme.typography.titleMedium)
-                        Text("Question ${state.position + 1} of ${state.questions.size}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    }
-                },
-                actions = {
-                    IconButton(onClick = onToggleBookmark) {
-                        Icon(
-                            if (state.isBookmarked) Icons.Outlined.Bookmark else Icons.Outlined.BookmarkBorder,
-                            contentDescription = if (state.isBookmarked) "Remove bookmark" else "Bookmark question",
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(bottomStart = 28.dp, bottomEnd = 28.dp))
+                    .background(gradient.brush)
+                    .windowInsetsPadding(WindowInsets.statusBars)
+                    .padding(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    IconCircleButton(Icons.AutoMirrored.Outlined.ArrowBack, "Back", onBack, size = 60.dp, iconSize = 32.dp)
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text(subjectDisplayName(question.subjectId), style = MaterialTheme.typography.titleSmall, color = StudyTheme.colors.ink)
+                        StudyProgressBar(
+                            progress = (state.position + 1).toFloat() / state.questions.size,
+                            description = "Question ${state.position + 1} of ${state.questions.size}",
+                            fill = gradient.deep,
+                            track = Color.White.copy(alpha = 0.55f),
+                        )
+                        Text(
+                            "Question ${state.position + 1} of ${state.questions.size}" +
+                                if (state.results.isNotEmpty()) " · ${state.correctCount} correct" else "",
+                            style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.ink,
                         )
                     }
-                },
-            )
-        },
-        bottomBar = {
-            Surface(color = MaterialTheme.colorScheme.surface, shadowElevation = 2.dp) {
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    if (state.isRevealed) {
-                        OutlinedButton(onClick = onPrevious, enabled = state.position > 0) {
-                            Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = null)
-                            Spacer(Modifier.width(4.dp))
-                            Text("Previous")
-                        }
-                        Button(
-                            onClick = if (state.position == state.questions.lastIndex) onFinish else onNext,
-                            shape = RoundedCornerShape(8.dp),
-                            modifier = Modifier.weight(1f),
-                        ) {
-                            Text(if (state.position == state.questions.lastIndex) "Finish" else "Next")
-                            if (state.position < state.questions.lastIndex) {
-                                Spacer(Modifier.width(4.dp))
-                                Icon(Icons.AutoMirrored.Outlined.ArrowForward, contentDescription = null)
-                            }
-                        }
-                    } else {
-                        TextButton(onClick = onShowAnswer) { Text("Show answer") }
-                        Button(
-                            onClick = onSubmit,
-                            enabled = state.selectedOptionIds.isNotEmpty(),
-                            shape = RoundedCornerShape(8.dp),
-                            modifier = Modifier.weight(1f),
-                        ) {
-                            Text("Check answer")
-                        }
+                }
+                Spacer(Modifier.height(10.dp))
+                if (sourceTag != null) StudyChip(sourceTag, container = Color.White.copy(alpha = 0.7f))
+                question.content.forEach { block ->
+                    when (block) {
+                        is ContentBlock.Text -> Text(
+                            if (block.text == stemText) cleanStem else block.text,
+                            style = MaterialTheme.typography.bodyLarge.copy(fontSize = 19.sp, lineHeight = 28.sp),
+                            color = StudyTheme.colors.ink,
+                        )
+                        is ContentBlock.Image -> QuestionImage(block, imageResource) { zoomedImage = block }
                     }
                 }
             }
         },
+        bottomBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(StudyTheme.colors.canvas)
+                    .windowInsetsPadding(WindowInsets.navigationBars)
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                if (state.isRevealed) {
+                    PillButton("Previous", onClick = onPrevious, style = PillStyle.Secondary, enabled = state.position > 0)
+                    PillButton(
+                        if (isLast) "See results" else "Next",
+                        onClick = if (isLast) onFinish else onNext,
+                        containerColor = gradient.deep,
+                        modifier = Modifier.weight(1f),
+                    )
+                } else {
+                    PillButton("Show answer", onClick = onShowAnswer, style = PillStyle.Secondary)
+                    PillButton(
+                        "Check answer", onClick = onSubmit,
+                        enabled = state.selectedOptionIds.isNotEmpty(),
+                        containerColor = gradient.deep, modifier = Modifier.weight(1f),
+                    )
+                }
+            }
+        },
     ) { contentPadding ->
+        Box(Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),
             contentPadding = PaddingValues(
                 start = 20.dp,
-                top = contentPadding.calculateTopPadding() + 12.dp,
+                top = contentPadding.calculateTopPadding() + 16.dp,
                 end = 20.dp,
-                bottom = contentPadding.calculateBottomPadding() + 20.dp,
+                // extra room so the floating bookmark button never covers the last row
+                bottom = contentPadding.calculateBottomPadding() + 84.dp,
             ),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             if (question.provenance.contentKind == ContentKind.DEMO) item {
-                Text("DEMO CONTENT ONLY", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.SemiBold)
-                Text("This fictional sample is for testing the app experience. It is not an actual exam question or medical advice.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 4.dp))
-            }
-            items(question.content) { block ->
-                QuestionContentBlock(block, imageResource) { zoomedImage = block as? ContentBlock.Image }
+                Text("DEMO CONTENT ONLY", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.muted, fontWeight = FontWeight.SemiBold)
             }
             items(question.options, key = QuestionOption::id) { option ->
                 AnswerOption(
@@ -188,21 +238,156 @@ fun QuestionPracticeScreen(
                     revealed = state.isRevealed,
                     question = question,
                     imageResource = imageResource,
+                    deep = gradient.deep,
                     onSelect = { onSelectOption(option.id) },
                     onImageClick = { zoomedImage = it },
                 )
             }
             if (state.error != null) {
-                item { Text(state.error, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall) }
+                item { Text(state.error, color = StudyTheme.colors.error, style = MaterialTheme.typography.bodySmall) }
             }
             if (state.isRevealed) {
                 item { AnswerReview(question, state.result) }
+                item {
+                    Text(
+                        if (reported) "Thanks, we'll take a look." else "Something wrong with this question? Report it",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = StudyTheme.colors.muted,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .clickable(enabled = !reported, role = androidx.compose.ui.semantics.Role.Button) { reporting = true }
+                            .padding(vertical = 6.dp),
+                    )
+                }
             }
+        }
+        // Floating bookmark: stays put while the content scrolls, above the answer buttons at the bottom right.
+        IconCircleButton(
+            icon = if (state.isBookmarked) Icons.Filled.Bookmark else Icons.Outlined.BookmarkBorder,
+            contentDescription = if (state.isBookmarked) "Remove bookmark" else "Bookmark question",
+            onClick = onToggleBookmark,
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = 20.dp, bottom = contentPadding.calculateBottomPadding() + 16.dp)
+                .shadow(8.dp, CircleShape),
+            // The circle stays white; only the icon fills in (in the subject's deep shade) once saved.
+            tint = if (state.isBookmarked) gradient.deep else StudyTheme.colors.ink,
+            size = 60.dp,
+            iconSize = 32.dp,
+        )
         }
     }
 
+    if (reporting) {
+        ReportDialog(
+            onDismiss = { reporting = false },
+            onSubmit = { reason -> onReport(question.id, reason); reported = true; reporting = false },
+        )
+    }
     zoomedImage?.let { image ->
         ImageZoomDialog(image = image, imageResource = imageResource, onDismiss = { zoomedImage = null })
+    }
+}
+
+@Composable
+private fun ReportDialog(onDismiss: () -> Unit, onSubmit: (String) -> Unit) {
+    var reason by remember { mutableStateOf<String?>(null) }
+    Dialog(onDismissRequest = onDismiss) {
+        Column(
+            Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(StudyTheme.colors.surface).padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Text("Report this question", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
+            Text("What's wrong with it?", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted)
+            ReportReasons.forEach { option ->
+                val selected = option == reason
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(if (selected) StudyTheme.colors.accentSoft else StudyTheme.colors.canvas)
+                        .selectable(selected = selected, role = androidx.compose.ui.semantics.Role.RadioButton, onClick = { reason = option })
+                        .padding(14.dp),
+                ) { Text(option, style = MaterialTheme.typography.titleSmall, color = StudyTheme.colors.ink) }
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth().padding(top = 4.dp)) {
+                PillButton("Cancel", onClick = onDismiss, style = PillStyle.Secondary)
+                PillButton("Send report", onClick = { reason?.let(onSubmit) }, enabled = reason != null, modifier = Modifier.weight(1f))
+            }
+        }
+    }
+}
+
+/** End-of-session results: a big score, a breakdown, and actions for what to do next. */
+@Composable
+private fun SessionSummary(
+    state: PracticeUiState,
+    colorIndex: Int,
+    onReviewMissed: () -> Unit,
+    onExit: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val gradient = StudyTheme.subjectGradient(colorIndex)
+    val total = state.questions.size
+    val graded = state.correctCount + state.missedCount
+    val percent = if (graded == 0) null else state.correctCount * 100 / graded
+    val headline = when {
+        percent == null -> "Session complete"
+        percent >= 80 -> "Great work!"
+        percent >= 50 -> "Nice effort"
+        else -> "Keep going"
+    }
+    Column(
+        modifier = modifier.fillMaxSize().background(StudyTheme.colors.canvas).windowInsetsPadding(WindowInsets.systemBars).padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        NotchedCard(
+            gradient = gradient,
+            modifier = Modifier.fillMaxWidth(),
+            minHeight = 240.dp,
+            verticalArrangement = Arrangement.SpaceBetween,
+            tab = { Text("$total", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink) },
+        ) {
+            Column {
+                Text(headline, style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink, modifier = Modifier.fillMaxWidth(0.6f))
+                Text(
+                    "You answered ${pluralize(state.results.size, "question")}",
+                    style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink,
+                )
+            }
+            Column {
+                Text(
+                    percent?.let { "$it%" } ?: "-",
+                    style = MaterialTheme.typography.headlineLarge.copy(fontSize = 64.sp, lineHeight = 68.sp),
+                    color = StudyTheme.colors.ink,
+                )
+                Text("correct", style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink)
+            }
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
+            SummaryStat("Correct", state.correctCount, StudyTheme.colors.successTint, StudyTheme.colors.success, Modifier.weight(1f))
+            SummaryStat("Missed", state.missedCount, StudyTheme.colors.errorTint, StudyTheme.colors.error, Modifier.weight(1f))
+            SummaryStat("Shown", state.shownCount, StudyTheme.colors.surface, StudyTheme.colors.ink, Modifier.weight(1f))
+        }
+        Spacer(Modifier.weight(1f))
+        if (state.missedCount > 0) {
+            PillButton(
+                "Retry ${pluralize(state.missedCount, "mistake")}", onClick = onReviewMissed,
+                containerColor = gradient.deep, modifier = Modifier.fillMaxWidth(),
+            )
+        }
+        PillButton("Done", onClick = onExit, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
+    }
+}
+
+@Composable
+private fun SummaryStat(label: String, count: Int, container: Color, content: Color, modifier: Modifier = Modifier) {
+    Column(
+        modifier.clip(RoundedCornerShape(18.dp)).background(container).padding(vertical = 14.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text("$count", style = MaterialTheme.typography.headlineSmall, color = content)
+        Text(label, style = MaterialTheme.typography.labelMedium, color = content)
     }
 }
 
@@ -210,10 +395,15 @@ fun QuestionPracticeScreen(
 private fun QuestionContentBlock(
     block: ContentBlock,
     imageResource: (String) -> Int?,
+    stem: Boolean = false,
     onImageClick: (ContentBlock.Image) -> Unit,
 ) {
     when (block) {
-        is ContentBlock.Text -> Text(block.text, style = MaterialTheme.typography.bodyLarge)
+        is ContentBlock.Text -> Text(
+            block.text,
+            style = if (stem) MaterialTheme.typography.bodyLarge.copy(fontSize = 18.sp, lineHeight = 27.sp) else MaterialTheme.typography.bodyMedium,
+            color = StudyTheme.colors.ink,
+        )
         is ContentBlock.Image -> QuestionImage(block, imageResource, onImageClick)
     }
 }
@@ -225,75 +415,84 @@ private fun AnswerOption(
     revealed: Boolean,
     question: Question,
     imageResource: (String) -> Int?,
+    deep: Color,
     onSelect: () -> Unit,
     onImageClick: (ContentBlock.Image) -> Unit,
 ) {
+    val colors = StudyTheme.colors
     val correct = option.id in question.answerKey.correctOptionIds
+    val wrongPick = revealed && selected && !correct
     val background = when {
-        revealed && correct -> MaterialTheme.colorScheme.secondaryContainer
-        revealed && selected && !correct -> MaterialTheme.colorScheme.errorContainer
-        selected -> MaterialTheme.colorScheme.surfaceVariant
-        else -> MaterialTheme.colorScheme.surface
+        revealed && correct -> colors.successTint
+        wrongPick -> colors.errorTint
+        selected -> colors.accentSoft
+        else -> colors.surface
     }
-    val borderColor = when {
-        revealed && correct -> StudyTheme.colors.success
-        revealed && selected && !correct -> MaterialTheme.colorScheme.error
-        selected -> MaterialTheme.colorScheme.primary
-        else -> MaterialTheme.colorScheme.outline
+    val border = when {
+        revealed && correct -> colors.success
+        wrongPick -> colors.error
+        selected -> deep
+        else -> colors.hairline
     }
-
+    val badgeFill = when {
+        revealed && correct -> colors.success
+        wrongPick -> colors.error
+        selected -> deep
+        else -> colors.canvas
+    }
+    val badgeText = if (badgeFill == colors.canvas) colors.ink else colors.onAccent
     Surface(
-        onClick = onSelect,
-        enabled = !revealed,
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(16.dp),
         color = background,
-        border = BorderStroke(1.dp, borderColor),
+        border = BorderStroke(if (selected || revealed && correct) 1.5.dp else 1.dp, border),
         modifier = Modifier.fillMaxWidth(),
     ) {
-        Row(Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
-            RadioButton(selected = selected, onClick = onSelect, enabled = !revealed)
-            Text(option.label, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold, modifier = Modifier.width(28.dp))
-            Column(Modifier.weight(1f).padding(vertical = 8.dp)) {
-                option.content.forEach { block ->
-                    QuestionContentBlock(block, imageResource, onImageClick)
-                }
+        Row(
+            Modifier
+                .selectable(selected = selected, enabled = !revealed, role = Role.RadioButton, onClick = onSelect)
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Box(Modifier.size(32.dp).clip(CircleShape).background(badgeFill), contentAlignment = Alignment.Center) {
+                Text(option.label, style = MaterialTheme.typography.labelLarge, color = badgeText)
             }
-            if (revealed && correct) Text("Correct", style = MaterialTheme.typography.labelSmall, color = StudyTheme.colors.success)
-            if (revealed && selected && !correct) Text("Your answer", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.error)
+            Column(Modifier.weight(1f).padding(vertical = 4.dp)) {
+                option.content.forEach { block -> QuestionContentBlock(block, imageResource, onImageClick = onImageClick) }
+            }
+            if (revealed && correct) Text("Correct", style = MaterialTheme.typography.labelMedium, color = colors.success)
+            if (wrongPick) Text("Your answer", style = MaterialTheme.typography.labelMedium, color = colors.error)
         }
     }
 }
 
 @Composable
 private fun AnswerReview(question: Question, result: AttemptResult?) {
-    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        HorizontalDivider()
-        Text(
-            when (result) {
-                AttemptResult.CORRECT -> "Correct"
-                AttemptResult.INCORRECT -> "Review this answer"
-                AttemptResult.UNANSWERED, null -> "Answer and explanation"
-            },
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.SemiBold,
-        )
-        Text(readableExplanation(question.answerKey.explanation), style = MaterialTheme.typography.bodyMedium)
+    val colors = StudyTheme.colors
+    Column(
+        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(colors.surface).padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+    ) {
+        when (result) {
+            AttemptResult.CORRECT -> StudyChip("Correct", container = colors.successTint, contentColor = colors.success)
+            AttemptResult.INCORRECT -> StudyChip("Not quite", container = colors.errorTint, contentColor = colors.error)
+            AttemptResult.UNANSWERED, null -> StudyChip("Answer shown", container = colors.canvas, contentColor = colors.ink)
+        }
+        Text("Explanation", style = MaterialTheme.typography.titleLarge, color = colors.ink)
+        Text(readableExplanation(question.answerKey.explanation), style = MaterialTheme.typography.bodyMedium, color = colors.body)
         // Per-option rationales are empty for MedMCQA; skip the repeated "Incorrect option" rows then.
-        if (question.answerKey.optionRationales.any { it.text.isNotBlank() }) question.options.sortedBy(QuestionOption::position).forEach { option ->
-            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                Text(
-                    "${option.label}  ${if (option.id in question.answerKey.correctOptionIds) "Correct answer" else "Incorrect option"}",
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    color = if (option.id in question.answerKey.correctOptionIds) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                question.answerKey.optionRationales
-                    .firstOrNull { it.optionId == option.id }
-                    ?.text
-                    ?.takeIf(String::isNotBlank)
-                    ?.let { rationale ->
-                        Text(rationale, style = MaterialTheme.typography.bodyMedium)
-                    }
+        if (question.answerKey.optionRationales.any { it.text.isNotBlank() }) {
+            question.options.sortedBy(QuestionOption::position).forEach { option ->
+                val isCorrect = option.id in question.answerKey.correctOptionIds
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Text(
+                        "${option.label}  ${if (isCorrect) "Correct answer" else "Incorrect option"}",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = if (isCorrect) colors.success else colors.muted,
+                    )
+                    question.answerKey.optionRationales.firstOrNull { it.optionId == option.id }?.text
+                        ?.takeIf(String::isNotBlank)?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = colors.body) }
+                }
             }
         }
     }
