@@ -3,6 +3,9 @@ package com.medstudy.core.data
 import androidx.room.withTransaction
 import com.medstudy.core.database.AnswerKeyEntity
 import com.medstudy.core.database.CategoryEntity
+import com.medstudy.core.database.ExamPaperEntity
+import com.medstudy.core.model.ExamPaper
+import com.medstudy.core.model.PaperKind
 import com.medstudy.core.database.LOCAL_USER
 import com.medstudy.core.database.MediaAssetEntity
 import com.medstudy.core.database.OptionRationaleEntity
@@ -45,7 +48,25 @@ class RoomQuestionCatalogRepository(
         }
     }
 
+    override suspend fun examPapers(): List<ExamPaper> = withContext(Dispatchers.IO) {
+        catalogDao.getExamPapers().map { entity ->
+            ExamPaper(
+                id = entity.id,
+                examId = ExamId.entries.single { it.wireValue == entity.examId },
+                year = entity.year,
+                title = entity.title,
+                kind = PaperKind.valueOf(entity.kind),
+                sourceName = entity.sourceName,
+            )
+        }
+    }
+
     override suspend fun questions(filter: QuestionFilter): List<Question> = withContext(Dispatchers.IO) {
+        if (filter.examPaperId != null) {
+            return@withContext catalogDao.getQuestionsForPaper(filter.examPaperId)
+                .map(QuestionWithDetails::toDomain)
+                .filter { q -> (filter.subjectIds.isEmpty() || q.subjectId in filter.subjectIds) && (filter.topicId == null || filter.topicId in q.topicIds) }
+        }
         val questionEntities = if (filter.subjectIds.isNotEmpty()) {
             // If specific subject IDs are requested, query for each
             filter.subjectIds.flatMap { subjectId ->
@@ -77,9 +98,10 @@ class RoomQuestionCatalogRepository(
         categories: List<Category>,
         mediaAssets: List<MediaAsset>,
         questions: List<Question>,
+        examPapers: List<ExamPaper>,
     ) = withContext(Dispatchers.IO) {
         val issueList = com.medstudy.core.model.QuestionCatalogValidator()
-            .validate(questions, categories, mediaAssets)
+            .validate(questions, categories, mediaAssets, examPapers)
         require(issueList.isEmpty()) { issueList.joinToString { "${it.questionId ?: it.field}: ${it.message}" } }
 
         database.withTransaction {
@@ -87,6 +109,7 @@ class RoomQuestionCatalogRepository(
             catalogDao.clearAllData()
             
             catalogDao.putCategories(categories.map(Category::toEntity))
+            catalogDao.putExamPapers(examPapers.map(ExamPaper::toEntity))
             catalogDao.putMediaAssets(mediaAssets.map(MediaAsset::toEntity))
             catalogDao.putQuestions(questions.map(Question::toEntity))
             catalogDao.putContentBlocks(questions.flatMap(Question::contentRows))
@@ -97,6 +120,8 @@ class RoomQuestionCatalogRepository(
         }
     }
 }
+
+private fun ExamPaper.toEntity() = ExamPaperEntity(id, examId.wireValue, year, title, kind.name, sourceName)
 
 private fun Category.toEntity() = CategoryEntity(id, parentId, name, description, position)
 
@@ -126,6 +151,8 @@ private fun Question.toEntity() = QuestionEntity(
     attribution = provenance.attribution,
     reviewStatus = reviewStatus.name,
     revision = revision,
+    examPaperId = examPaperId,
+    sourceNumber = sourceNumber,
 )
 
 private fun Question.contentRows(): List<QuestionContentBlockEntity> =
@@ -216,6 +243,8 @@ private fun QuestionWithDetails.toDomain(): Question {
         ),
         reviewStatus = ReviewStatus.valueOf(question.reviewStatus),
         revision = question.revision,
+        examPaperId = question.examPaperId,
+        sourceNumber = question.sourceNumber,
     )
 }
 

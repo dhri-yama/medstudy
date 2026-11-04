@@ -9,6 +9,10 @@ android {
         minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    // The paper loader test reads the app's real assets (assets/pyq, subjects.json, topics.json).
+    sourceSets {
+        getByName("androidTest") { assets.directories.add("../../app/src/main/assets") }
+    }
 }
 
 dependencies {

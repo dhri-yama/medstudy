@@ -1,0 +1,198 @@
+subject,pdf_topic,questions,action,target_topic,match_score,note
+Anaesthesia,Cardiopulmonary Cerebral Resuscitation,3,new,Cardiopulmonary Cerebral Resuscitation,0.31,
+Anaesthesia,Local Anaesthetics,1,new,Local Anaesthetics,0.65,similar to: Local and Regional Anesthesia
+Anaesthesia,Monitoring in Anesthesia,4,new,Monitoring in Anesthesia,0.57,
+Anaesthesia,Neuromuscular Blockade,2,new,Neuromuscular Blockade,0.36,
+Anaesthesia,Oxygen Therapy and Airway,2,new,Oxygen Therapy and Airway,0.44,
+Anaesthesia,Pre-Anaesthetic Evaluation,2,new,Pre-Anaesthetic Evaluation,0.47,
+Anaesthesia,Regional Anesthesia,2,merge,Local and Regional Anesthesia,0.86,
+Anatomy,Abdomen,4,new,Abdomen,0.67,similar to: Abdomen and pelvis
+Anatomy,Back Region,1,new,Back Region,0.32,
+Anatomy,General Embryology,4,new,General Embryology,0.71,similar to: Embryology
+Anatomy,Head and Neck,8,merge,Head & Neck,1.00,
+Anatomy,Histology,4,new,Histology,0.53,
+Anatomy,Lower Limb,4,merge,Lower limb,1.00,
+Anatomy,Neuro Anatomy,6,new,Neuro Anatomy,0.79,similar to: General anatomy
+Anatomy,Pelvis and Perineum,2,new,Pelvis and Perineum,0.48,
+Anatomy,Thorax,3,new,Thorax,0.29,
+Anatomy,Upper Limb,5,merge,Upper limb,1.00,
+Biochemistry,Amino Acid and Protein Metabolism,1,new,Amino Acid and Protein Metabolism,0.34,
+Biochemistry,Amino Acids and Proteins Chemistry,5,new,Amino Acids and Proteins Chemistry,0.33,
+Biochemistry,Carbohydrate Chemistry,2,new,Carbohydrate Chemistry,0.30,
+Biochemistry,Carbohydrate Metabolism,9,new,Carbohydrate Metabolism,0.39,
+Biochemistry,Enzymes,3,new,Enzymes,0.39,
+Biochemistry,Genetics,4,new,Genetics,0.62,similar to: Molecular Genetics
+Biochemistry,Introduction,3,new,Introduction,0.48,
+Biochemistry,Lipid Chemistry,4,new,Lipid Chemistry,0.57,
+Biochemistry,Lipid Metabolism,5,new,Lipid Metabolism,0.55,
+Biochemistry,Oxidative Phosphorylation,2,new,Oxidative Phosphorylation,0.33,
+Biochemistry,Vitamins,18,merge,Vitamins,1.00,
+ENT,Ear,11,merge,Ear,1.00,
+ENT,Larynx,6,new,Larynx,0.44,
+ENT,Nose and Paranasal Sinuses,7,new,Nose and Paranasal Sinuses,0.53,
+ENT,Pharynx,8,new,Pharynx,0.42,
+Forensic Medicine,Asphyxial Deaths,1,new,Asphyxial Deaths,0.33,
+Forensic Medicine,Ballistics,1,new,Ballistics,0.43,
+Forensic Medicine,Court of Law,2,new,Court of Law,0.32,
+Forensic Medicine,Forensic Identificatio,1,new,Forensic Identificatio,0.38,
+Forensic Medicine,Forensic Thanatology,10,new,Forensic Thanatology,0.53,
+Forensic Medicine,Forensic Toxicology,9,new,Forensic Toxicology,0.69,similar to: Toxicology
+Forensic Medicine,Forensic Traumatology,2,new,Forensic Traumatology,0.52,
+Forensic Medicine,IPC Sections,2,new,IPC Sections,0.41,
+Forensic Medicine,Indian Legal System & Medical Jurisprudence,1,new,Indian Legal System & Medical Jurisprudence,0.39,
+Forensic Medicine,Medical Jurisprudence,1,new,Medical Jurisprudence,0.52,
+Forensic Medicine,Sexual Jurisprudence,4,new,Sexual Jurisprudence,0.36,
+Forensic Medicine,Toxicology - General,2,new,Toxicology - General,0.71,similar to: Toxicology
+Forensic Medicine,Traces of Evidences,1,new,Traces of Evidences,0.38,
+Gynaecology & Obstetrics,Gynecology,47,new,Gynecology,0.53,
+Gynaecology & Obstetrics,Obstetrics,48,new,Obstetrics,0.31,
+Medicine,Cardiology,18,new,Cardiology,0.70,similar to: Endocrinology
+Medicine,Emergency Medicine,2,new,Emergency Medicine,0.32,
+Medicine,Endocrinology,8,merge,Endocrinology,1.00,
+Medicine,GIT,5,new,GIT,0.75,similar to: G.I.T.
+Medicine,Hematology,3,new,Hematology,0.61,similar to: Immunology and Rheumatology
+Medicine,Infections,2,merge,Infection,0.95,
+Medicine,Liver,6,new,Liver,0.38,
+Medicine,Nephrology / Kidney Disease,8,new,Nephrology / Kidney Disease,0.39,
+Medicine,Neurology,13,new,Neurology,0.64,similar to: Endocrinology
+Medicine,Obstetrics,2,new,Obstetrics,0.30,
+Medicine,Oncology,1,new,Oncology,0.78,similar to: Toxicology
+Medicine,Pulmonology,12,new,Pulmonology,0.58,
+Medicine,Rheumatology / Connective Tissue Disorder,9,new,Rheumatology / Connective Tissue Disorder,0.39,
+Microbiology,General Microbiology,3,new,General Microbiology,0.55,
+Microbiology,Immunology,3,merge,Immunology,1.00,
+Microbiology,Mycology,8,merge,Mycology,1.00,
+Microbiology,Parasitology,16,new,Parasitology,0.56,
+Microbiology,Systemic Bacteriology,20,new,Systemic Bacteriology,0.53,
+Microbiology,Virology,7,new,Virology,0.67,similar to: Immunology
+Ophthalmology,Conjunctiva,2,new,Conjunctiva,0.48,
+Ophthalmology,Cornea,6,merge,Cornea,1.00,
+Ophthalmology,Diseases of Lens,2,new,Diseases of Lens,0.32,
+Ophthalmology,Glaucoma,5,new,Glaucoma,0.43,
+Ophthalmology,Neuro Ophthalmology,4,merge,Neuro Ophthalmology,1.00,
+Ophthalmology,Ocular Injuries,2,new,Ocular Injuries,0.60,similar to: Ocular Motility
+Ophthalmology,Optics,3,new,Optics,0.33,
+Ophthalmology,Orbit,1,new,Orbit,0.40,
+Ophthalmology,Retina,5,merge,Retina,1.00,
+Ophthalmology,Sclera,2,new,Sclera,0.50,
+Ophthalmology,Squint / Strabismus,4,new,Squint / Strabismus,0.30,
+Ophthalmology,Uveitis,1,new,Uveitis,0.46,
+Orthopaedics,Arthritis,1,new,Arthritis,0.29,
+Orthopaedics,Bone and Joint Infections,1,new,Bone and Joint Infections,0.39,
+Orthopaedics,General + Upper Limb Traumatology,1,new,General + Upper Limb Traumatology,0.39,
+Orthopaedics,Metabolic Disorders,4,new,Metabolic Disorders,0.73,similar to: Metabolic Bone Disease
+Orthopaedics,Miscellaneous,2,new,Miscellaneous,0.42,
+Orthopaedics,Orthopedics Oncology,4,new,Orthopedics Oncology,0.34,
+Orthopaedics,Pediatric Orthopedics,3,new,Pediatric Orthopedics,0.47,
+Orthopaedics,Peripheral Nerve Injuries,3,new,Peripheral Nerve Injuries,0.60,similar to: Pelvis & Injuries
+Orthopaedics,Spine + Pelvis + Lower Limb Traumatology,8,new,Spine + Pelvis + Lower Limb Traumatology,0.48,
+Orthopaedics,Sports Injuries,1,new,Sports Injuries,0.73,similar to: Pelvis & Injuries
+Pathology,Blood Banking and Transfusion Medicine,2,new,Blood Banking and Transfusion Medicine,0.34,
+Pathology,Bone Disorders,1,new,Bone Disorders,0.48,
+Pathology,Breast Pathology,1,new,Breast Pathology,0.59,
+Pathology,"CVS, Blood Vessels and Vasculitis",6,new,"CVS, Blood Vessels and Vasculitis",0.36,
+Pathology,Cell Injury,6,new,Cell Injury,0.40,
+Pathology,Central Nervous System,2,new,Central Nervous System,0.44,
+Pathology,Endocrinology,2,new,Endocrinology,0.73,similar to: Endocrine
+Pathology,Gastrointestinal Tract,4,new,Gastrointestinal Tract,0.39,
+Pathology,Genetics,6,new,Genetics,0.35,
+Pathology,Hematology: Red Blood Cells,10,new,Hematology: Red Blood Cells,0.54,
+Pathology,Hematology: White Blood Cells,9,new,Hematology: White Blood Cells,0.51,
+Pathology,Immunity,3,merge,Immunity,1.00,
+Pathology,"Liver, Biliary System and Pancreas",1,new,"Liver, Biliary System and Pancreas",0.71,similar to: Liver & Biliary Tract
+Pathology,Neoplasia,1,merge,Neoplasia,1.00,
+Pathology,Platelet and Bleeding Disorders,1,new,Platelet and Bleeding Disorders,0.42,
+Pathology,Platelets and Blood Transfusion,1,new,Platelets and Blood Transfusion,0.39,
+Pathology,Renal System,5,new,Renal System,0.38,
+Pathology,Respiratory System,5,new,Respiratory System,0.62,similar to: Respiration
+Pediatrics,Fluid and Electrolyte Disturbances,4,new,Fluid and Electrolyte Disturbances,0.39,
+Pediatrics,Growth,3,new,Growth,0.27,
+Pediatrics,Inborn Errors of Metabolism,3,new,Inborn Errors of Metabolism,0.35,
+Pediatrics,Infectious Diseases,8,new,Infectious Diseases,0.39,
+Pediatrics,Musculoskeletal Disorders in Children,3,new,Musculoskeletal Disorders in Children,0.43,
+Pediatrics,Neonatology,2,new,Neonatology,0.44,
+Pediatrics,Nutrition and Malnutrition,3,new,Nutrition and Malnutrition,0.58,
+Pediatrics,Pediatric Cardiology,1,new,Pediatric Cardiology,0.37,
+Pediatrics,Pediatric Endocrinology,1,new,Pediatric Endocrinology,0.34,
+Pediatrics,Pediatric Gastroenterology,5,new,Pediatric Gastroenterology,0.41,
+Pediatrics,Pediatric Nephrology,3,new,Pediatric Nephrology,0.37,
+Pediatrics,Pediatric Neurology,4,new,Pediatric Neurology,0.38,
+Pediatrics,Pediatric Respiratory Disorders,4,new,Pediatric Respiratory Disorders,0.72,similar to: Respiratory Tract Disorders
+Pharmacology,ANS Pharmacology,4,new,ANS Pharmacology,0.48,
+Pharmacology,Anticancer Drugs,5,new,Anticancer Drugs,0.53,
+Pharmacology,Antimicrobials : Anti Bacterial Drugs,6,new,Antimicrobials : Anti Bacterial Drugs,0.53,
+Pharmacology,Autacoids,8,new,Autacoids,0.40,
+Pharmacology,CNS Pharmacology,3,new,CNS Pharmacology,0.48,
+Pharmacology,CVS Pharmacology,14,new,CVS Pharmacology,0.48,
+Pharmacology,Chemotherapy of Specific Microbial Diseases,7,new,Chemotherapy of Specific Microbial Diseases,0.44,
+Pharmacology,Drugs Affecting Blood and Blood formation,2,new,Drugs Affecting Blood and Blood formation,0.36,
+Pharmacology,Endocrine Pharmacology,5,new,Endocrine Pharmacology,0.74,similar to: Endocrinology
+Pharmacology,GIT Pharmacology,1,new,GIT Pharmacology,0.41,
+Pharmacology,General Pharmacology,6,new,General Pharmacology,0.48,
+Pharmacology,Renal Pharmacology,3,new,Renal Pharmacology,0.52,
+Pharmacology,Respiratory Pharmacology,4,new,Respiratory Pharmacology,0.38,
+Physiology,Blood Physiology,2,new,Blood Physiology,0.27,
+Physiology,Cardiovascular System,3,new,Cardiovascular System,0.57,
+Physiology,Endocrine and Reproductive System,5,new,Endocrine and Reproductive System,0.56,
+Physiology,Excretory System,3,new,Excretory System,0.67,similar to: Nervous System
+Physiology,Gastrointestinal System,2,new,Gastrointestinal System,0.47,
+Physiology,General Physiology,6,new,General Physiology,0.38,
+Physiology,Nerve Muscle Physiology,3,new,Nerve Muscle Physiology,0.49,
+Physiology,Respiratory System,6,new,Respiratory System,0.56,
+Physiology,Special Senses,1,new,Special Senses,0.51,
+Physiology,The Nervous System,8,merge,Nervous System,1.00,
+Psychiatry,Basics of Psychiatry,1,new,Basics of Psychiatry,0.18,
+Psychiatry,Eating Disorders,1,new,Eating Disorders,0.31,
+Psychiatry,Forensic Psychiatry,1,new,Forensic Psychiatry,0.29,
+Psychiatry,Miscellaneous,1,new,Miscellaneous,0.21,
+Psychiatry,Mood Disorders,5,new,Mood Disorders,0.40,
+Psychiatry,"Neurotic, Stress-Related and Somatoform Disorders",3,new,"Neurotic, Stress-Related and Somatoform Disorders",0.20,
+Psychiatry,Psychology,1,new,Psychology,0.23,
+Psychiatry,Schizophrenia Spectrum and Other Psychotic Disorders,2,new,Schizophrenia Spectrum and Other Psychotic Disorders,0.16,
+Psychiatry,Sexual Disorders,1,new,Sexual Disorders,0.31,
+Psychiatry,Sleep Disorders,2,new,Sleep Disorders,0.26,
+Psychiatry,Substance-Related and Addictive Disorders,4,new,Substance-Related and Addictive Disorders,0.23,
+Radiology,Basics of Radiology,2,new,Basics of Radiology,0.61,similar to: Physics of Radiotherapy
+Radiology,Gastrointestinal Radiology,3,new,Gastrointestinal Radiology,0.43,
+Radiology,Genitourinary Radiology,1,new,Genitourinary Radiology,0.46,
+Radiology,Head & Neck Imaging,4,new,Head & Neck Imaging,0.31,
+Radiology,Musculoskeletal Radiology,2,new,Musculoskeletal Radiology,0.50,
+Radiology,OBGy Imaging,1,new,OBGy Imaging,0.43,
+Radiology,Radiotherapy,2,new,Radiotherapy,0.75,similar to: Physics of Radiotherapy
+Radiology,Thoracic Radiology,6,new,Thoracic Radiology,0.53,
+Skin,Bacterial Infections,1,new,Bacterial Infections,0.67,similar to: Fungal Infection
+Skin,Cutaneous Infections,5,new,Cutaneous Infections,0.67,similar to: Fungal Infection
+Skin,Immunobullous Disorders,1,new,Immunobullous Disorders,0.67,similar to: Autoimmune Skin Disorders
+Skin,Integrated Essentials,1,new,Integrated Essentials,0.27,
+Skin,Introduction to Dermatology,1,new,Introduction to Dermatology,0.33,
+Skin,Miscellaneous Disorders,3,new,Miscellaneous Disorders,0.58,
+Skin,Mycobacterial Infections,2,new,Mycobacterial Infections,0.60,similar to: Fungal Infection
+Skin,Papulosquamous Disorders,1,new,Papulosquamous Disorders,0.57,
+Skin,Pigmentary Disorders,1,new,Pigmentary Disorders,0.62,similar to: Autoimmune Skin Disorders
+Skin,Sexually Transmitted Infections,3,new,Sexually Transmitted Infections,0.55,
+Skin,Skin Appendages and their Disorders,4,new,Skin Appendages and their Disorders,0.50,
+Skin,Systemic Diseases and Skin,1,new,Systemic Diseases and Skin,0.30,
+Social & Preventive Medicine,Allied Health Disciplines,10,new,Allied Health Disciplines,0.52,
+Social & Preventive Medicine,Biostatistics,5,new,Biostatistics,0.67,similar to: Statistical Tests
+Social & Preventive Medicine,Communicable and Non-communicable Diseases,11,new,Communicable and Non-communicable Diseases,0.71,similar to: Communicable Diseases
+Social & Preventive Medicine,Concept of Health and Disease,5,new,Concept of Health and Disease,0.60,similar to: Communicable Diseases
+Social & Preventive Medicine,Environment and Health,6,new,Environment and Health,0.43,
+Social & Preventive Medicine,Epidemiology,8,merge,Epidemiology,1.00,
+Social & Preventive Medicine,Health Care of The Community in India,3,new,Health Care of The Community in India,0.75,similar to: Health care of community & international health
+Social & Preventive Medicine,Health Planning and Management,2,new,Health Planning and Management,0.59,
+Social & Preventive Medicine,International Health,3,new,International Health,0.65,similar to: Health care of community & international health
+Social & Preventive Medicine,National Health Programs,3,new,National Health Programs,0.45,
+Social & Preventive Medicine,Nutrition and Health,5,new,Nutrition and Health,0.48,
+Social & Preventive Medicine,Screening of Diseases,1,new,Screening of Diseases,0.62,similar to: Communicable Diseases
+Social & Preventive Medicine,Vaccines and Cold Chain,8,new,Vaccines and Cold Chain,0.33,
+Surgery,Cardiothoracic Vascular Surgery,15,new,Cardiothoracic Vascular Surgery,0.48,
+Surgery,Endocrine Surgery,12,new,Endocrine Surgery,0.69,similar to: General surgery
+Surgery,Gastrointestinal Surgery,18,new,Gastrointestinal Surgery,0.63,similar to: Plastic & Reconstructive Surgery
+Surgery,General Surgery,1,merge,General surgery,1.00,
+Surgery,Head And Neck,3,new,Head And Neck,0.36,
+Surgery,Hepatobiliary Pancreatic Surgery,8,new,Hepatobiliary Pancreatic Surgery,0.47,
+Surgery,Neurosurgery,2,new,Neurosurgery,0.74,similar to: General surgery
+Surgery,Oncology,3,new,Oncology,0.35,
+Surgery,Others,15,new,Others,0.44,
+Surgery,Plastic Surgery,5,new,Plastic Surgery,0.67,similar to: Plastic & Reconstructive Surgery
+Surgery,Urology,16,new,Urology,0.42,

@@ -7,3 +7,7 @@ local.properties
 *.iml
 /hgdata
 hgdata
+# PDF import tooling
+tools/pyq-import/.venv/
+tools/pyq-import/out/
+paper_downloads/

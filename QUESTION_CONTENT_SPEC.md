@@ -201,3 +201,15 @@ Use JSON over HTTPS, stable IDs, explicit schema/catalog versions, cursor pagina
 - Every image asset exists, decodes, has a checksum, and has alt text when meaningful.
 - Real medical content, when added later, has source citations and qualified review recorded.
 - Real historical questions and images are not published until redistribution rights are verified for the intended app, territory, duration, offline caching, and paid/free use.
+
+## Previous-year papers
+
+Questions from a specific exam paper carry two extra fields: `examPaperId` (the exam tag, e.g. `NEETPG2025`) and `sourceNumber` (the number within the paper, used to run a paper in its original order). Papers live in the `exam_papers` table (`id`, `examId`, `year`, `title`, `kind` = `OFFICIAL` | `RECALL`, `sourceName`). Adding a new exam or year is a new row and a new import, with no schema change. MedMCQA questions keep `examPaperId = null`.
+
+Bundled papers are in `app/src/main/assets/pyq/` (`index.json`, one `<paperId>.json` per paper, `images/<paperId>/`), produced by `tools/pyq-import`:
+
+1. Put the PDF in `paper_downloads/` and add it to `PAPERS` in `pyq_extract.py` (layout A, B or C; add a parser for a new layout).
+2. `python pyq_extract.py <PAPER>` writes `out/<paper>/questions.json`, images and `report.md`. Review the contact sheets (`contact_sheet.py`) and add any tutor/explanation images it missed to `overrides/<paper>.json`.
+3. Review `topic_map.csv` (PDF topic to existing or new topic) and `needs_review.md`, then run `finalize.py`.
+
+Rights: all imported papers are recall-based compilations from a coaching provider, so they are `REVIEW_REQUIRED` / `PENDING_REVIEW`. Release builds leave them out (`BuildConfig.INCLUDE_UNREVIEWED_PYQ`) until the redistribution question is settled. The papers have no explanations; the review card shows the correct option instead.

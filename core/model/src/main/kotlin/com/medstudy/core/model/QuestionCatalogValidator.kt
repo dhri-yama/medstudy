@@ -5,6 +5,7 @@ class QuestionCatalogValidator {
         questions: List<Question>,
         categories: List<Category>,
         mediaAssets: List<MediaAsset>,
+        examPapers: List<ExamPaper> = emptyList(),
     ): List<ValidationIssue> {
         val issues = mutableListOf<ValidationIssue>()
         val categoryIds = categories.map(Category::id).toSet()
@@ -20,8 +21,15 @@ class QuestionCatalogValidator {
             issues += ValidationIssue(null, "questions.id", "Question IDs must be unique.")
         }
 
+        if (examPapers.map(ExamPaper::id).toSet().size != examPapers.size) {
+            issues += ValidationIssue(null, "examPapers.id", "Exam paper IDs must be unique.")
+        }
+        val paperIds = examPapers.mapTo(HashSet(), ExamPaper::id)
         questions.forEach { question ->
             issues += validateQuestion(question, categoryIds, mediaById)
+            if (question.examPaperId != null && question.examPaperId !in paperIds) {
+                issues += ValidationIssue(question.id, "examPaperId", "Unknown exam paper: ${question.examPaperId}")
+            }
         }
         return issues
     }

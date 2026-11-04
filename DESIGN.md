@@ -77,6 +77,7 @@ On white or gray surfaces buttons and bars stay ink (`accent`). Implemented as `
 Assign by the subject's index in the catalog sorted by position, then name (`SubjectSummary.colorIndex`, `% 8`). Catalog `position` values are all 0 today, so name order decides.
 The same subject has the same color on every screen. Adding a subject can shift later subjects' colors.
 Fixed assignments: Practice modes use pink (Daily set), green (Review due), yellow (Mistakes), blue (Subjects), lavender (Saved); the "Due now" card uses sky.
+Previous year papers (Practice, between the mode cards and Subjects): one notched card per paper, colour by year, tab = question count, footer "Recall · x of y done".
 Notch tab: a 35% white overlay on the card (top tabs).
 Ink text on all of these is at least 5:1. Check contrast again if you change a hex.
 
@@ -215,7 +216,7 @@ three stat tiles (Correct in success tint, Missed in error tint, Shown in white)
 
 **Plan banner (Today).** Under the greeting: a full-width pill. During the trial it reads "12 days left in your free trial" with "Plans" (white; amber for the last 3 days). On the free plan it reads "Free plan · 10 questions left today" with "Upgrade" (amber). Hidden when subscribed. Tapping opens the paywall.
 
-**Paywall.** Full screen, shown from the banner, from Me, and when a free user taps a locked feature (Review due, Mistakes, overlay, regenerate plan) or has used the daily allowance. Arc header with a close button and "Go unlimited"; one line on the user's state (days left in the trial, or that it has ended and the free plan allows 10 questions a day); a pink notched card "MedStudy Plus" with Google Play's localized price (or "Monthly plan" until it loads) and "per month, cancel any time"; four check-marked perks; a deep-pink "Subscribe" pill; "Restore purchase"; and a muted "Not now" / "Continue with the free plan". Billing errors show in red above the button.
+**Paywall.** Full screen, shown from the banner, from Me, and when a free user taps a locked feature (Review due, Mistakes, overlay, regenerate plan) or has used the daily allowance. Arc header with a close button and "Go unlimited"; one line on the user's state (days left in the trial, or that it has ended and the free plan allows 10 questions a day); a lavender notched card "MedStudy Plus" with the price (Google Play's localized price once loaded, ₹99 until then) and "per month, cancel any time"; four check-marked perks; a deep-purple "Subscribe" pill. The page uses the lavender ramp only: arc header, card, check circles and button; "Restore purchase"; and a muted "Not now" / "Continue with the free plan". Billing errors show in red above the button.
 
 **Subscription card (Me).** Above Account: the plan name ("Free trial", "MedStudy Plus", "Free plan"), one line of detail (days left, "Active until 29 Nov 2026", or the free allowance) and a pill: "See plans" (ink) or "Manage in Google Play" (outlined) when subscribed.
 

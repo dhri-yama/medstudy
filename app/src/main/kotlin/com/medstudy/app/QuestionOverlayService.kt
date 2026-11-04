@@ -145,7 +145,10 @@ class QuestionOverlayService : Service() {
             val chosen = withContext(Dispatchers.IO) {
                 val attempted = container.learnerActivity.attempts().mapTo(mutableSetOf()) { it.questionId }
                 val seen = preferences().getStringSet(KEY_SEEN_IDS, emptySet()).orEmpty()
-                container.questionCatalog.questions().filterNot { it.id in attempted || it.id in seen }.randomOrNull()
+                container.questionCatalog.questions()
+                    // The overlay draws text only, so questions with pictures are left for the full practice screen.
+                    .filterNot { it.id in attempted || it.id in seen || it.content.any { block -> block is com.medstudy.core.model.ContentBlock.Image } }
+                    .randomOrNull()
             }
             if (!screenUnlocked) return@launch
             if (chosen == null) {

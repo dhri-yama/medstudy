@@ -60,6 +60,10 @@ data class Question(
     val provenance: ContentProvenance,
     val reviewStatus: ReviewStatus,
     val revision: Int = 1,
+    /** Which exam paper this question came from, e.g. "NEETPG2025"; null for questions that are not from a specific paper. */
+    val examPaperId: String? = null,
+    /** The question's number within its paper, used to run a paper in its original order. */
+    val sourceNumber: Int? = null,
 )
 
 enum class AttemptResult {

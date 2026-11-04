@@ -27,7 +27,17 @@ data class MediaAssetEntity(
     val rightsStatus: String,
 )
 
-@Entity(tableName = "questions", indices = [Index("examId"), Index("subjectId")])
+@Entity(tableName = "exam_papers")
+data class ExamPaperEntity(
+    @PrimaryKey val id: String,
+    val examId: String,
+    val year: Int,
+    val title: String,
+    val kind: String,
+    val sourceName: String?,
+)
+
+@Entity(tableName = "questions", indices = [Index("examId"), Index("subjectId"), Index("examPaperId")])
 data class QuestionEntity(
     @PrimaryKey val id: String,
     val examId: String,
@@ -43,6 +53,8 @@ data class QuestionEntity(
     val attribution: String?,
     val reviewStatus: String,
     val revision: Int,
+    val examPaperId: String?,
+    val sourceNumber: Int?,
 )
 
 @Entity(tableName = "question_content_blocks", indices = [Index("questionId")])

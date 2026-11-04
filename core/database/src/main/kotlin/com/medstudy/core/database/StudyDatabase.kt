@@ -35,6 +35,7 @@ class StudyConverters {
 @Database(
     entities = [
         CategoryEntity::class,
+        ExamPaperEntity::class,
         MediaAssetEntity::class,
         QuestionEntity::class,
         QuestionContentBlockEntity::class,
@@ -48,7 +49,7 @@ class StudyConverters {
         StudyBlockEntity::class,
         StudySchedulePreferencesEntity::class,
     ],
-    version = 4,
+    version = 5,
     exportSchema = false,
 )
 @TypeConverters(StudyConverters::class)
@@ -101,6 +102,24 @@ abstract class StudyDatabase : RoomDatabase() {
                 db.execSQL("INSERT INTO bookmarks_new SELECT 'local', questionId, savedAtEpochMillis FROM bookmarks")
                 db.execSQL("DROP TABLE bookmarks")
                 db.execSQL("ALTER TABLE bookmarks_new RENAME TO bookmarks")
+            }
+        }
+
+        val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    """CREATE TABLE IF NOT EXISTS exam_papers (
+                        id TEXT NOT NULL PRIMARY KEY,
+                        examId TEXT NOT NULL,
+                        year INTEGER NOT NULL,
+                        title TEXT NOT NULL,
+                        kind TEXT NOT NULL,
+                        sourceName TEXT
+                    )""".trimIndent(),
+                )
+                db.execSQL("ALTER TABLE questions ADD COLUMN examPaperId TEXT")
+                db.execSQL("ALTER TABLE questions ADD COLUMN sourceNumber INTEGER")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_questions_examPaperId ON questions(examPaperId)")
             }
         }
 

@@ -22,6 +22,19 @@ interface CatalogDao {
     suspend fun putCategories(categories: List<CategoryEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun putExamPapers(papers: List<ExamPaperEntity>)
+
+    @Query("SELECT * FROM exam_papers ORDER BY year DESC, id")
+    suspend fun getExamPapers(): List<ExamPaperEntity>
+
+    @Query("DELETE FROM exam_papers")
+    suspend fun clearExamPapers()
+
+    @Transaction
+    @Query("SELECT * FROM questions WHERE examPaperId = :paperId ORDER BY sourceNumber, id")
+    suspend fun getQuestionsForPaper(paperId: String): List<QuestionWithDetails>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun putMediaAssets(assets: List<MediaAssetEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -76,6 +89,7 @@ interface CatalogDao {
 
     @Transaction
     suspend fun clearAllData() {
+        clearExamPapers()
         clearCategories()
         clearMediaAssets()
         clearQuestions()

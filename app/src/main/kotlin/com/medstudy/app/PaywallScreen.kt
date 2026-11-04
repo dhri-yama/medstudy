@@ -41,6 +41,9 @@ import com.medstudy.core.designsystem.NotchedCard
 import com.medstudy.core.designsystem.PillButton
 import com.medstudy.core.designsystem.StudyTheme
 
+/** Shown until Google Play returns the localized price. Keep in sync with the Play Console price. */
+private const val FALLBACK_PRICE = "₹99"
+
 private val Perks = listOf(
     "Unlimited questions, every day",
     "Question pop-ups over other apps",
@@ -62,7 +65,8 @@ fun PaywallScreen(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val gradient = StudyTheme.subjectGradient(0)
+    // One color theme on this page: the same lavender as the arc header, deep purple for checks and the button.
+    val gradient = StudyTheme.subjectGradient(5)
     Column(modifier.fillMaxSize().background(StudyTheme.colors.canvas).verticalScroll(rememberScrollState())) {
         ArcHeader(height = 170.dp) {
             Box(Modifier.windowInsetsPadding(WindowInsets.statusBars).padding(start = 20.dp, top = 12.dp)) {
@@ -95,7 +99,7 @@ fun PaywallScreen(
                 Text("MedStudy Plus", style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink, modifier = Modifier.fillMaxWidth(0.6f))
                 Column {
                     Text(
-                        price ?: "Monthly plan",
+                        price ?: FALLBACK_PRICE,
                         style = MaterialTheme.typography.headlineLarge.copy(fontSize = 40.sp, lineHeight = 44.sp), color = StudyTheme.colors.ink,
                     )
                     Text("per month, cancel any time", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink)

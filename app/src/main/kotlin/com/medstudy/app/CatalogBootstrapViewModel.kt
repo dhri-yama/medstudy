@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 
 import com.medstudy.core.data.MedMcqaRepository
+import com.medstudy.core.data.PyqRepository
 import com.medstudy.core.data.QuestionCatalogRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
 class CatalogBootstrapViewModel(
     private val repository: QuestionCatalogRepository,
     private val medMcqaRepository: MedMcqaRepository? = null,
+    private val pyqRepository: PyqRepository? = null,
 ) : ViewModel() {
     private val mutableState = MutableStateFlow(BootstrapUiState(isLoading = true))
     val state: StateFlow<BootstrapUiState> = mutableState.asStateFlow()
@@ -32,11 +34,12 @@ class CatalogBootstrapViewModel(
                     val categories = medMcqaRepository.getAllCategories()
                     
                     if (questions.isNotEmpty() && categories.isNotEmpty()) {
-                        // Save MedMCQA data to database
+                        val pyq = if (BuildConfig.INCLUDE_UNREVIEWED_PYQ) pyqRepository?.load() else null
                         repository.saveCatalog(
-                            categories = categories,
-                            mediaAssets = emptyList(), // No media assets in MedMCQA yet
-                            questions = questions,
+                            categories = categories + pyq?.topics.orEmpty(),
+                            mediaAssets = pyq?.mediaAssets.orEmpty(),
+                            questions = questions + pyq?.questions.orEmpty(),
+                            examPapers = pyq?.papers.orEmpty(),
                         )
                         mutableState.value = BootstrapUiState(isLoading = false, isReady = true)
                         return@launch
@@ -55,11 +58,12 @@ class CatalogBootstrapViewModel(
     companion object {
         fun factory(
             repository: QuestionCatalogRepository,
-            medMcqaRepository: MedMcqaRepository? = null
+            medMcqaRepository: MedMcqaRepository? = null,
+            pyqRepository: PyqRepository? = null,
         ) = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                CatalogBootstrapViewModel(repository, medMcqaRepository) as T
+                CatalogBootstrapViewModel(repository, medMcqaRepository, pyqRepository) as T
         }
     }
 }

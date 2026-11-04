@@ -22,6 +22,7 @@ import com.medstudy.core.designsystem.PillStyle
 import com.medstudy.core.designsystem.StudyChip
 import com.medstudy.core.designsystem.StudyProgressBar
 import androidx.compose.foundation.Image
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
@@ -478,8 +479,18 @@ private fun AnswerReview(question: Question, result: AttemptResult?) {
             AttemptResult.INCORRECT -> StudyChip("Not quite", container = colors.errorTint, contentColor = colors.error)
             AttemptResult.UNANSWERED, null -> StudyChip("Answer shown", container = colors.canvas, contentColor = colors.ink)
         }
-        Text("Explanation", style = MaterialTheme.typography.titleLarge, color = colors.ink)
-        Text(readableExplanation(question.answerKey.explanation), style = MaterialTheme.typography.bodyMedium, color = colors.body)
+        val explanation = readableExplanation(question.answerKey.explanation)
+        if (explanation.isNotBlank()) {
+            Text("Explanation", style = MaterialTheme.typography.titleLarge, color = colors.ink)
+            Text(explanation, style = MaterialTheme.typography.bodyMedium, color = colors.body)
+        } else {
+            // Previous-year papers carry an answer key but no explanations.
+            Text("Correct answer", style = MaterialTheme.typography.titleLarge, color = colors.ink)
+            question.options.filter { it.id in question.answerKey.correctOptionIds }.forEach { option ->
+                val text = option.content.filterIsInstance<ContentBlock.Text>().joinToString(" ") { it.text }
+                Text("${option.label}. $text", style = MaterialTheme.typography.bodyMedium, color = colors.body)
+            }
+        }
         // Per-option rationales are empty for MedMCQA; skip the repeated "Incorrect option" rows then.
         if (question.answerKey.optionRationales.any { it.text.isNotBlank() }) {
             question.options.sortedBy(QuestionOption::position).forEach { option ->
@@ -504,8 +515,8 @@ private fun QuestionImage(
     imageResource: (String) -> Int?,
     onClick: (ContentBlock.Image) -> Unit,
 ) {
-    val resourceId = imageResource(image.assetId)
-    if (resourceId == null) {
+    val painter = rememberQuestionPainter(image.assetId, imageResource)
+    if (painter == null) {
         Surface(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(8.dp)) {
             Text("Image unavailable", modifier = Modifier.fillMaxWidth().padding(24.dp), color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
@@ -513,7 +524,7 @@ private fun QuestionImage(
     }
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Image(
-            painter = painterResource(resourceId),
+            painter = painter,
             contentDescription = image.altText,
             contentScale = ContentScale.Fit,
             modifier = Modifier
@@ -532,7 +543,7 @@ private fun ImageZoomDialog(
     imageResource: (String) -> Int?,
     onDismiss: () -> Unit,
 ) {
-    val resourceId = imageResource(image.assetId) ?: return
+    val painter = rememberQuestionPainter(image.assetId, imageResource) ?: return
     var scale by remember(image.assetId) { mutableFloatStateOf(1f) }
     var offsetX by remember(image.assetId) { mutableFloatStateOf(0f) }
     var offsetY by remember(image.assetId) { mutableFloatStateOf(0f) }
@@ -548,7 +559,7 @@ private fun ImageZoomDialog(
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surface) {
             Box(Modifier.fillMaxSize()) {
                 Image(
-                    painter = painterResource(resourceId),
+                    painter = painter,
                     contentDescription = image.altText,
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
@@ -562,5 +573,31 @@ private fun ImageZoomDialog(
                 Text("Pinch to zoom", modifier = Modifier.align(Alignment.BottomCenter).padding(20.dp), style = MaterialTheme.typography.labelMedium)
             }
         }
+    }
+}
+
+/** Decoded paper images, kept small: a question screen shows one or two at a time. */
+private val assetBitmapCache = object : android.util.LruCache<String, android.graphics.Bitmap>(24 * 1024 * 1024) {
+    override fun sizeOf(key: String, value: android.graphics.Bitmap) = value.byteCount
+}
+
+/** A drawable-backed image (demo catalog) or, for ids that are asset paths ("pyq/images/..."), a bitmap decoded from the APK assets. */
+@Composable
+private fun rememberQuestionPainter(assetId: String, imageResource: (String) -> Int?): androidx.compose.ui.graphics.painter.Painter? {
+    imageResource(assetId)?.let { return painterResource(it) }
+    if (!assetId.startsWith("pyq/")) return null
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val bitmap by androidx.compose.runtime.produceState<android.graphics.Bitmap?>(assetBitmapCache.get(assetId), assetId) {
+        if (value == null) {
+            value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                runCatching {
+                    context.assets.open(assetId).use { android.graphics.BitmapFactory.decodeStream(it) }
+                }.getOrNull()?.also { assetBitmapCache.put(assetId, it) }
+            }
+        }
+    }
+    val loaded = bitmap ?: return null
+    return androidx.compose.runtime.remember(loaded) {
+        androidx.compose.ui.graphics.painter.BitmapPainter(loaded.asImageBitmap())
     }
 }

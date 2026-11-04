@@ -122,7 +122,7 @@ fun StudyApp(
     }
 
     val bootstrapViewModel: CatalogBootstrapViewModel = viewModel(
-        factory = CatalogBootstrapViewModel.factory(container.questionCatalog, container.medMcqaRepository),
+        factory = CatalogBootstrapViewModel.factory(container.questionCatalog, container.medMcqaRepository, container.pyqRepository),
     )
     val bootstrapState by bootstrapViewModel.state.collectAsState()
 
@@ -249,6 +249,18 @@ fun StudyApp(
 
     val subjects = remember(progressState.categories, progressState.questions, progressState.attempts) {
         subjectSummaries(progressState.categories, progressState.questions, progressState.attempts)
+    }
+    var examPapers by remember { mutableStateOf<List<com.medstudy.core.model.ExamPaper>>(emptyList()) }
+    LaunchedEffect(bootstrapState.isReady) {
+        if (bootstrapState.isReady) examPapers = runCatching { container.questionCatalog.examPapers() }.getOrDefault(emptyList())
+    }
+    val paperSummaries = remember(examPapers, progressState.questions, progressState.attempts) {
+        val attempted = progressState.attempts.mapTo(HashSet()) { it.questionId }
+        examPapers.sortedByDescending { it.year }.mapNotNull { paper ->
+            val ids = progressState.questions.filter { it.examPaperId == paper.id }.sortedBy { it.sourceNumber ?: 0 }.map { it.id }
+            if (ids.isEmpty()) null
+            else PaperSummary(paper.id, paper.title, paper.kind == com.medstudy.core.model.PaperKind.RECALL, ids, ids.count { it in attempted })
+        }
     }
     val planRows = progressState.plan?.blocks.orEmpty()
         .map { PlanRow(it, LocalDate.parse(it.studyDateIso)) }
@@ -416,6 +428,8 @@ fun StudyApp(
                         mistakeCount = mistakeCount,
                         savedCount = savedQuestions.size,
                         subjects = subjects,
+                        papers = paperSummaries,
+                        onOpenPaper = { paper -> startSession(paper.questionIds, "This paper has no questions.") },
                         onDaily = ::startDaily,
                         onDue = ::startDue,
                         onMistakes = {

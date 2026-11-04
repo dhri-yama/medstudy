@@ -22,6 +22,12 @@ android {
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"${local.getProperty("SUPABASE_ANON_KEY", "")}\"")
     }
 
+    buildTypes {
+        // Previous-year papers are flagged REVIEW_REQUIRED (recalled content from a coaching provider); release builds leave them out until that is settled.
+        debug { buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "true") }
+        release { buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "false") }
+    }
+
     buildFeatures {
         compose = true
         buildConfig = true

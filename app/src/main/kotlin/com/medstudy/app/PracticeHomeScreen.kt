@@ -44,6 +44,15 @@ import com.medstudy.core.designsystem.StudyTheme
 import com.medstudy.core.designsystem.dimmedIf
 import com.medstudy.feature.progress.SubjectSummary
 
+/** One previous-year paper for the Practice tab; [questionIds] are in the paper's original order. */
+data class PaperSummary(
+    val id: String,
+    val title: String,
+    val isRecall: Boolean,
+    val questionIds: List<String>,
+    val answered: Int,
+)
+
 /**
  * Practice tab: a Daily set hero, Review due and Mistakes cards, then every subject as a grid with search.
  * Saved questions is a pill in the header with a live count.
@@ -55,6 +64,8 @@ fun PracticeHomeScreen(
     mistakeCount: Int,
     savedCount: Int,
     subjects: List<SubjectSummary>,
+    papers: List<PaperSummary>,
+    onOpenPaper: (PaperSummary) -> Unit,
     onDaily: () -> Unit,
     onDue: () -> Unit,
     onMistakes: () -> Unit,
@@ -120,6 +131,15 @@ fun PracticeHomeScreen(
             ModeCard("Mistakes", if (mistakeCount == 0) "None yet" else "Questions you missed", mistakeCount, 3, mistakeCount > 0, onMistakes)
         }
 
+        if (papers.isNotEmpty()) {
+            item(span = { GridItemSpan(2) }) {
+                Text("Previous year papers", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink, modifier = Modifier.padding(top = 8.dp))
+            }
+            items(papers, key = PaperSummary::id) { paper ->
+                PaperCard(paper, colorIndex = paper.title.takeLast(2).toIntOrNull() ?: 0, onClick = { onOpenPaper(paper) })
+            }
+        }
+
         item(span = { GridItemSpan(2) }) {
             Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text("Subjects", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
@@ -134,6 +154,28 @@ fun PracticeHomeScreen(
         items(visible, key = SubjectSummary::id) { subject ->
             SubjectCard(subject, minHeight = 184.dp, onClick = { onOpenSubject(subject.id) })
         }
+    }
+}
+
+@Composable
+private fun PaperCard(paper: PaperSummary, colorIndex: Int, onClick: () -> Unit) {
+    NotchedCard(
+        gradient = StudyTheme.subjectGradient(colorIndex),
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick,
+        minHeight = 130.dp,
+        verticalArrangement = Arrangement.SpaceBetween,
+        decoration = { Bubble(96.dp, 30.dp, 30.dp, 0.2f) },
+        tab = { Text("${paper.questionIds.size}", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink) },
+    ) {
+        Column {
+            Spacer(Modifier.height(24.dp))
+            Text(paper.title, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
+        }
+        Text(
+            (if (paper.isRecall) "Recall · " else "") + "${paper.answered} of ${paper.questionIds.size} done",
+            style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink,
+        )
     }
 }
 

@@ -3,6 +3,7 @@ package com.medstudy.app
 import android.content.Context
 import androidx.room.Room
 import com.medstudy.core.data.MedMcqaRepository
+import com.medstudy.core.data.PyqRepository
 import com.medstudy.core.data.RoomLearnerActivityRepository
 import com.medstudy.core.data.RoomQuestionCatalogRepository
 import com.medstudy.core.database.StudyDatabase
@@ -12,10 +13,11 @@ class StudyAppContainer(context: Context) {
         context.applicationContext,
         StudyDatabase::class.java,
         "medstudy.db",
-    ).addMigrations(StudyDatabase.MIGRATION_1_2, StudyDatabase.MIGRATION_2_3, StudyDatabase.MIGRATION_3_4).build()
+    ).addMigrations(StudyDatabase.MIGRATION_1_2, StudyDatabase.MIGRATION_2_3, StudyDatabase.MIGRATION_3_4, StudyDatabase.MIGRATION_4_5).build()
 
     // Production MedMCQA data repository
     val medMcqaRepository = MedMcqaRepository(context.applicationContext)
+    val pyqRepository = PyqRepository(context.applicationContext)
     
     // Room-based repositories for user data
     val account = SupabaseAccount(context, database.activityDao())
