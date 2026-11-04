@@ -262,7 +262,7 @@ fun StudyApp(
         examPapers.sortedByDescending { it.year }.mapNotNull { paper ->
             val ids = progressState.questions.filter { it.examPaperId == paper.id }.sortedBy { it.sourceNumber ?: 0 }.map { it.id }
             if (ids.isEmpty()) null
-            else PaperSummary(paper.id, paper.title, paper.kind == com.medstudy.core.model.PaperKind.RECALL, ids, ids.count { it in attempted })
+            else PaperSummary(paper.id, paper.title, paper.year, paper.kind == com.medstudy.core.model.PaperKind.RECALL, ids, ids.filterTo(HashSet()) { it in attempted })
         }
     }
     val planRows = progressState.plan?.blocks.orEmpty()
@@ -432,7 +432,7 @@ fun StudyApp(
                         savedCount = savedQuestions.size,
                         subjects = subjects,
                         papers = paperSummaries,
-                        onOpenPaper = { paper -> startSession(paper.questionIds, "This paper has no questions.") },
+                        onStartPaper = { ids -> startSession(ids, "This paper has no questions.") },
                         onDaily = ::startDaily,
                         onDue = ::startDue,
                         onMistakes = {

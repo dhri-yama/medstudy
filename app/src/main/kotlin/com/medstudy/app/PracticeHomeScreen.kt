@@ -15,10 +15,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.border
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import com.medstudy.core.designsystem.PillStyle
+import com.medstudy.core.designsystem.SegmentedTabs
+import com.medstudy.core.designsystem.StudyProgressBar
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Bookmark
@@ -48,15 +54,23 @@ import com.medstudy.feature.progress.SubjectSummary
 data class PaperSummary(
     val id: String,
     val title: String,
+    val year: Int,
     val isRecall: Boolean,
     val questionIds: List<String>,
-    val answered: Int,
-)
+    val answeredIds: Set<String>,
+) {
+    val answered get() = answeredIds.size
+    /** What is left, still in paper order. */
+    val unansweredIds get() = questionIds.filterNot { it in answeredIds }
+}
+
+private enum class PracticeTab(val label: String) { PAPERS("Papers"), SUBJECTS("Subjects") }
 
 /**
- * Practice tab: a Daily set hero, Review due and Mistakes cards, then every subject as a grid with search.
- * Saved questions is a pill in the header with a live count.
+ * Practice tab: one Daily set hero, two quiet quick actions (Review due, Mistakes), then Papers / Subjects tabs
+ * so only one long list is on screen at a time. Saved questions is a pill in the header with a live count.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PracticeHomeScreen(
     goal: Int,
@@ -65,7 +79,7 @@ fun PracticeHomeScreen(
     savedCount: Int,
     subjects: List<SubjectSummary>,
     papers: List<PaperSummary>,
-    onOpenPaper: (PaperSummary) -> Unit,
+    onStartPaper: (List<String>) -> Unit,
     onDaily: () -> Unit,
     onDue: () -> Unit,
     onMistakes: () -> Unit,
@@ -74,17 +88,18 @@ fun PracticeHomeScreen(
     modifier: Modifier = Modifier,
 ) {
     var query by rememberSaveable { mutableStateOf("") }
+    var tabName by rememberSaveable { mutableStateOf(if (papers.isNotEmpty()) PracticeTab.PAPERS.name else PracticeTab.SUBJECTS.name) }
+    val tab = PracticeTab.valueOf(tabName)
+    var openPaperId by rememberSaveable { mutableStateOf<String?>(null) }
     val visible = subjects.filter { it.name.contains(query, ignoreCase = true) }
     val dailyGradient = StudyTheme.subjectGradient(0)
 
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
+    LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 20.dp, top = 0.dp, end = 20.dp, bottom = 20.dp + LocalNavBarInset.current),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        item(span = { GridItemSpan(2) }) {
+        item {
             ArcHeader(Modifier.bleed(20.dp), height = 150.dp) {
                 Row(
                     Modifier.align(Alignment.BottomStart).fillMaxWidth().padding(start = 20.dp, end = 20.dp, bottom = 22.dp),
@@ -106,95 +121,164 @@ fun PracticeHomeScreen(
             }
         }
 
-        item(span = { GridItemSpan(2) }) {
+        item {
             NotchedCard(
                 gradient = dailyGradient,
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onDaily,
-                minHeight = 208.dp,
+                minHeight = 150.dp,
                 verticalArrangement = Arrangement.SpaceBetween,
-                decoration = { Bubble(190.dp, 56.dp, 56.dp, 0.22f) },
+                decoration = { Bubble(150.dp, 48.dp, 48.dp, 0.22f) },
                 tab = { Text("$goal", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink) },
             ) {
                 Column {
-                    Text("Daily set", style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink, modifier = Modifier.fillMaxWidth(0.6f))
+                    Text("Daily set", style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink)
                     Text("$goal fresh questions · about ${goal * 3} min", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink)
                 }
-                PillButton("Start", onClick = onDaily, containerColor = dailyGradient.deep, modifier = Modifier.fillMaxWidth(0.55f))
+                PillButton("Start", onClick = onDaily, containerColor = dailyGradient.deep, modifier = Modifier.fillMaxWidth(0.5f))
             }
         }
 
         item {
-            ModeCard("Review due", if (dueCount == 0) "Nothing due" else "Topics to revise", dueCount, 2, dueCount > 0, onDue)
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                QuickAction("Review due", dueCount, StudyTheme.subjectGradient(2).deep, dueCount > 0, onDue, Modifier.weight(1f))
+                QuickAction("Mistakes", mistakeCount, StudyTheme.subjectGradient(3).deep, mistakeCount > 0, onMistakes, Modifier.weight(1f))
+            }
         }
+
         item {
-            ModeCard("Mistakes", if (mistakeCount == 0) "None yet" else "Questions you missed", mistakeCount, 3, mistakeCount > 0, onMistakes)
+            SegmentedTabs(
+                labels = PracticeTab.entries.map { if (it == PracticeTab.PAPERS) "${it.label} · ${papers.size}" else it.label },
+                selectedIndex = tab.ordinal,
+                onSelect = { tabName = PracticeTab.entries[it].name },
+                modifier = Modifier.padding(top = 4.dp),
+            )
         }
 
-        if (papers.isNotEmpty()) {
-            item(span = { GridItemSpan(2) }) {
-                Text("Previous year papers", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink, modifier = Modifier.padding(top = 8.dp))
+        when (tab) {
+            PracticeTab.PAPERS -> {
+                if (papers.isEmpty()) {
+                    item { Text("No previous year papers in this build.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted) }
+                }
+                items(papers, key = PaperSummary::id) { paper -> PaperRow(paper, onClick = { openPaperId = paper.id }) }
             }
-            items(papers, key = PaperSummary::id) { paper ->
-                PaperCard(paper, colorIndex = paper.title.takeLast(2).toIntOrNull() ?: 0, onClick = { onOpenPaper(paper) })
+            PracticeTab.SUBJECTS -> {
+                item { StudyTextField(query, { query = it }, "Search subjects", hintInside = true) }
+                if (visible.isEmpty()) {
+                    item { Text("No subject matches \"$query\".", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted) }
+                }
+                items(visible.chunked(2), key = { row -> row.first().id }) { row ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        row.forEach { SubjectTile(it, Modifier.weight(1f)) { onOpenSubject(it.id) } }
+                        if (row.size == 1) Spacer(Modifier.weight(1f))
+                    }
+                }
             }
         }
+    }
 
-        item(span = { GridItemSpan(2) }) {
-            Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("Subjects", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
-                StudyTextField(query, { query = it }, "Search subjects", hintInside = true)
-            }
-        }
-        if (visible.isEmpty()) {
-            item(span = { GridItemSpan(2) }) {
-                Text("No subject matches \"$query\".", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted)
-            }
-        }
-        items(visible, key = SubjectSummary::id) { subject ->
-            SubjectCard(subject, minHeight = 184.dp, onClick = { onOpenSubject(subject.id) })
+    papers.firstOrNull { it.id == openPaperId }?.let { paper ->
+        ModalBottomSheet(onDismissRequest = { openPaperId = null }, containerColor = StudyTheme.colors.canvas) {
+            PaperSheet(paper) { ids -> openPaperId = null; onStartPaper(ids) }
         }
     }
 }
 
 @Composable
-private fun PaperCard(paper: PaperSummary, colorIndex: Int, onClick: () -> Unit) {
-    NotchedCard(
-        gradient = StudyTheme.subjectGradient(colorIndex),
-        modifier = Modifier.fillMaxWidth(),
-        onClick = onClick,
-        minHeight = 130.dp,
-        verticalArrangement = Arrangement.SpaceBetween,
-        decoration = { Bubble(96.dp, 30.dp, 30.dp, 0.2f) },
-        tab = { Text("${paper.questionIds.size}", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink) },
+private fun QuickAction(title: String, count: Int, dot: Color, enabled: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Row(
+        modifier.dimmedIf(!enabled).clip(CircleShape).background(StudyTheme.colors.surface)
+            .border(1.dp, StudyTheme.colors.hairline, CircleShape)
+            .then(if (enabled) Modifier.androidClickable(onClick) else Modifier)
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        Column {
-            Spacer(Modifier.height(24.dp))
-            Text(paper.title, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
+        Box(Modifier.size(10.dp).clip(CircleShape).background(dot))
+        Text(title, style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink, modifier = Modifier.weight(1f), maxLines = 1)
+        Text("$count", style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.muted)
+    }
+}
+
+/** A plain white row: the year in a tinted square, the paper's name and kind, a thin progress bar. */
+@Composable
+private fun PaperRow(paper: PaperSummary, onClick: () -> Unit) {
+    val gradient = StudyTheme.subjectGradient(1)
+    Row(
+        Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp)).background(StudyTheme.colors.surface).androidClickable(onClick).padding(14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(14.dp),
+    ) {
+        Box(Modifier.size(52.dp).clip(RoundedCornerShape(16.dp)).background(gradient.brush), contentAlignment = Alignment.Center) {
+            Text("'${paper.year % 100}", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
+        }
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(paper.title, style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink, maxLines = 1)
+                if (paper.isRecall) StudyChip("Recall", container = StudyTheme.colors.canvas)
+            }
+            StudyProgressBar(
+                progress = if (paper.questionIds.isEmpty()) 0f else paper.answered.toFloat() / paper.questionIds.size,
+                description = "${paper.answered} of ${paper.questionIds.size} questions answered",
+            )
         }
         Text(
-            (if (paper.isRecall) "Recall · " else "") + "${paper.answered} of ${paper.questionIds.size} done",
-            style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink,
+            "${paper.answered}/${paper.questionIds.size}", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.muted,
+            modifier = Modifier.width(64.dp), textAlign = androidx.compose.ui.text.style.TextAlign.End, maxLines = 1,
         )
     }
 }
 
 @Composable
-private fun ModeCard(title: String, subtitle: String, count: Int, colorIndex: Int, enabled: Boolean, onClick: () -> Unit) {
-    NotchedCard(
-        gradient = StudyTheme.subjectGradient(colorIndex),
-        modifier = Modifier.fillMaxWidth().dimmedIf(!enabled),
-        onClick = if (enabled) onClick else null,
-        minHeight = 160.dp,
-        verticalArrangement = Arrangement.SpaceBetween,
-        decoration = { Bubble(110.dp, 36.dp, 36.dp, 0.2f) },
-        tab = { Text("$count", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink) },
-    ) {
-        Column {
-            Spacer(Modifier.height(28.dp))
-            Text(title, style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink)
+private fun PaperSheet(paper: PaperSummary, onStart: (List<String>) -> Unit) {
+    val started = paper.answered > 0 && paper.unansweredIds.isNotEmpty()
+    Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(bottom = 28.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Text(paper.title, style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink)
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            StudyChip("${paper.questionIds.size} questions")
+            if (paper.isRecall) StudyChip("Recall-based")
         }
-        Text(subtitle, style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink)
+        Text(
+            if (paper.isRecall) "Questions are recalled by students after the exam, so a few may differ from the original paper. Answers only, no explanations."
+            else "Answers only, no explanations.",
+            style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.body,
+        )
+        StudyProgressBar(
+            progress = if (paper.questionIds.isEmpty()) 0f else paper.answered.toFloat() / paper.questionIds.size,
+            description = "${paper.answered} of ${paper.questionIds.size} questions answered",
+        )
+        Text("${paper.answered} of ${paper.questionIds.size} done", style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted)
+        if (started) {
+            PillButton("Continue · ${paper.unansweredIds.size} left", onClick = { onStart(paper.unansweredIds) }, modifier = Modifier.fillMaxWidth())
+            PillButton("Start over from Q1", onClick = { onStart(paper.questionIds) }, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
+        } else {
+            PillButton("Start in paper order", onClick = { onStart(paper.questionIds) }, modifier = Modifier.fillMaxWidth())
+        }
+    }
+}
+
+/** A compact subject tile: colour dot, name, count and a thin progress bar. */
+@Composable
+private fun SubjectTile(subject: SubjectSummary, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    val gradient = StudyTheme.subjectGradient(subject.colorIndex)
+    Column(
+        modifier.clip(RoundedCornerShape(20.dp)).background(StudyTheme.colors.surface).androidClickable(onClick).padding(14.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(Modifier.size(10.dp).clip(CircleShape).background(gradient.deep))
+            Text("${subject.answered}/${subject.questionCount}", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.muted)
+        }
+        Text(subject.name, style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink, maxLines = 2, minLines = 2)
+        StudyProgressBar(
+            progress = if (subject.questionCount == 0) 0f else subject.answered.toFloat() / subject.questionCount,
+            description = "${subject.answered} of ${subject.questionCount} ${subject.name} questions answered",
+            fill = gradient.deep, 
+        )
+        Text(
+            subject.accuracyPercent?.let { "$it% correct" } ?: "Not started",
+            style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted,
+        )
     }
 }
 
