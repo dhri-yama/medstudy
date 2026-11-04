@@ -25,6 +25,7 @@ for i, t in enumerate(json.loads((ASSETS / "topics.json").read_text())):
         existing.setdefault((sub, t["name"].lower()), f"topic_{i}_{clean_id(t['name'])}")
 
 tmap = {(r["subject"], r["pdf_topic"]): FIXES.get(r["target_topic"], r["target_topic"]) for r in csv.DictReader(open("topic_map.csv"))}
+crosscheck = json.loads(Path("crosscheck.json").read_text()) if Path("crosscheck.json").exists() else {}
 tags25 = json.loads(Path("topics_2025.json").read_text())
 
 new_topics = {}  # id -> {id, subjectId, name}
@@ -69,7 +70,9 @@ for pid, (title, year, kind) in PAPERS.items():
                              width=im["width"], height=im["height"], sha256=im["sha256"]))
         out.append(dict(id=q["id"], number=q["sourceNumber"], subjectId=subjects[subject], topicId=tid,
                         stem=q["stem"], options=q["options"], answer=q["answer"], images=imgs,
-                        sourceFile=q["source"]["file"], sourcePage=q["source"]["page"]))
+                        sourceFile=q["source"]["file"], sourcePage=q["source"]["page"],
+                        crossCheck=crosscheck.get(q["id"], {}).get("status", "not checkable"),
+                        answerConflict=crosscheck.get(q["id"], {}).get("conflict", False)))
     (DEST / f"{pid}.json").write_text(json.dumps(out, ensure_ascii=False, indent=0))
     index.append(dict(id=pid, examId="NEET_PG", year=year, title=title, kind=kind, count=len(out),
                       sourceName=json.loads((src / "questions.json").read_text())[0]["source"]["file"]))
