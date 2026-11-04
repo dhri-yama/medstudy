@@ -24,8 +24,16 @@ android {
 
     buildTypes {
         // Previous-year papers are flagged REVIEW_REQUIRED (recalled content from a coaching provider); release builds leave them out until that is settled.
-        debug { buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "true") }
-        release { buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "false") }
+        // DEV_SKIP_AUTH=true in local.properties skips sign-up/sign-in in debug builds (no account, no server trial, full access). Never honoured in release.
+        debug {
+            buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "true")
+            val local = Properties().apply { rootProject.file("local.properties").takeIf { it.exists() }?.reader()?.use(::load) }
+            buildConfigField("boolean", "DEV_SKIP_AUTH", (local.getProperty("DEV_SKIP_AUTH", "false") == "true").toString())
+        }
+        release {
+            buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "false")
+            buildConfigField("boolean", "DEV_SKIP_AUTH", "false")
+        }
     }
 
     buildFeatures {

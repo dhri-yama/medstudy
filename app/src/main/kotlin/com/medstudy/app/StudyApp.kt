@@ -100,12 +100,15 @@ fun StudyApp(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val profileStore = remember { UserProfileStore(context) }
-    var profile by remember { mutableStateOf(profileStore.load()) }
+    var profile by remember {
+        // Debug-only shortcut (DEV_SKIP_AUTH in local.properties): a ready-made profile instead of onboarding.
+        mutableStateOf(profileStore.load() ?: if (BuildConfig.DEV_SKIP_AUTH) UserProfile("Dev tester", UserProfileStore.EXAMS.first(), 10) else null)
+    }
     // Bumped when the account changes (sign-in, sign-out) so the gate below re-checks it.
     var accountVersion by remember { mutableIntStateOf(0) }
     val signedIn = remember(accountVersion) { container.account.isSignedIn }
     // An account is required: it is what the server-side free trial is attached to.
-    if (profile == null || !signedIn) {
+    if (profile == null || (!signedIn && !BuildConfig.DEV_SKIP_AUTH)) {
         OnboardingScreen(container.account, existingProfile = profile) { created ->
             profileStore.save(created)
             scope.launch {
