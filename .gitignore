@@ -11,3 +11,6 @@ hgdata
 tools/pyq-import/.venv/
 tools/pyq-import/out/
 paper_downloads/
+
+.DS_Store
+**/.DS_Store
