@@ -5,6 +5,15 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+// Version comes from version.properties (see tools/bump-version.sh); the code is derived so it can never be forgotten.
+val versionProps = Properties().apply { rootProject.file("version.properties").reader().use(::load) }
+val appVersionName: String = versionProps.getProperty("VERSION_NAME")
+val appVersionCode: Int = appVersionName.split("-").first().split(".").map(String::toInt)
+    .let { (major, minor, patch) -> major * 10000 + minor * 100 + patch }
+val gitSha: String = runCatching {
+    providers.exec { commandLine("git", "rev-parse", "--short", "HEAD"); isIgnoreExitValue = true }.standardOutput.asText.get().trim()
+}.getOrDefault("").ifEmpty { "unknown" }
+
 android {
     namespace = "com.medstudy.app"
     compileSdk = 37
@@ -13,8 +22,9 @@ android {
         applicationId = "com.medstudy.app"
         minSdk = 26
         targetSdk = 37
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = appVersionCode
+        versionName = appVersionName
+        buildConfigField("String", "GIT_SHA", "\"$gitSha\"")
         val local = Properties().apply {
             rootProject.file("local.properties").takeIf { it.exists() }?.reader()?.use(::load)
         }

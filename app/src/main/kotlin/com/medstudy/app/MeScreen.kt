@@ -135,6 +135,12 @@ fun MeScreen(
                 onEnable = onEnableOverlay,
                 onDisable = onDisableOverlay,
             )
+            Text(
+                "MedStudy v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})" + if (BuildConfig.DEBUG) " · ${BuildConfig.GIT_SHA}" else "",
+                style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted,
+                modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+            )
             Spacer(Modifier.height(bottomInset))
         }
     }
