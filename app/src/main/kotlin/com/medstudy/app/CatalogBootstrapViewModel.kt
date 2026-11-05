@@ -34,7 +34,7 @@ class CatalogBootstrapViewModel(
                     val categories = medMcqaRepository.getAllCategories()
                     
                     if (questions.isNotEmpty() && categories.isNotEmpty()) {
-                        val pyq = if (BuildConfig.INCLUDE_UNREVIEWED_PYQ) pyqRepository?.load() else null
+                        val pyq = pyqRepository?.load(includeReviewRequired = BuildConfig.INCLUDE_UNREVIEWED_PYQ)
                         repository.saveCatalog(
                             categories = categories + pyq?.topics.orEmpty(),
                             mediaAssets = pyq?.mediaAssets.orEmpty(),

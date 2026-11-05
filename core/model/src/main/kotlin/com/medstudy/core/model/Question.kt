@@ -3,6 +3,8 @@ package com.medstudy.core.model
 enum class ExamId(val wireValue: String) {
     NEET_PG("NEET_PG"),
     INI_CET("INI_CET"),
+    JIPMER("JIPMER"),
+    DNB("DNB"),
     DEMO("DEMO"),
 }
 

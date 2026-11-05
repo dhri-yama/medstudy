@@ -16,6 +16,8 @@ data class PyqPaperJson(
     val kind: String,
     val count: Int,
     val sourceName: String,
+    /** RightsStatus name; papers compiled from recall are REVIEW_REQUIRED unless the index says otherwise. */
+    val rights: String? = null,
 )
 
 data class PyqTopicJson(val id: String, val subjectId: String, val name: String)
@@ -54,7 +56,7 @@ data class PyqCatalog(
 class PyqRepository(private val context: Context) {
     private val gson = Gson()
 
-    suspend fun load(): PyqCatalog = withContext(Dispatchers.IO) {
+    suspend fun load(includeReviewRequired: Boolean = true): PyqCatalog = withContext(Dispatchers.IO) {
         try {
             val index = read("pyq/index.json", PyqIndexJson::class.java)
             val topics = index.topics.mapIndexed { i, t ->
@@ -62,16 +64,17 @@ class PyqRepository(private val context: Context) {
             }
             val media = mutableListOf<MediaAsset>()
             val questions = mutableListOf<Question>()
-            for (paper in index.papers) {
+            for (paper in index.papers.filter { includeReviewRequired || rightsOf(it) != RightsStatus.REVIEW_REQUIRED }) {
                 val items: List<PyqQuestionJson> = gson.fromJson(
                     open("pyq/${paper.id}.json"), object : TypeToken<List<PyqQuestionJson>>() {}.type,
                 )
                 for (q in items) {
-                    media += q.images.map { MediaAsset(it.path, it.path, "image/webp", it.sha256, it.width, it.height, ContentKind.OFFICIAL, RIGHTS) }
+                    media += q.images.map { MediaAsset(it.path, it.path, "image/webp", it.sha256, it.width, it.height, ContentKind.OFFICIAL, rightsOf(paper)) }
                     questions += q.toQuestion(paper)
                 }
             }
-            val papers = index.papers.map {
+            val loaded = index.papers.filter { includeReviewRequired || rightsOf(it) != RightsStatus.REVIEW_REQUIRED }
+            val papers = loaded.map {
                 ExamPaper(it.id, ExamId.valueOf(it.examId), it.year, it.title, PaperKind.valueOf(it.kind), it.sourceName)
             }
             PyqCatalog(papers, topics, media, questions)
@@ -107,13 +110,16 @@ class PyqRepository(private val context: Context) {
                 contentKind = ContentKind.OFFICIAL,
                 sourceName = paper.sourceName,
                 sourceReference = "$sourceFile, page $sourcePage",
-                rightsStatus = RIGHTS,
+                rightsStatus = rightsOf(paper),
             ),
             reviewStatus = ReviewStatus.PENDING_REVIEW,
             examPaperId = paper.id,
             sourceNumber = number,
         )
     }
+
+    private fun rightsOf(paper: PyqPaperJson): RightsStatus =
+        paper.rights?.let { runCatching { RightsStatus.valueOf(it) }.getOrNull() } ?: RIGHTS
 
     companion object {
         /** Recalled papers compiled by a coaching provider: usable in development, but release builds must decide first. */

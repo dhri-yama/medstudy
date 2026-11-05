@@ -18,7 +18,7 @@ class PyqRepositoryTest {
     fun bundledPapersLoadValidateAndRoundTripInPaperOrder() = runBlocking {
         val assetContext = InstrumentationRegistry.getInstrumentation().context
         val pyq = PyqRepository(assetContext).load()
-        assertEquals(6, pyq.papers.size)
+        assertEquals(9, pyq.papers.size)
         assertTrue(pyq.questions.size > 1000)
 
         val database = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(), StudyDatabase::class.java)
@@ -28,7 +28,7 @@ class PyqRepositoryTest {
             val categories = MedMcqaRepository(assetContext).getAllCategories() + pyq.topics
             repo.saveCatalog(categories, pyq.mediaAssets, pyq.questions, pyq.papers)
 
-            assertEquals(6, repo.examPapers().size)
+            assertEquals(9, repo.examPapers().size)
             val paper = repo.questions(QuestionFilter(examPaperId = "NEETPG2022"))
             assertEquals(200, paper.size)
             assertEquals(paper.map { it.sourceNumber }.sortedBy { it }, paper.map { it.sourceNumber })
