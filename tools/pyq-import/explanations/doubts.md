@@ -1,0 +1,3 @@
+- neetpg2024-q006: key says serum ceruloplasmin as the definitive test; many references give hepatic copper concentration. Recheck.
+- neetpg2024-q013: key says knee and wrist; common teaching is elbow and wrist for 16-18 years. Recheck.
+- neetpg2024-q018: Millard-Gubler vs Foville with horizontal gaze palsy. Recheck.

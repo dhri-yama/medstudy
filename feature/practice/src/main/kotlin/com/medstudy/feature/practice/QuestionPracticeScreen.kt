@@ -483,6 +483,10 @@ private fun AnswerReview(question: Question, result: AttemptResult?) {
         if (explanation.isNotBlank()) {
             Text("Explanation", style = MaterialTheme.typography.titleLarge, color = colors.ink)
             Text(explanation, style = MaterialTheme.typography.bodyMedium, color = colors.body)
+            // Papers have no published explanations; ours are written by us and not yet reviewed.
+            if (question.examPaperId != null) {
+                Text("Written by MedStudy, not from the paper, and not yet reviewed.", style = MaterialTheme.typography.bodySmall, color = colors.muted)
+            }
         } else {
             // Previous-year papers carry an answer key but no explanations.
             Text("Correct answer", style = MaterialTheme.typography.titleLarge, color = colors.ink)

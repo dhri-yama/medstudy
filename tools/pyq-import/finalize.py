@@ -26,6 +26,9 @@ for i, t in enumerate(json.loads((ASSETS / "topics.json").read_text())):
 
 tmap = {(r["subject"], r["pdf_topic"]): FIXES.get(r["target_topic"], r["target_topic"]) for r in csv.DictReader(open("topic_map.csv"))}
 crosscheck = json.loads(Path("crosscheck.json").read_text()) if Path("crosscheck.json").exists() else {}
+explanations = {}
+for f in Path("explanations").glob("NEETPG*.json"):
+    explanations.update(json.loads(f.read_text()))
 tags25 = json.loads(Path("topics_2025.json").read_text())
 
 new_topics = {}  # id -> {id, subjectId, name}
@@ -71,6 +74,7 @@ for pid, (title, year, kind) in PAPERS.items():
         out.append(dict(id=q["id"], number=q["sourceNumber"], subjectId=subjects[subject], topicId=tid,
                         stem=q["stem"], options=q["options"], answer=q["answer"], images=imgs,
                         sourceFile=q["source"]["file"], sourcePage=q["source"]["page"],
+                        explanation=explanations.get(q["id"], ""),
                         crossCheck=crosscheck.get(q["id"], {}).get("status", "not checkable"),
                         answerConflict=crosscheck.get(q["id"], {}).get("conflict", False)))
     (DEST / f"{pid}.json").write_text(json.dumps(out, ensure_ascii=False, indent=0))

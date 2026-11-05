@@ -35,6 +35,8 @@ data class PyqQuestionJson(
     val images: List<PyqImageJson>,
     val sourceFile: String,
     val sourcePage: Int,
+    /** Written by us (not from the paper) and not yet reviewed; empty when none has been written. */
+    val explanation: String? = null,
 )
 
 /** Everything one load of the previous-year papers produces, ready for [QuestionCatalogRepository.saveCatalog]. */
@@ -99,7 +101,7 @@ class PyqRepository(private val context: Context) {
             options = options.mapIndexed { i, text ->
                 QuestionOption("opt_$i", ('A' + i).toString(), i, listOf(ContentBlock.Text(text)))
             },
-            answerKey = AnswerKey(listOf("opt_${answer - 1}"), explanation = "", optionRationales = emptyList()),
+            answerKey = AnswerKey(listOf("opt_${answer - 1}"), explanation = explanation.orEmpty(), optionRationales = emptyList()),
             references = emptyList(),
             provenance = ContentProvenance(
                 contentKind = ContentKind.OFFICIAL,

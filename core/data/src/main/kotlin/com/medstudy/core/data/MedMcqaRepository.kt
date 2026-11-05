@@ -21,6 +21,7 @@ data class MedMcqaQuestionJson(
     val opc: String,
     val opd: String,
     val subject_name: String,
+    val topic_name: String? = null,
     val topic: String?,
     val choice_type: String,
     val source: String
@@ -337,8 +338,11 @@ class MedMcqaRepository(private val context: Context) {
         // Track used IDs to ensure uniqueness
         val usedIds = mutableSetOf<String>()
         
-        return mapIndexed { index, json -> 
-            json.toQuestion(index, topicNameToId, subjectNameToId, usedIds)
+        // Ids use the position in the full file, so a question keeps its id (and its attempts) when the filter below changes.
+        return mapIndexedNotNull { index, json ->
+            val year = examYearOf(json.topic_name, json.question)
+            if (year == null || year < MIN_EXAM_YEAR) null
+            else json.toQuestion(index, topicNameToId, subjectNameToId, usedIds, year)
         }
     }
     
@@ -346,7 +350,8 @@ class MedMcqaRepository(private val context: Context) {
         index: Int, 
         topicNameToId: Map<String, String>,
         subjectNameToId: Map<String, String>,
-        usedIds: MutableSet<String>
+        usedIds: MutableSet<String>,
+        examYear: Int,
     ): Question {
         // Handle missing cop field - default to first option if not present
         val safeCop = cop.takeIf { it in 1..4 } ?: 1
@@ -399,7 +404,7 @@ class MedMcqaRepository(private val context: Context) {
         return Question(
             id = uniqueId,
             examId = examId,
-            examYear = 2020,
+            examYear = examYear,
             subjectId = subjectId,
             topicIds = topicIds,
             format = format,
@@ -428,6 +433,30 @@ class MedMcqaRepository(private val context: Context) {
         )
     }
 }
+
+/** Questions older than this are left out: the stem names its exam and year (e.g. "AIIMS May 2019"); undated ones cannot be placed. */
+const val MIN_EXAM_YEAR = 2018
+
+private val EXAM_YEAR = Regex(
+    """\b(AIIMS|NEET|FMGE|PGI|AI|JIPMER|DNB|NBE|MH|AP|TN|KA|Kerala|Delhi|UP|CMC|DPG|Bihar|UPSC|NIMHANS|COMEDK)\b[^;:\n]{0,20}?\b((?:19|20)?\d{2})\b""",
+)
+
+/**
+ * The exam year of a question: its label ("NEET 2019", "AIIMS 2018", "NEET Jan 2020", kept in topic_name) when it has one,
+ * otherwise a year the question text names.
+ */
+internal fun examYearOf(label: String?, text: String): Int? =
+    label?.let { LABEL_YEAR.matchEntire(it.trim())?.groupValues?.get(1)?.toInt() } ?: examYearFromStem(text)
+
+private val LABEL_YEAR = Regex("""(?i)[A-Za-z ]*?(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s*)?((?:19|20)\d{2})""")
+
+/** The latest exam year the question's text mentions (1985..2021), or null when it names none. */
+internal fun examYearFromStem(text: String): Int? =
+    EXAM_YEAR.findAll(text).mapNotNull { m ->
+        val raw = m.groupValues[2]
+        val year = if (raw.length == 4) raw.toInt() else raw.toInt().let { if (it < 30) 2000 + it else 1900 + it }
+        year.takeIf { it in 1985..2021 }
+    }.maxOrNull()
 
 /**
  * JSON data class for exam types
