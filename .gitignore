@@ -14,3 +14,7 @@ paper_downloads/
 
 .DS_Store
 **/.DS_Store
+
+# Recalled previous-year papers are not published (rights review pending); regenerate with tools/pyq-import
+app/src/main/assets/pyq/
+tools/pyq-import/crosscheck.csv
