@@ -1,0 +1,918 @@
+[
+{
+"id": "neetpg2024-q001",
+"number": 1,
+"subjectId": "anaesthesia",
+"topicId": "pyq_anaesthesia_local_anaesthetics",
+"stem": "Which of the following is true regarding the image provided?",
+"options": [
+"EMLA contains ropivacaine and ligocaine",
+"EMLA can lead to hemoglobinemia.",
+"EMLA contains 5% lignocaine",
+"EMLA acts within 15 minutes."
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2024-q001_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q001_1.webp",
+"width": 458,
+"height": 458,
+"sha256": "01fcc0a3b416485224fc9bb2b7f898d3c772a487772bb0984d08754ef73d47d7"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 1,
+"explanation": "EMLA is a eutectic mixture of lidocaine and prilocaine, not ropivacaine. Prilocaine's metabolite can cause methemoglobinemia, especially in infants, so this is the true statement.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q002",
+"number": 2,
+"subjectId": "anaesthesia",
+"topicId": "pyq_anaesthesia_cardiopulmonary_cerebral_resuscitation",
+"stem": "A patient presents with no pulse, and the ECG shows the following rhythm. What is the next appropriate step?",
+"options": [
+"Defibrillate, check pulse and then perform CPR",
+"Cardioversion",
+"Defibrillate, perform CPR, and then check the pulse",
+"Administer epinephrine"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2024-q002_2",
+"path": "pyq/images/NEETPG2024/neetpg2024-q002_1.webp",
+"width": 500,
+"height": 319,
+"sha256": "f9ebc9dbf195df53c6db6be02df196fb0261602e36566a986a97d30180dbec3b"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 1,
+"explanation": "In a pulseless shockable rhythm (VF/pulseless VT) give a shock and resume CPR immediately; check the pulse only after about 2 minutes of CPR.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q003",
+"number": 3,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_neuro_anatomy",
+"stem": "Identify the arrow-marked nerve",
+"options": [
+"Medial pectoral nerve",
+"Lateral pectoral nerve",
+"Long thoracic nerve",
+"Thoracodorsal nerve"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2024-q003_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q003_1.webp",
+"width": 1280,
+"height": 961,
+"sha256": "9b0a85be0bd8e13a810ab7f8bcbc032a32e1e5098abf8e2991cc0b6e19954d55"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 2,
+"explanation": "The medial pectoral nerve arises from the medial cord and pierces pectoralis minor. The key identifies the marked nerve as the medial pectoral nerve.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q004",
+"number": 4,
+"subjectId": "anatomy",
+"topicId": "topic_5_lower_limb",
+"stem": "Behind the medial malleolus and in front of Achilles, which artery is present?",
+"options": [
+"Posterior tibial artery",
+"Peroneal artery",
+"Anterior tibial artery",
+"Dorsalis pedis artery"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 2,
+"explanation": "Between the medial malleolus and the tendo Achilles lie the tibial nerve and the posterior tibial artery within the tarsal tunnel region.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q005",
+"number": 5,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_general_embryology",
+"stem": "The covering of an omphalocele is derived from which layer?",
+"options": [
+"Amnion",
+"Chorion",
+"Mesoderm",
+"Endoderm"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 3,
+"explanation": "The sac of an omphalocele is covered by amnion (with peritoneum inside), which is why the sac is intact, unlike gastroschisis.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q006",
+"number": 6,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_enzymes",
+"stem": "A 13-year-old boy presents with jaundice, fatigue, muscle stiffness, tremors, behavioral changes, hepatosplenomegaly, and Kayser-Fleischer rings. Which test is definitive for the diagnosis?",
+"options": [
+"Urinary copper",
+"Serum ceruloplasmin",
+"Hepatic parenchymal copper concentration",
+"Genetic testing for ATP7B mutation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 3,
+"explanation": "Wilson disease is confirmed by hepatic copper above 250 micrograms/g dry weight, though low ceruloplasmin is the usual screening test. The key lists ceruloplasmin; many sources treat liver copper as definitive.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q007",
+"number": 7,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_lipid_metabolism",
+"stem": "A patient presents with xanthomas on the Achilles tendon. Which of the following is the most likely diagnosis?",
+"options": [
+"Familial hypercholesterolemia",
+"Tangier disease",
+"Familial hyperchylomicronemia",
+"Type III hyperlipoproteinemia"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 3,
+"explanation": "Achilles tendon xanthomas with high LDL point to familial hypercholesterolemia, the classic cause of tendon xanthomas.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q008",
+"number": 8,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_lipid_metabolism",
+"stem": "A patient with multiple tendon xanthomas is found to have a serum cholesterol level of 398 mg/dL and an LDL level of 220 mg/dL. What is the most likely defect?",
+"options": [
+"Lipoprotein lipase deficiency",
+"LDL receptor defect",
+"Defective Apo B-100",
+"PCSK9 gain-of-function mutation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 4,
+"explanation": "Tendon xanthomas with LDL 220 mg/dL indicate an LDL receptor defect, the most common cause of familial hypercholesterolemia.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q009",
+"number": 9,
+"subjectId": "skin",
+"topicId": "pyq_skin_sexually_transmitted_infections",
+"stem": "A 30-year-old patient presents with a history of flat lesions near the anal canal, rashes on the body, and hair loss that follows a particular pattern, as shown in the image. What is the diagnosis?",
+"options": [
+"Trichotillomania",
+"Alopecia areata",
+"Secondary syphilis",
+"Malassezia"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2024-q009_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q009_1.webp",
+"width": 368,
+"height": 428,
+"sha256": "1239ded8ff7ffb6421577221dacef4df283792e56ff14a3b101a4f7e4b8cc6ee"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 4,
+"explanation": "Condyloma lata near the anus, a rash and patchy moth-eaten alopecia are features of secondary syphilis.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q010",
+"number": 10,
+"subjectId": "skin",
+"topicId": "pyq_skin_mycobacterial_infections",
+"stem": "A 38-year-old patient with hypopigmented nodular lesions with anesthesia overarm with ulnar nerve involvement underwent a biopsy and intradermal antigen test. Based on the image, which statement regarding the condition is most accurate?",
+"options": [
+"Tuberculoid leprosy with a positive antigen test",
+"Lepromatous leprosy with a positive antigen test",
+"Erythema nodosum leprosum with a negative antigen test",
+"Lepromatous leprosy with a negative antigen test"
+],
+"answer": 4,
+"images": [
+{
+"id": "pyq_neetpg2024-q010_2",
+"path": "pyq/images/NEETPG2024/neetpg2024-q010_1.webp",
+"width": 522,
+"height": 400,
+"sha256": "d1fec48a6f802de907cb9ca5c3ce2214c96e711375d102d147db0b13ba253b1f"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 4,
+"explanation": "Hypopigmented anaesthetic nodules with nerve thickening and a negative lepromin (intradermal antigen) test indicate lepromatous leprosy, which has poor cell-mediated immunity.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q011",
+"number": 11,
+"subjectId": "ent",
+"topicId": "pyq_ent_larynx",
+"stem": "A singer is finding difficulty raising the pitch of her voice. On examination, her vocal cords were depressed and bowing. Which of the following muscles is involved?",
+"options": [
+"Cricothyroid",
+"Interarytenoid",
+"Posterior cricoarytenoid",
+"Lateral arytenoid"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 5,
+"explanation": "The cricothyroid tenses and lengthens the vocal cords to raise pitch. Its paralysis gives a weak, low-pitched voice with bowed, flaccid cords.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q012",
+"number": 12,
+"subjectId": "ent",
+"topicId": "pyq_ent_larynx",
+"stem": "A 45-year-old woman is diagnosed with right vestibular neuronitis. What findings are expected during the head impulse test in this patient?",
+"options": [
+"When the head is turned to the left, the eyeballs move to the left with Nystagmus.",
+"When the head is turned to the left, the eyeballs move to the right with nystagmus.",
+"When the head is turned to the right, the eyeballs move to the left with Nystagmus.",
+"When the head is turned to the right, the eyeballs move to the right with nystagmus."
+],
+"answer": 3,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 5,
+"explanation": "In right vestibular neuronitis, turning the head quickly to the right gives a failed vestibulo-ocular reflex, so the eyes drift with the head and then make a corrective saccade.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q013",
+"number": 13,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_forensic_thanatology",
+"stem": "In medicolegal examination, the accused 18-year-old male claims he is 16 years old. Which joint x-ray should be done?",
+"options": [
+"Head & shoulder",
+"Elbow and ankle",
+"Knee and wrist",
+"Elbow & hip"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 6,
+"explanation": "Age is estimated from epiphyseal fusion on X-rays of the joints; the key selects knee and wrist for this 16-18 year range, though elbow and wrist are often quoted.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q014",
+"number": 14,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_forensic_toxicology",
+"stem": "Police brought a person from the railway track with features of a dry, dilated pupil, dry skin , slurring of speech, and altered sensorium. The poisoning is?",
+"options": [
+"Morphine",
+"Cannabis",
+"Datura",
+"Alcohol"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 6,
+"explanation": "Dry skin, dilated pupils, slurred speech and altered sensorium are anticholinergic features, typical of datura poisoning.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q015",
+"number": 15,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "The flexion point in a ventouse delivery is located at which of the following positions on the fetal head?",
+"options": [
+"3 cm posterior to the anterior fontanelle",
+"3 cm anterior to the posterior fontanelle",
+"6 cm anterior to the posterior fontanelle",
+"Midway between the anterior and posterior fontanelle"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 6,
+"explanation": "The flexion point lies on the sagittal suture about 3 cm anterior to the posterior fontanelle. Centring the cup there promotes flexion.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q016",
+"number": 16,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "Identify the instrument shown below",
+"options": [
+"Kielland",
+"Wrigley",
+"Pipers",
+"None of the above"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2024-q016_2",
+"path": "pyq/images/NEETPG2024/neetpg2024-q016_1.webp",
+"width": 425,
+"height": 448,
+"sha256": "30f9eeabd5111c03319c6ecb8d1b6bafcc9d3cf87f1709bc00c42699aee2b5cb"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 6,
+"explanation": "The instrument shown is Piper's forceps, used for the after-coming head in breech delivery.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q017",
+"number": 17,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_obstetrics",
+"stem": "The patient is having a headache and confusion. A brain tumor diagnosis is made. Family history reveals brain and kidney tumors. Choose the correct option",
+"options": [
+"Neurofibromatosis",
+"Li fraumeni syndrome",
+"VHL Syndrome",
+"Churg strauss syndrome"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 7,
+"explanation": "Brain (haemangioblastoma) and kidney tumours in the family indicate von Hippel-Lindau syndrome.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q018",
+"number": 18,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_obstetrics",
+"stem": "A 62-year-old patient presents with left-sided arm and leg weakness, right-sided facial paralysis, and difficulty with horizontal eye movements. Based on the clinical presentation, which of the following syndromes is most consistent with these symptoms?",
+"options": [
+"Foville syndrome",
+"Benedict's syndrome",
+"Millard-Gubler syndrome",
+"Wallenberg syndrome"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 8,
+"explanation": "Pontine lesion with ipsilateral facial palsy and contralateral hemiparesis is Millard-Gubler syndrome. Foville adds horizontal gaze palsy, so the key is debatable.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q019",
+"number": 19,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_virology",
+"stem": "A patient presents with painful vesicles in the genital region. Identify the lesion shown in the image and choose the correct diagnosis",
+"options": [
+"Herpes",
+"Chancroid",
+"Syphilis",
+"Candidiasis"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2024-q019_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q019_1.webp",
+"width": 675,
+"height": 551,
+"sha256": "824c591bd482f6ef4c1926cf514eeba4958bf2f728de671a5f5411ad41162886"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 8,
+"explanation": "Painful grouped vesicles on the genitals are herpes genitalis, caused by HSV-2 or HSV-1.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q020",
+"number": 20,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_parasitology",
+"stem": "A patient presents with perianal itching. A peripheral swab was taken, and the image below shows the findings. What is the most likely diagnosis?",
+"options": [
+"H Nana",
+"Ancylostoma",
+"Enterobius vermicularis",
+"Necator Americanus"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 8,
+"explanation": "Perianal itching with eggs on a perianal swab (cellophane tape test) is enterobiasis, caused by Enterobius vermicularis.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q021",
+"number": 21,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_diseases_of_lens",
+"stem": "A 2-month-old child is brought to the ophthalmology OPD with the following presentation. What is the ideal management?",
+"options": [
+"Medical management",
+"Operate immediately",
+"Surgery after 6 months",
+"Surgery after 2 years"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2024-q021_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q021_1.webp",
+"width": 940,
+"height": 648,
+"sha256": "5ed265485ecf108ef5c720bbf7d390024282c30c393533c810fd3feb69da20fd"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 9,
+"explanation": "In a 2-month-old with congenital cataract or similar visually significant lesion, early surgery is needed to prevent deprivation amblyopia.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q022",
+"number": 22,
+"subjectId": "ophthalmology",
+"topicId": "topic_118_retina",
+"stem": "A patient presents with a gradual loss of night vision and peripheral vision. What is the most likely diagnosis based on fundoscopy findings?",
+"options": [
+"Retinitis pigmentosa",
+"Retinal hemorrhage",
+"Diabetic retinopathy",
+"Hypertensive retinopathy"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2024-q022_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q022_1.webp",
+"width": 597,
+"height": 464,
+"sha256": "f81bc1883a2a106da4ee09ff3190501ff6aa7f0932bae66beda6ce616584b7f4"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 9,
+"explanation": "Gradual night blindness followed by peripheral field loss, with bone-spicule pigmentation on fundoscopy, is retinitis pigmentosa.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q023",
+"number": 23,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_spine_+_pelvis_+_lower_limb_traumatology",
+"stem": "A man presents with back pain following a road traffic accident. There was no history of neurological deficit. X-ray spine is done. What is the diagnosis?",
+"options": [
+"Spinous process fracture",
+"Chance fracture",
+"Fracture o base of vertebrae",
+"Compressed fracture"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2024-q023_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q023_1.webp",
+"width": 337,
+"height": 436,
+"sha256": "3da784cd0e72d3b588fad1fece9bddbea8137b06a4045b63e94ec544bc957eec"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 10,
+"explanation": "The key identifies an isolated spinous process fracture, a stable injury without neurological deficit.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q024",
+"number": 24,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_metabolic_disorders",
+"stem": "A child presents with growth failure. Biochemical analysis shows normal ca2+, normal PTH, reduced phosphate, and increased ALP. What is the diagnosis?",
+"options": [
+"Nutritional rickets",
+"Hypophosphatemic rickets",
+"Type 1 VDDR",
+"Type 2 VDDR"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2024-q024_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q024_1.webp",
+"width": 892,
+"height": 398,
+"sha256": "1c408ecad3d7dd2e2f0dcd5d3caccc886b2cabd5f43d2638d777cb42ac420a9a"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 10,
+"explanation": "Normal calcium and PTH with low phosphate and high ALP indicate hypophosphatemic rickets (renal phosphate wasting).",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q025",
+"number": 25,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_hematology:_white_blood_cells",
+"stem": "A patient presents with fever, hepatosplenomegaly, abdominal pain, and WBC count > 50,000/mm3. Which of the following genetic abnormalities is involved?",
+"options": [
+"t(9;22)",
+"del(1q)",
+"t(15;17)",
+"del 3q"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 11,
+"explanation": "Fever, hepatosplenomegaly and WBC above 50,000 indicate chronic myeloid leukaemia, with t(9;22) giving the BCR-ABL fusion.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q026",
+"number": 26,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_genetics",
+"stem": "A 23-year-old female with a height of 4 feet has a karyotype, as shown in the image below. Which of the following conditions is the most likely etiology?",
+"options": [
+"Turner syndrome",
+"Klinefelter syndrome",
+"Mayer-Rokitansky-Küster-Hauser syndrome (MRKHS)",
+"Edwards syndrome"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2024-q026_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q026_1.webp",
+"width": 702,
+"height": 663,
+"sha256": "55a2a55e04ce83506e138ceea29761faec2d9de4d3a4068ed45fc731ef4d18e5"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 11,
+"explanation": "Short stature in a female with a 45,X karyotype is Turner syndrome.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q027",
+"number": 27,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_inborn_errors_of_metabolism",
+"stem": "An infant presents with vomiting after feeding. A Benedict’s test was performed and returned positive for a non-glucose substance. Which of the following is the most likely diagnosis?",
+"options": [
+"Galactosemia due to GAL-1-P uridyl transferase enzyme deficiency",
+"Hereditary fructose intolerance due to aldolase B deficiency",
+"Glucose-6-Phosphate dehydrogenase (G6PD) deficiency",
+"Galactosemia due to galactokinase enzyme deficiency"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 12,
+"explanation": "Vomiting with a positive Benedict's test for a non-glucose reducing sugar suggests classical galactosemia (GALT deficiency) with galactose in the urine.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q029",
+"number": 29,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_respiratory_pharmacology",
+"stem": "Which of the following statements is incorrect regarding Samter's triad?",
+"options": [
+"It is only triggered by aspirin.",
+"Other NSAIDs with COX-1 blocking ability can also trigger symptoms.",
+"It is characterized by asthma, nasal polyps, and aspirin sensitivity.",
+"It involves overproduction of leukotrienes."
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 13,
+"explanation": "Samter's triad is asthma, nasal polyps and aspirin sensitivity. It is triggered by aspirin and other COX-1-inhibiting NSAIDs, so 'only aspirin' is false.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q030",
+"number": 30,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_anticancer_drugs",
+"stem": "Aprepitant, a drug used to prevent late-onset chemotherapy-induced nausea and vomiting, acts through which of the following mechanisms?",
+"options": [
+"NK-1 antagonist",
+"NK-1 agonist",
+"NK-3 antagonist",
+"NK-2 antagonist"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 13,
+"explanation": "Aprepitant is a substance P (NK-1) receptor antagonist, useful for delayed chemotherapy-induced vomiting.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q031",
+"number": 31,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_special_senses",
+"stem": "Sour taste is perceived by which receptors?",
+"options": [
+"T1R1",
+"T1R2",
+"T1R3",
+"TRPP3"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 13,
+"explanation": "Sour taste is sensed through acid-sensitive ion channels, including PKD2L1/TRPP3. T1R receptors mediate sweet and umami.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q032",
+"number": 32,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_general_physiology",
+"stem": "Which ion is most responsible for the resting membrane potential (RMP)?",
+"options": [
+"Potassium (K+)",
+"Calcium (Ca2+)",
+"Sodium (Na+)",
+"Chloride (Cl-)"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 13,
+"explanation": "Resting membrane potential is set mainly by potassium efflux through leak channels because the membrane is far more permeable to K+.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q033",
+"number": 33,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_communicable_and_non_communicable_diseases",
+"stem": "A fruit farmer presents with fever, respiratory difficulties, and neurological complications. What is the most likely diagnosis?",
+"options": [
+"Ebola",
+"Meningitis",
+"Nipah",
+"Zika"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2024-q033_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q033_1.webp",
+"width": 427,
+"height": 568,
+"sha256": "dea1bf6d9282b87d992f2ecf2ddc3556855d972d2109492213b1c4d647e3709b"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 14,
+"explanation": "Fever with respiratory and neurological illness in a fruit farmer exposed to bats suggests Nipah virus encephalitis.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q034",
+"number": 34,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_vaccines_and_cold_chain",
+"stem": "Which of the following vaccines is kept at the lowest level?",
+"options": [
+"OPV",
+"DPT",
+"Hep B",
+"Rota"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2024-q034_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q034_1.webp",
+"width": 1280,
+"height": 1100,
+"sha256": "a745918803ad974c960f63df983bb8df62e5f00bffe629365e9341c1ea5630c6"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 14,
+"explanation": "The key identifies OPV as the vaccine kept at the lowest temperature, in the freezer or deep freezer at the cold-chain point.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q035",
+"number": 35,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_substance_related_and_addictive_disorders",
+"stem": "Which drug is used in the maintenance phase of opioid withdrawal?",
+"options": [
+"Buprenorphine",
+"Disulfiram",
+"Butorphanol",
+"Clonidine"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 15,
+"explanation": "Buprenorphine, a partial opioid agonist, is used for maintenance in opioid dependence, whereas disulfiram is for alcohol.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q036",
+"number": 36,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_neurotic_stress_related_and_somatoform_disorders",
+"stem": "A 45-year-old woman presents with a long-standing history of “feeling tensed” along with an upset stomach, diarrhea, and heartburn. She mentions that her family members also experience similar symptoms. Which of the following symptoms is most likely to be observed in this patient?",
+"options": [
+"Neologisms",
+"Tingling at extremities",
+"Hallucinations",
+"Idea of reference"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 15,
+"explanation": "Anxiety with somatic complaints fits generalised anxiety, where paraesthesia such as tingling is common. Neologisms, hallucinations and ideas of reference suggest psychosis.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q037",
+"number": 37,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_head_and_neck_imaging",
+"stem": "A 40-year-old female patient complains of a persistent headache. A CT scan of the head was performed, as shown below. What is the most accurate diagnosis?",
+"options": [
+"Subarachnoid hemorrhage (SAH)",
+"Epidural hemorrhage",
+"Subdural hemorrhage",
+"Intraparenchymal hemorrhage"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2024-q037_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q037_1.webp",
+"width": 518,
+"height": 518,
+"sha256": "6bff1a2c22d58d4c2fcb3fc7a72ed2af13128f553c5706f4388b10595c303188"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 15,
+"explanation": "A hyperdense blood pattern in the basal cisterns and sulci on CT is subarachnoid haemorrhage, the classic cause of a sudden severe headache.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q038",
+"number": 38,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_thoracic_radiology",
+"stem": "A 45-year-old patient presents with ptosis and muscle weakness that improves with rest. She also complains of dysphagia and has engorged veins in her thorax. Based on the CT scan image provided, what is the most likely diagnosis?",
+"options": [
+"Thymoma",
+"Pancoast tumor",
+"Adenocarcinoma",
+"Small cell lung cancer"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2024-q038_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q038_1.webp",
+"width": 487,
+"height": 487,
+"sha256": "2e0b99ae752852a61095d95fdb49f854d5ffa7b51c152912ae6dcbf4a089ab2d"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 16,
+"explanation": "Myasthenic weakness that improves with rest plus venous engorgement of the chest points to a thymoma compressing mediastinal structures.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q039",
+"number": 39,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_urology",
+"stem": "What instrument is used to insert this tube?",
+"options": [
+"Nephroscope",
+"Cysto urethroscope",
+"Ureteroscope",
+"Endoscope"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2024-q039_1",
+"path": "pyq/images/NEETPG2024/neetpg2024-q039_1.webp",
+"width": 504,
+"height": 680,
+"sha256": "f2c240476c593c954d74965931aeb1fe988a89a5b95a7004e8bcab2f6129d9b1"
+}
+],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 16,
+"explanation": "The tube (such as a catheter or stent) inserted through the urethra and bladder is placed with a cystourethroscope.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "neetpg2024-q040",
+"number": 40,
+"subjectId": "surgery",
+"topicId": "topic_29_general_surgery",
+"stem": "What is the ideal pressure setting for vacuum-assisted closure (VAC) therapy?",
+"options": [
+"-125 mm Hg",
+"60 to 80 mm Hg",
+"130 mm Hg",
+"80 to 100 mm Hg"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "NEET-PG-PYQs-2024.pdf",
+"sourcePage": 16,
+"explanation": "Negative-pressure wound therapy is conventionally set at -125 mmHg.",
+"crossCheck": "not checkable",
+"answerConflict": false
+}
+]

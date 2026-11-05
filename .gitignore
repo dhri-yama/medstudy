@@ -15,6 +15,5 @@ paper_downloads/
 .DS_Store
 **/.DS_Store
 
-# Recalled previous-year papers are not published (rights review pending); regenerate with tools/pyq-import
-app/src/main/assets/pyq/
+# Source PDFs and downloaded copies stay local; the prepared questions and images (app/src/main/assets/pyq) are committed.
 tools/pyq-import/crosscheck.csv

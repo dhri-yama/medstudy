@@ -1,0 +1,6398 @@
+[
+{
+"id": "neetpg2020-q001",
+"number": 1,
+"subjectId": "anatomy",
+"topicId": "topic_0_upper_limb",
+"stem": "Which of the following forms the lateral boundary of the anatomical snuff box?",
+"options": [
+"Extensor pollicis brevis and abductor pollicis longus",
+"Extensor pollicis longus and abductor pollicis brevis",
+"Extensor pollicis longus and extensor pollicis brevis",
+"Abductor pollicis longus and abductor pollicis brevis"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 1,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q002",
+"number": 2,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "The remnants of Wolffian ducts in females are located in",
+"options": [
+"Pouch of Douglas",
+"Leaves of broad ligament",
+"Uterovesical pouch",
+"Iliac fossa"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 1,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q003",
+"number": 3,
+"subjectId": "anatomy",
+"topicId": "topic_46_head_and_neck",
+"stem": "Which of the following is not used for the identification of the facial nerve trunk?",
+"options": [
+"Retrograde dissection from distal branch",
+"Tragal pointer",
+"Inferior belly of omohyoid muscle",
+"Posterior belly of digastric"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 2,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q004",
+"number": 4,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "In which part of the fallopian tube does fertilization occur?",
+"options": [
+"Ampulla",
+"Isthmus",
+"Interstitial",
+"Infundibular"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 2,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q005",
+"number": 5,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_thorax",
+"stem": "The false statement about fetal circulation is:",
+"options": [
+"Anatomical closure of foramen ovale is by 3 to 5 days",
+"Anatomical closure of ductus venosus is by 3 to 7 days",
+"Right umbilical vein is absent",
+"Anatomical closure of ductus arteriosus is by 2 to 3 weeks"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 2,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q006",
+"number": 6,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_neuro_anatomy",
+"stem": "A patient presented with clinical features of ataxia and incoordination. This is due to thrombosis of which artery?",
+"options": [
+"Posterior cerebral",
+"Middle cerebral",
+"Internal carotid",
+"Superior cerebellar"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 3,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q007",
+"number": 7,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A patient came to the gynaecology OPD with complaints of foul – smelling frothy vaginal discharge and intense itching. On examination, the cervix was spotted and had the appearance of a strawberry. Identify the causative organism.",
+"options": [
+"Trichomonas vaginalis",
+"Gardnerella vaginalis",
+"Neisseria gonorrhoea",
+"Candida albicans"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 3,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q008",
+"number": 8,
+"subjectId": "anatomy",
+"topicId": "topic_46_head_and_neck",
+"stem": "Which of the following structures prevents the upward extension of thyroid swelling through its attachment to the thyroid cartilage?",
+"options": [
+"Pretracheal fascia",
+"Sternothyroid",
+"Thyrohyoid membrane",
+"Ligament of berry"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 3,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q009",
+"number": 9,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "Identify the contraceptive shown in the given image",
+"options": [
+"Male condom",
+"Female condom",
+"Diaphragm",
+"Cervical cap"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q009_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q009_1.webp",
+"width": 530,
+"height": 238,
+"sha256": "cb0100e984c6e584a41f3d58eb5e0a6abbf77f01f6250c5d5021f9dd09b97e16"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 4,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q010",
+"number": 10,
+"subjectId": "anatomy",
+"topicId": "topic_0_upper_limb",
+"stem": "A patient presented with the extension of MCP joint and flexion of IP joints. Which muscle is affected?",
+"options": [
+"Extensor digitorum",
+"Interossei and lumbricals",
+"Abductor pollicis longus",
+"Abductor pollicis brevis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 4,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q011",
+"number": 11,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "A woman presents to the OPD with complaints of amenorrhoea for the past year. She has a history of postpartum hemorrhage and lactational failure. What is the probable diagnosis ?",
+"options": [
+"Sheehan’s syndrome",
+"Rotor syndrome",
+"Prolactinoma",
+"Acromegaly"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 5,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q012",
+"number": 12,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_introduction",
+"stem": "What is the function of the proteasome?",
+"options": [
+"Protein folding",
+"Pot-translation modification",
+"Protein degradation",
+"Protein sorting"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 5,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q013",
+"number": 13,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_general_embryology",
+"stem": "Meiosis occurs in:",
+"options": [
+"Adrenal",
+"Adult ovary",
+"Prepubertal testis",
+"Hypothalamus"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 6,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q014",
+"number": 14,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "An 18 year old girl presents with a history of low – grade fever, weight loss, abdominal pain and amenorrhoea for six months. On examination, a pelvic mass is felt on the left side and signs of ascites are positive. What is your diagnosis ?",
+"options": [
+"Tuberculosis with tubo – ovarian mass",
+"Ovarian malignancy",
+"Ectopic pregnancy",
+"Submucous fibroid"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 6,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q015",
+"number": 15,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_amino_acids_and_proteins_chemistry",
+"stem": "Replacing alanine by which amino acid, will increase the UV absorbance of protein at 280nm wavelength?",
+"options": [
+"Leucine",
+"Proline",
+"Arginine",
+"Tryptophan"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 6,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q016",
+"number": 16,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_general_embryology",
+"stem": "The long left recurrent laryngeal nerve is due to the persistence of which arch artery?",
+"options": [
+"3  rd  arch",
+"4  th  arch",
+"5  th  arch",
+"6  th  arch"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 7,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q017",
+"number": 17,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_neuro_anatomy",
+"stem": "A patient presented with weakness of the right side of the face with the loss of pain and temperature. Pain and temperature sensation of the left leg is also lost. The lesion is most likely located at?",
+"options": [
+"Medial medulla",
+"Lateral pons",
+"Medial pons",
+"Lateral medulla"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 7,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q018",
+"number": 18,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_abdomen",
+"stem": "Ligation of common hepatic artery will impair blood supply in:",
+"options": [
+"Right gastric and right gastroepiploic artery",
+"Right gastric and left gastric artery",
+"Right gastroepiploic and short gastric vessels",
+"Right gastric and short gastric vessels"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 8,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q019",
+"number": 19,
+"subjectId": "biochemistry",
+"topicId": "topic_54_vitamins",
+"stem": "Vitamin B12 is found maximum in:",
+"options": [
+"Animal products",
+"Green leafy vegetables",
+"Roots and tubers",
+"Vegetarian diet"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 8,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q020",
+"number": 20,
+"subjectId": "anatomy",
+"topicId": "topic_0_upper_limb",
+"stem": "Identify the sign shown in the image below:",
+"options": [
+"Popeye sign",
+"Hill-Sachs sign",
+"Griesinger sign",
+"Rising sun sign"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q020_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q020_1.webp",
+"width": 133,
+"height": 119,
+"sha256": "03b17a61c1fa7ab6b22f0a9614db4a30004878fcab80c0964a443100e80951ad"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 8,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q021",
+"number": 21,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_lipid_chemistry",
+"stem": "The process of apolipoprotein B48 synthesis involves which of the following?",
+"options": [
+"RNA alternate splicing",
+"RNA editing",
+"DNA editing",
+"RNA interference"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 9,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q022",
+"number": 22,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_lipid_chemistry",
+"stem": "A patient presents with a clinical scenario of obstructive jaundice. Which of the following results can be seen in Van der Bergh’s reaction?",
+"options": [
+"Direct positive",
+"Indirect positive",
+"Both positive",
+"Coproporphyrin"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 9,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q023",
+"number": 23,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_pelvis_and_perineum",
+"stem": "A patient presented with an enlarged inguinal lymph node. The most likely primary cause is",
+"options": [
+"Testicular cancer",
+"Anal cancer",
+"Sigmoid colon cancer",
+"Prostate cancer"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 9,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q024",
+"number": 24,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "In modern obstetrics, which of the following investigations is used for monitoring the fetus of an Rh- negative sensitized mother ?",
+"options": [
+"Biophysical profile",
+"Fetal blood sampling",
+"Amniospectometry",
+"MCA doppler peak systolic velocity"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 10,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q025",
+"number": 25,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "What is the causative agent for granuloma inguinale ?",
+"options": [
+"Calymmatobacterium granulomatis",
+"Chlamydia trachomatis",
+"Ureaplasma urealyticum",
+"Treponema pallidum"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 10,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q026",
+"number": 26,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "Which of the following is the causative organism of vulval warts?",
+"options": [
+"Human papilloma virus",
+"Herpes simplex virus",
+"Human immunodeficiency virus",
+"Cytomegalovirus"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 11,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q027",
+"number": 27,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_abdomen",
+"stem": "A tumor of the uncinate process of the pancreas affects which of the following vessels?",
+"options": [
+"Superior mesenteric artery",
+"Portal vein",
+"Common hepatic artery",
+"Inferior mesenteric artery"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 11,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q028",
+"number": 28,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_genetics",
+"stem": "If the percentage of thymine residues in DNA is 28%. What is the % of cytosine?",
+"options": [
+"28%",
+"44%",
+"36%",
+"22%"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 11,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q029",
+"number": 29,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "A 22 year old pregnant woman at 13 weeks of gestation informs you about accidental exposure to radiation from a chest X – ray at 7 weeks of gestation. What should be the next advised to her ?",
+"options": [
+"Continue pregnancy",
+"Terminate pregnancy",
+"Pre – invasive diagnostic test",
+"Chromosome screening"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 12,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q030",
+"number": 30,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_carbohydrate_metabolism",
+"stem": "Enzyme activated by a decrease in insulin: glucagon ration is:",
+"options": [
+"Glucokinase",
+"Hexokinase",
+"Phosphofructokinase",
+"Glucose 6-phosphatase"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 12,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q031",
+"number": 31,
+"subjectId": "biochemistry",
+"topicId": "topic_54_vitamins",
+"stem": "A patient presented with symptoms of peripheral neuropathy and macrocytic anemia. She was given folate 5mg and the blood picture improved. However, the neurologic manifestations were aggravated. What is the most likely cause?",
+"options": [
+"Malabsorption of folate",
+"Treatment with folate unmasking pyridoxine deficiency",
+"Deficiency of folate reductase in CNS",
+"Folate therapy using the B12 stores"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 12,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q032",
+"number": 32,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_enzymes",
+"stem": "Which of the following is true regarding non-competitive inhibition?",
+"options": [
+"Constant km and increased Vmax",
+"Constant km and decrease Vmax",
+"Decreased km and decreased Vmax",
+"Increased km and unchanged Vmax"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 13,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q033",
+"number": 33,
+"subjectId": "ent",
+"topicId": "topic_21_ear",
+"stem": "From which of the following structure does the saccule develop?",
+"options": [
+"Saculus anterior",
+"Saculus posterior",
+"Pars superior",
+"Pars inferior"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 13,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q034",
+"number": 34,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "After successful delivery of the baby, the obstetrician witnesses that the episiotomy performed has extended backwards beyond the perineal body. Which among the following structures is likely to be injured in this case?",
+"options": [
+"External anal sphicter",
+"Ischiocavernosus",
+"Bulbospongiosis",
+"Urethral sphincter"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 14,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q035",
+"number": 35,
+"subjectId": "ent",
+"topicId": "topic_21_ear",
+"stem": "What is the surgery done to widen the cartilaginous part of the external auditory canal called?",
+"options": [
+"Meatoplasty",
+"Tympanoplasty",
+"Myringoplasty",
+"Otoplasty"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 14,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q036",
+"number": 36,
+"subjectId": "ent",
+"topicId": "topic_21_ear",
+"stem": "Cough on scratching the external acoustic canal is due to?",
+"options": [
+"Auriculotemporal nerve",
+"Auricular branch of vagus",
+"Great auricular nerve",
+"Facial nerve"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 14,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q037",
+"number": 37,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_carbohydrate_chemistry",
+"stem": "A patient came to the hospital with a complaint of abdominal pain. Routine investigations were unremarkable. On observation, the urine turned black on standing. Which of the following enzymes is likely to be defective in this patient?",
+"options": [
+"Homogentisate oxidase",
+"Xanthine oxidase",
+"Phenylalanine hydroxylase",
+"Dihydric orotate dehydrogenase"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 15,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q038",
+"number": 38,
+"subjectId": "ent",
+"topicId": "topic_21_ear",
+"stem": "Which of the following is not a feature of tubercular otitis media?",
+"options": [
+"Ear ache",
+"Multiple perforations",
+"Pale granulation",
+"Foul smelling ear discharge"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 15,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q039",
+"number": 39,
+"subjectId": "biochemistry",
+"topicId": "topic_54_vitamins",
+"stem": "A 34-year-old male as on maize as a staple diet for a prolonged period. He presented with diarrhea and a lesion over his neck as shown in the image below. The condition occurs due to deficiency of:",
+"options": [
+"Niacin",
+"Zinc",
+"Thiamine",
+"Iron"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q039_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q039_1.webp",
+"width": 940,
+"height": 650,
+"sha256": "098c33ce2170bd7b9842c4c72baa62778f69ca1008c62710eca3bd8134682d93"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 16,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q040",
+"number": 40,
+"subjectId": "ent",
+"topicId": "topic_21_ear",
+"stem": "A person who met with an accident, and suffered from a skull fracture presents with the following finding. Identify this clinical finding.",
+"options": [
+"Battle sign",
+"Bezold abscess",
+"Mastoiditis",
+"Griesinger sign"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q040_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q040_1.webp",
+"width": 258,
+"height": 266,
+"sha256": "d3fe7283f33d1f620f064c5d5ae8eb73e40b71eb43e9b8b6f90881269c285d67"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 16,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q041",
+"number": 41,
+"subjectId": "biochemistry",
+"topicId": "topic_54_vitamins",
+"stem": "Which vitamin, when infused in supraphysiological doses, causes macular edema and macular cysts?",
+"options": [
+"Vitamin A",
+"Vitamin D",
+"Vitamin E",
+"Vitamin B3"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 17,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q042",
+"number": 42,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A 16 year old girl presents to the OPD with a history of primary amenorrhoea and cyclical pain. Perineal examination reveals a bulge protruding from the vagina. Identify the cause of this presentation.",
+"options": [
+"Transverse septum in the proximal vagina",
+"Complete vaginal atresia",
+"Imperforate hymen",
+"Cervical agenesis"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 17,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q043",
+"number": 43,
+"subjectId": "ent",
+"topicId": "pyq_ent_nose_and_paranasal_sinuses",
+"stem": "Surgery where one nostril is partially or completely occluded is done for which condition?",
+"options": [
+"Vasomotor rhinitis",
+"Atrophic rhinitis",
+"Invasive aspergillosis",
+"Allergic rhinitis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 18,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q044",
+"number": 44,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_amino_acids_and_proteins_chemistry",
+"stem": "Nitric oxide is synthesized from",
+"options": [
+"L-arginine",
+"L-citrulline",
+"Glycine",
+"Lysine"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 18,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q045",
+"number": 45,
+"subjectId": "ent",
+"topicId": "pyq_ent_nose_and_paranasal_sinuses",
+"stem": "What is occipitomental view with open mouth also known as?",
+"options": [
+"Water’s view",
+"Towne’s view",
+"Law’s view",
+"Stenver’s view"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 19,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q046",
+"number": 46,
+"subjectId": "ent",
+"topicId": "pyq_ent_pharynx",
+"stem": "A 9-year-old boy comes with complaints of right ear pain, difficulty in opening the mouth, painful swallowing, and fever. The oral cavity examination reveals the following. The external facial examination is unremarkable. Which of the following is likely?",
+"options": [
+"Pharyngitis",
+"Parotid abscess",
+"Bezold’s Abscess",
+"Quisny"
+],
+"answer": 4,
+"images": [
+{
+"id": "pyq_neetpg2020-q046_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q046_1.webp",
+"width": 250,
+"height": 297,
+"sha256": "acf3e925fd5fe81ec18456f007a47b0bfed80f381e60d085a84c871fc8e779cb"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 19,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q047",
+"number": 47,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "A pregnant woman presents for a routine antenatal checkup at 18 weeks of gestation. On abdominal examination, the uterine size was found to correspond to 16 weeks of gestation. On USG, oligohydramnios was found. Which of the following is a likely cause ?",
+"options": [
+"Renal agenesis",
+"Fetal anemia",
+"Barter syndrome",
+"Anencephaly"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 20,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q048",
+"number": 48,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A 24 year old woman visits the infertility clinic with a complaint of recurrent abortions. Upon investigations, she is found to have a septate uterus. Which of the following corrective procedures has the best obstetric outcome ?",
+"options": [
+"Jones metroplasty",
+"Strassmann metroplasty",
+"Tompkins metroplasty",
+"Transcervical resection of septum"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 20,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q049",
+"number": 49,
+"subjectId": "ophthalmology",
+"topicId": "topic_36_cornea",
+"stem": "Which of the following layers is responsible for maintaining the hydration and transparency of the cornea?",
+"options": [
+"Descemet’s membrane",
+"Endothelial cells",
+"Stroma",
+"Corneal epithelium"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 21,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q050",
+"number": 50,
+"subjectId": "ophthalmology",
+"topicId": "topic_36_cornea",
+"stem": "What is the characteristic feature of a fungal ulcer?",
+"options": [
+"Reverse hypopyon",
+"Dendritic ulcer on a fluorescein dye",
+"Ring abscess",
+"Satellite lesion"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 21,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q051",
+"number": 51,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_conjunctiva",
+"stem": "Extra row of eyelashes behind the grey line is called as?",
+"options": [
+"Trichiasis",
+"Distichiasis",
+"Tylosis",
+"Madarosis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 21,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q052",
+"number": 52,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_orbit",
+"stem": "A middle-aged woman presented with bilateral proptosis, restriction of eye movements, and chemosis. Her thyroid profile showed she was euthyroid. What is the most probable cause?",
+"options": [
+"Orbital pseudotumor",
+"Thyroid ophthalmopathy",
+"Orbital lymphoma",
+"Orbital cellulitis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 22,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q053",
+"number": 53,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_glaucoma",
+"stem": "The drug increasing uveoscleral flow is?",
+"options": [
+"Timolol",
+"Latanoprost",
+"Pilocarpine",
+"Carbonic anhydrase inhibitor"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 22,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q054",
+"number": 54,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A 33 year old female patient comes with complaints of menorrhagia for the past 3 months. The duration and regularity of her menstrual cycles are normal. Non – hormonal management has been tried without success. What is the most appropriate next step?",
+"options": [
+"Uterine artery embolization",
+"Endometrial ablation",
+"Hormonal therapy",
+"Hysterectomy"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 22,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q055",
+"number": 55,
+"subjectId": "ophthalmology",
+"topicId": "topic_108_neuro_ophthalmology",
+"stem": "Photostress test is used to differentiate between:",
+"options": [
+"Macula and optic nerve disease",
+"Cataract and glaucoma",
+"Lens and cornea",
+"Retina and vitreous pathologies"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 23,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q056",
+"number": 56,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A 60 year old woman presented with post – menopausal bleeding. Ultrasonography revealed a mass with feeding vessel as shown in the image below. What is the most likely diagnosis?",
+"options": [
+"Fibroid uterus",
+"Endometrial polyp",
+"Endometrial carcinoma",
+"Leiomyosarcoma"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 23,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q057",
+"number": 57,
+"subjectId": "ophthalmology",
+"topicId": "topic_118_retina",
+"stem": "Shifting fluid sign is seen in?",
+"options": [
+"Exudative RD",
+"Traction RD",
+"Rhegmatogenous RD",
+"Retinal dialysis"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 24,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q058",
+"number": 58,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "A 35 year old primigravida who conceived after in vitro fertilization therapy came for an antenatal checkup at 38 weeks of gestation. Her obstetric history revealed that she was pregnant with DCDA twins. On examination, the first twin was found to be in a breech position and the maternal blood pressure was found to be greater than 140/90 mm Hg on two occasions with grade 1+ proteinuria. What should be done next?",
+"options": [
+"Monitor BP and terminate pregnancy if BP rises",
+"Immediate caesarean section",
+"Terminate pregnancy at 40 weeks of gestation",
+"Induce labour with PGE2 gel"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 24,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q059",
+"number": 59,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_central_nervous_system",
+"stem": "Which of the following is the correct statement regarding Huntington’s chorea?",
+"options": [
+"It is a trinucleotide repeat disorder",
+"There is a loss of function type of mutation",
+"There are abnormal repeats of CUG",
+"Abnormality is seen due to mutation in chromosome 6"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 25,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q060",
+"number": 60,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_gastrointestinal_tract",
+"stem": "Which of the following statements is true about the pathology of achalasia cardia?",
+"options": [
+"Relaxation of lower esophageal sphincter",
+"Defective peristalsis",
+"Decreased release of No and VIP in the distal part of esophagus",
+"Decreased tone of the lower esophageal sphincter"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 25,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q061",
+"number": 61,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "Which of the following effects of puberty are not mediated by estrogen ?",
+"options": [
+"Hair growth",
+"Cervical mucus secretion",
+"Vaginal cornification",
+"Menstruction"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 25,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q062",
+"number": 62,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_squint___strabismus",
+"stem": "A 40-year-old diabetic patient presented with the squint. On examination, the secondary deviation was found to be more than the primary deviation. Forced duction test is negative. Which of the following types of squint is most likely to be present in this patient?",
+"options": [
+"Comitant squint",
+"Restrictive squint",
+"Paralytic squint",
+"Pseudosquint"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 26,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q063",
+"number": 63,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A 35 year old woman comes with complaints of warty lesions on the vulva. On examination, multiple warty growths on the vulva and around the anal canal are seen. This condition is most likely seen in?",
+"options": [
+"Condyloma accuminata",
+"Molluscum contagiosum",
+"Chancroid",
+"Herpes"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 26,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q064",
+"number": 64,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_squint___strabismus",
+"stem": "A physician observed the following finding in a small child who came for an eye exam. This finding is associated with which of the following conditions?",
+"options": [
+"Myopia",
+"Astigmatism",
+"Hyperopia",
+"Emmetropia"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2020-q064_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q064_1.webp",
+"width": 1280,
+"height": 582,
+"sha256": "2bf8fecf13e4bdba8e5637e8c77e8482fe0ba9660b349d11d3b555fd9eebc9f8"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 27,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q065",
+"number": 65,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_ocular_injuries",
+"stem": "Sympathetic ophthalmia is seen after ___________?",
+"options": [
+"Penetrating trauma",
+"Blunt trauma",
+"Chemical injury",
+"Urinary tract infection"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 27,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q066",
+"number": 66,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A patient is planned to undergo hysteroscopic polypectomy using bipolar electrocautery. What is the ideal agent for distention ?",
+"options": [
+"Glycine",
+"Normal saline",
+"CO2",
+"70% dextrose"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 28,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q067",
+"number": 67,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_endocrinology",
+"stem": "A patient presents with midline swelling in the neck Biopsy revealing Orphan Annie's eye nuclei is shown in the image below. What is the diagnosis?",
+"options": [
+"Follicular carcinoma",
+"Papillary carcinoma",
+"Toxic nodular goitre",
+"Medullary carcinoma"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q067_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q067_1.webp",
+"width": 523,
+"height": 442,
+"sha256": "9da9b1619b6bfc73c386c04a2f106ab5f36be4646897e8ec9c10135aa2c27428"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 28,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q068",
+"number": 68,
+"subjectId": "ophthalmology",
+"topicId": "topic_108_neuro_ophthalmology",
+"stem": "A patient presented with unilateral and bilateral abducent palsy. What is the most probable cause?",
+"options": [
+"Retinoblastoma",
+"Orbital pseudotumor",
+"Orbital cellulitis",
+"Cavernous sinus thrombosis"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 29,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q069",
+"number": 69,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_renal_system",
+"stem": "A 51-year-old male patient came with complaints of hematuria to the clinic. On examination, he was normotensive and had pedal edema. Investigations revealed the patient had no glycosuria and had a creatinine of 9. His renal biopsy is shown below. Which of the following investigation should be done to identify the disease?",
+"options": [
+"ANA",
+"Anti GBM antibodies",
+"HIV RNA",
+"Urine immunoelectrophoresis"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q069_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q069_1.webp",
+"width": 631,
+"height": 558,
+"sha256": "2e97729d9acbded3aabbf55eafcc1ec9078ff59481f45ac386b396bc5d715adc"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 30,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q070",
+"number": 70,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_anticancer_drugs",
+"stem": "Which of the following is an inhibitor of DNA synthesis?",
+"options": [
+"6-mercaptopurine",
+"Mitomycin",
+"Actinomycin",
+"Asparaginase"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 30,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q071",
+"number": 71,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_bone_disorders",
+"stem": "A 50-year-old man presented with a retroperitoneal mass. Biopsy from the lesion is shown in the image below. Molecular analysis revealed t (12,16). What is the most likely condition?",
+"options": [
+"Myxoid Liposarcoma",
+"Lipoma",
+"Spindle lipoma",
+"Polymorphic lipoma"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 31,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q072",
+"number": 72,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_cvs_blood_vessels_and_vasculitis",
+"stem": "Large, friable, irregular vegetations on heart valves are seen in which condition?",
+"options": [
+"Infective endocarditis",
+"Rheumatic heart disease",
+"Libman Sacks endocarditis",
+"Non-bacterial thrombotic carditis"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 32,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q073",
+"number": 73,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_hematology:_red_blood_cells",
+"stem": "A 23-year-old male patient presented with a history of fatigue and tiredness. On investigation, he was found to have Hb = 9 gm% MCV = 101 FL. Peripheral smear examination showed macrocytic RBC and hypersegmented neutrophils. Which of the following is the most likely etiology?",
+"options": [
+"Lead poisoning",
+"Iron deficiency anemia",
+"Hemolytic Anemia",
+"Chronic alcoholism"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 32,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q074",
+"number": 74,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A 52 year old woman diagnosed with carcinoma cervix stage 2B was advised radiotherapy. Which of the following statements regarding radiotherapy is false ?",
+"options": [
+"Point B is 3 cm lateral to point A",
+"Point A is 2 cm above the external os and 5cm lateral to the internal uterine canal",
+"Point A receives a dose of 7000 cGy",
+"Point B receives a dose of 6000 cGy"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 33,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q075",
+"number": 75,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_gastrointestinal_tract",
+"stem": "A 5-year-old child was admitted to the hospital with a history of prolapsing rectal mass and painless rectal bleeding. The histopathological image of the mass is shown below. What is the most likely diagnosis?",
+"options": [
+"Peutz Jegher syndrome",
+"Villous adenoma",
+"Juvenile polyp",
+"Tubular adenoma"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2020-q075_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q075_1.webp",
+"width": 845,
+"height": 633,
+"sha256": "2fea109fb0e977e96d9b5282e2ab8ceeeb7efb1118f263c4dcb56adda5aebaed"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 33,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q076",
+"number": 76,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_renal_pharmacology",
+"stem": "A patient on lithium developed hypertension. He was started on thiazides for hypertension. After few days, he developed coarse tremors and other symptoms suggestive of lithium toxicity. Explain the likely mechanism of this interaction",
+"options": [
+"Thiazide inhibits the metabolism of lithium",
+"Thiazides act as an add on drug to lithium",
+"Thiazides increase the tubular resorption of lithium",
+"Thiazides cause water loss thereby increase lithium levels"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 34,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q077",
+"number": 77,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_antimicrobials_:_anti_bacterial_drugs",
+"stem": "Which of the following should not be prescribed with theophylline?",
+"options": [
+"Erythromycin",
+"Cefotaxime",
+"Cotrimoxazole",
+"Amoxicillin"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 34,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q078",
+"number": 78,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_chemotherapy_of_specific_microbial_diseases",
+"stem": "Which of the following drugs gets deposited in the cornea?",
+"options": [
+"Leflunomide",
+"Chloroquine",
+"Methotrexate",
+"Sulfasalazine"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 35,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q079",
+"number": 79,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_gastrointestinal_tract",
+"stem": "A 20-year-old patient presented to the clinic with a history of malabsorption, diarrhea, and poor appetite. A duodenal biopsy of the patient showed crypt hyperplasia, villi atrophy, and CD8+ cells in lamina propria. What is the most probable diagnosis?",
+"options": [
+"Environmental enteropathy",
+"Celiac disease",
+"Whipple’s disease",
+"Chronic pancreatitis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 35,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q080",
+"number": 80,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_forensic_identification",
+"stem": "A decreased male was brought to the morgue for a post-mortem examination. His relatives reported that he had a tattoo over his skin, which was not found on examination. Which of the following structures would you examine?",
+"options": [
+"Lymph nodes",
+"Liver",
+"Arteries",
+"Skin"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 36,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q081",
+"number": 81,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_cns_pharmacology",
+"stem": "A patient was prescribed an antipsychotic drug following which he developed parkinsonism. Which of the following drugs can be given?",
+"options": [
+"Trihexyphenidyl",
+"Entacapone",
+"Rasagiline",
+"Pramipexole"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 36,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q082",
+"number": 82,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A woman with a history of infertility is on treatment with human menopausal gonadotropin. She presented with the following finding in the USG. What is the most likely diagnosis ?",
+"options": [
+"Ovarian hyperstimulation syndrome",
+"Theca lutein cyst",
+"Polycystic ovarian syndrome",
+"None"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q082_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q082_1.webp",
+"width": 400,
+"height": 217,
+"sha256": "ae6f9897fd4a81127d13b02f783b7e632cd38a66ab4099fab49b51a0f18ec2d8"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 36,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q083",
+"number": 83,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_ipc_sections",
+"stem": "Which section of the IPC deals with the punishment of perjury?",
+"options": [
+"191",
+"192",
+"193",
+"197"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 37,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q084",
+"number": 84,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "A lady who is 38 weeks pregnant comes to the OPD for a routine checkup. She has a history of normal twin delivery at term 4 years ago. What is her gravida and para score ?",
+"options": [
+"G2P2",
+"G2P1",
+"G3P2",
+"G3P1"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 37,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q085",
+"number": 85,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_forensic_toxicology",
+"stem": "The most common drug which causes physical dependence is?",
+"options": [
+"Ketamine",
+"Heroin",
+"LSD",
+"Phencyclidine"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 38,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q086",
+"number": 86,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "Identify the finding seen in this hysterosalpingogram:",
+"options": [
+"Bilateral hydrosalpinx",
+"Extravasation into venous system",
+"Normal HSG",
+"Bilateral cornual block"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q086_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q086_1.webp",
+"width": 523,
+"height": 297,
+"sha256": "a651bb15f6aefd8a5040b3f9283b69a348633339f667fa311d694707f09c06aa"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 38,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q087",
+"number": 87,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_respiratory_pharmacology",
+"stem": "Which of the following antiarrhythmic drugs is contraindicated in a patient with interstitial lung disease?",
+"options": [
+"Amiodarone",
+"Sotalol",
+"Quinidine",
+"Lignocaine"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 39,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q088",
+"number": 88,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_traces_of_evidences",
+"stem": "A 5-year-old child with a history of perianal pain is brought to the OPD. On subjecting the specimen from the perianal region to a test, it produces yellow rhombic crystals of spermine picrate. What is the test done?",
+"options": [
+"Barberio test",
+"Florence test",
+"Takayama test",
+"Teichmann test"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 39,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q089",
+"number": 89,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_cvs_pharmacology",
+"stem": "Which of the following drugs acts by inhibiting the late sodium current in the heart?",
+"options": [
+"Ivabradine",
+"Ranolazine",
+"Trimetazidine",
+"Fasudil"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 40,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q090",
+"number": 90,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_cvs_blood_vessels_and_vasculitis",
+"stem": "A 3-year-old child was brought to the hospital with complaints of fever, rash and swelling of her hands and feet since past 5 days. There is desquamative skin rash, oedema of hands and feet, erythema of palms and soles, oral erythema, and cervical lymphadenopathy. What is the likely condition?",
+"options": [
+"Kawasaki disease",
+"Measles",
+"Scarlet fever",
+"Henoch Schonlein Purpura"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 40,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q091",
+"number": 91,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "Identify the maternal condition that can lead to the findings in the baby as shown below:",
+"options": [
+"Pre-gestational diabetes",
+"Gestational diabetes mellitus",
+"Effect of valproate",
+"Hypertensive of ACE inhibitors"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q091_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q091_1.webp",
+"width": 342,
+"height": 643,
+"sha256": "db39b77ccf8a939edd4063bafae0c65d0cf44b407c59efbaf58943ea84457bf2"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 40,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q092",
+"number": 92,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_renal_system",
+"stem": "Effacement of podocyte foot processes is seen in which of the following diseases?",
+"options": [
+"Steroid-resistant glomerulonephritis",
+"Minimal Change Disease (MCD)",
+"Rapidly progressive glomerulonephritis",
+"Chronic glomerulonephritis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 42,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q093",
+"number": 93,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "A woman with endometrial carcinoma is undergoing radiotherapy. Which of the following is true?",
+"options": [
+"Intensity is inversely proportional to squared distance",
+"Small blood vessels are most radioresistant",
+"Rapidly proliferating cells are most radioresistant",
+"Small bowel is most radioresistant"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 42,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q094",
+"number": 94,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_cvs_blood_vessels_and_vasculitis",
+"stem": "Thrombosis is initiated by:",
+"options": [
+"Platelet activation",
+"Endothelial injury",
+"Coagulation cascade",
+"Vasoconstriction of vessels"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 42,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q095",
+"number": 95,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "Identify the use of the instrument given below:",
+"options": [
+"For tubal ligation",
+"For ligation of uterine artery during hysterectomy",
+"Ovarian cystectomy",
+"Ectopic pregnancy"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q095_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q095_1.webp",
+"width": 277,
+"height": 232,
+"sha256": "6ad9fe2116b5d52b63a030d0746623015b305104eeb5a9b0ce56ec567c698a17"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 43,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q096",
+"number": 96,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_sexual_jurisprudence",
+"stem": "In the case of rape of a young child, the hymen is usually?",
+"options": [
+"Ruptured since it is superficially",
+"Ruptured since it is very thin",
+"Unruptured since it is deeply situated",
+"Unruptured since it is highly elastic"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 43,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q097",
+"number": 97,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_ans_pharmacology",
+"stem": "A patient with diabetes and COPD developed postoperative urinary retention. Which of the following drugs can be used for short-term treatment of the condition?",
+"options": [
+"Tamsulosin",
+"Bethanechol",
+"Terazosin",
+"Methacholine"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 44,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q098",
+"number": 98,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_endocrinology",
+"stem": "A middle-aged woman presents with thyroid swelling. Blood tests show elevated TSH levels and the presence of thyroid peroxidase antibodies. Histopathological examination revealed the presence of Hurthle cells. What is the most likely diagnosis?",
+"options": [
+"Hashimoto thyroiditis",
+"Graves’ disease",
+"Follicular carcinoma",
+"Medullary carcinoma of thyroid"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 44,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q099",
+"number": 99,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "All of the following are contraceptive methods used post – coitus except:",
+"options": [
+"Danazol",
+"CuT200",
+"RU486",
+"Combined high dose estrogen – progestin pills"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 44,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q100",
+"number": 100,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_hematology:_red_blood_cells",
+"stem": "A 52-year-old male patient comes with complaints of abdominal pain, nausea, and vomiting. A peripheral blood smear reveals macrocytes and hypersegmented neutrophils and an endoscopy reveals atrophic gastritis. Which of the following conditions is likely to be seen this patient?",
+"options": [
+"Vitamin B12 deficiency",
+"Folate deficiency",
+"Pyridoxine deficiency",
+"Niacin deficiency"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 45,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q101",
+"number": 101,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_medical_jurisprudence",
+"stem": "In the civil negligence case against a doctor who bears the onus of proof?",
+"options": [
+"Patient",
+"Police not under rank of sub-inspector",
+"Magistrate",
+"Doctor"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 45,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q102",
+"number": 102,
+"subjectId": "medicine",
+"topicId": "topic_3_endocrinology",
+"stem": "A patient came to the hospital with complaints of lethargy, increased sleep, and weight gain. Investigations revealed low plasma TSH concentration. However, on the administration of TRH, the TSH levels increased. Which of the conditions is likely in this patient?",
+"options": [
+"Hyperthyroidism due to primary thyroid disease",
+"Hypothyroidism due to disease in the pituitary",
+"Hypothyroidism due to disease in the hypothalamus",
+"Hyperthyroidism due to disease in the pituitary"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 46,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q103",
+"number": 103,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_breast_pathology",
+"stem": "A 35-year-old woman presents with a lump in the upper outer quadrant of her breast. Histopathological examination of the mass showed cells in mucin pools and faint nuclei. What is the most likely diagnosis?",
+"options": [
+"Colloid carcinoma",
+"Papillary carcinoma",
+"Medullary carcinoma",
+"Lobular carcinoma"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 46,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q104",
+"number": 104,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_arthritis",
+"stem": "A patient presented with pain in the hand. The joints involved were proximal interphalangeal joint, distal interphalangeal joint and first carpometacarpal joint. The wrist and metacarpophalangeal joints were spared. What is the likely diagnosis?",
+"options": [
+"Osteoarthritis",
+"Rheumatoid arthritis",
+"Psoriatic arthritis",
+"Pseudogout"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 46,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q105",
+"number": 105,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_sports_injuries",
+"stem": "A maid is playing with a child by spinning him while holding his hands. A few hours later, the child starts crying, does not use his arm, and does not let anybody touch him. What is the possible diagnosis?",
+"options": [
+"Pulled elbow",
+"Olecranon fracture",
+"Fracture head of radius",
+"Elbow dislocation"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 47,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q106",
+"number": 106,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_autacoids",
+"stem": "Which of the following drugs is used for the treatment of motion sickness?",
+"options": [
+"Cetirizine",
+"Promethazine",
+"Misolastin",
+"Loratidine"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 47,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q107",
+"number": 107,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_spine_+_pelvis_+_lower_limb_traumatology",
+"stem": "A patient was admitted to ICU 48 hours after the fracture of the femur. The saturation of oxygen in the rebreathing unit was 100% but his SpO2 remained 60%. The patient was in a state of confusion. Chest radiograph showed lung fields to be clear. What is the most likely diagnosis?",
+"options": [
+"Pulmonary embolism",
+"Fat embolism",
+"ARDS",
+"Occult pneumothorax"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 48,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q108",
+"number": 108,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_liver",
+"stem": "What is the child-Turcotte-Pugh class for the patient who has a serum bilirubin 2.5 mg/dl, serum albumin 3 g/dl, prothrombin time 5 seconds (INR =2), no encephalopathy, and mild ascites?",
+"options": [
+"Class A",
+"Class B",
+"Class C",
+"Class D"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 48,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q109",
+"number": 109,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_git_pharmacology",
+"stem": "Which of the following is not a prokinetic?",
+"options": [
+"5HT4 agonist",
+"Dopamine antagonist",
+"Motilin",
+"Diphenylmethane"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 48,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q110",
+"number": 110,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_pediatric_neurology",
+"stem": "Two girls in the same class are diagnosed with meningococcal meningitis. Their 12-year old friend from the same school is afraid of contracting the disease. What advice should be given to the exposed students?",
+"options": [
+"Two doses of polysaccharide vaccine",
+"Antibiotic prophylaxis",
+"Two doses of conjugate vaccine",
+"Single dose of meningococcal vaccine"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 49,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q111",
+"number": 111,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_neurology",
+"stem": "An elderly woman is brought to the OPD with complaints of behavioural change, a history of multiple falls, urinary incontinence, and dementia. What is your diagnosis?",
+"options": [
+"Normal pressure hydrocephalus",
+"Frontotemporal dementia",
+"Parkinson disease",
+"Creutzfeldt-Jakob disease"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 49,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q112",
+"number": 112,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_pulmonology",
+"stem": "A 60-year-old male patient who is a known case of COPD presented with acute exacerbation and is admitted to the ICU. Which of the following statements is correct with regards to the initial management of this patient?",
+"options": [
+"Non-invasive PPV should be given",
+"Invasive PPV should be given",
+"IV corticosteroids should be administered",
+"Permissive hypercapnia is allowed"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 50,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q113",
+"number": 113,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_endocrine_pharmacology",
+"stem": "Which of the following is used in the first-line management of postmenopausal osteoporosis?",
+"options": [
+"Estrogen",
+"Bisphosphonates",
+"Raloxifene",
+"Combined oral contraceptives"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 50,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q114",
+"number": 114,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_nutrition_and_malnutrition",
+"stem": "A laborer's second child is brought to the OPD with a swollen belly and dull face. He has been fed rice water (rice milk) in his diet mostly. On investigations, the child is found to have low serum protein and low albumin. What is the probable diagnosis?",
+"options": [
+"Kwashiorkor",
+"Marasmus",
+"Indian childhood cirrhosis",
+"Kawasaki disease"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 50,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q115",
+"number": 115,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_hematology",
+"stem": "Thrombocytopenia, eczema and recurrent infections are seen in:",
+"options": [
+"Wiskott-Aldrich syndrome",
+"Chediak-Higashi syndrome",
+"Thrombocytopenia – absent radius syndrome",
+"Hermansky-Pudlak syndrome"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 51,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q116",
+"number": 116,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_gastrointestinal_tract",
+"stem": "Which of the following is true about the pathogenesis of Hirschsprung disease?",
+"options": [
+"Failure of migration of neural crest cells",
+"Loos of ganglion cells",
+"Visceral myopathy",
+"Obstruction by inflammatory stricture"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 51,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q117",
+"number": 117,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_infectious_diseases",
+"stem": "A 3-year-old male has the following buccal mucosa finding. After three days, he presents to your OPD with a rash. What is your diagnosis?",
+"options": [
+"Measles",
+"Leukoplakia",
+"Scarlet fever",
+"Kawasaki disease"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q117_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q117_1.webp",
+"width": 283,
+"height": 350,
+"sha256": "a91cbd0e3a75c9976d85043b65e7f4c8e220f4436eb7236c85e1659ff41a05a5"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 51,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q118",
+"number": 118,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_rheumatology___connective_tissue_disorder",
+"stem": "Which among the following is more common in limited cutaneous systemic sclerosis when compared to diffuse cutaneous systemic sclerosis?",
+"options": [
+"Esophageal dysmotility",
+"Myopathy",
+"Interstitial lung disease",
+"Scleroderma renal crisis"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 52,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q119",
+"number": 119,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_pediatric_gastroenterology",
+"stem": "The greenish-black color of the first stool in the newborn is due to?",
+"options": [
+"Bilirubin",
+"Biliverdin",
+"Meconium",
+"Gut flora of neonate"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 53,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q120",
+"number": 120,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_cardiology",
+"stem": "Water hammer pulse is seen in which of the following conditions?",
+"options": [
+"Aortic stenosis",
+"Aortic regurgitation",
+"Aortic stenosis and aortic regurgitation",
+"Mitral regurgitation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 53,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q121",
+"number": 121,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_antimicrobials_:_anti_bacterial_drugs",
+"stem": "What is the mechanism of resistance by lactamases to â-lactam antibiotics?",
+"options": [
+"Alteration of penicillin binding protein",
+"Degradation of antibiotics",
+"Drug efflux",
+"Alternation in 50s ribosome structure"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 53,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q122",
+"number": 122,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_infectious_diseases",
+"stem": "Maternal antibodies that do not provide significant immunity in a neonate?",
+"options": [
+"Tetanus",
+"Polio",
+"Diptheria",
+"Measles"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 54,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q123",
+"number": 123,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_cns_pharmacology",
+"stem": "A female patient is on first-line pharmacological therapy for bipolar disorder for 6 months. She is fasting for a few days due to religious reasons and presented with seizures, coarse tremors, confusion, and weakness of limbs. Which of the following investigations should be done to help diagnose her condition?",
+"options": [
+"Serum potassium level",
+"Serum lithium level",
+"ECG",
+"MRI"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 54,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q124",
+"number": 124,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_cell_injury",
+"stem": "Premature aging in Werner syndrome is due to:",
+"options": [
+"Increased telomerase activity",
+"Defect in DNA helicase",
+"Increase in length telomere due to decrease in telomerase activity",
+"None of above"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 55,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q125",
+"number": 125,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_infectious_diseases",
+"stem": "Anuj has been diagnosed with diphtheria and is being treated in the ward. His 3-year-old brother, Ajay who lives in the same house has received vaccination against diphtheria about 16 months back. What is the next best step for the management of the younger sibling, Ajay?",
+"options": [
+"One booster dose",
+"Nothing as the child is already exposed",
+"Erythromycin + diphtheria toxoid",
+"Erythromycin only"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 55,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q126",
+"number": 126,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_autacoids",
+"stem": "Pegloticase is used in management of:",
+"options": [
+"Chronic gout",
+"Rheumatoid arthritis",
+"Psoriatric arthritis",
+"Calcium pyrophosphate dehydrate crystal deposition (CPPD)"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 55,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q128",
+"number": 128,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_pulmonology",
+"stem": "The arterial blood gas analysis findings of a patient are as follows: pH=7.30, HCO3=10 mEq/L, paCO2= 30 mmHg, which is suggestive of a partially compensated metabolic acidosis. What is the mechanism for the secondary disorder?",
+"options": [
+"Hypoventilation causing decreased CO2 washout",
+"Hyperventilation causing decreased CO2 washout",
+"Increased tubular reabsorption of HCO3-",
+"Increased excretion of H+"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 56,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q129",
+"number": 129,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_chemotherapy_of_specific_microbial_diseases",
+"stem": "Which of the following is an inhibitor of RNA synthesis?",
+"options": [
+"5-Fluorouracil",
+"Rifampicin",
+"Nitrofurantoin",
+"Novobiocin"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 56,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q130",
+"number": 130,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_antimicrobials_:_anti_bacterial_drugs",
+"stem": "Which of the following fluoroquinolone is not given in liver disease?",
+"options": [
+"Ofloxacin",
+"Levofloxacin",
+"Pefloxacin",
+"Lomefloxacin"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 57,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q131",
+"number": 131,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_respiratory_pharmacology",
+"stem": "Theophylline causes diuresis by:",
+"options": [
+"Adenosine agonism",
+"PDE 4 inhibition",
+"Beta 2 agonism",
+"PDE 3 inhibition"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 57,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q132",
+"number": 132,
+"subjectId": "medicine",
+"topicId": "topic_3_endocrinology",
+"stem": "Which of the following is seen in pituitary apoplexy?",
+"options": [
+"Hypertension",
+"Shock",
+"Unconsciousness",
+"Fatigue"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 58,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q133",
+"number": 133,
+"subjectId": "pathology",
+"topicId": "topic_129_immunity",
+"stem": "B-cells are induced to produce IgE by which of the following:",
+"options": [
+"IL-2",
+"IL-4",
+"IL-1",
+"IL-6"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 58,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q134",
+"number": 134,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_pulmonology",
+"stem": "A 20-year-old man presents to the emergency department with respiratory distress and hypotension following a trauma. He has subcutaneous emphysema and there is an absence of air entry into the right side of the lungs. What is the next best step?",
+"options": [
+"Start IV fluids with large bore cannula",
+"Needle decompression into the 5  th  intercostal space anterior to the midaxillary line",
+"Take the patient to the ICU and intubate him",
+"Start positive pressure ventilation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 58,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q135",
+"number": 135,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_rheumatology___connective_tissue_disorder",
+"stem": "Which of the following is true about polyarteritis nodosa?",
+"options": [
+"Necrotising inflammation of large vessels",
+"Patient has hypogammaglobulinemia",
+"90% is associated with ANCA positivity",
+"30% is associated with Hepatitis B"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 59,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q136",
+"number": 136,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_cell_injury",
+"stem": "The lining epithelium of the respiratory tract of a middle-aged man who is a chronic smoker shows a change from columnar to stratified squamous epithelium, as depicted in the image below. The change is called",
+"options": [
+"Dysplasia",
+"Hypertrophy",
+"Atrophy",
+"Metaplasia"
+],
+"answer": 4,
+"images": [
+{
+"id": "pyq_neetpg2020-q136_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q136_1.webp",
+"width": 767,
+"height": 275,
+"sha256": "a27ec36dc530da5bdb775199c1d57e792e411a1dee806c134726ed662136c8f1"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 59,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q137",
+"number": 137,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_neurology",
+"stem": "Which type of aphasia is seen in the lesions of the posterior part of the superior temporal gyrus?",
+"options": [
+"Fluent",
+"Non fluent",
+"Anomic",
+"Conduction"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 60,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q139",
+"number": 139,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_general_pharmacology",
+"stem": "The graph below shows the relationship between the log (dose) and the response of three drugs, A, B, and C. Which of these drugs has the highest potency?",
+"options": [
+"A",
+"B",
+"Both A and B",
+"C"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q139_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q139_1.webp",
+"width": 492,
+"height": 430,
+"sha256": "5c078439234dd631520463175b6342bb8e6c3db9e6bda86ccd1bb271b5720e62"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 60,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q140",
+"number": 140,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_cardiology",
+"stem": "A 70-year-old man with a known history of DM and HTN on regular medications presents with a history of progressively worsening dyspnoea on exertion. On examination, there’s elevated JVP, positive hepatojugular reflux, crackles at the lung bases, hepatomegaly, ascites and pedal oedema. What is your provisional diagnosis?",
+"options": [
+"Heart failure",
+"Hypertrophic cardiomyopathy",
+"Mitral regurgitation",
+"Portal hypertension"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 61,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q141",
+"number": 141,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_rheumatology___connective_tissue_disorder",
+"stem": "The slowing of conduction in multiple sclerosis is due to which of the following?",
+"options": [
+"Gliosis",
+"Loss of myelin sheath",
+"Defect at node of Ranvier",
+"Leaky Na + channel"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 62,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q142",
+"number": 142,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_autacoids",
+"stem": "A patient presented with biliary colic. The intern has administered an analgesic, following which the pain got aggravated. Which of the following could be responsible for the aggravation of the patient’s symptoms?",
+"options": [
+"Morphine",
+"Diclofenac",
+"Nefopam",
+"Etoricoxib"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 62,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q143",
+"number": 143,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_git",
+"stem": "A 15-year-old girl presented with fatigue, chronic diarrhoea, weight loss, bone pain and abdominal distension. Investigations revealed iron deficiency anaemia and osteoporosis. Which of the following is the single best test to be done for her evaluation?",
+"options": [
+"TSH levels",
+"C-peptide levels",
+"Urine sugar and ketone",
+"IgA tissue transglutaminase antibody"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 62,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q144",
+"number": 144,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_pulmonology",
+"stem": "A 55-year-old male presented with tachypnea and mental confusion. His blood sugar is 350mg/dl, pH-7.2, HCO3-10, pCO2-30. What is the metabolic abnormality?",
+"options": [
+"Metabolic alkalosis",
+"Metabolic acidosis",
+"Respiratory alkalosis",
+"Respiratory acidosis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 63,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q145",
+"number": 145,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_cvs_pharmacology",
+"stem": "A patient with gout develops hypertension. The uric acid level was found to be elevated. Which of the following is not administered?",
+"options": [
+"Hydrochlorothiazide",
+"Atenolol",
+"Enalapril",
+"Prazosin"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 63,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q146",
+"number": 146,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_nutrition_and_malnutrition",
+"stem": "According to current recommended dietary guidelines for children, energy from saturated fats should be_______ of total energy intake.",
+"options": [
+"< 10%",
+"< 5%",
+"< 15%",
+"< 30%"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 63,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q147",
+"number": 147,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_hematology",
+"stem": "A ten-year-old boy was brought to the OPD with fever and swelling of hands after playing football. He gives a history of previous episodes of swelling of hands. On imaging, his spleen was found to be shrunken. Which of the following is a likely diagnosis?",
+"options": [
+"Sickle cell anaemia",
+"Malaria",
+"Pancreatitis",
+"Measles"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 64,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q148",
+"number": 148,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_inborn_errors_of_metabolism",
+"stem": "A 3-year-old girl was brought by her mother with complaints of enlarged clitoris. Karyotype revealed 46XX. What is the likely cause?",
+"options": [
+"21 hydroxylase deficiency",
+"11 hydroxylase deficiency",
+"3 beta dehydrogenase deficiency",
+"2, 3 Iyase deficiency"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 64,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q149",
+"number": 149,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_pulmonology",
+"stem": "A 53-year-old woman underwent hip replacement surgery. A week after the surgery, the patient developed swelling of the legs associated with pain on palpation. Her heart rate is 70 beats per min. There is no history of hemoptysis or significant weight loss. There is no previous history of pulmonary embolism. What is the risk of developing pulmonary embolism in the patient based on Well’s score?",
+"options": [
+"Low",
+"High",
+"Moderate",
+"Cannot comment without d-dimer values"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 65,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q150",
+"number": 150,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_pediatric_gastroenterology",
+"stem": "A newborn is brought with evisceration of bowel loops from a defect in the abdominal wall to the right of the umbilicus. The most probable diagnosis is",
+"options": [
+"Omphalocele",
+"Umbilical hernia",
+"Gastrochisis",
+"Ectopia vesicae"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 65,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q151",
+"number": 151,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_cvs_blood_vessels_and_vasculitis",
+"stem": "Histology of reperfused myocardium:",
+"options": [
+"Wavy fibres",
+"Neutrophils in cardiac muscle",
+"Swelling of cells",
+"Eosinophilc contraction band"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 65,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q152",
+"number": 152,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_genetics",
+"stem": "All –trans retinoic acid is used in the treatment of tumor that is associated with which of the following genetic aberrations?",
+"options": [
+"PML-RARA",
+"BCR ABL",
+"cMYC",
+"RUNX 1 ETO"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 66,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q153",
+"number": 153,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_emergency_medicine",
+"stem": "The recommended temperature of water bath for a patient with frost bite is—",
+"options": [
+"42 degree C",
+"37 degree C",
+"32 degree C",
+"30 degree C"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 66,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q154",
+"number": 154,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_respiratory_system",
+"stem": "A 12 year-old child presented with 15 days of cough. On examination, cervical lymphadenopathy was noted and the lymph node biopsy showed the following features. What is the most probable diagnosis?",
+"options": [
+"Tuberculosis",
+"Leprosy",
+"Sarcoidosis",
+"Syphilis"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q154_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q154_1.webp",
+"width": 852,
+"height": 647,
+"sha256": "69433511edbaae849fdc472aa0079530a4c6850121a492bfdeabab04fbf32418"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 67,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q155",
+"number": 155,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_substance_related_and_addictive_disorders",
+"stem": "A 25-year-old male presented to the clinic with a complaint of the feeling of insects crawling under his skin. Which of the following drug abuse can cause the symptoms of this patient?",
+"options": [
+"Cannabis",
+"Cocaine",
+"Amphetamine",
+"Alcohol"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 67,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q156",
+"number": 156,
+"subjectId": "medicine",
+"topicId": "topic_3_endocrinology",
+"stem": "A mutation in the gene for aquaporin channel leads to which of the following conditions?",
+"options": [
+"Liddle’s syndrome",
+"Nephrogenic DI",
+"Cystic fibrosis",
+"Barter syndrome"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 68,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q157",
+"number": 157,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_mood_disorders",
+"stem": "A 60-year-old male who lost his wife 3 months back complains that his intestines have become rotten. He feels responsible for his wife’s death and should be sent to prison. He complains of feeling low all the time and has lost interest in daily activities since his wife’s death. What is the most likely diagnosis?",
+"options": [
+"Normal grief reaction",
+"Psychotic depression",
+"Delusional disorder",
+"Schizophrenia"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 68,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q158",
+"number": 158,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_chemotherapy_of_specific_microbial_diseases",
+"stem": "Voriconazole is not effective against which of the following?",
+"options": [
+"Candida albicans",
+"Mucormycosis",
+"Candida tropicalis",
+"Aspergillosis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 69,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q159",
+"number": 159,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_mood_disorders",
+"stem": "What is the treatment of choice for postpartum blues?",
+"options": [
+"Fluoxetine",
+"Cognitive behavioral therapy",
+"Lithium carbonate",
+"Support and Education"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 69,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q160",
+"number": 160,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_cardiology",
+"stem": "Which of the following is not a radiological finding in a patient with left heart failure?",
+"options": [
+"Kerley b lines",
+"Focal oligemia",
+"Increased venous blood in lung",
+"Change in upper lobe circulation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 69,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q161",
+"number": 161,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_respiratory_system",
+"stem": "A 30-year-old woman with a long history of dyspnea, chronic cough with sputum and wheezing died of respiratory failure following a bout of lobar pneumonia. She was not a smoker or an alcoholic. The lung at autopsy is shown in the image below. Which of the following is most likely to cause the pathological changes shown?",
+"options": [
+"Alpha-1- antitrypsin deficiency",
+"Cystic fibrosis",
+"Mutation in dynein arms",
+"Antibodies against type-IV collagen"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q161_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q161_1.webp",
+"width": 852,
+"height": 567,
+"sha256": "7c65f57d4646f3cb87570421b43132b94f6514eca288892aa20851bebf5e4271"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 70,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q162",
+"number": 162,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_renal_pharmacology",
+"stem": "A patient who was diagnosed with ADPKD was prescribed tolvaptan. After a few weeks, he presented with a dry mouth and increased thirst. What is the likely cause?",
+"options": [
+"Increased free water clearance",
+"V2 receptor agonism",
+"Increased renal cAMP levels",
+"Increase in urine osmolality"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 70,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q163",
+"number": 163,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_cardiology",
+"stem": "A 60 year old man presented with an episode of acute onset dizziness and loss of consciousness which lasted for a few seconds followed by a regain of full consciousness. There were no similar episodes in the past. Which of the following is a true statement regarding this scenario?",
+"options": [
+"ECG to rule out atrial fibrillation",
+"If ECG is normal, CT scan should be done",
+"Tilt-table testing",
+"Vestibular neuritis is a possible condition that can cause these symptoms"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 71,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q164",
+"number": 164,
+"subjectId": "anaesthesia",
+"topicId": "pyq_anaesthesia_pre_anaesthetic_evaluation",
+"stem": "Which of the following investigations provides the most accurate prognostic information with respect to predicting risk of perioperative cardiac complications?",
+"options": [
+"Exercise ECG testing",
+"Dobutamine stress echocardiography",
+"Myocardial perfusion scintigraphy",
+"Coronary angiography"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 71,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q166",
+"number": 166,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_respiratory_system",
+"stem": "A person develops headache and breathlessness on a trekking expedition following a rapid ascent to over 3000 meters above the sea level. Which of the following is not used in the treatment of this condition?",
+"options": [
+"IV digoxin",
+"Immediate descent",
+"Administration of oxygen",
+"Tablet acetazolamide"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 72,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q167",
+"number": 167,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_sleep_disorders",
+"stem": "A 25-year-old woman complains of a creepy crawling sensation in her legs. It is more at night and prevents her from sleeping. She is relieved of these symptoms by either walking or moving her legs. Which of the following drugs is used in treating the condition?",
+"options": [
+"Gabapentin",
+"Pramipexole",
+"Vitamin B12",
+"Iron tablets"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 73,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q168",
+"number": 168,
+"subjectId": "medicine",
+"topicId": "topic_3_endocrinology",
+"stem": "A 12-year-old child who is known to have type 1 diabetes mellitus presents with confusion and drowsiness. Her mother says that she seems to be breathing very fast. On examination, mucous membranes are dry and blood pressure is 70/50 mmHg. Random blood glucose is 415 mg/dl and urine ketones are 4+. What is the next best step in management?",
+"options": [
+"2-3 L of normal saline over 1-3 hours",
+"Insulin infusion at 0.1 units/kg/hour",
+"Arterial blood gas",
+"Insulin bolus of 0.1 units/kg given"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 73,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q169",
+"number": 169,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_gastrointestinal_radiology",
+"stem": "A 56-year-old female patient presented with progressive dysphagia for solids, loss of weight, and loss of appetite. A barium swallow done is given below. What is the most probable diagnosis?",
+"options": [
+"Carcinoma esophagus",
+"Diffuse esophageal spasm",
+"Esophageal leiomyoma",
+"Esophageal web"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q169_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q169_1.webp",
+"width": 940,
+"height": 1021,
+"sha256": "aae2667230c910a45fcbc6e66a871fd060037c6b9e0da03cfbcb14c9a4470879"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 74,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q170",
+"number": 170,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_endocrine_and_reproductive_system",
+"stem": "Prolactin level is highest during?",
+"options": [
+"24 hours after ovulation",
+"24 hours after delivery",
+"REM sleep",
+"After running four 1 hours"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 74,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q171",
+"number": 171,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_neurotic_stress_related_and_somatoform_disorders",
+"stem": "A first-year MBBS student came to OPD with intermittent episodes of a feeling of impending doom accompanied by intense perspiration. Usually, the attacks occur prior to her exams. What is the most likely diagnosis?",
+"options": [
+"Panic disorder",
+"Conversion disorder",
+"Social anxiety disorder",
+"Generalized anxiety disorder"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 75,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q172",
+"number": 172,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_thoracic_radiology",
+"stem": "A 30-year-old woman presented with hypertension, chest pain, and cramping of the legs. A chest radiograph was taken which revealed the condition as shown in the image below. What is the likely cause of hypertension in this patient?",
+"options": [
+"Coarctation of aorta",
+"Essential hypertension",
+"Aortic aneurysm",
+"Aorta-arteritis"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q172_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q172_1.webp",
+"width": 940,
+"height": 1208,
+"sha256": "3a366fdd57e113434fde90f4ab932469cad5a01441327d86c13c332f1a131915"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 75,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q173",
+"number": 173,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_endocrine_surgery",
+"stem": "Which of the following is true about the flap given in the image?",
+"options": [
+"Pedicled TRAM based on superior epigastric artery",
+"Free TRAM based on superior and inferior epigastric artery",
+"DIEP based on deep inferior epigastric artery",
+"Lower Abdominal Fat based inferior epigastric vessels"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2020-q173_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q173_1.webp",
+"width": 518,
+"height": 453,
+"sha256": "3fb0bdbf20f3eb2e8afd7ad2e5f757de1b1c57c4587e62f1478d2137e3ed2dae"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 76,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q174",
+"number": 174,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_gastrointestinal_radiology",
+"stem": "A 51 -year-old man complains of abdominal pain and blood-stained stools. The barium study of his intestines shows the following finding. What is the most likely diagnosis?",
+"options": [
+"Intussusception",
+"Volvulu",
+"Diverticulitis",
+"Ulcerative coliti"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q174_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q174_1.webp",
+"width": 940,
+"height": 429,
+"sha256": "61dcca001824b74f107685512e6d63f03b8b10fd8a6f407552a481da0fe104b8"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 77,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q175",
+"number": 175,
+"subjectId": "skin",
+"topicId": "pyq_skin_mycobacterial_infections",
+"stem": "Identify the drug used to treat the condition shown below:",
+"options": [
+"Anti-fungal therapy",
+"Anti-tubercular therapy",
+"Topical steroids therapy",
+"Anti-leprosy treatment"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q175_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q175_1.webp",
+"width": 940,
+"height": 940,
+"sha256": "0d1427ffde53ccd984eca51179b14155ab7241dc9f61e63aebdd4aad58ec13b1"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 78,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q176",
+"number": 176,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_cardiovascular_system",
+"stem": "C wave of JVP represents?",
+"options": [
+"Tricuspid bulge into right atrium during isovolumetric ventricular contraction",
+"Contraction of right atrium",
+"Passive filling of right atrium",
+"Passive emptying of right atrium"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 79,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q177",
+"number": 177,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_endocrine_surgery",
+"stem": "What is the most common site of gastrinoma in MEN 1 syndrome?",
+"options": [
+"Jejunum",
+"Ileum",
+"Duodenum",
+"Stomach"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 79,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q178",
+"number": 178,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_forensic_psychiatry",
+"stem": "What is the maximum period of voluntary self-admission under the Mental Healthcare Act 2017",
+"options": [
+"48 hours",
+"7 days",
+"30 days",
+"90 days"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 79,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q179",
+"number": 179,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_head_and_neck_imaging",
+"stem": "A cystic lesion in the suprasellar region with calcification is seen on the MRI. What is the most likely diagnosis?",
+"options": [
+"Craniopharyngioma",
+"Pituitary adenoma",
+"Meningioma",
+"Oligodendroglioma"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q179_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q179_1.webp",
+"width": 940,
+"height": 940,
+"sha256": "41ab352f8ce8fe8447dade2fd48d2a09fe1bdc3ce62c6ef807fbc6c0574563fb"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 80,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q180",
+"number": 180,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_obgy_imaging",
+"stem": "Personal monitoring of radiation is done by:",
+"options": [
+"TLD badge",
+"Collimators",
+"Linear accelerator",
+"Grid"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 80,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q181",
+"number": 181,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_sleep_disorders",
+"stem": "Identify the state of sleep based on EEG findings highlighted in red.",
+"options": [
+"Stage 1",
+"Stage 2",
+"Stage 3",
+"Stage 4"
+],
+"answer": 4,
+"images": [
+{
+"id": "pyq_neetpg2020-q181_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q181_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "83584d2ccc968aa0b3c9b34d27d8e1b0220656388cb724e76308f1916d65780d"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 81,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q182",
+"number": 182,
+"subjectId": "skin",
+"topicId": "pyq_skin_papulosquamous_disorders",
+"stem": "Identify the finding associated with the condition shown in the image below:",
+"options": [
+"Isomorphic phenomenon",
+"Meyerson phenomenon",
+"Gottron’s papule",
+"Nikolsky’s sign"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q182_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q182_1.webp",
+"width": 940,
+"height": 940,
+"sha256": "537098a2ac6b1ca660ac739a417fabab95f57cceaec73b340087315014f086c1"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 82,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q183",
+"number": 183,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_cardiothoracic_vascular_surgery",
+"stem": "A 50-year-old male who is a chronic smoker presented to the hospital with intermittent claudication pain of both thigh and buttock region on walking about 500 m. Which of the following is a likely diagnosis?",
+"options": [
+"Arterial disease involving the superficial femoral artery",
+"Arterial disease with aortoiliac involvement",
+"Femoral venous insufficiency",
+"Arterial disease involving the profunda femoris artery"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 82,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q184",
+"number": 184,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_mood_disorders",
+"stem": "A middle-aged female patient presents with a history of loss of interest in day-to-day activities, weight loss, insomnia, and sadness for six months. She also recalls hearing a voice once that ordered her to kill herself. What is the DSM-V diagnosis?",
+"options": [
+"Major depressive disorder with psychotic features",
+"Schizophrenia",
+"Schizoaffective disorder",
+"Delusional disorder"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 83,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q185",
+"number": 185,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_excretory_system",
+"stem": "The protein in the glomerular basement membrane responsible for charge-dependent filtration is?",
+"options": [
+"Fibronectin",
+"Heparan sulfate",
+"Collagen Type IV",
+"Entactin"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 83,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q186",
+"number": 186,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_endocrine_surgery",
+"stem": "Which of the following statements is true about retrosternal goitre?",
+"options": [
+"Operated in all patients regardless of symptoms",
+"Sternal incision is always required to operate",
+"It receives blood supply from the thoracodorsal artery",
+"Most of the retrosternal goiters can be removed by a neck incision"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 84,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q187",
+"number": 187,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_gastrointestinal_surgery",
+"stem": "While performing surgery on a patient who presented with clinical features suggestive of peritonitis, a diverticular perforation is seen along with fecal peritonitis. What is the Hinchey's stage?",
+"options": [
+"Stage 1",
+"Stage 2",
+"Stage 3",
+"Stage 4"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 84,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q188",
+"number": 188,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_hepatobiliary_pancreatic_surgery",
+"stem": "An 80-year-old woman presented with complaints of fatigue. On imaging, she was found to have a scleroatrophic gallbladder with impacted stones in it. A large stone was also present in the common bile duct and the biliary tree is dilated. What is the next step in management?",
+"options": [
+"Immediately take up patient for cholecystectomy",
+"Endoscopic retrograde cholangiopancreatography",
+"Wait and watch",
+"CT scan"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 84,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q189",
+"number": 189,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_musculoskeletal_radiology",
+"stem": "The appearance of USG at saphenofemoral junction, showing common femoral vein, common femoral artery and the great saphenous vein is called as:",
+"options": [
+"Mickey mouse sign",
+"String sign",
+"Tillaux sign",
+"Stamers sign"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 85,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q190",
+"number": 190,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_hepatobiliary_pancreatic_surgery",
+"stem": "A 35-year-old man presented with recurrent episodes of fever with chills. The MRCP image is shown below. What is the most likely diagnosis?",
+"options": [
+"Primary sclerosing cholangitis",
+"Caroli disease",
+"Oriental cholangitis",
+"Primary biliary carcinoma"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q190_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q190_1.webp",
+"width": 1280,
+"height": 1304,
+"sha256": "1e7fd3ddda948162c2e5891f6ae14b149f6a8185e93ab4778114dac8875e5fce"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 85,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q191",
+"number": 191,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_endocrine_surgery",
+"stem": "A 15-year-old boy undergoes bilateral adrenalectomy for pheochromocytoma. On the third postoperative day, the boy feels lethargic and tired. Blood pressure is 80/60 mm Hg, there is no sign of bleeding. What could be the cause of this?",
+"options": [
+"Addisonian crisis",
+"SIADH",
+"Diabetes insipidus",
+"Cerebral salt wasting disease"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 86,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q192",
+"number": 192,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_thoracic_radiology",
+"stem": "Plethoric lung fields are seen in?",
+"options": [
+"TAPVC",
+"Tricuspid atresia",
+"Ebstein anomaly",
+"TOF"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 86,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q193",
+"number": 193,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_cardiothoracic_vascular_surgery",
+"stem": "Which of the following is not a component of Thoracoscore?",
+"options": [
+"Performance status",
+"Complication of surgery",
+"ASA grading",
+"Priority of surgery"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 87,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q194",
+"number": 194,
+"subjectId": "skin",
+"topicId": "pyq_skin_cutaneous_infections",
+"stem": "Identify the finding shown in the image below:",
+"options": [
+"Herpes labialis",
+"Herpangina",
+"Molluscum contagiosum",
+"Impetigo"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 87,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q195",
+"number": 195,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_head_and_neck_imaging",
+"stem": "A patient complains of neck stiffness and severe headache. The CT image shown below is suggestive of which of the following conditions?",
+"options": [
+"Meningitis",
+"Subarachnoid hemorrhage",
+"Intraparenchymal hemorrhage",
+"Hemorrhagic stroke"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q195_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q195_1.webp",
+"width": 940,
+"height": 1096,
+"sha256": "f4416efa8883c5f8ff1ed76bc579b60fe2da0c5f76c321cb6cc89de9ea7697a4"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 88,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q196",
+"number": 196,
+"subjectId": "skin",
+"topicId": "pyq_skin_miscellaneous_disorders",
+"stem": "Which of the following drugs used as nail lacquer belongs to morpholines?",
+"options": [
+"Amorolfine",
+"Oxiconazole",
+"Ciclopirox olamine",
+"Tioconazole"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 89,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q197",
+"number": 197,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_gastrointestinal_surgery",
+"stem": "A middle-aged man presented to the emergency department with upper abdominal pain after having a heavy meal. On clinical examination, upper abdominal tenderness was noted. On chest radiography widening of the mediastinum with pneumomediastinum was seen. What is the probable diagnosis?",
+"options": [
+"Spontaneous perforation of esophagus",
+"Perforation of peptic ulcer",
+"Foreign body in esophagus",
+"Rupture of emphysematous bulla of lung"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 89,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q198",
+"number": 198,
+"subjectId": "skin",
+"topicId": "pyq_skin_skin_appendages_and_their_disorders",
+"stem": "A child was born with membranes around the body and had ectropion and eclabium. He is brought to the OPD with lesions covering his face, trunk, and extremities. Which of the following is an unlikely diagnosis?",
+"options": [
+"Icthyosis vulgaris",
+"Lamellar ichthyosis",
+"Bathing suit ichthyosis",
+"Harlequin ichthyosis"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q198_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q198_1.webp",
+"width": 940,
+"height": 940,
+"sha256": "a7b7dc0776067cff96f8669c1fa443cdf653ca07c80b9d31e62d1376b663028c"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 90,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q199",
+"number": 199,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_gastrointestinal_surgery",
+"stem": "A 32-year-old male was diagnosed with achalasia cardia. High-resolution manometry revealed massive, simultaneous, high-pressure contractions of the distal oesophagus. According to the Chicago classification, the patient has which type of achalasia?",
+"options": [
+"Type II",
+"Type I",
+"Type IV",
+"Type Ill"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 91,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q200",
+"number": 200,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_blood_physiology",
+"stem": "Which of the following clotting factors would have decreased gamma carboxyglutamate residue in patients on warfarin therapy?",
+"options": [
+"Factor 2",
+"Factor 11",
+"Tissue factor",
+"Factor 5"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 91,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q201",
+"number": 201,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_urology",
+"stem": "Identify the investigation and the lesion depicted in the image given below.",
+"options": [
+"Retrograde cystourethrogram with membranous urethra stricture",
+"Retrograde cystourethrogram with penile urethral stricture",
+"Micturating cystourethrography with bulbar stricture",
+"Micturating cystourethrography with prostatic urethra stricture"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q201_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q201_1.webp",
+"width": 394,
+"height": 390,
+"sha256": "67f5a3ee88b87648098abc7cc39c234de2b63ef3884fbdc85005ec68a6c390c9"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 91,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q202",
+"number": 202,
+"subjectId": "anaesthesia",
+"topicId": "pyq_anaesthesia_monitoring_in_anesthesia",
+"stem": "A capnograph obtained from an intubated patient undergoing controlled ventilation is given below. Which of the following is a likely cause of the finding seen?",
+"options": [
+"Esophageal intubation",
+"Inspiration with cardiac oscillations",
+"Bronchospasm",
+"Spontaneous respiratory effort"
+],
+"answer": 4,
+"images": [
+{
+"id": "pyq_neetpg2020-q202_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q202_1.webp",
+"width": 940,
+"height": 425,
+"sha256": "f6c3aaf803c9377d57672dd884ef13afde06da0fb90c1b903e54d1bbac0d7479"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 92,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q203",
+"number": 203,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_cardiothoracic_vascular_surgery",
+"stem": "According to the TNM staging, a patient with lung cancer of size 2.5 cm is staged as",
+"options": [
+"T1b",
+"T1c",
+"T2a",
+"T1a"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 93,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q204",
+"number": 204,
+"subjectId": "anaesthesia",
+"topicId": "pyq_anaesthesia_monitoring_in_anesthesia",
+"stem": "A 50-year-old patient with a history of hypertension and diabetes mellitus developed the following rhythm. His blood pressure was 90/40 mm Hg and he had a feeble pulse. What is the next step of management?",
+"options": [
+"IV adenosine",
+"IV diltiazem",
+"DC cardioversion",
+"Ibutilide"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2020-q204_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q204_1.webp",
+"width": 940,
+"height": 408,
+"sha256": "2f8e601ba4e794278c7f7514a20278f1e95ab7e9b4fc3b89d10c64f81bc5b855"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 93,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q205",
+"number": 205,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_urology",
+"stem": "Which of the following should be the treatment of choice for renal cell carcinoma with tumor less than 4 cm in size?",
+"options": [
+"Partial nephrectomy",
+"Partial nephrectomy + neoadjuvant chemotherapy",
+"Radical nephrectomy",
+"Radical nephrectomy + postoperative radiotherapy"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 94,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q206",
+"number": 206,
+"subjectId": "anaesthesia",
+"topicId": "pyq_anaesthesia_neuromuscular_blockade",
+"stem": "A patient is given a nicotinic receptor antagonist as a muscle relaxant. Which drug is given postoperatively to recover from muscle weakness?",
+"options": [
+"Physostigmine",
+"Neostigmine",
+"Carbachol",
+"Succinylcholine"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 94,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q207",
+"number": 207,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_others",
+"stem": "A 38-year-old man was brought to the emergency department after suffering a stab injury to the lower chest. On presentation, he had bradycardia and hypotension which did not improve despite IV fluid administration. Chest radiography showed clear lung fields. What is the next step in management?",
+"options": [
+"eFAST",
+"Tube thoracostomy",
+"CECT chest",
+"CECT abdomen"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 95,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q208",
+"number": 208,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_urology",
+"stem": "A man was brought to the emergency department after he fell into a manhole and injured his perineum. He gets an urge to micturate but is unable to urinate. On examination, blood was seen at the tip of the urethra, and swelling of the penis and scrotum was seen. What is the site of injury?",
+"options": [
+"Membranous urethra rupture",
+"Bulbar urethra injury",
+"Prostatic urethra injury",
+"Urinary bladder rupture"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 95,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q209",
+"number": 209,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_hepatobiliary_pancreatic_surgery",
+"stem": "A 5-year-old child with Wilson's disease is being considered for liver transplantation. Which of the following is not a parameter in the selection criteria for transplantation?",
+"options": [
+"Age < 10 years",
+"PT > 100 s",
+"Bilirubin > 300 ìmol/L",
+"Jaundice less than 7 days before development of encephalopathy"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 96,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q210",
+"number": 210,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_endocrine_and_reproductive_system",
+"stem": "Which of the following conditions would have the highest levels of ACTH and cortisol?",
+"options": [
+"Early morning",
+"Normal individuals with dexamethasone administration",
+"Addison’s disease",
+"Cushing’s disease"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 96,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q211",
+"number": 211,
+"subjectId": "microbiology",
+"topicId": "topic_125_mycology",
+"stem": "A 35-year-old HIV-positive patient presents with mucosal lesions in the mouth as shown in the image below. On microscopy , bugging yeasts and pseudohyphae are seen. What is the likely diagnosis?",
+"options": [
+"Oral candidiasis",
+"Hairy leukoplakia",
+"Lichen planus",
+"Diphtheria"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q211_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q211_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "cdea6084aeece3b29edbb3f9622734f098eef8e933b41cc3652eb4f8c2a244cd"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 96,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q212",
+"number": 212,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_hepatobiliary_pancreatic_surgery",
+"stem": "The most common neuroendocrine tumor of the pancreas is?",
+"options": [
+"Gastrinoma",
+"Somatostatinoma",
+"Insulinoma",
+"VIPoma"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 97,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q213",
+"number": 213,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_virology",
+"stem": "Zika virus is transmitted by:",
+"options": [
+"Aedes aegypti",
+"Culex",
+"Anopheles",
+"Phlebotomus papatasii"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 97,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q214",
+"number": 214,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_others",
+"stem": "ASEPSIS wound scoring takes all of the following into consideration except:",
+"options": [
+"Wound swab from the site",
+"Serous discharge",
+"Erythema",
+"Induration"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 98,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q215",
+"number": 215,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_allied_health_disciplines",
+"stem": "Sharp waste is disposed in?",
+"options": [
+"Yellow bag",
+"Red bag",
+"Blue bag",
+"White bag"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 98,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q216",
+"number": 216,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_parasitology",
+"stem": "Which of the following organisms causes disease following traumatic inoculation into the skin?",
+"options": [
+"Sporothrix schenckii",
+"Blastomyces dermatitidis",
+"Coccidioides immitis",
+"Paracoccidioides brasiliensis"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 98,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q217",
+"number": 217,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_miscellaneous",
+"stem": "Which method of measurement of scoliosis has been depicted in the image given below?",
+"options": [
+"Cobb’s angle",
+"Bohler’s angle",
+"Ferguson angle",
+"Bauman’s angle"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q217_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q217_1.webp",
+"width": 1113,
+"height": 1600,
+"sha256": "43cc10cd657908a2f750d4023d5cb1ff8181a203bfe5229b92a0c3bda00aff4b"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 99,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q218",
+"number": 218,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_endocrine_surgery",
+"stem": "A patient comes with long-standing non-pitting edema in the legs. What is the most probable cause?",
+"options": [
+"Lymphedema",
+"Arterial Disorders",
+"Venous Disorders",
+"Coronary heart disease"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 99,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q219",
+"number": 219,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_allied_health_disciplines",
+"stem": "According to the Factories Act 1948, what is the maximum work hours per week including overtime work hours?",
+"options": [
+"48 hours",
+"72 hours",
+"60 hours",
+"66 hours"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 100,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q220",
+"number": 220,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_orthopedics_oncology",
+"stem": "A 30-year-old woman developed a tumor at the knee joint. Biopsy-image is given below. What is the most likely condition?",
+"options": [
+"Osteosarcoma",
+"Ewing’s Sarcoma",
+"Giant cell tumour",
+"Osteoblastoma"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2020-q220_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q220_1.webp",
+"width": 1280,
+"height": 863,
+"sha256": "d622646d4e82970181224fcd50d611a1f7b7eeb2baac0b7413f3999f8ba01d46"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 100,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q221",
+"number": 221,
+"subjectId": "microbiology",
+"topicId": "topic_119_immunology",
+"stem": "Identify the class of immunoglobulin shown in the image below.",
+"options": [
+"Ig A",
+"Ig G",
+"Ig M",
+"Ig E"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q221_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q221_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "788663e384673c6fc8c372774e541ab6f7a902b215922208e1c2aaff70b8d835"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 101,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q222",
+"number": 222,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_others",
+"stem": "A 41-year-old female patient presented with a tortuous swelling over the left side of the scalp and face as shown in the image given below. On local examination, the swelling was pulsatile. On auscultation, a bruit was heard. Which of the following is the most likely diagnosis?",
+"options": [
+"Neurofibromatosis",
+"Liposarcoma",
+"Cirsoid Aneurysm",
+"Varicocele"
+],
+"answer": 3,
+"images": [
+{
+"id": "pyq_neetpg2020-q222_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q222_1.webp",
+"width": 253,
+"height": 290,
+"sha256": "12142af8220875bb2f00f03e623cc5a624d9175f375ce77ea0885b0ea0f43e47"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 102,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q223",
+"number": 223,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_gastrointestinal_system",
+"stem": "Following complete ileal partial jejunal resection, the patient is most likely to have?",
+"options": [
+"Folic acid deficiency",
+"Vitamin B12 deficiency",
+"Gastric ulcer",
+"Constipation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 103,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q224",
+"number": 224,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_screening_of_diseases",
+"stem": "Which of the following is an example of prospective screening?",
+"options": [
+"Cervical Pap smear in a 40-year-old patient",
+"Neonatal screening of a new-born baby for hypothyroidism",
+"Screening of immigrants to a country",
+"Urine for sugar screening in a 40-year-old man"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 103,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q225",
+"number": 225,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "A 14-year-old boy presents with a history of vomiting within 3 hours of consumption of food at a party. Which of the following organism is most likely to cause these symptoms",
+"options": [
+"Staphylococcus aureus",
+"Clostridium botulinum",
+"Clostridium perfringes",
+"Salmonella typhi"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 104,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q226",
+"number": 226,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_metabolic_disorders",
+"stem": "A 55 year old female complains of lower backache. The radiographic image of her lumbosacral spine is given below. What is the probable diagnosis?",
+"options": [
+"Osteoporosis",
+"Ankylosing spondylitis",
+"Osteomalacia",
+"Renal osteodystrophy"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q226_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q226_1.webp",
+"width": 748,
+"height": 1600,
+"sha256": "ad9f692249ece5e9114e009c0dd1b700d3889ed8cc8abf619e8f1ceb47dabede"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 104,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q227",
+"number": 227,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_head_and_neck",
+"stem": "What does the given barium swallow film show?",
+"options": [
+"Aortic aneurysm",
+"Pharyngeal pouch",
+"Carotid body tumor",
+"Esophageal carcinoma"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q227_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q227_1.webp",
+"width": 686,
+"height": 769,
+"sha256": "0dbce7c18f949f18205ca301de5f8479e458fb7c221be89a4c3d4b25199edab3"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 105,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q228",
+"number": 228,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_health_planning_and_management",
+"stem": "The monetary benefit is measured in which of the following analyses?",
+"options": [
+"Cost-effective analysis",
+"Cost-benefit analysis",
+"Network analysis",
+"Input-Output analysis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 106,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q229",
+"number": 229,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "Which of the following organism produces superantigen?",
+"options": [
+"Staphylococcus epidermidis",
+"Streptococcus pyogenes",
+"Clostridium perfringens",
+"Vibrio cholera"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 107,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q230",
+"number": 230,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_neuro_anatomy",
+"stem": "Identify the cell marked in the histological image of the cerebellum shown below:",
+"options": [
+"Purkinje cells",
+"Basket cells",
+"Golgi cells",
+"Granule cell"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q230_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q230_1.webp",
+"width": 1280,
+"height": 1297,
+"sha256": "f81df292f99427608ac123815440609f450821d26b82bb257549b71f38766a7e"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 107,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q231",
+"number": 231,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_parasitology",
+"stem": "A female patient who is from the north-eastern part of the country came to the hospital with complaints of progressive swelling of the upper limb. She has a history of coronary artery disease for which she underwent percutaneous coronary intervention. On examination, the limbs are more swollen proximally than distally. What is the next best step in the management of this patient?",
+"options": [
+"Echocardiography",
+"Night blood test for worms",
+"Duplex venous scan of limbs",
+"ECG"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 108,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q232",
+"number": 232,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_cardiothoracic_vascular_surgery",
+"stem": "True statement about intermittent claudication:",
+"options": [
+"Felt at rest",
+"Most commonly felt in the calf muscles",
+"Day to day distance is variable",
+"Relived after getting out of bed"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 108,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q233",
+"number": 233,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_parasitology",
+"stem": "Which of the following helminthic infections that is commonly transmitted by soil, is characterized by the egg in stool as shown in the image below?",
+"options": [
+"Trichuris trichiura",
+"Ancyclostoma duodenale",
+"Necator americanus",
+"Ascaris lumbricoides"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q233_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q233_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "befad0fe30e22aedab96127d7bdc34b35bb83c508d90dd30ee46dcf291d9d28c"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 109,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q234",
+"number": 234,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_back_region",
+"stem": "The muscle marked by the arrow in the image below is innervated by the :",
+"options": [
+"Dorsal scapular nerve",
+"Suprascapular nerve",
+"From the dorsal rami of C1",
+"Subscapular nerve"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q234_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q234_1.webp",
+"width": 805,
+"height": 1600,
+"sha256": "4008dc7d927355af93a290dbcee7c24fc21ddd8af0be3c86d98e4a025ccb47a9"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 109,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q235",
+"number": 235,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_others",
+"stem": "Which of the following is not a part of the primary survey?",
+"options": [
+"Measuring blood pressure",
+"Removing clothes to inspect for wounds",
+"Taking CT scan of the patient",
+"Checking airway patency"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 110,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q236",
+"number": 236,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "A 30-year-old female from tribal area presented with fever for the last 3 days. On examination of the peripheral smear, a diagnosis of malaria was made. Which of the following is most likely to be the causative agent?",
+"options": [
+"P. falciparum",
+"P. malariae",
+"P. ovale",
+"P. vivax"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q236_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q236_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "7ca6b73e04e9f98474ee4610e1ced59f23bdffc4a945ea660d5e605b6811b0a8"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 111,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q237",
+"number": 237,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_thorax",
+"stem": "The type of joint marked in the image below is:",
+"options": [
+"Syndesmosis",
+"Synarthrosis",
+"Synchondrosis",
+"Synovial"
+],
+"answer": 4,
+"images": [
+{
+"id": "pyq_neetpg2020-q237_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q237_1.webp",
+"width": 1280,
+"height": 922,
+"sha256": "5a8eb193a5ea916d3e0dfe3c5dc6cf5688156b602526d3042489678f0750c7e9"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 111,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q238",
+"number": 238,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_communicable_and_non_communicable_diseases",
+"stem": "A 24-month-old child weighing 11 kg was brought to the pediatric OPD. He had a respiratory rate of 38/min. On examination, chest indrawing was observed. What is the next step of management?",
+"options": [
+"Oral amoxicillin for five days",
+"Urgent referral tthe tertiary care centre immediately",
+"Administer IV antibiotics and ask the patient to be brought after 24 hours",
+"Start antipyretics urgently"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 112,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q239",
+"number": 239,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_cardiothoracic_vascular_surgery",
+"stem": "A 50-year-old male patient, during his routine annual checkup, is found to have an abdominal aortic aneurysm measuring 40 mm in diameter on USG. Which of the following is true about the management of this patient?",
+"options": [
+"Urgent endovascular aneurysm repair",
+"Surgery is indicated if aneurysmal diameter is > 55mm",
+"Urgently wheel the patient to OT for surgery",
+"Surgery is indicated only if aneurysm is > 77mm"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 112,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q240",
+"number": 240,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_histology",
+"stem": "Identify the type of cartilage shown in the image below:",
+"options": [
+"Hyaline cartilage",
+"Elastic cartilage",
+"Articular cartilage",
+"Fibrocartilage"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q240_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q240_1.webp",
+"width": 1280,
+"height": 882,
+"sha256": "03c44d314a8e4ce80a10b359757060e6945134fd96e228bc828cdedbe6c0989e"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 113,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q241",
+"number": 241,
+"subjectId": "microbiology",
+"topicId": "topic_119_immunology",
+"stem": "The test kit shown in the image below works on the principle of:",
+"options": [
+"ELISA",
+"Immunochromatography",
+"Immunofluroscence",
+"Chemiluminiscence"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q241_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q241_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "eca74f9c7471644a04bfdb3a62271a523df68ccbfb27aacad17415d6be4b375f"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 113,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q242",
+"number": 242,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_allied_health_disciplines",
+"stem": "An employee diagnosed with TB gets extended sickness benefit for?",
+"options": [
+"1 year",
+"2 years",
+"3 years",
+"4 years"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 114,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q243",
+"number": 243,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "A 22-year-old presented with high-grade fever, and purpuric rash as shown in the image below. CSF sample shows gram-negative diplococcic. When of the following is the most likely aetiology?",
+"options": [
+"Neisseria meningitidis",
+"Pseudomonas aeruginosa",
+"Streptococcus pneumoniae",
+"E.coli"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q243_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q243_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "81c2f100476d26d5313a93d547340061deb427c2e1719e6368da4d506fbeb64e"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 114,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q244",
+"number": 244,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_endocrine_surgery",
+"stem": "Which of the following is the Miami criteria for intraoperative parathyroid hormone (PTH) measurement?",
+"options": [
+"Quarter fall in 5 min",
+"Quarter fall in 10 min",
+"Half fall in 5 min",
+"Half fall in 10 min"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 115,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q245",
+"number": 245,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_allied_health_disciplines",
+"stem": "Chemical waste is disposed in____ bags.",
+"options": [
+"Yellow",
+"White",
+"Red",
+"Green"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 116,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q246",
+"number": 246,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_parasitology",
+"stem": "Which of the following is the predominant pathogen to infect the renal transplant recipients in the period around 1 to 4 months following the transplantation?",
+"options": [
+"Cytomegalovirus",
+"JC virus",
+"BK virus",
+"Epstein-Barr virus"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 116,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q247",
+"number": 247,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_amino_acids_and_proteins_chemistry",
+"stem": "Which of the following is true about the structural organization of proteins?",
+"options": [
+"Tertiary structure is three-dimensional",
+"Primary, secondary, and tertiary structures are destroyed by denaturation",
+"The secondary structure is stabilized by disulfide bonds",
+"The secondary and tertiary structure depends upon amino acid sequence"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 117,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q248",
+"number": 248,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_health_planning_and_management",
+"stem": "Which of the following techniques is based on behavioral sciences?",
+"options": [
+"Decision making",
+"Systems analysis",
+"Network analysis",
+"Management by objective"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 117,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q249",
+"number": 249,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_general_microbiology",
+"stem": "Which of the following is not true about Japanese encephalitis?",
+"options": [
+"Transmitted by Culex vishnui",
+"Pig is the amplifier host",
+"Man acts as the reservoir",
+"Vaccinating pigs is helpful in disease control"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 117,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q250",
+"number": 250,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_biostatistics",
+"stem": "A study was done to assess nutritional status among young children in rural and urban areas. 30 children in rural and 20 children in urban areas were malnourished. Which of the following tests of significance is the most appropriate in this case?",
+"options": [
+"Chi Square test",
+"Paired T test",
+"Standard error of the mean",
+"ANOVA"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 118,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q251",
+"number": 251,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "topic_91_epidemiology",
+"stem": "In Sustainable Development Goal 3, the target 3.1 aims to reduce the Maternal Mortality Ratio by 2030 to_____ (per 1 lakh live births)?",
+"options": [
+"<70",
+"< 100",
+"< 50",
+"<130"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 118,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q252",
+"number": 252,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_communicable_and_non_communicable_diseases",
+"stem": "As per NCEP- ATP III, which of the following is not a criterion for metabolic syndrome?",
+"options": [
+"Hypertriglyceridemia",
+"High LDL",
+"Central obesity",
+"Hypertension"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 118,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q253",
+"number": 253,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "Which of the following helps in bacterial adhesion?",
+"options": [
+"Cytoplasmic membrane",
+"Mesosomes",
+"Fimbriae",
+"Lipopolysaccharides"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 119,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q254",
+"number": 254,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "Which of the following is not involved in urethritis?",
+"options": [
+"Trichomonas",
+"Chlamydia",
+"Gonococcus",
+"H. ducreyi"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 119,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q255",
+"number": 255,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_parasitology",
+"stem": "A 30-year-old HIV-positive patient presented with a chronic history of watery diarrhea. Histopathology of the duodenum is shown in the image below. Which of the following is the causative organisms?",
+"options": [
+"Giardia lamblia",
+"Entamoeba histolytica",
+"Microsporidia",
+"Cryptosopridia"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q255_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q255_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "0f70b7cffbb67ffbbcd0005ef011df3fb76fed73d61ec7b32898ca7d71e44e7f"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 119,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q256",
+"number": 256,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_biostatistics",
+"stem": "In a population study, the value of the mean is 200. If the standard deviation is 20, 68% of the population will lie between?",
+"options": [
+"180-220",
+"160-240",
+"170- 230",
+"190-210"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 120,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q257",
+"number": 257,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_communicable_and_non_communicable_diseases",
+"stem": "A patient comes with a history of clean-cut injury which is not lacerated. He says that he received his last dose of tetanus vaccination about 10 years ago. What should be given next?",
+"options": [
+"Full course of tetanus vaccination",
+"Single dose tetanus toxoid",
+"Tetanus toxoid + immunoglobulin",
+"Non vaccination needed"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 121,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q258",
+"number": 258,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_allied_health_disciplines",
+"stem": "Which of the following is disposed in the yellow bag?",
+"options": [
+"Blood bag",
+"Gloves",
+"Sharps",
+"Urine bag"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 121,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q259",
+"number": 259,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_biostatistics",
+"stem": "The variation in a data set is compared with that of another data set using?",
+"options": [
+"Variance",
+"Coefficient of variation",
+"Standard error of mean",
+"Standard deviation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 121,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q260",
+"number": 260,
+"subjectId": "microbiology",
+"topicId": "topic_125_mycology",
+"stem": "What is the drug of choice for invasive pulmonary aspergillosis?",
+"options": [
+"Itraconazole",
+"Voriconazole",
+"Lyophylised Amphotericin B",
+"Posaconazole"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 122,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q261",
+"number": 261,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_biostatistics",
+"stem": "Calculating one variable using another variable is done by",
+"options": [
+"Coefficient of correlation",
+"Coefficient of Regression",
+"Coefficient of variation",
+"Coefficient of determination"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 122,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q262",
+"number": 262,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_communicable_and_non_communicable_diseases",
+"stem": "Pandemic that occurred in 2009 was due to which influenza virus?",
+"options": [
+"H1N1",
+"H5N1",
+"H5N7",
+"H3N2"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 122,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q263",
+"number": 263,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_respiratory_system",
+"stem": "Respiratory distress syndrome is due to defective?",
+"options": [
+"Type 1 pneumocytes",
+"Type 2 pneumocytes",
+"Alveolar capillary endothelial cells",
+"Bronchial mucosal epithelial cells"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 123,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q264",
+"number": 264,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_environment_and_health",
+"stem": "The best indicators for routine monitoring of air pollution are?",
+"options": [
+"Sulfur dioxide, smoke, and suspended particles",
+"Sulfur dioxide, lead, and particulate matter",
+"Sulfur dioxide and carbon monoxide",
+"Carbon monoxide and hydrogen sulfide"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 123,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": true
+},
+{
+"id": "neetpg2020-q265",
+"number": 265,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "topic_91_epidemiology",
+"stem": "The difference between the incidence of disease among exposed and incidence among non-exposed is given by which of the following variables?",
+"options": [
+"Relative risk",
+"Attributable risk",
+"Population Attributable risk",
+"Odds Ratio"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 123,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q266",
+"number": 266,
+"subjectId": "anatomy",
+"topicId": "topic_0_upper_limb",
+"stem": "A 30 years female patient is presenting with wrist pain on lateral side. On examination the following test was positive. Tendon sheaths of which two muscle have been involved",
+"options": [
+"Abductor poliicis longus and extensor pollicis brevis",
+"Abductor pollicis longus and extensor pollicis longus",
+"Abductor pollicis brevis and extensor pollicis brevis",
+"Abductor pollicis brevis and extensor pollicis longus"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q266_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q266_1.webp",
+"width": 136,
+"height": 105,
+"sha256": "3e5c72eb4eade5500d0576fb18298c1fa86bfcf25a9607c3893d56d05d0a6af6"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 124,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q267",
+"number": 267,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "topic_91_epidemiology",
+"stem": "A person wants to study about the relationship between smoking and lung cancer, so he collects data about people diseased with lung cancer from government hospitals and the number of cigarette packets sold at the same time period. Which type of study is this?",
+"options": [
+"Cross sectional",
+"Ecological",
+"Experimental",
+"Quasi-experimental"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 124,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q268",
+"number": 268,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_communicable_and_non_communicable_diseases",
+"stem": "Project MONICA is related to?",
+"options": [
+"Cardiovascular diseases",
+"Cervical Cancer",
+"Breast Cancer",
+"Road Traffic Accidents"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 125,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q269",
+"number": 269,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "Which of the following culture media is used to differentiate other E.coli species from E.coli O157:H7?",
+"options": [
+"Mannitol salt agar",
+"Xylose lysine deoxycholate agar",
+"Sorbitol MacConkey agar",
+"CLED medium"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 125,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q270",
+"number": 270,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_carbohydrate_chemistry",
+"stem": "Which absorbs least water?",
+"options": [
+"Mucilage",
+"Cellulose",
+"Gums",
+"Pectin"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 126,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q271",
+"number": 271,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_allied_health_disciplines",
+"stem": "Which of the following compounds is predominantly responsible for the disinfecting property of bleaching powder?",
+"options": [
+"Hypochlorite ion",
+"Hydrochloric acid",
+"Hypochlorous acid",
+"Chloride ion"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 126,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q272",
+"number": 272,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "A 5 year old boy was suffering from low grade fever, inspiratory stridor and barking cough for past 5 days. His chest X-ray is given below. What is the cause of this condition?",
+"options": [
+"Moraxella",
+"Parainfulenza",
+"Hemophilus influenza",
+"Staphylococcus aureus"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q272_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q272_1.webp",
+"width": 519,
+"height": 516,
+"sha256": "122842529b2cac4595441e760e305448159b3393daa9cbd0d78fd98fd111c05a"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 126,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q273",
+"number": 273,
+"subjectId": "biochemistry",
+"topicId": "topic_54_vitamins",
+"stem": "A 30-year-old woman presented with complaints of easy fatigability, exertional dyspnea and weight loss. She also has a complaint of frequent fall. Physical examination revealed there was bilateral decrease in vibration sense. Her hemoglobin levels were 8.2 g% with high MCV. She was treated with folate. Her anemia improved but neurological symptoms worsened. Which of the following is the most probable reason for her condition?",
+"options": [
+"Folate is not well absorbed",
+"Folic acid therapy unmasked pyridoxine deficiency",
+"Deficiency of folate reductase in CNS",
+"Folate therapy caused rapid use of vitamin B12 stores aggravating symptoms"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 127,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q274",
+"number": 274,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology",
+"stem": "Which of the following is a bioterrorism category A agent?",
+"options": [
+"Nipah virus",
+"Anthrax",
+"Coxiella",
+"Brucella"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 128,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q275",
+"number": 275,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_vaccines_and_cold_chain",
+"stem": "Vaccine protocol followed after Disaster",
+"options": [
+"Everyone is given diphtheria",
+"Everyone is given tetanus toxoid",
+"Everyone is given cholera vaccine",
+"Only the health worker given cholera, typhoid, tetanus toxoid"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 128,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q276",
+"number": 276,
+"subjectId": "ent",
+"topicId": "pyq_ent_larynx",
+"stem": "A 2 yrs old child presented with following x- ray finding. What is the moslt likely diagnosis?",
+"options": [
+"Acute laryngotracheobronchitis",
+"Acute epiglottitis",
+"Acute pharyngitis",
+"Parapharyngeal abscess"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q276_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q276_1.webp",
+"width": 165,
+"height": 184,
+"sha256": "be4ff21b5bd7080600a9e8e7e022f4e7eabda69b4d421a49f5b193640ee1f665"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 129,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q277",
+"number": 277,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_forensic_toxicology",
+"stem": "Which of the following poison can be found even in skeletonized remains of the body?",
+"options": [
+"Arsenic",
+"Carbon monoxide",
+"Hydrogen sulphide",
+"Phoshorus"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 129,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q278",
+"number": 278,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_forensic_thanatology",
+"stem": "A child who is a victim under the POCSO Act is brought to the Department of forensic medicine for age estimation. The X-ray image of the hand is shown below. What is the likely age of the child?",
+"options": [
+"4 years",
+"7 years",
+"10 years",
+"13 years"
+],
+"answer": 4,
+"images": [
+{
+"id": "pyq_neetpg2020-q278_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q278_1.webp",
+"width": 550,
+"height": 758,
+"sha256": "59e5792e55777bed1a622ed28e7af77b4e4f2d12b5bff2cd49c954c89bd2013a"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 129,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q279",
+"number": 279,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_biostatistics",
+"stem": "What does correlation co-efficient of less than 0.5 indicate:",
+"options": [
+"Confidence interval of 95%",
+"Weak correlation",
+"Not statistically significant",
+"Strong correlation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 130,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q280",
+"number": 280,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_endocrine_and_reproductive_system",
+"stem": "Which of the following hormones use receptor tyrosine kinase signaling?",
+"options": [
+"Insulin",
+"TSH",
+"TRH",
+"MSH"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 131,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q281",
+"number": 281,
+"subjectId": "pathology",
+"topicId": "pyq_pathology_blood_banking_and_transfusion_medicine",
+"stem": "Why is blood stored in citrate-phosphate-dextrose preferred over- acid-citrate-dextrose for hypoxic patients?",
+"options": [
+"It has less P50",
+"It is less acidic",
+"The fall in 2,3 DBG is less",
+"None of the above"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 131,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q282",
+"number": 282,
+"subjectId": "physiology",
+"topicId": "topic_31_nervous_system",
+"stem": "What is the site of lesion in Wernicke’s hemianopic pupil?",
+"options": [
+"Optic nerve",
+"Optic tract",
+"Optic radiation",
+"Optic chiasma"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 131,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q283",
+"number": 283,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_gastrointestinal_system",
+"stem": "In which of the following reflexes, gastric emptying is delayed when acidic content enters the duodenum?",
+"options": [
+"Gastrocolic",
+"Enterocolic",
+"Gastroileal reflex",
+"Enterogastric"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 132,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q284",
+"number": 284,
+"subjectId": "physiology",
+"topicId": "topic_31_nervous_system",
+"stem": "A lady presents with vascular injury to the inferior frontal gyrus. Which functional area is likely to be affected?",
+"options": [
+"Motor speech area",
+"Wernicke’s area",
+"Auditory area",
+"Visual area"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 132,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q285",
+"number": 285,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_forensic_thanatology",
+"stem": "In a dead body, bloating of face, tongue protrusions were noted along with the findings in the image. Identify the phenomenon:",
+"options": [
+"Electrocution",
+"Crocodile burns",
+"Scalds",
+"Putrefaction"
+],
+"answer": 4,
+"images": [
+{
+"id": "pyq_neetpg2020-q285_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q285_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "c261931a023ea1295051a70aa03b98cce0ef1faea61d1631786fe8ccc435c0e3"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 132,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q286",
+"number": 286,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_nephrology___kidney_disease",
+"stem": "Which of the following is associated with pauci-immune glomerulonephritis?",
+"options": [
+"SLE nephritis",
+"Anti-GBM glomerulonephritis",
+"IgA nephropathy",
+"Granulomatosis with polyangiitis (GPA)"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 133,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q287",
+"number": 287,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_emergency_medicine",
+"stem": "At a high altitude of 3000m, a person complains of breathlesness. All of the following can be used for management of this person except",
+"options": [
+"Intravenous digoxin",
+"Oxygen supplementation",
+"Immediate descent",
+"Acetazolamide"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 134,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q288",
+"number": 288,
+"subjectId": "medicine",
+"topicId": "pyq_medicine_neurology",
+"stem": "Lesion producing incongruous homonymous hemianopia with wernicke’s pupil?",
+"options": [
+"Optic tract",
+"Visual cortex",
+"Optic radiations",
+"Optic nerve"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 134,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q289",
+"number": 289,
+"subjectId": "physiology",
+"topicId": "topic_31_nervous_system",
+"stem": "A man falls into a deep sleep with one arm under his head. He finds he is not able to move this arm when he awakens. However, it tingles and pain sensation in the arm is still intact. What is the reason for the loss of motor function without loss of pain sensation is that in the nerves to his arm?",
+"options": [
+"Fibers are more susceptible to pressure than A fibers",
+"Fibers are more sensitive to pressure than C fibers",
+"Fibers are less sensitive to pressure than A fibers",
+"Motor nerves are more affected sleep than sensory nerves"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 134,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q290",
+"number": 290,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "24 yr old women who had home delivery 2 weeks back, now presents with complete perineal tear. What the next line of management?",
+"options": [
+"Repair immediately",
+"Repair after 3 weeks",
+"Repair after 6 months",
+"Repair after 3 months"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 135,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q291",
+"number": 291,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_obstetrics",
+"stem": "Which of the following antenatal complications is expected in the mother of the first baby(the second baby given as reference is a normal newborn)?",
+"options": [
+"Intake of Phenytoin",
+"Gestational diabetes",
+"Intake of ACE inhibitors",
+"Intake of sodium valproate"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q291_2",
+"path": "pyq/images/NEETPG2020/neetpg2020-q291_1.webp",
+"width": 1280,
+"height": 1280,
+"sha256": "3674b14d7cccbc9586c1eee4b4a050c3030763d9f7e0d96201120282886a9f3b"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 135,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q292",
+"number": 292,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_gynecology",
+"stem": "The depicted instrument is used in which procedure?",
+"options": [
+"Punch Biopsy",
+"Tubectomy (Female Sterlisation)",
+"Bone marrow biopsy set",
+"Trocar and cannula for laparoscopy"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q292_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q292_1.webp",
+"width": 295,
+"height": 109,
+"sha256": "b6f713396432e4330ae2274f149acf8f277d1101b8bc141861a8ce882e2341da"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 136,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q293",
+"number": 293,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_squint___strabismus",
+"stem": "The movement depicted in image are lost in:",
+"options": [
+"3rd CN palsy",
+"4th CN palsy",
+"6th CN palsy",
+"7th CN palsy"
+],
+"answer": 1,
+"images": [
+{
+"id": "pyq_neetpg2020-q293_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q293_1.webp",
+"width": 220,
+"height": 72,
+"sha256": "ac598136b691ba2c7d0afbc7c7a06436322c12cbe4ab87c0567e6c26786f4017"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 137,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q294",
+"number": 294,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_respiratory_system",
+"stem": "Respiratory distress syndrome is due to the deficiency of",
+"options": [
+"Dipalmitoyl Phosphatidylcholine",
+"Phosphatidylserine",
+"Phosphatidylethanolamine",
+"Phosphatidylinositol"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 137,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q295",
+"number": 295,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_blood_physiology",
+"stem": "What makes CPDA superior than ACD for blood storage",
+"options": [
+"The fall in 2,3 DPG is less",
+"Decreased release of O2",
+"It has less P50",
+"It is less acidic"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 137,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q296",
+"number": 296,
+"subjectId": "ophthalmology",
+"topicId": "pyq_ophthalmology_squint___strabismus",
+"stem": "A patient presented with squint in right eye, as show below. Identify the nerve lesioned in this case",
+"options": [
+"Occulamotor",
+"Trochlear",
+"Trigeminal",
+"Abducent"
+],
+"answer": 2,
+"images": [
+{
+"id": "pyq_neetpg2020-q296_1",
+"path": "pyq/images/NEETPG2020/neetpg2020-q296_1.webp",
+"width": 110,
+"height": 131,
+"sha256": "acf069f0025aa5c00cec8b8bec29ddf51cb393e1fc8a844368f802cd20520eaf"
+}
+],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 138,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q297",
+"number": 297,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_musculoskeletal_disorders_in_children",
+"stem": "A 4-yr old male child presents with muscle weakness. His mother tells that her child has difficulty climbing stairs and getting up from the floor. On muscle biopsy, small muscle fibrils and absent of dystrophin was found. what is the diagnosis out of given options?",
+"options": [
+"Becker's muscle dystrophy",
+"Duchenne muscular dystrophy",
+"Myotonic dystrophy",
+"Limb-girdle muscular dystrophy"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 138,
+"explanation": "",
+"crossCheck": "unmatched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q298",
+"number": 298,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_respiratory_system",
+"stem": "V/Q = infinity holds true in which of the following conditions?",
+"options": [
+"Foreign body obstruction in the bronchus",
+"Equal to dead space",
+"When O2 and CO2 ratio is equal",
+"The PO2 of alveolar air is 159 mmHg and PCO2 is 40 mmHg"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 139,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q299",
+"number": 299,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_general_pharmacology",
+"stem": "True about non-competitive inhibition is",
+"options": [
+"Km remains same, Vmax decreases",
+"Km increases, Vmax remains same",
+"Km decreases, Vmax increases",
+"Km increases, Vmax increases"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 139,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+},
+{
+"id": "neetpg2020-q300",
+"number": 300,
+"subjectId": "physiology",
+"topicId": "topic_31_nervous_system",
+"stem": "A 35-year-old female was watching TV for long hours with hands under the head. She complaints of tingling sensation over the arm. Which type of nerve fibre is most likely to be affected",
+"options": [
+"A",
+"B",
+"C",
+"Sympathetic"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "Neet-PG-2020-PYQs.pdf",
+"sourcePage": 140,
+"explanation": "",
+"crossCheck": "matched",
+"answerConflict": false
+}
+]

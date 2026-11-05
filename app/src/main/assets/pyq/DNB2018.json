@@ -1,0 +1,2762 @@
+[
+{
+"id": "dnb2018-q001",
+"number": 1,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Essential amino acids are all except:",
+"options": [
+"Leucine",
+"Lysine",
+"Methionine",
+"Proline"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "10 amino acid are essential - T - Threonine V -VALINE P- Phenylalanine A- Arginine T- Tryptophan M- Methionine I -Isoleucine L -Leucine L - Lysine 2 amino acid are semi essential -Arginine and histidine can be synthesized by adults and not by growing children",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q002",
+"number": 2,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": "pyq_gynaecology_and_obstetrics_sexuality_and_intersexuality",
+"stem": "What is the sequence of development of pubey in girls ?",
+"options": [
+"Thelarche, Pubarche, linear growth spu, Menarche,",
+"Pubarche, Thelarche, Menarche, linear growth spu",
+"Pubarche, Menarche, Thelarche, linear growth spu",
+"Menarche, Thelarche, Pubarche, linear growth spu"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "The sequence of SPECIFIC events of Pubeal events in girls is thelarche, pubarche, linear growth spu, menarche. Please note: This is not to confuse with accelarated general physical growth which is the first event in pubey Pubey Specific events in girls Events in boys 1st Thelarche Testicular enlargement 2nd Pubarche Penile enlargement & pubic hairs 3rd Linear Growth,Height, spu Linear Growth spu 4th Menarche Axillary hair and facial hairs In girls, pubeal development typically takes place over 4.5 years. The first sign of pubey is accelerated growth, and breast budding is usually the first recognized pubeal change, followed by the appearance of pubic hair, peakgrowth velocity, and menarche.... Novaks Gyne",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q003",
+"number": 3,
+"subjectId": "ent",
+"topicId": "topic_21_ear",
+"stem": "A patient has Rinne test +ve for left ear and weber test is lateralized to right ear, what type of deafness may be seen in this case?",
+"options": [
+"Left conductive HL",
+"Right conductive HL",
+"Left sensorineural HL",
+"Right sensorineural HL"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Tuning fork tests and their interpretation Test Normal Conductive deafness SN deafness Rinne AC>BC (Rinne +ve) BC>AC (Rinne -ve) AC>BC Weber Not lateralized Lateralized to poorer ear Lateralized to better ear.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q004",
+"number": 4,
+"subjectId": "medicine",
+"topicId": null,
+"stem": "A 45 year old male , known case of diabetes mellitus from last 15 years ,presents with Diabetic ketoacidosis . What shall be the initial line of management?",
+"options": [
+"3 % saline",
+"5% dextrose",
+"0.9 % saline",
+"Colloids"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Diabetic ketoacidosis (DKA) is a problem that affects people with diabetes . It occurs when the body stas breaking down fat at a rate that is much too fast. The liver processes the fat into a fuel called ketones, which causes the blood to become acidic. Initial management is - 0.9% saline Treatment of choice - Insulin drip The use of 3% saline is not indicated because the patient has no neurologic deficits * Intracellular potassium shift out of cells in acidosis and cause a normal or even elevated potassium level but with improvement in the acidosis, it rapidly falls. (Insulin shifts potassium into intracellular compament thus resulting in fall of serum Potassium levels) Therefore, potassium repletion is critical.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q005",
+"number": 5,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Not true about Ribozyme is:",
+"options": [
+"It is a protein",
+"Involved in transesterification",
+"Involved in peptide bond formation",
+"Catalyst RNA"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "RIBOZYME - Ribozymes are RNA molecules with catalytic activity At least five distinct species of RNA that act as catalysts have been identified. Three are involved in the self processing reactions of RNAs while the other two are regarded as true catalysts (RNase P and rRNA). (1) rRNA- 23S RNA (prokaryotes) - 28s RNA (eukaryotes) - peptidyl transferase / transpeptidase - catalyzes peptide bond formation on the ribosome. (2) splicing - After transcription, during RNA processing, introns are removed and the exons are ligated together to form the mature mRNA that appears in the cytoplasm; this process is termed RNA splicing. * - ribozyme Sn RNA having role in removal in introns . (3) RIBONUCLEASE P - It cleaves tRNA precursors to generate mature tRNA molecules.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q006",
+"number": 6,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_gluconeogenesis",
+"stem": "Fatty liver caused due to excess alcohol consumption is because of the excess ratio of?",
+"options": [
+"NAD/NADH",
+"NADP/NADPH",
+"NADH/NAD",
+"NADPH/NADP"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Ethanol + NAD - acetaldehyde + NADH + H So there is increase ratio of NADH / NAD due to increase NADH (1) Beat oxidation will not occur (2) Fatty acid synthesis will increase in liver and lead to fatty liver (3) Oxaloacetate + NADH + H - MALATE (4) Pyruvate +NADH + H - MALATE Due to excess NADH, oxaloacetate is unavailable for TCA CYCLE and acetyl COA will increase and forms fats in body Pyruvate and oxaloacetate, the predominant substrates for gluconeogenesis, are made unavailable by alcohol intoxication and that lead to hypoglycemia in body",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q007",
+"number": 7,
+"subjectId": "ent",
+"topicId": "pyq_ent_larynx",
+"stem": "Inspiratory stridor is obstructive lesions of:",
+"options": [
+"Trachea",
+"Bronchus",
+"Subglottis",
+"Supraglottis"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "STRIDOR 1. Inspiratory stridor - obstructive lesion of supraglottis of pharynx. 2. Expiratory stridor - lesion of thoracic trachea, primary and secondary bronchi 3. Biphasic stridor - lesion of glottis sub glottis and cervical trachea",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q008",
+"number": 8,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_virology",
+"stem": "EBV is associated with which type of cancer?",
+"options": [
+"Nasopharyngeal carcinoma",
+"Epidermodysplasia",
+"Kaposi sarcoma",
+"None"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Epstein-barr virus may lead to the following clinical conditions:* Infectious mononucleosis* Epstein-barr virus associated malignancies: - Burkitt's lymphoma - Lymphomas in immunodeficient person such as those with AIDS and transplant recipients - Nasopharyngeal carcinoma in persons of Chinese origin.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q009",
+"number": 9,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_oesophagus",
+"stem": "Most probable diagnosis in a newborn baby with regurgitation of feeds and continuous drooling of saliva is:",
+"options": [
+"Esophageal atresia",
+"Diffuse esophageal spasm",
+"Achalasia cardia",
+"Zenker's diveiculum"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Continuous drooling of saliva indicates no communication of Esophagus distally - esophageal atresia. Type E is also known as H shaped Fistula Least Common- Type D Classification of TEF Type A: Atresia only (6%) Type B: Atresia with proximal TEF (2%) Type C: Atresia with distal TEF (85%): Most common Type D: Atresia with both proximal and distal TEF (rare) Type E: TEF only (1%) Clinical Features The diagnosis of EA is enteained in an infant with excessive salivation along with coughing or choking during the first oral feeding. A maternal history of polyhydramnios is often present. The newborn baby with atresia regurgitates all of its first and subsequent feeds0. Saliva pours continuously from its mouth . Repeated episodes of coughing, choking and cyanosis occur on feeding in TEF. Associated Anomalies MC anomaly associated with TEF is CVS (VSD). Esophageal atresia may occur as pa of VACTERL group of anomalies: -V: Veebral body segmentation defects0 -A: Anal atresia0 -C: Cardiovascular (PDA, VSD) -TE: Tracheoesophageal fistula -R: Renal (unilateral renal agenesis) -L: Limb anomalies (radial ray hyplasia)",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q010",
+"number": 10,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Defect in Amyloid protein folding occurs in:",
+"options": [
+"Alzheimer disease",
+"Creutzfeldt-Jakob disease",
+"Scrapie disease",
+"Bovine spongiform encephalopathy (BSE)"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "PROTEIN MISFOLDING AND DISEASES- (1) Amyloidosis - Amyloids is used to refer to the altered proteins (with beta-sheets) that accumulate in the body, paicularly in the nervous system Alzheimer's disease is a neurodegenerative disorder Accumulation of beta amyloid. Other example of amyloidosis:- Type Protein Implicated Primary Principally light chains of immunoglobulins Secondary Serum amyloid (A (SAA) Familial Transthyretin; others:- apolipoprotein A-1, Cystain C, fibrinogen, gelsolin, Lysozyme Alzheimer's disease Amyloid b peptide (see Chapter 57, case no. 2) Dialysis - related b2 - microglobulin (2) Prion disease - Etiology:-Proteinaceous infectious agents No change in 1o structures and post translation modification Change in 3D structures (major change is replacement of alpha helix by beta sheets) Can act as template to conve non-infectious proteins (with cl-helices) to infectious forms Example - Transmissible spongiform encephalopathies (TSEs) and Creutzfeldt Jakob disease in humans. Scrapie disease - sheep Bovine spongiform encephalopathy (popularly known as mad cow disease) in cattle",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q011",
+"number": 11,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_cell_wall_synthesis_inhibitors",
+"stem": "Drug active against New Delhi beta lactamase producing strains of bacteria is:",
+"options": [
+"Meropenem",
+"Colistin",
+"Cephalosporins",
+"Penicillins"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "New Delhi Metallo lactamase bacteria are susceptible to colistin. Penicillinase Resistant Penicillin : Cloxacillin Oxacillin Nafcillin Dicloxacillin Ofloxacillin Methicillin Extended Spectrum b Lactamase bacteria are sensitive to carbapenems.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q012",
+"number": 12,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "Intestinal absorption of glucose occurs with the help of:",
+"options": [
+"GLUT",
+"Calcium channel",
+"SGLT",
+"Sodium channel"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Cells of the intestine and kidneys use SGLT for glucose entry into the cell (from lumen) SGLT: secondary active transpo. MOA: active transpo of Na+ from basolateral membrane depletes intracellular Na. | Na+ & glucose combine with SGLT on the luminal surface of intestinal epithelial cells | Glucose enters intestinal cells | Glucose transpoed out from basolateral membrane GLUT into blood",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q013",
+"number": 13,
+"subjectId": "anatomy",
+"topicId": null,
+"stem": "Which of the following is derived from ectoderm",
+"options": [
+"Spleen",
+"Gall bladder",
+"CNS",
+"Lung epithelium"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Neural crest cells forms peripheral nervous system ENDODERM - gives epithelial lining of respiratory & gastro intestinal tracts, biliary system, bladder & urethra. MESODERM (mesenchyme) : i). Paraxial mesenchyme(somite's & somitomeres) : Forms * sclerotome - veebrae & poions of neurocranium & axial skeleton. * myotome -all voluntary muscles of head, trunk & limbs. * dermatome - dermis of skin over dorsal regions. ii) Intermediate mesenchyme : -forms connective tissue of gonads, mesonephric & metanephric nephrons, smooth muscles & connective tissues of reproductive tracts. iii) Septum transversum : forms epicardium, fibrous pericardium, poion of diaphragm, esophageal mesentery, sinusoids of liver, tissue within lesser omentum & falciform ligament. iv) Lateral plate mesenchyme : * Splanchnopleuric layer : smooth muscles & connective tissue of respiratory tracts, intestinal tract, blood vessels & associated glands & abdominal mesenteries (spleen). * Somatopleuric layer : appendicular skeleton, connective tissues of limbs & trunk including cailage, ligaments & tendons. dermis of ventral body wall & limbs; mesenchyme of external genitalia Angiogenic mesenchyme = Endocardium of hea, endothelium of blood & lymphatic vessel vessels of choroid plexus, sinusoids of liver & spleen, circulating blood cells, microglia & tissue macrophages.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q014",
+"number": 14,
+"subjectId": "social_and_preventive_medicine",
+"topicId": null,
+"stem": "Cross product ratio is used in:-",
+"options": [
+"Cross- sectional study",
+"Case control study",
+"Coho study",
+"Ecological study"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Framework of a case control study (The 2 x 2 contigency table) Suspected or risk factors Cases (Disease present) Control (Disease absent) Present Absent ac bd a+c b+d Cross product ratio is another name for Odds ratio. It used to calculate strength of association between risk factor and outcome in case of case control studies. Odds Ratio (OR) = (a x d)/(b x c) Since it involves cross multiplying the values in the 2x2 Contingency table, it is called cross product ratio In coho study , Relative Risk (or Risk Ratio) is determined Cross sectional studies deal with determining prevalence of disease Ecological study is used to determine correlation",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q015",
+"number": 15,
+"subjectId": "surgery",
+"topicId": null,
+"stem": "Pharyngo-esophageal reflux is monitored by:",
+"options": [
+"Esophageal pH monitoring",
+"Double probe pH monitoring",
+"Barium esophagogram",
+"Radionuclide scintigraphy"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Double probe pH monitoring - Pharyngo-esophageal reflux. Esophageal PH monitoring - GERD Barium esophagogram - Frequently performed to diagnose problems related to esophageal and pharynx that present with symptoms like dysphasia. Radionuclide scintigraphy - Radiotracer injected into vein that travels to specific organ and emits gamma rays as it decays which is then recorded using Gamma camera. Used to detect normal functionality of the organ.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q016",
+"number": 16,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "What is FRC?",
+"options": [
+"Volume present in lungs after normal expiration",
+"Volume present in lungs after forceful expiration",
+"Volume present in lungs after deep inspiration",
+"Volume present in lungs after normal inspiration"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "FUNCTIONAL RESIDUAL CAPACITY = ERV + RV The volume of air that remains in lungs at the end of normal expiration = 2300 ml",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q017",
+"number": 17,
+"subjectId": "pharmacology",
+"topicId": null,
+"stem": "Post cardiac surgery delirium symptoms are worsened by:",
+"options": [
+"Antipsychotics",
+"Atropine",
+"Benzodiazepines",
+"Antihistaminics"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "- Anticholinergics blocks the actions of ACh on autonomic receptors and in the CNS exeed through muscarinic receptors. Atropine has an overall CNS stimulant action. At low doses these effects are not appreciable, it only produces peripheral effects because of restricted entry into the brain. High doses causes coical excitation, restlessness, disorientation, hallucinations and delirium can occur which is followed by respiratory depression and coma.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q018",
+"number": 18,
+"subjectId": "physiology",
+"topicId": "topic_61_sex_hormones",
+"stem": "Mullerian inhibiting substance secreted by",
+"options": [
+"Stroma",
+"Seoli cells",
+"Leydig cells",
+"All of the above"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "-Form blood-testis barrier -Nourishes developing sperm Spermatogenesis -Secrete testosterone under LH influence -Synthesis of Mullerian inhibiting Factor -Secrete inhibin which inhibits FSH Testosterone exes negative feedback on LH & GNRH",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q019",
+"number": 19,
+"subjectId": "psychiatry",
+"topicId": null,
+"stem": "The definition of prolonged seizures following ECT is:",
+"options": [
+">90 seconds",
+">150 seconds",
+">120 seconds",
+">180 seconds"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Prolonged seizures - seizures lasting more than 180 seconds * Prolonged seizures can be terminated either with additional doses of the barbiturate anesthetic agent or with IV diazepam * Methohexital can also be used to abo prolonged seizures in ECT or to limit postictal agitation. Extra edge: Tardive Seizures Additional seizures appearing some time after the ECT treatment This may occur in patients with preexisting seizure disorders",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q020",
+"number": 20,
+"subjectId": "radiology",
+"topicId": "pyq_radiology_radiotherapy",
+"stem": "Which pa is high sensitive to radioactivity:",
+"options": [
+"Adult bone",
+"Growing skin",
+"Pancreas",
+"CNS"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Radio sensitivity of different cells or tissues: White blood cells (lymphocytes) Red blood cells (erythrocytes) Immature reproductive cells Epithelial cells Endothelial cells Connective tissue cells Bone cells Nerve cells Brain cells Muscle Ceells",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q021",
+"number": 21,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_respiratory_system_pa_1",
+"stem": "What will be the PA O2 when FiO2 is 0.5?",
+"options": [
+">100",
+">150",
+">250",
+".>500"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "FiO2 = fraction of O2 in inspired = 50% Pressure at sea level = 760 mm Hg According to law to paial pressures of gases, Pressures exeed by a gas in a mixture is propoional : if 50% of air is O2 PAO2 = 50 % of 760 = 380 mm Hg.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q022",
+"number": 22,
+"subjectId": "pediatrics",
+"topicId": null,
+"stem": "If apgar score is 6, at 5 minutes of life, then what is the interpretation:",
+"options": [
+"Child is normal",
+"Moderate asphyxia",
+"Severe bih asphyxia",
+"It requires immediate resuscitation"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "According to NNF & WHO : APGAR SCORE INTERPRETATION 0-3 Severe bih asphyxia 4-7 Moderate bih asphyxia >7 Normal",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q023",
+"number": 23,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "Alpha feto protein is a tumor marker for:",
+"options": [
+"Hepatocellular Carcinoma",
+"Ovarian carcinoma",
+"Seminoma",
+"Pheochromocytoma"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Alpha Feto Protein: Tumor Marker for: Hepatocellular Carcinoma Non seminoma Germ cell Tumor Embryonic Tumor Yolk sac Tumor Variant of HCC in which AFP is not elevated:Fibrolamellar variant Tumor marker for seminoma :KiT, OCT4, PLAP. Tumor marker for Ovarian carcinoma: CA- 125. Tumor marker for Pheochromocytoma: Metanephrines",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q024",
+"number": 24,
+"subjectId": "surgery",
+"topicId": "topic_37_breast",
+"stem": "If BIRADS score is 4, your next step would be:",
+"options": [
+"Additional imaging",
+"Routine mammography",
+"Biopsy",
+"Follow up"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "BIRADS (Breast Imaging Repoing And Data System) Category Definition Likelihood of Malignancy 0 Incomplete assessment, need additional imaging evaluation Not applicable 1 Negative, routine mammogram in 1 year is recommended 0% 2 Benign findings, routine mammogram in 1 year is recommended 0% 3 Probably benign findings, sho term follow-up suggested >0 to <2% 4 Suspicious abnormality, biopsy should be considered0 (4A-Low suspicion; 4B-Moderate suspicion, 4C-High suspicion) 4A:>2-<10% 4B:>10-<50% 4C:>50-<95% 5 Highly suggestive of malignancy, appropriate action should be taken >95% 6 Know biopsy-proven malignancy Not applicable Thyroid: TIRADS - based on sonography Prostate: PIRADS-based on MRI",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q025",
+"number": 25,
+"subjectId": "anaesthesia",
+"topicId": null,
+"stem": "Which of the following determines the speed of recovery from IV anesthetic agents?",
+"options": [
+"Liver metabolism of drug",
+"Protein binding of drug",
+"Redistribution of the drug from sites in the CNS",
+"Plasma clearance of the drug"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "IV anesthetic agents are give by infusion . Infusion maintains the serum concentration of anesthetic agent high which causes the drug to attach to highly perfused organ i.e CNS . Once the infusion is stopped the serum concentration decreases and drug detaches from CNS and gets redistributed to other organs Hence redistribution of drug from CNS determines the speed of recovery from IV anesthetic",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q026",
+"number": 26,
+"subjectId": "ent",
+"topicId": "topic_21_ear",
+"stem": "Middle Ear Function is",
+"options": [
+"Impendence matching",
+"Frequency discrimination",
+"Intensity Discrimination",
+"Speech Localization"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Middle ear functions: Conduct the sound from outer ear to inner ear Middle ear muscles provide protection from loud sound It serves as an acoustic transformer to match the impedance of air to the much higher impedance of cochlear fluids Couples sound preferably to only one window of cochlea, thus producing differential pressure between windows, necessary for cochlear fluid movement",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q027",
+"number": 27,
+"subjectId": "medicine",
+"topicId": null,
+"stem": "Electrically shockable rhythm is",
+"options": [
+"Ventricular Fibrillation",
+"Asystole",
+"Pulseless electrical activity",
+"Bradycardia"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Shockable Rhythms Fibrillation V.Tachycardia TDP. PSV. Asystole= DC shock is C/I Pulseless electrical activity= Tension pneumothorax , Cardiac tamponade. Bradycardia=Rx- Atropine, Trans Cutaneous pacing, TVP (Trans Venous Pacer) Non shockable rhythms 1. Asystole 2. Electromechanical Dissociation",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q028",
+"number": 28,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_medico_legal_procedures",
+"stem": "Written statement signed under oath before magistrate in the presence of accused or his lawyer is called:",
+"options": [
+"Summon",
+"Panchanama",
+"Dying deposition",
+"Dying declaration"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Dying deposition is a statement of a person on oath recorded by Magistrate in presence of accused or his lawyer who is allowed to cross examine the witness.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q029",
+"number": 29,
+"subjectId": "pediatrics",
+"topicId": null,
+"stem": "Most common cause of syncope in a child?",
+"options": [
+"Breath holding spell",
+"Tantrum spell",
+"Hypoglycemia",
+"Neurocardiogenic"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Syncope is sudden transient loss of consciousness with inability to maintain postural tone - Syncope is caused by a lack of adequate cerebral blood flow - Most common cause of syncope in the normal pediatric population is neurocardiogenic syncope, which is also known as vasovagal syncope.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q030",
+"number": 30,
+"subjectId": "microbiology",
+"topicId": null,
+"stem": "A 25 - years - old sexually active unmarried male presents with urethral discharge after unprotected sex with a sexual worker. Gram stain pic was given; what may be the possible organisms?",
+"options": [
+"Neisseria",
+"Chalamydia",
+"Trichomonas",
+"Ureaplasma"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "The given image is showing kidney shaped cocci which is suggestive of gonococcus i.e. Neisseria gonorhhea",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q031",
+"number": 31,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_virology",
+"stem": "Herpes zoster ophthalmicus is caused by:",
+"options": [
+"VZV",
+"HPV",
+"HSV",
+"CMV"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Zoster ophthalmicus is caused by Varicella zoster virus. It is a complication of herpes zoster. Other complications of herpes zoster are-* Post herpetic neuralgia* Ramsay hunt syndrome* Pneumonia",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q032",
+"number": 32,
+"subjectId": "medicine",
+"topicId": "topic_80_infection",
+"stem": "What is the t1/2 of T4?",
+"options": [
+"3-4 days",
+"5-6 days",
+"6-7 days",
+"7-8 days"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q033",
+"number": 33,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_nsaids_gout_and_rheumatoid_ahritis",
+"stem": "Which drug act by conveing uric acid to allantoin?",
+"options": [
+"Sulfinpyrazone",
+"Rasburicase",
+"Febuxostat",
+"Colchicine"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Uric Acid:- is water insoluble, It precipitate at different site and cause symptoms. In Birds, Uric Acid is fuher metabolized to a compound called Allantoin, which is water soluble and donot precipitate. Uricase metabolize uric Acid to Allantoin RASBURICASE Birds Recombinant Febuxostat: non purine xanthine oxidase inhibitor, thereby reducing formation of xanthine and uric acid. Colchicine: Produces its anti-inflammatory effect by binding to intracellular Proteintubulin, there by preventing its polytenization in monostable and leading to inhibition of leukocyte migration and phagocytosis. Also inhibits the formation of leukotriene by. Probenecid and sulfinpyrazone are uricosuric drugs employed to decrease the body pool of urate in patient with tophaceous gaunt of those with increasingly prevent gently attacks.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q034",
+"number": 34,
+"subjectId": "anatomy",
+"topicId": "pyq_anatomy_nerve_supply_nerve_lesions",
+"stem": "Froment's sign is due to which nerve injury",
+"options": [
+"Intercostobrachial",
+"Radial",
+"Ulnar",
+"Median"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "froment's sign / book test : tests adductor pollicis muscle it is innervated by ulnar nerve. in ulnar nerve injury, when pt is asked to grasp a book firmly b/w thumb & other fingers of both hands, the terminal phalanx of thumb on paralysed side becomes flexed at interphalangeal joint (by flexor pollicis longus supplied by median nerve). The signs indicative of ulnar nerve palsy are as follows: Froment's sign: Jeanne's sign:",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q035",
+"number": 35,
+"subjectId": "surgery",
+"topicId": "topic_29_general_surgery",
+"stem": "Negative pressure wound therapy (NPWT) is used in:",
+"options": [
+"Bedsore in sacrum after debridement",
+"After amputation negative suction",
+"Osteomyelitis",
+"Unexplored fistulas"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "VACCUM ASSISTED CLOSURE/ NEGATIVE PRESSURE WOUND THERAPY (NPWT) NPWT Promotes wound healing by applying a vacuum through a special sealed dressing. Continued vacuum draws out the fluid from wound & increases blood flow to the area. Vaccum may be applied continuosly or intermittently, depending upon the types of wound being treated & clinical objectives. Negative pressure of -125 mm Hg is used Dressing should be changed 2-3 times/week Primary Effects of NPWT on Wound Healing Macrodeformation Drawing the wound edges together leading to contraction Stablization of wound environment Wound protected from outside micro- organisms in a warm & moist envirnoment Reduced edema With removal of soft tissue exudates Microdeformation Leading to cellular proliferation on the wound surface Contraindications for NPWT Use Malignancy in the wound Untreated osteomyelitis Non-enteric & unexplored fistula Necrotic tissue with eschar",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q036",
+"number": 36,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "miRNA binding site for gene knock down?",
+"options": [
+"3' untranslated region",
+"5' untranslated region",
+"Introns",
+"Both 3' and 5' untranslated region"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "In higher eukaryotes a class of small RNAs knows as micro RNA (miRNA) that mediates the silencing of paicular genes. The RNAs function by interacting with mRNAs, often in the 3' Untranslated region, resulting in either mRNA degradation or translation inhibition. In either case, the mRNA, and thus the gene that produces it, is silenced. The process is known as RNA interference. miRNAs: MicroRNAs, 21 to 22 nucleotide long RNA species derived primarily from RNA polymerase II transcription units, RNA processing. These RNAs play crucial roles in gene regulation by altering mRNA function.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q037",
+"number": 37,
+"subjectId": "pediatrics",
+"topicId": null,
+"stem": "Most common cardiac defect in turner syndrome:",
+"options": [
+"Coarctation of aoa",
+"VSD",
+"ASD",
+"TOF"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "--> Overall MC congenital hea disease in Turner syndrome is Bicuspid aoic valve --> 2nd MC congenital hea disease in Turner syndrome is Coarctation of aoa TURNER SYNDROME: - Basic defect is 45 X0 - Always seen in Females IMPOANT FEATURES (MNEMONIC - SeeA Baby CLOWN) - Sho stature, Sensorineural hearing loss, Sho 4th metacarpal - Amenorrhea (Primary) - Barr body absent - Cardiac anomalies, Cystic hygroma - Lymphedema of hand and feet, Low thyroid - Ovaries Underdeveloped (Streak Ovaries) --> thus infeile. - Webbed neck - Nipples widely placed, Shield shaped chest , No intellectual disability",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q038",
+"number": 38,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": null,
+"stem": "Vulval carcinoma treatment during early stage:-",
+"options": [
+"Radiotherapy",
+"Chemotherapy",
+"Surgery",
+"Chemoradiation"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Vulvar carcinoma squamous cell carcinoma is most common histologic type Modern treatment Early stage 1 radical local excision More Advanced (2) modified radical excision with SENTINEL NODE biopsy Advanced stage (3&4) radiation plus chemotherapy (chemo radiation) possibly followed by limited surgery",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q039",
+"number": 39,
+"subjectId": "orthopaedics",
+"topicId": "pyq_orthopaedics_joint_disorders",
+"stem": "A 40-year-old female previous case history of fever, weight loss polyahralgia. The radiological findings given below, what may be your diagnosis?",
+"options": [
+"Osteoahritis",
+"Rheumatoid ahritis",
+"Gout",
+"Psoriatic Ahritis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "X-ray image shows destruction of hand. * Rheumatoid ahritis- typically in a female of 30-40 years with complain of polyahralgia, swelling and loss of weight. It usually involves the proximal joints of the fingers and has bilateral involvement. Another classic feature is generalized stiffness after periods of inactivity, especially in the early morning.* Gout - 70% of acute gout affects the 1st metatarsal phalangeal joints.* Psoriatic ahritis - it presents with ahritis of DIP joints. Psoriasis of skin and nails usually precedes the ahritis.* Osteoahritis - it commonly affects DIP and the thumb base in the hand. But it will not present with severely deformed hand.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q040",
+"number": 40,
+"subjectId": "pediatrics",
+"topicId": "pyq_pediatrics_infectious_disease",
+"stem": "All of the followings are classic triad for congenital rubella syndrome; except:",
+"options": [
+"Sensory neural deafness",
+"Cataract",
+"Patent ductus aeriosus",
+"Micrognathia"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Congenital rubella syndrome : --> Triad of",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q041",
+"number": 41,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_nsaids_gout_and_rheumatoid_ahritis",
+"stem": "Analgesic effect of paracetamol is mediated by action on which of the following receptor?",
+"options": [
+"NK 1",
+"BK 1",
+"Px23",
+"TRPV 1"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "PCM uses - Fever Pain Not for inflammation Peroxide:- Presence of peroxide at inflammation site inactivate PCM. COX3 inhibitor :- Presence of COX3 in brain, therefore fever and pain can be treated with PCM. Vanilloid receptor:-Metabolites of PCM binds with vanilloid receptor to produce analgesia. Transient Receptor Potential vanilloid 1:TRPV 1",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q042",
+"number": 42,
+"subjectId": "psychiatry",
+"topicId": "pyq_psychiatry_sexual_disorders",
+"stem": "Premature ejaculation is due to defect in which phase:",
+"options": [
+"Orgasm phase",
+"Excitement phase",
+"Resolution phase",
+"Plateau phase"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Premature ejaculation -Repeated ejaculation in less than 1 minute * Defect in orgasm phase Sexual response cycle (1) Desire * Hypoactive sexual desire disorder- Lack of desire sexual activity - Seen in females (2) Excitement * Erection * Vaginal lubrication * Erectile dysfunctions in males - anxiety most common cause - PDE -5 INHIBITORS - D/O/C (3) Orgasm* Premature ejaculation -Repeated ejaculation in less than 1 minute (4) RESOLUTION - 10- 15 minutes",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q043",
+"number": 43,
+"subjectId": "pediatrics",
+"topicId": null,
+"stem": "Bidextrous approach at what age?",
+"options": [
+"4 months",
+"5 months",
+"6 months",
+"3rd year"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "3 months - Holds an object when placed in hands 4 months - Tries to reach for an object, but overshoots 5 months - Bidextrous grasp 6 months - Unidextrous/palmar grasp",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q044",
+"number": 44,
+"subjectId": "anatomy",
+"topicId": null,
+"stem": "Injury to the marked area of skull will cause intracranial hemorrhage due to damage to which aery",
+"options": [
+"Middle cerebral",
+"Middle meningeal",
+"Anterior cerebral",
+"Deep temporal"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "marked structure is pterion. pterion is H shaped suture formed b/w 4 bones Frontal bone - at front Parietal bone - posteriorly Temporal bone - inferiorly Greater wing of sphenoid - anteriorly deep to pterion is anterior division of middle meningeal aery which is the branch of maxillary aery. fracture to pterion results in damage to anterior division of middle meningeal aery & results in epidural hemorrhage which is life threating situation.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q045",
+"number": 45,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "Peripheral chemoreceptors responds to hyproxia by oxygen sensitive:",
+"options": [
+"Na+ channel",
+"Ca+2 channel",
+"K+ channel",
+"CI- channel"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "O2 levels are regulated almost entirely by peripheral chemoreceptors located in the carotid and aoic bodies; which in turn transmit appropriate signals to the respiratory center in the brain Carotid & aoic bodies have GLOMUS CELLS (multiple highly characteristic glandular - like cells) that synapse directly with nerve endings. Glomus cells have O2 sensitive K+ channels that are inactivated when blood Po2 decrease markedly. HYPOXIA O2 sensitive K+ channels inactivated. | Glomus cell depolarizes | Voltage gated Ca++ channel open, increase intracellular Ca++ | Neurotransmitter released, activates afferent neurons to CNS center of respiration.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q046",
+"number": 46,
+"subjectId": "pharmacology",
+"topicId": null,
+"stem": "Which of the following drug helps in rapid reversal of effect of rocuronium ?",
+"options": [
+"Neostigmine",
+"Sugammadex",
+"Edrophonium",
+"Atropine"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "- 2 reversal agent of rocuronium:- Neostigmine:- Inhibits Acetylcholine esterase- |Ach. ( Neuromuscular agonist, Muscarinic Action) Suggamadex :- reversing agent developed for terminating the action of nondepolarizing muscle relaxants- rocuronium and vecuronium. It is selective relaxant binding agent. - Suggamadex is much faster than Neostigmine but it can cause allergies. - Edrophonium antagonize neuromuscular blockade purely by inhibiting acetylcholinesterase activity.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q047",
+"number": 47,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "Which is the single most impoant factor that stimulates insulin secretion?",
+"options": [
+"Decreased plasma glucose concentration inhibits insulin release",
+"Decreased plasma glucose concentration stimulate insulin release",
+"Increased plasma glucose concentration stimulates insulin release",
+"Increased plasma glucose concentration inhibits insulin release"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Increase glucose levels (E.g.: after meals) | Glucose entry into pancreatic cells. | Glucose undergoes glycolysis & generate ATP. | ATP - sensitive K+ channels inhibited, causing depolarization of the cell membrane. | Voltage gated Ca++ channels open. Influx of Ca++ into the cell. | Fusion of insulin containing vesicles with cell membrane. | Insulin released by exocytosis. Factors and Conditions that increase or Decrease Insulin Secretion Increase Insulin Secretion Decrease Insulin Secretion Increased blood glucose Decreased blood glucose Increased blood free fatty acids Fasting Somatostatin Increased blood amino acids a- Adrenergic activity Gastrointestinal hormones (gastrin, cholecytokinin, secretin, gastric inhibitory peptide) Leptin Glucagon, growth hormone, coisol Parasympathetic stimulation; acetylcholine b- Adrenergic stimulation Insulin resistance; obesity Sulfonylurea drugs (glyburide, tolbutamide)",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q048",
+"number": 48,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_infectious_disease_epidemiology",
+"stem": "Interval between primary and secondary case is called as:-",
+"options": [
+"Serial interval",
+"Generation time",
+"Incubation period",
+"Lead time"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "The gap in time between the onset of the primary case and the secondary case is called \"serial interval\". Incubation period: The time interval between invasion by an infectious agent and appearance of the first sign or symptom of the disease in question. Generation time: interval of time between the receipt of infection by a host and maximal infectivity of that host Lead time: it is the advantage gained by screening, i.e. the period between diagnosis by early detection and diagnosis by other means.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q049",
+"number": 49,
+"subjectId": "ent",
+"topicId": "pyq_ent_facial_nerve_and_its_disorders",
+"stem": "Most common cause of facial palsy is:",
+"options": [
+"Viral",
+"Bacterial",
+"Idiopathic",
+"Trauma"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Causes of Facial Nerve Palsy:- Most common cause is idiopathic bell's palsy paralysis acute onset Bell's palsy idiopathic, Ipsilateral lower motor neuron palsy Loss of forehead and brow movements Inability to close eyes drooping of eyelids Loss of nasolabial folds, drooping of lower lip Herpes zoster oticus/Ramsey hunt syndrome LMN facial nerve palsy Vesicular rash in the external auditory canal and pinna Ear pain Mastoid surgery is the most common Iatrogenic cause of facial nerve palsy",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q050",
+"number": 50,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_biostatistics",
+"stem": "Quantitative test for same group of individuals before and after study is:-",
+"options": [
+"Paired t- test",
+"Unpaired t- test",
+"Z- test",
+"Chi-Square test"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "1. Z-test for large samples 2. t-test for small samples applied as: a. Unpaired t-test (two independent samples) b. Paired t-test (single sample correlated observations) 3. ANOVA test for 3 or more samples Parametric Tests Non Parametric Tests Based on Normal distribution Non normal distribution Type of data Quantitative Qualitative Compares Means %, Propoions, Fractions Examples Paired t-test Unpaired t-test ANOVA test Sign test Chi-square test Wilcoxan test",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q051",
+"number": 51,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "Which disease is caused by anti - phospholipase 2 antibody:",
+"options": [
+"MPGN",
+"Membrabous glomerulopathy",
+"FSGN",
+"Minimal Change Disease"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Membranous glomerulopathy:- MC nephrotic syndrome in elderly patient. Subepithelial Immune complex deposition on IF Spike and dome appearance on EM Cause by Anti phospholipase 2 receptor Antibody FSGS:- MC nephrotic syndrome in adult No immune complex deposition, -ve Immunofluorescent Effacement of foot processon EM. Minimal Changes:- MC nephrotic syndrome is children No Immune complex deposition, -ve IF Effacement of foot process on EM. MPGN :- Nephrotic syndrome involving mesangial and increase proliferation of capillary loop. Train tract appearance on H/E due to thick glomerular basement membrane. Immune complex deposition (Granular IF)",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q052",
+"number": 52,
+"subjectId": "pediatrics",
+"topicId": null,
+"stem": "Turricephaly is:",
+"options": [
+"Tall head",
+"Narrow head",
+"Wide head",
+"Sho head"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Turricephaly is cone shaped head from premature fusion of the coronal, sphenofrontal & frontoethmoidal stures. - It's a type of craniosynostosis (MC type of craniosynostosis is DOLICOCEPHALY) Abnormality Debscription Dolicocephaly (scaphocephaly) Premature closure of sagittal suture Long and narrow skull Most common form of craniosynostosis Trigoncephaly Premature fusion of metopic suture Keel-shaped forehead and hypotelorism Increased risk of forebrain abnormalities Plagiocephaly Asymmetrical flattening of 1 side of the skull",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q053",
+"number": 53,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_water",
+"stem": "What is the recommended level of chlorine in Swimming pool?",
+"options": [
+">0.5 mg/L",
+">0.8 mg/L",
+">1 mg/L",
+">5 mg/L"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Residual chloride levels in: (i.e. after the contact period of one hour) Drinking water- >/= 0.5 mg/L or ppm Swimming pools- >/= 1.0 mg/L To kill Cyclops in Drinking water - >/= 2.0 mg/L Residual chlorine level can be measured using chloroscope/ Ohotoluidine test.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q054",
+"number": 54,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_oral_cavity",
+"stem": "N-3 TNM staging of head and neck tumors shows:",
+"options": [
+"Metastasis in lymph nodes >2 cm",
+"Metastasis in lymph nodes >5 cm",
+"Metastasis in a lymph node >6 cm",
+"None"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "8th AJCC (2017) TNM Classification of Carcinoma Lip & Oral Cavity Primary Tumor (T) Regional Lymph Nodes (N) Tis Carcinoma in situ. N1 Metastasis in a single ipsilateral LN, <3 cm in greatest dimension without extranodal extension T1 Tumor <2cm in greatest dimension & <5cm depth of invasion N2a Metastasis in a single ipsilateral LN, >3 cm but <6 cm in greatest dimension without extranodal extension T2 Tumor <2cm in greatest dimension & >5 mm but <10 mm depth of invasion or tumor >2 cm but <4 cm in greatest dimension & depth of invation < 10 mm N2b Metastaes in a multiple ipsilateral LN, none >6 cm in greatest dimension without extranodal extension T3 Tumor >4 cm in greastest dimension and >10 mm depth of invasion N2c Metastases in bilateral or contralateral LN, none >6cm in greatest dimension without extranodal extension T4a Lip: Tumor invades through coical bone, inferior alveolar nerve, floor of mouth, or skin (of chin or nose) N3a Metastasis in a LN >6cm in greatest dimension without extranodal extension N3b Metastasis in a single or multiple LNs with clinical extranodal extension Oral cavity: Tumor invades through coical bone mandible or maxillary sinus or invades the skin of face Distant Metastasis T4b Tumor invades masticator space, pterygoid plates, or skull base and/or encases internal carotid aery M0 No distant metastasis. M1 Distant metastasis.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q055",
+"number": 55,
+"subjectId": "social_and_preventive_medicine",
+"topicId": null,
+"stem": "Bias in Which variation occur due to different disease treated in different hospitals:-",
+"options": [
+"Neyman bias",
+"Berksonian bias",
+"Attention bias",
+"Recall bias"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Berkesonian bias is a special type of bias, named after Dr. Joseph Berkeson, who recognized this problem due to different rates of admission to hospitals for people with different diseases Neyman bias: due to missing of fatal cases, mild/silent cases and cases of sho duration from the study. Attention bias or Hawthorne effect: study subjects may systematically alter their behavior when they know they are being observed. Recall bias: cases are more likely to remember exposure more correctly than controls.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q056",
+"number": 56,
+"subjectId": "pediatrics",
+"topicId": null,
+"stem": "Child able to draw a cross at which age?",
+"options": [
+"4 years",
+"5 years",
+"2 and half years",
+"3 years"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "4 years - Copies a rectangle or cross or plus sign Nelson Textbook of Pediatrics clearly states child copies cross at 48 months i.e. 4 years of age So the answer is option A: 4 years",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q057",
+"number": 57,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_death_and_postmortem_changes",
+"stem": "Method of autopsy in which various systems organs are removed en masse:",
+"options": [
+"Rokitansky",
+"Virchow",
+"Gasses",
+"Lettulle"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Dissection techniques Defined by Organ by organ Virchow En block Ghon In situ method Rockitansky En masse Letulle",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q058",
+"number": 58,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_endocrinology_and_reproduction",
+"stem": "Sperm get nutrition from:",
+"options": [
+"Fructose",
+"Glucose",
+"Sucrose",
+"Amylase"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Seminal vessels secrete a mucoid material containing abundance of fructose, citric acid and other nutrient substance. This adds to the bulk of semen & fructose in the seminal fluid is of nutrient value to the sperm GLUT- 5: fructose transpo.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q059",
+"number": 59,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Which of the following enzyme is free radical scavenger?",
+"options": [
+"Glutathione peroxidase",
+"NADH oxidase",
+"Hydrogen peroxidase",
+"Hypochlorous"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Antioxidant - that significantly delays or inhibits oxidation of a substrate. It may be considered as the scavengers of free radicals. ENZYMATIC oxidant - superoxide dismutase, catalase, glutathione peroxidase, glutathione reductase Non enzymatic oxidant - vitamin E , VITAMIN C, VITAMIN A and selenium Glutathione peroxidase catalyzes the destruction of hydrogen peroxide. Fenton's reaction generates hydroxyl radical from H2O2 Superoxide dismutase generates H2O2from superoxide NADPH oxidase reaction generates superoxide from oxygen",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q060",
+"number": 60,
+"subjectId": "social_and_preventive_medicine",
+"topicId": null,
+"stem": "What will be the BMI of a male whose weight is 89 kg and height is 172 cms?",
+"options": [
+"27",
+"30",
+"33",
+"36"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Body Mass Index/ Quetelet's index = Weight in kg/(height)2 in m2 =89/ (1.72)2 = 30 Nutritional status based on the WHO and \"Asian Criteria\" values Nutritional Status WHO criteria BMI cut - off \"Asian criteria \"BMI cut - off Underweight <18.5 <18.5 Normal 18.5-24.9 18.5-22.9 Overweight 25-29.9 23-24.9 Pre-Obese - 25-9.9 Obese > 30 > 30 Obese Type 1 (obese) 30-40 30-40 Obese type type 2 (morbid obese) 40.1-50 40.1-50 Obese type 3 (super obese) >50 >50",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q061",
+"number": 61,
+"subjectId": "psychiatry",
+"topicId": null,
+"stem": "Somnambulism is:",
+"options": [
+"REM sleep disorder",
+"Midway between sleeping and walking",
+"Type of automatism",
+"NREM Sleep disorder"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "* Sleepwalking. Sleepwalking in its classic form, as the name implies, is a condition in which an individual arises from bed and walk without fully awakening. It is sometimes called somnambulism.* Sleepwalking usually occurs during slow wave sleep and lies in the middle of a parasomnia continuum that ranges from \"confused arousal\" to \"sleep terror* Sleepwalks characteristically begin toward the end of the first or second slow wave sleep episodes. DSM-5 Diagnostic Criteria for Non-Rapid Eye Movement Sleep Arousal Disorders A. Recurrent episodes of incomplete awakening from sleep, usually occurring during the first third of the major sleep episode, accompanied by either one of the following: 1. Sleepwalking: Repeated episodes of rising from bed during sleep and walking about. While sleepwalking, the individual has a blank, staring face; is relatively unresponsive to the effos of others to communicate with him or her; and can be awakened only with great difficulty. 2. Sleep terrors: Recurrent episodes of abrupt terror arousals from sleep, usually beginning with a panicky scream. There is intense fear and signs of autonomic arousal, such as mydriasis, tachycardia, rapid breathing and sweating, during each episode. There is relative unresponsiveness to effos of others to comfo the individual during the episodes. B. No or little (e.g. only a single visual scene) dream imagery is recalled. C. Amnesia for the episodes in present. D. The episodes cause, clinically significant distress or impairment in social, occupational, or other impoant areas of functioning. E. The disturbance is not attributable to the physiological effects of a substance (e.g., a drug of abuse, a medication). F. Coexisting mental and medical disorders do not explain the episodes of sleepwalking or sleep terrors. * No treatment is required only parental reassurance * If symptom is really problematic benzodiazepines can be used",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q062",
+"number": 62,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_general_physiology",
+"stem": "What determine the movement of water insoluble substance in the body:",
+"options": [
+"Charge",
+"Molecular weight",
+"Lipid solubility",
+"Hydrated diameter of molecule"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "The lipids in cell membrane provide a barrier to movement of water & water-soluble substances. Lipid solubility is the chief factor determining the movement of water insoluble substances. Fat soluble substances such as O2, CO2 and alcohol can penetrate the membranes with ease. E.g.: CO2 is 20 times more lipid soluble than O2 hence diffuses across membranes much faster. Factors influencing movement of water-soluble substances: Charge Molecular wt. Hydrated diameter of molecule. Presence of channels, pores, carriers, pumps.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q063",
+"number": 63,
+"subjectId": "pathology",
+"topicId": "topic_94_neoplasia",
+"stem": "Which of the following pathway is seen in basal cell carcinoma:",
+"options": [
+"mTOR",
+"Sonic Hedgehog",
+"WNT",
+"RAS"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "PTCH gene: a tumor suppressor gene which translates into PATCHED protein which is responsible for inhibition of Hedgehog pathway which is responsible for cell proliferation. Any mutation in PTCH gene leads to disinhibition of Hedgehog pathway leading to uncontrol cell proliferation and cancer. Mutation in PTCH gene:Associated with basal cell carcinoma. Syndrome associated with BCC: GorlinSyndrome Medulloblastoma:also associated with Gorlin Syndrome Mutation in Hedgehog pathway associated with: Holoprosencephaly. Abnormalities of WNT signaling pathway: associated with craniopharyngioma. RAS gene: most common type of abnormality involving proto-oncogene in human tumor. Pancreatic Adenocarcinoma. Cholangiocarcinoma Colon, endometrium, Thyroid. MTOR: Tuberous sclerosis(TSC 1/TSC 2) (Hamain/ Tuberin) complex inhibit the activity of MTOR, a kinase that stimulates cell growth and regulates cell size. Absence of TSC 1/2 Expression often seen in Rhabdomyomas.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q064",
+"number": 64,
+"subjectId": "pharmacology",
+"topicId": null,
+"stem": "Which of the following drug predominantly act by decreasing the preload of hea?",
+"options": [
+"Calcium channel blockers",
+"Minoxidil",
+"Hydralazine",
+"Nitroglycerine"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Vasodilator: Nitrate: |Preload Aeria dilator: Hydralazine:|Afterload Mixed - Nitroprusside ACE(-) | Both Preload and afterload ARBS - Minoxidil : Pottasium channel opener, enhance potassium efflux causing membrane hyperpolarization leading to decrease in calcium entry and smooth muscle relaxation causing vasodilation. Minoxidil and finasteride are trichogenic agents that are indicated for the treatment of androgenic alopecia (\"male pattern baldness\"). Minoxidil, originally used as a systemic antihypeensive, was noted to have the adverse effect of increased hair growth.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q065",
+"number": 65,
+"subjectId": "surgery",
+"topicId": null,
+"stem": "During exploration, a patient is found to have a tumor in the thymus that is invading the pericardium and surrounding the left and right phrenic nerves. The pathologist says that appears on frozen section to be a benign thymoma. The surgeon now should:",
+"options": [
+"Repeat frozen section",
+"Attempt as complete a resection as possible",
+"Close the chest and plan irradiation therapy",
+"Close the chest and await permanent sections"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Since the tumor is invading the pericardium and surrounding the left and right phrenic nerve maximum amount of tumor must be resected There is no advantage of frozen section",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q066",
+"number": 66,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "Which of the following molecules activates \"Classically activated macrophage\"/M1 type macrophage?",
+"options": [
+"IFN-g",
+"IL-4",
+"IL-13",
+"IL-1"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q067",
+"number": 67,
+"subjectId": "surgery",
+"topicId": null,
+"stem": "Syndrome containing colorectal cancer with endometrial cancer is called as:",
+"options": [
+"Cowden syndrome",
+"Lynch syndrome",
+"Turcot's syndrome",
+"Juvenile polyposis syndrome"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Hereditary Non polyposis colorectal cancer is aka Lynch Syndrome - Lynch Syndrome 1- has only colorectal Ca - Lynch Syndrome 2- has colorectal Ca +Extraintestinal (endometrial >gastric>ovarian) malignancy Turcot's Syndrome- has Brain Tumor Juvenile Polyposis Syndrome- has presence of multiple hamaomatous polyps Cowden Syndrome - ectodermal polyps with malignancy of breast, uterus and thyroid.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q068",
+"number": 68,
+"subjectId": "ent",
+"topicId": null,
+"stem": "Ludwig's angina occurs due to infection of:",
+"options": [
+"Submandibular space",
+"Retropharyngeal space",
+"Pharyngomaxillary space",
+"Peritonsillar space"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "LUDWIG'S ANGINA - Submandibular space lies between mucous membrane of the floor of mouth and tongue on one side and superficial layer of deep cervical fascia extending between the hyoid bone and mandibular on the other.it is divided into two compaments by the mylohyoid muscle. Ludwig's angina is infection of submandibular space. Etiology - dental infections. They account for 80 percent of the cases. Submandibular sialadenitis, injury to oral mucosa and fractures of the mandible account for other cases. CLINICAL FEATURES- There is marked difficulty in swallowing (odynophagia) with varying degrees of trismus. When infection is localized to the floor of mouth are swollen and tongue seems to be pushed up and back. Usually there is cellulitis of the tissue rather than frank abscess. tongue is progressively pushed upward and backward threatening the airway. laryngeal edema may appear. Rx- Systemic antibiotics. Incision and drainage of abscess. RETROPHARYNGEAL SPACE - It lies behind the pharynx between the buccopharyngeal fascia covering pharyngeal constrictor muscles and the preveebral fascia.it extends from the base of skull to the bifurcation of trachea. The space is divided into two lateral compaments (Space of Gillette) by a fibrous raphe. each lateral space contains retropharyngeal nodes which usually disappear at 3- 4 years of age. Parapharyngeal space communicates with the retropharyngeal space.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q069",
+"number": 69,
+"subjectId": "anaesthesia",
+"topicId": "pyq_anaesthesia_intravenous_anesthetic_agents",
+"stem": "In a patient with severe aoic Stenosis which of the following anesthetic techniques is least preferred:",
+"options": [
+"Propofol induction",
+"Etomidate induction",
+"Spinal anesthetic with 15 mg bupivacaine",
+"Epidural anesthesia with 2 % lidocaine"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Spinal anesthesia is an absolute contra-indication in severe hea disease as it can cause severe hemodynamic instability Etomidate is cardio vascular stable Propofol can be used with caution in patients with severe hea disease Epidural anesthesia can be used with caution in patient with severe hea disease",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q070",
+"number": 70,
+"subjectId": "microbiology",
+"topicId": "pyq_microbiology_systemic_bacteriology_(haemophilus_yersinia_spirochaetes_ricketssia_chlamydia_mycoplasma_and_miscellaneous_bacteria)",
+"stem": "Tsutsugamushi causes:",
+"options": [
+"Epidemic typhus",
+"Endemic typhus",
+"Scrub typhus",
+"Q fever"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Orientia tsutsugamushi causes scrub typhus where vector is trombiculid mite. Human disease caused by the Rickettsia and Orientia species Group Species Disease Vector Veebrate reservoir Distribution Typhus R. prowazekii \" R. typhi R. felis Epidemic typhus Brill-zinsser disease Endemic typhus \" Louse \" Rat flea Cat flea Human beings Human beings Rat Opossum Worldwide America, Europe, Australia Worldwide USA Spotted fever group R. rickettsii R. siberica R. conori \" \" \" R. australis R. japonica R. akari Rocky Mountain spotted fever Siberian trick typhus Fever Boutonneuse South African tick typhus Kenyan tick typhus Indian tick typhus Queensland tick typhus Oriental spotter fever Ricketssial Pox Tick \" \" \" \" \" \" \" Gamasid mite Rabbit, dog Small rodents Wild animals, cattle Dog, rodents \" Rodents ? Rodents Bush rodents ? Mouse Noh America Russia, Mongolia Mediterranean South Africa Kenya India N Australia Japan USA, Russia Scrub typhus O. tsutsugamushi Scrub typhus Trombiculid mite Small rodents, birds East Asia, Pacific Islands, Australia",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q071",
+"number": 71,
+"subjectId": "microbiology",
+"topicId": null,
+"stem": "Bornholm's disease is caused by:",
+"options": [
+"HSV",
+"HBV",
+"Coxsackie B virus",
+"HPV"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Bornholm's disease is caused by Coxsackie B virus. Difference between group - A and Group - B Coxasackieviruses Group A coxsackieviruses Group B coxsackieviruses Suiciding mouse intracerebral inoculation * Flaccid paralysis * Generalized myositis * Spastic paralysis in mice * Focal myositis and necrosis of brown fat Manifestations * Aseptic meningitis (A7, A9) * Herpangina (vesicular pharyngitis) * Hand - foot - and - mouth disease (also by enterovirus: 71) * Acute hemorrhagic conjunctivitis: Caused by coxsackie virus - A24 and enterovirus 70 More organ involvement seen * Aseptic meningitis (B1-6) * Pleurodynia (epidemic myalgia or Bornholm disease) * Myocarditis, pericarditis * Hepatitis * Pancreatitis leading to Juvenile diabetes mellitus: Coxsackie B4 * Pneumonia * Generalized disease of infants Host cell receptor Intercellular adhesion molecule 1(ICAM-1) is a receptor for Coxsackieviruses A13, A18, and A21 CAR (Coxsackievirus and adenovirus receptor) is the receptor for: * All group B coxsackieviruses * Group C adenoviruses",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q072",
+"number": 72,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_water",
+"stem": "Quantitative requirement of water in Urban areas per day:-",
+"options": [
+"220 liters per capita",
+"100 liters per capita",
+"150 liters per capita",
+"300 liters per capita"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Urban areas 150-200 litres per capita Rural areas 40 litres per capita",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q073",
+"number": 73,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "Durcks granuloma seen in:",
+"options": [
+"Spleen",
+"Hea",
+"Brain",
+"Lymph node"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Durcks Granuloma: Seen in cerebral malaria infection. Plasmodium Falciparum infected RBC cause stasis in blood vessel of Brain leading to granuloma formation. Infected RBC can be visualized with Field stain. Granuloma in spleen: can be due to TB, histoplasmosis.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q074",
+"number": 74,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_osteoporosis_sex_hormones_and_ocps",
+"stem": "Which of the following drug is specifically for Her 2 positive breast carcinoma is:",
+"options": [
+"Trastuzumab",
+"Tamoxifen",
+"Exemestane",
+"Fulvestrant"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Monoclonal antibody against HER2/neu receptor are:- Trastuzumab Peuzumab S/E:- Cardiotoxic Tamoxifen:- Antagonist on estrogen receptor expressed in mammary tissue. - Agonist on estrogen receptor in bone - Useful not only in treatment and prophylaxis of breast cancer but also in prevention of osteoporosis Exemestane:- a steroid molecule, irreversible inhibitor of aromatase(enzyme required for estrogen synthesis) Fulvestrant:- Pure estrogen receptor antagonist(Selective estrogen receptor down regulator)",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q075",
+"number": 75,
+"subjectId": "ent",
+"topicId": "pyq_ent_pharynx",
+"stem": "Pharyngeal bursa infections leads to:",
+"options": [
+"Craniopharyngioma",
+"Chordoma",
+"Thornwaldt's cyst",
+"Lymphoma"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Pharyngeal bursitis (THORNWALDT'S DISEASE)- Infection of the pharyngeal bursa which is a median recess representing attachment of notochord to endoderm of the primitive pharynx. Pharyngeal bursa located in the midline of posterior wall of the nasopharynx in the adenoid mass. CLINICAL FEATURE- 1. Persistent postnasal discharge with crusting in the nasopharynx. 2. Nasal obstruction due to swelling in the nasopharynx. 3. Obstruction of eustachian tube and serous otitis media. 4. Dull type of occipital headache, recurrent sore throat, low grade fever. On examination- cystic and fluctuant swelling in the posterior wall of nasopharynx.it may also show crusts in the nasopharynx due to dried up discharge. TREATMENT- Antibiotics are given to treat infection and marsupialization of the cystic swelling and adequate removal of its lining membrane.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q076",
+"number": 76,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "Bundle of kent seen in:",
+"options": [
+"Brugada syndrome",
+"Romano - ward syndrome",
+"Wolff-parkinson-white syndrome",
+"Jervell and lange - Nielsen syndrome"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Bundle of Kent is an abnormal conducting pathway that connects atria directly to ventricles, thereby bypassing the AV node (no A -V nodal delay) Thus, P - R interval on ECG is shoened - k/a delta wave - Triad of WPW: - Sho PR interval - Wide QRS complex - Delta wave",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q077",
+"number": 77,
+"subjectId": "ent",
+"topicId": "pyq_ent_otosclerosis",
+"stem": "Carha's notch in audiometry is seen in:",
+"options": [
+"Ossicular discontinuity",
+"Hemotypanum",
+"Otomycosis",
+"Otosclerosis"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "TheCarha notchis a depression in the bone-conduction audiogram of patients with clinical otosclerosis. It is different at different frequencies but maximum at 2000hz and it called Carha notch. which correspond to the resonance frequency of the middle ear, can be substantially improved following successful stapes surgery.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q078",
+"number": 78,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_transcription",
+"stem": "Reverse transcription causes synthesis of:-",
+"options": [
+"RNA from DNA template",
+"DNA from RNA template",
+"RNA from RNA template",
+"DNA from DNA template"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Reverse transcription - synthesis of DNA from RNA template Reverse transcriptase is RNA dependent DNA polymerase Reverse transcriptase is responsible for the formation of DNA from RNA",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q079",
+"number": 79,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Amino Acid having role in sleep wake cycle:",
+"options": [
+"Tryptophan",
+"Phenylalanine",
+"Glycine",
+"Glutamine"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "TRYPTOPHAN METABOLISM USE IN - (1)Serotonin, melatonin synthesis Fig:- Synthesis of serotonin and melatonin Use of serotonin - neurotransmitter responsible for mood elevation, git motility, temp. regulation Excretory end product - 5 hydroxy indole acetic acid (increase in urine in carcinoid syndrome) Melatonin synthesized in pineal gland Responsible for biological rhythm in body",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q080",
+"number": 80,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Telomerase has action of:",
+"options": [
+"DNA polymerase 1",
+"DNA polymerase 2",
+"DNA polymerase 3",
+"Reverse transcriptase"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Telomerase - Telomerase is a ribonucleoprotein paicle required for telomere maintenance. Telomerase contains an RNA that serves as the template, not the primer , for the synthesis of telomeric DNA by the reverse transcriptase of telomerase. Telomeric RNA has no catalytic activity. As a reverse transcriptase, telomerase synthesizes DNA using its RNA template and so is an RNA-transcriptase DNA polymerase. Telomerase is highly active in the early embryo, and after bih it is active in the reproductive and stem cell. Telomerase activity high in cancer cell.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q081",
+"number": 81,
+"subjectId": "surgery",
+"topicId": "pyq_surgery_small_and_large_intestine",
+"stem": "Meckel's diveiculum follows the rule of 2. Which of the following is false?",
+"options": [
+"Occurs in approximately 2% of population",
+"Approximately 2 inches in length",
+"Generally present 2 feet proximal to ileocecal valve",
+"2% are symptomatic"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "MECKEL's DIVEICULUM Most commonly encountered congenital anomaly of the small intestine Occur 2% of the population Rule of two in Meckel's diveiculum 2% prevalence 2 inch in length Half of these who are symptomatic are <2 years of age 2 feet proximal to ileocecal valve",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q082",
+"number": 82,
+"subjectId": "pharmacology",
+"topicId": null,
+"stem": "Tolterodine used in overactive bladder acts by blocking which of the following receptors?",
+"options": [
+"M1",
+"M2",
+"M3",
+"M4"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Selective M3 antagonists acting on GIT and bladder Selective M3 antagonists acting only on bladder (vesicoselective) Derifenacin Oxybutynin Solifenacin Flavoxate Tolterodine Trospium chloride",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q083",
+"number": 83,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "ADAMTS 13 is associated with which of the following disorders?",
+"options": [
+"TTP",
+"Churg Strauss syndrome",
+"Wegener's granulomatosis",
+"Membranous nephropathy"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "ADAMTS 13:- -Metalloprotease enzyme which inhibits VWF clumps. -cleaves VWF multimers into smaller monomers for eventual degradation Thrombotic Thrombocytopenic purpura (TTP)- Causes- Deficiency of ADAMTS 13 Ab formation against ADAMTS 13 - |ADAMTS 13 activity - VWF clumping - Platelet-Thrombi present C/F - Thrombocytopenia Microangiopathic Hemolytic anaemia Fever Renal failure CNS features Rx- Plasmapheresis",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q084",
+"number": 84,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Cereal are deficient in which amino acid:",
+"options": [
+"Leucine",
+"Lysine",
+"Phenylalanine",
+"Tryptophan"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Cereal are deficient in lysine and threonine Pulses are deficient in methionine",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q085",
+"number": 85,
+"subjectId": "psychiatry",
+"topicId": null,
+"stem": "All of the following are disruptive, impulse control and conduct disorders except:",
+"options": [
+"Munchausen syndrome",
+"Conduct disorder",
+"Intermittent explosive disorder",
+"Oppositional disorder"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Five conditions comprise the category of disruptive, impulse-control, and conduct disorders. They include two that are associated with childhood: (1) oppositional defiant disorder and (2) conduct disorder. The remaining three disorders are intermittent explosive disorder, kleptomania, and pyromania* Each disorder is characterized by the inability to resist an intense impulse, drive, or temptation to perform a paicular act that is obviously harmful to self or others, or both.* Before the event, the individual usually experiences mounting tension and arousal. Completing the action brings immediate gratification and relief (1) Oppositional defiant disorder - Symptoms include anger, irritability, defiance, and refusal to comply with regulations.(2) Conduct disorder - characterized by fighting and bullying(3) Intermittent explosive disorder - uncontrolled outbursts of aggression.(4) Kleptomania - repeated stealing(5) Pyromania- putting thing on fire",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q086",
+"number": 86,
+"subjectId": "social_and_preventive_medicine",
+"topicId": null,
+"stem": "Most impoant indicator of Air pollution is:-",
+"options": [
+"SO2",
+"CO2",
+"CO",
+"N2O"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "The best indicators of air pollution are sulfur dioxide, smoke and suspended paicles. Various indicators used: Chemical: SO2 , NO2, CO, Air pollution index, Soiling index, Coefficient of haze. Biological: Lichens BEST Overall- SO2",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q087",
+"number": 87,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "Thyroxine is transpoed by?",
+"options": [
+"Albumin",
+"Transthyretin",
+"Transferrin",
+"Ceruloplasmin"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Transpo proteins for thyroxine: - 1. TBG - Thyroid binding globulin high affinity, low capacity. 2. TBPA - Thyroid binding prealbumin. 3. Albumin - Low affinity, high capacity. 4. Transthyretin - Very small quantity for thyroxine transpo. Transferrin - Fe2+ transpo Ceruloplasmin - Cu2+ transpo.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q088",
+"number": 88,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_proteins_and_amino_acids",
+"stem": "Glycine present in all except:",
+"options": [
+"Glutathione",
+"Creatine",
+"Glutamine",
+"Purine nucleotide"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "GLYCINE Smallest & simplest amino acid use h (1) Glutathione synthesis (glutamate glycine & cysteine) (2) Creatine synthesis (arginine & glycine and methionine) (3) Serine synthesis - non essential amino acid (4) Purine ring (5) Heme synthesis (glycine and succinyl CoA) (6) Conjugation reactions - two reactions A - The bile acids-cholic acid and chenodeoxy cholic acid-are conjugated with glycine B - glycine is impoant for detoxification of benzoic acid Glutamine - Ammonia is temporarily stored in the form of glutamine",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q089",
+"number": 89,
+"subjectId": "anaesthesia",
+"topicId": "pyq_anaesthesia_inhalational_anesthetic_agents",
+"stem": "Anesthesia of choice for induction in children among the following is:",
+"options": [
+"Desflurane",
+"Halothane",
+"Sevoflurane",
+"Isoflurane"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "o Sevoflurane is a sweet smelling anesthetic agent and has fast onset of action. Hence it is the preferred agent for induction o Desflurane has the fastest onset of action but has a pungent smell and can cause laryngospasm o Isoflurane has an irritant smell and hence not used for induction o Halothane can be used for induction",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q090",
+"number": 90,
+"subjectId": "psychiatry",
+"topicId": null,
+"stem": "All of the followings are true about Narcolepsy; except:",
+"options": [
+"Strong association with HLA class II",
+"Sudden loss of voluntary muscle tone",
+"NREM abnormality",
+"Irresistible desire to sleep"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "NARCOLEPSY Narcolepsy is a condition characterized by excessive sleepiness, as well as auxiliary symptoms that represent the intrusion of aspects of REM sleep into the waking state . The sleep attacks of narcolepsy represent episodes of irresistible sleepiness, leading to perhaps 10 to 20 minutes of sleep. They can occur at inappropriate times (e.g., while eating, talking, or driving and during sex). The REM sleep includes hypnagogic and hypnopompic hallucinations, cataplexy, and sleep paralysis. Diagnosis-* polysomnographic - reveals a characteristic sleep-onset REM period * HLA ASSOCIATION - HLA - DR2",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q091",
+"number": 91,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "Massive blood transfusion will cause all except:",
+"options": [
+"Hypercalcemia",
+"Hyperkalemia",
+"Hypokalemia",
+"Hypothermia"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Massive Blood Transfusion: Most commoncomplication: Hypothermia Fast massive Blood Transfusion: |K+ Slow massive Blood Transfusion: | K+ Citrate in Blood combine with Ca+2+ leading to Hypocalcemia rather than Hypercalcemia Citrate gets conveed to Bicarbonate by liver leading to Metabolic Alkalosis (Most common electrolyte abnormality associated with massive Blood Transfusion).",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q092",
+"number": 92,
+"subjectId": "ent",
+"topicId": "pyq_ent_facial_nerve_and_its_disorders",
+"stem": "Which cranial nerves affected in Moebius syndrome?",
+"options": [
+"5, 6 CN",
+"5, 7 CN",
+"6, 7 CN",
+"6, 9 CN"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Moebius syndrome - Rare neurological disorder, congenital oculofacial paralysis Congenital defect - paralysis of 6th and 7th CN Mask like face - expressionless Unable to close eyes- corneal ulceration Strabismus",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q093",
+"number": 93,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "In tumor lysis syndrome following electrolyte abnormalities are seen:",
+"options": [
+"Hyperuricemia, Hyperphosphatemia, Hyperkalemia",
+"Hypocalcemia, Hypokalemia, Hyponatremia",
+"Hypercalcemia, Hyperkalemia, Hyperphosphatemia",
+"Hypophosphatemia, Hypokalemia, Hypocalcemia"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Tumor Lysis Syndrome:Tumor with very high rate of growth- during chemotherapy there will be rapid destruction of the cells that will lead to Tumor Lysis Syndrome. It releases: K+-Hyperkalemia PO42-Hyperphosphatemia Hypocalcemia:Ca2+sequestration by PO42. Hyperuricemia:Nucleic Acid Break down. | can lead to AKI Can prevent/ Tx with aggressive hydration, alopurinol and rasburicase. Common tumors associated with Tumor lysis syndrome - ALL, Burkitt's Lymphoma.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q094",
+"number": 94,
+"subjectId": "ophthalmology",
+"topicId": null,
+"stem": "Left homonymous hemianopia is seen in which right sided lesion?",
+"options": [
+"Optic tract",
+"Optic nerve",
+"Optic chiasma",
+"Occipital lobe (visual coex)"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Contralateral homonymous hemianopia occurs in retrochiasmal lesions which includes lesions of optic tract, lateral geniculate nucleus,optic radiations. Lesions of the visual pathways at the level of: 1. Optic nerve; 2. Proximal pa of optic nerve; 3. Central chiasma; 4. Lateral chiasma (both sides); 5. Optic tract; 6. Geniculate body; 7. Pa of optic radiations in temporal lobe; 8. Pa of optic radiations in parietal lobe; 9. Optic radiations; 10. Visual coex sparing the macula; 11. visual coex, only macula",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q095",
+"number": 95,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "t1/2 of haptoglobin complex is:",
+"options": [
+"5 days",
+"3 days",
+"10 days",
+"10 minutes"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "- Half life of free Haptoglobin - 5 days. - Half life of Haptoglobin hemoglobin complex is 10-15 minutes. - In hemolytic anemias, excess Hb released from RBC destruction is bound to Haptoglobin & its complex is cleared rapidly, resulting in decreased serum/free Haptoglobin levels",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q096",
+"number": 96,
+"subjectId": "medicine",
+"topicId": null,
+"stem": "Sinus arrhythmia occurs:-",
+"options": [
+"Due to sympathetic overstimulation",
+"Due to change in respiration",
+"Due to change in body temperature",
+"None"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "During inspiration & Expiration Patient's hea rate tends to change, so respiration can trigger sinus arrythmia During inspiration=JVP fall, BP fall, HR|",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q097",
+"number": 97,
+"subjectId": "pathology",
+"topicId": "topic_45_endocrine",
+"stem": "Zellballen pattern seen in:",
+"options": [
+"Carotid body tumor",
+"Lymphoepithelial cyst",
+"Cholesteatoma",
+"Thyroglossal cyst"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Zellballen pattern: Contain nest of sustentacular cells & chief cells with pale eosinophilc staining Seen in tumors of chromaffin cells, i.e pheochromocytoma & Paraganglioma (carotid body tumor). Most common location of these tumors is within adrenal medulla,where they give rise to pheochromocytomas & approximately 70% of extra-adrenal paragangliomas occur in head & neck region.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q098",
+"number": 98,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_cell_wall_synthesis_inhibitors",
+"stem": "The drug of choice for the empirical treatment of meningococcal meningitis is:",
+"options": [
+"Piperacillin",
+"Ceftriaxone",
+"Ampicillin",
+"Meropenem"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Meningococcal Meningitis:- Treatment : Empirical treatment : Ceftriaxone Definitive: penicillin G Prophylactic: Ceftriaxone, Ciprofloxacin Rifampicin is not use these days due to high resistance. Ceftriaxone:- injectable Ciprofloxacin- Oral",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q099",
+"number": 99,
+"subjectId": "anaesthesia",
+"topicId": null,
+"stem": "Which of the following is false about light anesthesia?",
+"options": [
+"Patient does not have explicit memory of the period",
+"Pain may be felt during light anesthesia",
+"Is desirable is ceain high risk conditions",
+"Can lead to Posttraumatic stress disorders"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "In Light anesthesia : o Patients have memory of the period o Pain may be felt during light anesthesia Light anesthesia is desirable in ceain conditions and can lead to PTSD BIS and Entropy monitors measures the depth of anesthesia",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q100",
+"number": 100,
+"subjectId": "surgery",
+"topicId": null,
+"stem": "In a post-mastectomy patient, the suction drain is accidentally removed on 2nd post-operative day and the lady staed to have ooze with swelling in the chest. Next option in management in this case is:",
+"options": [
+"Open incision and pack with saline gauze",
+"Aspiration under aseptic conditions and do pressure dressing",
+"Re-inse the drain",
+"Wait and watch"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "SEROMA: Accumulation of fluid beneath flap.occurs as a complication after MRM Drains are removed when output is <40cc/day for 2 consecutive days Accidental removal of drain - discharge of serous material. Management of Seroma: Aspiration under aseptic conditions and do pressure dressing Seromas increase risk of infections and lymphedema - hence, wait and watch is not a management option.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q101",
+"number": 101,
+"subjectId": "social_and_preventive_medicine",
+"topicId": "pyq_social_and_preventive_medicine_nutrition_and_health",
+"stem": "Endemic ascites caused by:-",
+"options": [
+"Aflatoxin",
+"Pyrrolizidine",
+"Sanguinarine",
+"Ergot alkaloid"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Endemic ascites was repoed in the Nagesia tribes of Madhya Pradesh, which presented as a rapidly developing jaundice and ascites, with over 40% moality. It occurred due to contamination of Gondhli or Panicum miliare millet by the weed seeds of Crotalaria or Jhunjhunia, which contained Pyrrolizidine alkaloids which are hepatotoxic.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q102",
+"number": 102,
+"subjectId": "social_and_preventive_medicine",
+"topicId": null,
+"stem": "Very low bih weight is less than:-",
+"options": [
+"<1000g",
+"<1500g",
+"<2000g",
+"<2500g"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Low bih weight (LBW)= Bih weight <2500g Very low bih weight (VLBW)= BW <1500g Extremely low bih weight (ELBW)= BW<1000g",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q103",
+"number": 103,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "Liver biopsy in Malaria will have:",
+"options": [
+"Microabscesses",
+"Kupffer cell hyperplasia",
+"Piecemeal necrosis",
+"Non caseating granuloma"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Liver Biopsy in Malaria will have Kupffer cell hyperplasia with parasitize RBC and Hematin in it. Condition Seen in Piecemeal Necrosis (interface Hepatitis) Viral Hepatitis Autoimmune hepatitis Steatohepatitis Munro micro abscess Psoriasis Pautrier's micro abscess Mycosis fungoides/ Sezary Syndrome Non Caseating Granuloma Sarcoidosis Crohn's Cat Scratch Foreign Body",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q104",
+"number": 104,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_mycobacterial_diseases_(tb_leprosy_and_mac)",
+"stem": "Which first line antitubercular drug can result in adverse effects of Eye?",
+"options": [
+"Ethambutol",
+"Pyrazinamide",
+"Rifampicin",
+"Isoniazid"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Ethambutol causesRed Green Color Blindness (Optic Neuritis) Initially reversible, later irreversible Avoided in children. Adverse effects of other first line antitubercular drugs: Pyrazinamide :- Hyperuricemia Rifampicin :- Hepatotoxic, Discoloration of secretion Isoniazid :- Hepatotoxic, Peripheral Neuropathy",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q105",
+"number": 105,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "68-years-old man weighing 60 kg has plasma creatinine 3mg/dL. What will be creatinine clearance?",
+"options": [
+"10",
+"20",
+"30",
+"40"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "By Cockcroft & Gault formula Factors influencing 1. Body wt. - Assumed to be d/o muscle mass - Muscle - creatine - creatinine 2. Age - with advancing age, number of functional nephrons decrease Cockcroft & gault formula unreliable in: - 1. Obesity 2. Pregnancy",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q106",
+"number": 106,
+"subjectId": "physiology",
+"topicId": "topic_61_sex_hormones",
+"stem": "Sperm acquires motility in:",
+"options": [
+"Seminal vesicle",
+"Testes",
+"Epididymis",
+"Ejaculatory duct"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Formation of sperm: Seminiferous tubules spermatid - spermatozoa Storage and motility: Epididymis After 48 hr. in epididymis, spermatozoa develop the capability of motility. Although, several inhibitory proteins in the epididymal fluid still prevent final motility until after ejaculation. Maturation: After ejaculation, the sperm become motile and capable of feilizing the ova. This process is k/a maturation. Capacitation: Activation of sperm for final process of feilization, after coming in contact with fluids of the female genital tract.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q107",
+"number": 107,
+"subjectId": "surgery",
+"topicId": null,
+"stem": "True regarding wound dehiscence:",
+"options": [
+"If you suspect dehiscence, close with continuous suture of non-absorbable material",
+"Dehiscence happens on 2nd post-operative day",
+"The management of wound dehiscence depends on degree of evisceration and gangrenous bowel",
+"There will sudden gush of fluid just before the dehiscence"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "In wound dehiscence Closure is done with INTERRUPTED suture of non-absorbable material. Discharge is MINIMAL in amount. Wound DEHISCENCE (Burst Abdomen) Serrous or Serosanguinous discharge from the wound is the first sign of dehiscence Most commonly observed between 5th and 8th postoperative day (may occur at any time following wound closure) Wound dehiscence is paial or total disruption of any or all layers of the operative wound. Extrusion of abdominal viscera after rupture of all layers is know as evisceration . Management Wound dehiscence without evisceration: Prompt elective closure of the wound Wound dehiscence with evisceration: Wound is covered with moist towels Under GA, any exposed bowel or omentum is rinsed with RL containing antibiotics and then returned to abdomen Previous sutures are removed, wound is reclosed (Tension suturing )",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q108",
+"number": 108,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Which has more gene content X or Y?",
+"options": [
+"X contents 2.8% more than Y",
+"Y contents 2.8% more than X",
+"X contents 0.28% more than Y",
+"Y contents 0.28% more than X"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "X chromosome is bigger in size so x has 2.8 % more content than Y.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q109",
+"number": 109,
+"subjectId": "pediatrics",
+"topicId": null,
+"stem": "Late complication of diphtheria:",
+"options": [
+"Airway obstruction",
+"Encephalitis",
+"Pneumonia",
+"Neuropathy"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Late Complications of diphtheria Cardiac Neurologic Myocarditis Congestive cardiac failure Arrhythmias Palatal paralysis - nasal quality in voice, difficulty in swallowing & risk of aspiration (2 weeks) Ocular palsy (3 weeks) Symmetric polyneuropathy (10 days- 3 months)",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q110",
+"number": 110,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_classification_of_carbohydrate",
+"stem": "Mucopolysaccharides in eye are:",
+"options": [
+"Keratan sulfate - I and Hyaluronic acid",
+"Keratan sulfate - I and Heparan sulfate",
+"Chondroitin sulfate and Keratan sulfate - II",
+"Chondroitin sulfate and Dermatan sulfate"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "MUCOPOLYSACCHARIDES - heteroglycans made up of repeating units of sugar derivatives, namely amino sugars and uronic acids. These are more commonly known as glycosaminoglycans (GAG).",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q111",
+"number": 111,
+"subjectId": "physiology",
+"topicId": "pyq_physiology_respiratory_system",
+"stem": "All of the following are responsible for Right shifting of O2 saturation curve; except:",
+"options": [
+"Hypoxia",
+"Hypocapnia",
+"Increase temp",
+"Increased 2,3 DPG"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "4 factors causing Right shift: 3. Increase in CO2 4. Increase in 2, 3 DPG - Hypoxia induces increase formation of 2, 3 DPG - right shift 2, 3 DPG is the product of Rappo Luebbering shunt in RBC 2, 3 DPG bind with Hb and dissociates O2",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q112",
+"number": 112,
+"subjectId": "forensic_medicine",
+"topicId": "pyq_forensic_medicine_death_and_investigations",
+"stem": "Postmoem examination stomach incision done after:",
+"options": [
+"Double ligation",
+"Single ligation",
+"Cut open",
+"Triple ligation"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Since the stomach is connected both to oesophagus and dudoenum so double ligature along the greater curvature of stomach is usually done so that stomach could be taken out for post moem examination.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q113",
+"number": 113,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "E- cadherin mutation is seen in which type of carcinoma:",
+"options": [
+"IDC",
+"Lobular carcinoma",
+"Metabplastic carcinoma",
+"Metastasis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Loss of E cadherin can contribute to malignant phenotype by allowing easy disintegration of cell which can then invade locally and metastasize. Reduced cell surface expression of E cadherin has been noted in many carcinomas : Stomach carcinoma Breast carcinoma Prostate carcinoma Ovarian carcinoma",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q114",
+"number": 114,
+"subjectId": "pediatrics",
+"topicId": null,
+"stem": "Child able to make tower of 5-6 cubes at which age?",
+"options": [
+"18 months",
+"24 months",
+"21 months",
+"30 months"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "15 months - Tower of 2 cubes 18 months - Tower of 4 cubes 21 months - Tower of 5-6 cubes 24 months - Tower of 6-7 cubes 3 years - Makes a BRIDGE of3 cubes 4 years - Makes a GATE of 5 cubes",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q115",
+"number": 115,
+"subjectId": "pharmacology",
+"topicId": "pyq_pharmacology_immunomodulators",
+"stem": "The mechanism of action of cyclosporine is:",
+"options": [
+"Inhibits IL-2 receptors",
+"Inhibits TNF alpha",
+"Decrease in transcription of IL-2 gene",
+"Targets inactivated T cells"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Cyclosporine calcineurin inhibitor inhibits the dephosphorylation of NFAT leading to blocked of T cell activation by preventing IL2 Transcription. Tacrolimus (FK506):- is also calcineurin inhibitor which binds FK506 binding protein. IL2 receptor are blocked by Basiliximab, Daclizumab. TNF alphaBlocker :- Infliximab",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q116",
+"number": 116,
+"subjectId": "anatomy",
+"topicId": null,
+"stem": "Epithelium of cervix mucosa is lined by",
+"options": [
+"Simple squamous epithelium",
+"Simple columnar epithelium",
+"Stratified squamous epithelium",
+"Ciliated columnar epithelium"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Other epithelia: Simple squamous epithelium lines free surface of serous pericardium, pleura & peritoneum (here it is called mesothelium) lines inside hea a endocardium a blood vessels & lymphatics a endothelium etc. Stratified squamous epithelium: 1. keratinized ??' lines skin of whole body & forms epidermis. 2. non keratinized ??'seen in lining of mouth, tongue, pharynx, esophagus, vagina, cornea etc. Simple columnar epithelium ??' (Non cilia / microvilli) present over mucous membrane of stomach & large intestine. Ciliated columnar epithelium ??' Respiratory tract, uterus, uterine tubes, efferent ductules of testes, pas of middle ear & auditory tube, ependyma lining the central canal of spinal cord & ventricles of brain. Pseudostratified columnar epithelium ??' some pas of auditory tube, ductus deferens, male urethra (membranous & penile pas), trachea & large bronchi",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q117",
+"number": 117,
+"subjectId": "anatomy",
+"topicId": null,
+"stem": "Tensor fascia lata is supplied by",
+"options": [
+"Nerve to quadratus femoris",
+"Superior gluteal nerve",
+"Inferior gluteal nerve",
+"Sciatic nerve"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Of all the nerves, that passes through greater sciatic foramen, superior gluteal N is only one that passes above piriformis muscle. After entering gluteal region. Nerve loops up over inferior margin of gluteus minimus & travels anteriorly & laterally in plane b/w gluteus medius & minimus muscle It supplies gluteus minimus - abductors at hip joint gluteus medius - medially rotates thigh Tensor fasciae latae -prevent pelvis drop on opposite swing side during walking. Nerve to quadratus femoris : Enters gluteal region through greater sciatic foramen inferior to piriformis muscle & deep to sciatic nerve. Lies anterior to plane of deep muscles. It descends along the ischium deep to tendon of obturator internus muscle & associated gemellus muscle to penetrate & innervate quadratus femoris a Supplies small branch to gemellus anterior. * Inferior gluteal nerve : Enters gluteal region through sciatic foramen inferior to piriformis muscle & along the posterior surface of sciatic nerve Penetrate & supplies gluteus maximus muscle. Sciatic nerve : Largest nerve in body & innervates all muscles in posterior compament of thigh that flex the knee & all muscles that move ankle & foot Innervates large area of skin in lower limb.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q118",
+"number": 118,
+"subjectId": "medicine",
+"topicId": null,
+"stem": "A 45 year old Alcoholic comes to OPD who is on abstinence since last 10 years.He suddenly develops dysahria, shuffling gait and intention tremors . What shall be the most likely diagnosis ?",
+"options": [
+"Wilson disease",
+"Wernicke's disease",
+"Acquired hepatocerebral degeneration",
+"Halloverden spatz disease"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Disease Features Wilson's ds -Patient will be present at 10 yr age -KF Ring -But here it is alcoholic so ruled out. Wernicke's disease -Global confusion, -Ophthalmoplegia -Ataxia Hepatocerebral degeneration -Rare complication of cirrhosis -Indicates a decompensation in of cirrhosis - Development of Poal HTN - develops poosystemic collateral circulation- | Ammonia (NH3+) in circulation - Neurological c/f. Halloverden spatz disease/NBIA -Degeneration due to iron deposition -Accumulation of iron in putamen * Presentation is in childhood (10-15 yr. age) * It is d/d of Wilson's disease -MRI =iron deposition in putamen given eye of tiger appearance.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q119",
+"number": 119,
+"subjectId": "pharmacology",
+"topicId": null,
+"stem": "The use of levodopa is avoided in which of the following patients?",
+"options": [
+"Alzheimer's disease",
+"Psychosis",
+"Multiple sclerosis",
+"Amyotrophic lateral sclerosis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Any drug which increase dopamine in brain causes psychosis.Levodopa should be avoided in patient with psychosis Anti parkinsonism drug can cause psychosis Anti Psychotic drug can cause parkinsonism Multiple sclerosis : Interferon b1a and interferon b1b: The immunomodulatory effects of interferon help to diminish the inflammatory responses that lead to demyelination of the axon sheaths. Glatiramer: Glatiramer is a synthetic polypeptide that resembles myelin protein and may act as a decoy to T-cell attack. Natalizumab: Natalizumab is a monoclonal antibody indicated for MS in patients who have failed first-line therapies.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q120",
+"number": 120,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_transcription",
+"stem": "Sigma (s) subunit is present in:",
+"options": [
+"80 S subunit",
+"RNA polymerase",
+"Required for initiation of replication",
+"DNA polymerase"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "RNA POLYMERASE DNA dependent RNA polymerase Complex holoenzyme with five polypeptides units Five polypeptides - 2 alpha , 1b , 1b' , one sigma Sigma subunit enables the core enzyme to recognize and bind the promoter region to form the preinitiation complex (PIC). b-Main catalytic activity b' binds to DNA template",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q121",
+"number": 121,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": null,
+"stem": "Which of the following antenatal complications may cause placentomegaly?",
+"options": [
+"Hypeension",
+"Diabetes",
+"Abruption",
+"HIV"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Placentomegaly- Causes Maternal causes: Diabetes Anemia and malnutrition Infections: TORCH , CMV, Parvo virus, syphilis. Fetal causes Hydrops fetalis: Rh incompatibility, ABO incompatibility, fetal cardiac failure Chronic intrauterine infections Umbilical vein obstruction H mole TTTS Placental causes Placental tumours: chorangioma",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q122",
+"number": 122,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Hybridoma used in:",
+"options": [
+"In situ hybridization",
+"Sequencing DNA",
+"Production of monoclonal antibodies",
+"Production of continuous cell lines"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "ln 1975, George Kohler and Cesar Milstein created hybrid cells that will make unlimited quantities of antibodies with defined specificities, which are termed as monoclonal antibodies . This discovery know as hybridoma technology Principle - fusion between myeloma cell (malignant plasma cell) and spleen cell from a immunized animal. Hybridoma technology can make available highly specific antibodies in abundant amounts. use of monoclonal antibodies Example of monoclonal ab trastuzumab - EGRF/HER2 INHIBITORS BEVACIZUMAB - ANGIOGENESIS INHIBITORS",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q123",
+"number": 123,
+"subjectId": "gynaecology_and_obstetrics",
+"topicId": null,
+"stem": "A girl presents with primary amenorrhoea with normal breast, hirsutism and acne. She most probably has:-",
+"options": [
+"Klinefelter syndrome",
+"PCOD",
+"Turner's syndrome",
+"Gonadal dysgenesis"
+],
+"answer": 2,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Polycystic ovarian syndrome was originally described in 1935 by Stein & Leventhal as a syndrome manifested by amenorrhea , hirsutism and obesity associated with enlarged polycystic ovaries, It is the most common endocrine disorder in women of reproductive age.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q124",
+"number": 124,
+"subjectId": "pharmacology",
+"topicId": null,
+"stem": "Tizanidine produces its action acting on which of the following receptors?",
+"options": [
+"Alpha adrenergic receptors",
+"GABA A receptors",
+"GABA B receptors",
+"Beta adrenergic receptors"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Drugs ending with \"nidine\" are alpha 2 agonist. Clonidine and Tizanidine are alpha 2 agonist.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q125",
+"number": 125,
+"subjectId": "pharmacology",
+"topicId": "topic_3_endocrinology",
+"stem": "Teduglutide is used in small bowel syndrome because its action is similar to:",
+"options": [
+"Pancreatic lipase",
+"Biliary lipase",
+"Glucagon like peptide 2",
+"Somatostatin"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Drug ending with GLUTIDES act as glucagon like peptide 2 (GLP 2) agonist Liraglutide: GLP 1 agonist Teduglutide: GLP 2 Agonist GLP agonist: -| Insulin, | Gastric Emptying Somatotropin is a large polypeptide that is released by the anterior pituitary in response to growth hormone (GH)-releasing hormone produced by the hypothalamus. Secretion of GH is inhibited by another hypothalamic hormone, somatostatin. GH is released in a pulsatile manner, with the highest levels occurring during sleep.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q126",
+"number": 126,
+"subjectId": "forensic_medicine",
+"topicId": null,
+"stem": "IPC for infanticide punishment:",
+"options": [
+"IPC 315",
+"IPC 312",
+"IPC 317",
+"IPC 318"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "In India infanticide amounts to murder so the punishment for infanticide is defined under 315 iPC. Criminal aboion is defined under IPC 312. Abondment of child less than 12 years is defined under IPC 317. Concealment of bih is defined under IPC 318.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q127",
+"number": 127,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "Myositis Ossificans is an example for:",
+"options": [
+"Metaplasia",
+"Hyperplasia",
+"Hyperophy",
+"Both hyperophy and hyperplasia"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Connective tissue metaplasia is the formation of cailage, bone, or adipose tissue (mesenchymal tissues) in tissues that normally do not contain these elements. For example, bone formation in muscle, designated myositis ossificans, occasionally occurs after intramuscular hemorrhage. This type of metaplasia is less clearly seen as an adaptive response, and may be a result of cell or tissue injury. Commonest example of connective tissue Metaplasia:Myositis Ossificans. Commonest example of epithelial tissue metaplasia:Smokers lungs Metaplasia: Reversible change (Benign entity). If stress persist: Metaplasia-Dysplasia-Cancer.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q128",
+"number": 128,
+"subjectId": "pharmacology",
+"topicId": null,
+"stem": "Adverse effect of carbonic anhydrase inhibitors is:",
+"options": [
+"Paraesthesia",
+"Weight gain",
+"Hyperkalemia",
+"Metabolic alkalosis"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Carbonic Anhydrase Inhibitor :- 1.Causes self limited NaHCO3 diuresis : Urinary Alkalosis Metabolic Acidosis 2. | K+ 3. Paresthesia 4. Bone Marrow suppression 5. Weight loss",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q129",
+"number": 129,
+"subjectId": "ent",
+"topicId": "pyq_ent_facial_nerve_and_its_disorders",
+"stem": "Which of the following nerve is damaged in Frey's syndrome",
+"options": [
+"Facial nerve",
+"Mandibular nerve",
+"Auriculotemporal nerve",
+"Trigeminal nerve"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Frey's Syndrome:(Gustatory Sweating) Characterized by sweating and flushing of the preauricular skin during mastication Auriculotemporal N. branch of the Mandibular N. carries sympathetic fibers that supplies the sweat glands and it also carries the parasympathetic fibers coming from the Glossopharyngeal N. they supply the Parotid gland. During parotidectomy if the nerve gets injured, there is mixing of the fibers during regeneration and the parasympathetic fibers supplying the parotid gland also stas supplying the sweat glands . So whenever the patient eats food the fibers get stimulated and the patient stas sweating while eating food.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q130",
+"number": 130,
+"subjectId": "biochemistry",
+"topicId": "pyq_biochemistry_structure_and_function_of_protein",
+"stem": "Ubiquitin role in:",
+"options": [
+"Protein degradation",
+"Protein synthesis",
+"Protein folding",
+"Protein transpoation"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Proteins that are misfolded or destined for degradation are marked for destruction by , highly conserved protein called ubiquitin. Ubiquitinated proteins are rapidly degraded by a cytosolic complex known as the proteasome.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q131",
+"number": 131,
+"subjectId": "anatomy",
+"topicId": null,
+"stem": "Inversion and eversion of foot occur at which joint",
+"options": [
+"Subtalar",
+"Tibiotalar",
+"Inferior tibiofibular",
+"Ankle"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Joint Movement Subtalar joint Inversion and Eversion of foot Ankle joint hinge - like dorsiflexion & plantar flexion of foot on leg Inferior tibiofibular joint Permits slight movements, so that lateral malleolus can rotate laterally during dorsiflexion of ankle Tibiotalar joint hinge joint contributes to plantar & dorsiflexion motion of foot",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q132",
+"number": 132,
+"subjectId": "orthopaedics",
+"topicId": null,
+"stem": "Achondroplasia shows which of the following type of inheritance?",
+"options": [
+"Autosomal dominant",
+"Autosomal recessive",
+"X linked dominant",
+"X linked recessive"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Autosomal dominant : von villebrands , adult pkd , myotonic dystrophy , tuberous sclerosis, huntingtons disease , osteosclerosis Autosomal recessive:- cystic fibrosis , congenital deafness , PKU, spinal muscular dystrophy X LINKED dominant :- Xg group , vit D resistant rickets , incontinentia pigmentia X Linked recessive red green colour blindness , fragile X syndrome , Duchenne muscular dystrophy , hemophilia Y linked :- swyer syndrome",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q133",
+"number": 133,
+"subjectId": "biochemistry",
+"topicId": null,
+"stem": "Which of the following factors acts as vesicle targeting:",
+"options": [
+"Ras",
+"Sec 12",
+"Rab",
+"SNARE"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Genes RAS - RAS gene they make RAS protein. they are GTP binding protein They regulate the cell cycle by RAS P 21 gene The mutation of RAS protooncogene is the single-most dominant cause of many human tumors. RAB - RAB is protein of RAS super family. they play role in membrane trafficking, vesicle transpo, vesicle fusion and formation SNARE -SNAP receptor,Key molecule in the fusion of vesicle with acceptor membrane t- SNARE: Target SNARE. v-SNARE: Vesicle SNARE. Sec -12 - sec 12 gene make glycoprotein sec 12 this require in transpo from endoplasmic reticulum to Golgi apparatus Rab proteins: A family of Ras- related proteins (monomeric GTPases) first observed in rat brain. They are active when GTP is bound. Different Rab molecules dock different vesicles to acceptor membranes.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q134",
+"number": 134,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "Dilution segment in nephrom is:",
+"options": [
+"Ascending LOH",
+"Descending LOH",
+"Collecting tubule",
+"Proximal tubule"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "The thick LOH is viually impermeable to H20, but large amounts of Na, Cl & other ions are actively transpoed from the tubule into the medullary interstitium. Thus, fluid in thick ascending loop becomes very dilute and k/a diluting segment of the nephron. Proximal tubules: = 65% of the filtered electrolytes is reabsorbed here, along with water ( osmosis & aquaporin - 1). Descending LOH: Water absorbed AQP - 1 much less permeable to Na & urea; there by increasing the osmolarity.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q135",
+"number": 135,
+"subjectId": "surgery",
+"topicId": null,
+"stem": "A patient with blunt trauma of abdomen at 48 hours, USG shows normal, but patient had tenderness in left lumbar region. Best appropriate diagnosis is by:",
+"options": [
+"MCU",
+"IVP",
+"CECT abdomen",
+"Repeat USG"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Suspect - injury of kidney in left abdomen. MCU is IOC for Vesicourethral Reflux IVP is IOC for Ureterocele",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q136",
+"number": 136,
+"subjectId": "physiology",
+"topicId": null,
+"stem": "Climbing fibres send excitatory input to:",
+"options": [
+"Stellate cells",
+"Golgi cells",
+"Granule cells",
+"Purkinje cells"
+],
+"answer": 4,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Functional unit of cerebellum = purkinje cell & corresponding deep nuclear cell. Afferents to cerebellum: - 1. Climbing fibers 2. Mossy fibers Climbing fibers all originate from the inferior olives of the medulla; forming the olivocerebellar tract. They are excitatory to the deep nuclear cell (excitatory) purkinje cell (inhibitory) | Precise output for motor movements Mossy fibers - afferents from various other sources send excitatory collateral to deep nuclear cell and proceed to excite granule cells. Granule cells send out extremely sho axons up to the molecular layer cerebellar coex where they divide into 2 branches running parallel to the folia, k/a parallel nerve fibers. Golgi cells, stellate cells & basket cells are inhibitory cells with sho axons, located in the molecular layer of cerebellar coex they send axons to adjacent purkinje cells & cause lateral inhibition, thus sharpening the output signal.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q137",
+"number": 137,
+"subjectId": "pathology",
+"topicId": null,
+"stem": "Tumor seen exclusively in parotid:",
+"options": [
+"Wahin tumor",
+"Pleomorphic adenoma",
+"Mucoepidermoid",
+"Adenoid cystic carcinoma"
+],
+"answer": 1,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Wahin Tumor: Viually restricted to the parotid gland More common in Male; Smoking is most impoant risk factor EXTRA EDGE: Most common salivary gland tumor - Pleomorphic Adenoma. Most common Benign salivary gland tumor - Pleomorphic Adenoma MC Primary malignant salivary gland tumor - Mucoepidermoid carcinoma. Adenoid cystic carcinoma - Most aggressive salivary tumor, can cause perineural invasion. Larger the size of salivary gland more likely it's benign. Smaller the size of salivary gland more likely it's malignant. MC salivary gland involved - parotid gland > submandibular gland.",
+"crossCheck": "not checkable",
+"answerConflict": false
+},
+{
+"id": "dnb2018-q138",
+"number": 138,
+"subjectId": "pharmacology",
+"topicId": null,
+"stem": "According to signal transductions mechanism, GABA B is which type of receptor?",
+"options": [
+"Ligand gated receptor",
+"Nuclear receptor",
+"G protein coupled receptor",
+"Enzymatic receptor"
+],
+"answer": 3,
+"images": [],
+"sourceFile": "MedMCQA (hgdata)",
+"sourcePage": 0,
+"explanation": "Five basic mechanisms of transmembrane signaling are well understood. Each uses a different strategy to circumvent the barrier posed by the lipid bilayer of the plasma membrane. These strategies use: a lipid-soluble ligand that crosses the membrane and acts on an intracellular receptor. a transmembrane receptor protein whose intracellular enzymatic activity is allosterically regulated by a ligand that binds to a site on the protein's extracellular domain. a transmembrane receptor that binds and stimulates a protein tyrosine kinase. a ligand gated transmembrane ion channel that can be induced to open or close by the binding of a ligand. a transmembrane receptor protein that stimulates a GTP-binding signal transducer protein (G protein), which in turn modulates production of an intracellular second messenger. Known transmembrane signaling mechanisms:1: A lipid-soluble chemical signal crosses the plasma membrane and acts on an intracellular receptor (which may be an enzyme or a regulator of gene transcription); 2: the signal binds to the extracellular domain of a transmembrane protein, thereby activating an enzymatic activity of its cytoplasmic domain; 3: the signal binds to the extracellular domain of a transmembrane receptor bound to a separate protein tyrosine kinase, which it activates; 4: the signal binds to and directly regulates the opening of an ion channel; 5: the signal binds to a cell-s urface receptor linked to an effector enzyme by a G protein. (A, C, substrates; B, D, products; R, receptor; G, G protein; E, effector ; Y, tyrosine; P, phosphate.) Receptor Ligand Ligand gated receptor Insulin, EGF, PDGF, ANP Nuclear receptor Fenofibrate. Gemfibrizol G protein coupled receptor Catecholamine Enzymatic receptor",
+"crossCheck": "not checkable",
+"answerConflict": false
+}
+]

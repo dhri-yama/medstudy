@@ -1,0 +1,1420 @@
+{
+ "papers": [
+  {
+   "id": "NEETPG2020",
+   "examId": "NEET_PG",
+   "year": 2020,
+   "title": "NEET PG 2020",
+   "kind": "RECALL",
+   "count": 297,
+   "sourceName": "Neet-PG-2020-PYQs.pdf"
+  },
+  {
+   "id": "NEETPG2021",
+   "examId": "NEET_PG",
+   "year": 2021,
+   "title": "NEET PG 2021",
+   "kind": "RECALL",
+   "count": 200,
+   "sourceName": "NEET-PG-2021-PYQs.pdf"
+  },
+  {
+   "id": "NEETPG2022",
+   "examId": "NEET_PG",
+   "year": 2022,
+   "title": "NEET PG 2022",
+   "kind": "RECALL",
+   "count": 200,
+   "sourceName": "NEET-PG-2022-PYQs.pdf"
+  },
+  {
+   "id": "NEETPG2023",
+   "examId": "NEET_PG",
+   "year": 2023,
+   "title": "NEET PG 2023",
+   "kind": "RECALL",
+   "count": 200,
+   "sourceName": "Neet-PG-2023-previous-year-question-pdf.pdf"
+  },
+  {
+   "id": "NEETPG2024",
+   "examId": "NEET_PG",
+   "year": 2024,
+   "title": "NEET PG 2024",
+   "kind": "RECALL",
+   "count": 39,
+   "sourceName": "NEET-PG-PYQs-2024.pdf"
+  },
+  {
+   "id": "NEETPG2025",
+   "examId": "NEET_PG",
+   "year": 2025,
+   "title": "NEET PG 2025",
+   "kind": "RECALL",
+   "count": 148,
+   "sourceName": "NEET-PG-Recall-Questions-2025.pdf"
+  },
+  {
+   "id": "JIPMER2018",
+   "examId": "JIPMER",
+   "year": 2018,
+   "title": "JIPMER 2018",
+   "kind": "OFFICIAL",
+   "count": 181,
+   "sourceName": "MedMCQA",
+   "rights": "LICENSED"
+  },
+  {
+   "id": "JIPMER2019",
+   "examId": "JIPMER",
+   "year": 2019,
+   "title": "JIPMER 2019",
+   "kind": "OFFICIAL",
+   "count": 102,
+   "sourceName": "MedMCQA",
+   "rights": "LICENSED"
+  },
+  {
+   "id": "DNB2018",
+   "examId": "DNB",
+   "year": 2018,
+   "title": "DNB 2018",
+   "kind": "OFFICIAL",
+   "count": 138,
+   "sourceName": "MedMCQA",
+   "rights": "LICENSED"
+  }
+ ],
+ "topics": [
+  {
+   "id": "pyq_anaesthesia_anaesthetic_equipments",
+   "subjectId": "anaesthesia",
+   "name": "Anaesthetic equipments"
+  },
+  {
+   "id": "pyq_anaesthesia_cardiopulmonary_cerebral_resuscitation",
+   "subjectId": "anaesthesia",
+   "name": "Cardiopulmonary Cerebral Resuscitation"
+  },
+  {
+   "id": "pyq_anaesthesia_general_anaesthesia",
+   "subjectId": "anaesthesia",
+   "name": "General Anaesthesia"
+  },
+  {
+   "id": "pyq_anaesthesia_inhalational_anesthetic_agents",
+   "subjectId": "anaesthesia",
+   "name": "Inhalational Anesthetic Agents"
+  },
+  {
+   "id": "pyq_anaesthesia_intravenous_anesthetic_agents",
+   "subjectId": "anaesthesia",
+   "name": "Intravenous Anesthetic Agents"
+  },
+  {
+   "id": "pyq_anaesthesia_local_anaesthetics",
+   "subjectId": "anaesthesia",
+   "name": "Local Anaesthetics"
+  },
+  {
+   "id": "pyq_anaesthesia_monitoring_in_anesthesia",
+   "subjectId": "anaesthesia",
+   "name": "Monitoring in Anesthesia"
+  },
+  {
+   "id": "pyq_anaesthesia_neuromuscular_blockade",
+   "subjectId": "anaesthesia",
+   "name": "Neuromuscular Blockade"
+  },
+  {
+   "id": "pyq_anaesthesia_oxygen_therapy_and_airway",
+   "subjectId": "anaesthesia",
+   "name": "Oxygen Therapy and Airway"
+  },
+  {
+   "id": "pyq_anaesthesia_pre_anaesthetic_evaluation",
+   "subjectId": "anaesthesia",
+   "name": "Pre-Anaesthetic Evaluation"
+  },
+  {
+   "id": "pyq_anaesthesia_regional_anaesthesia",
+   "subjectId": "anaesthesia",
+   "name": "Regional anaesthesia"
+  },
+  {
+   "id": "pyq_anaesthesia_regional_anesthesia",
+   "subjectId": "anaesthesia",
+   "name": "Regional Anesthesia"
+  },
+  {
+   "id": "pyq_anatomy_abdomen",
+   "subjectId": "anatomy",
+   "name": "Abdomen"
+  },
+  {
+   "id": "pyq_anatomy_back_region",
+   "subjectId": "anatomy",
+   "name": "Back Region"
+  },
+  {
+   "id": "pyq_anatomy_cvs_embryology",
+   "subjectId": "anatomy",
+   "name": "CVS Embryology"
+  },
+  {
+   "id": "pyq_anatomy_development_of_gu_system_and_neuro_vascular_supply_of_pelvis_and_perineum",
+   "subjectId": "anatomy",
+   "name": "Development of GU system and Neuro-vascular supply of pelvis & perineum"
+  },
+  {
+   "id": "pyq_anatomy_general_embryology",
+   "subjectId": "anatomy",
+   "name": "General Embryology"
+  },
+  {
+   "id": "pyq_anatomy_histology",
+   "subjectId": "anatomy",
+   "name": "Histology"
+  },
+  {
+   "id": "pyq_anatomy_nerve_supply_nerve_lesions",
+   "subjectId": "anatomy",
+   "name": "Nerve supply, Nerve Lesions"
+  },
+  {
+   "id": "pyq_anatomy_neuro_anatomy",
+   "subjectId": "anatomy",
+   "name": "Neuro Anatomy"
+  },
+  {
+   "id": "pyq_anatomy_pelvis_and_perineum",
+   "subjectId": "anatomy",
+   "name": "Pelvis and Perineum"
+  },
+  {
+   "id": "pyq_anatomy_thorax",
+   "subjectId": "anatomy",
+   "name": "Thorax"
+  },
+  {
+   "id": "pyq_biochemistry_amino_acid_and_protein_metabolism",
+   "subjectId": "biochemistry",
+   "name": "Amino Acid and Protein Metabolism"
+  },
+  {
+   "id": "pyq_biochemistry_amino_acids_and_proteins_chemistry",
+   "subjectId": "biochemistry",
+   "name": "Amino Acids and Proteins Chemistry"
+  },
+  {
+   "id": "pyq_biochemistry_carbohydrate_chemistry",
+   "subjectId": "biochemistry",
+   "name": "Carbohydrate Chemistry"
+  },
+  {
+   "id": "pyq_biochemistry_carbohydrate_metabolism",
+   "subjectId": "biochemistry",
+   "name": "Carbohydrate Metabolism"
+  },
+  {
+   "id": "pyq_biochemistry_classification_of_carbohydrate",
+   "subjectId": "biochemistry",
+   "name": "Classification of carbohydrate"
+  },
+  {
+   "id": "pyq_biochemistry_enzymes",
+   "subjectId": "biochemistry",
+   "name": "Enzymes"
+  },
+  {
+   "id": "pyq_biochemistry_genetics",
+   "subjectId": "biochemistry",
+   "name": "Genetics"
+  },
+  {
+   "id": "pyq_biochemistry_gluconeogenesis",
+   "subjectId": "biochemistry",
+   "name": "Gluconeogenesis"
+  },
+  {
+   "id": "pyq_biochemistry_introduction",
+   "subjectId": "biochemistry",
+   "name": "Introduction"
+  },
+  {
+   "id": "pyq_biochemistry_lipid_chemistry",
+   "subjectId": "biochemistry",
+   "name": "Lipid Chemistry"
+  },
+  {
+   "id": "pyq_biochemistry_lipid_metabolism",
+   "subjectId": "biochemistry",
+   "name": "Lipid Metabolism"
+  },
+  {
+   "id": "pyq_biochemistry_oxidative_phosphorylation",
+   "subjectId": "biochemistry",
+   "name": "Oxidative Phosphorylation"
+  },
+  {
+   "id": "pyq_biochemistry_proteins_and_amino_acids",
+   "subjectId": "biochemistry",
+   "name": "Proteins and Amino Acids"
+  },
+  {
+   "id": "pyq_biochemistry_structure_and_function_of_protein",
+   "subjectId": "biochemistry",
+   "name": "Structure and function of protein"
+  },
+  {
+   "id": "pyq_biochemistry_transcription",
+   "subjectId": "biochemistry",
+   "name": "Transcription"
+  },
+  {
+   "id": "pyq_dental_blistering_disorders",
+   "subjectId": "dental",
+   "name": "Blistering disorders"
+  },
+  {
+   "id": "pyq_dental_viral_infections",
+   "subjectId": "dental",
+   "name": "Viral infections"
+  },
+  {
+   "id": "pyq_ent_assessment_of_vestibular_function",
+   "subjectId": "ent",
+   "name": "Assessment of Vestibular Function"
+  },
+  {
+   "id": "pyq_ent_facial_nerve_and_its_disorders",
+   "subjectId": "ent",
+   "name": "Facial Nerve And Its Disorders"
+  },
+  {
+   "id": "pyq_ent_larynx",
+   "subjectId": "ent",
+   "name": "Larynx"
+  },
+  {
+   "id": "pyq_ent_nose_and_paranasal_sinuses",
+   "subjectId": "ent",
+   "name": "Nose and Paranasal Sinuses"
+  },
+  {
+   "id": "pyq_ent_oral_cavity",
+   "subjectId": "ent",
+   "name": "Oral Cavity"
+  },
+  {
+   "id": "pyq_ent_otosclerosis",
+   "subjectId": "ent",
+   "name": "Otosclerosis"
+  },
+  {
+   "id": "pyq_ent_pharynx",
+   "subjectId": "ent",
+   "name": "Pharynx"
+  },
+  {
+   "id": "pyq_forensic_medicine_asphyxial_deaths",
+   "subjectId": "forensic_medicine",
+   "name": "Asphyxial Deaths"
+  },
+  {
+   "id": "pyq_forensic_medicine_ballistics",
+   "subjectId": "forensic_medicine",
+   "name": "Ballistics"
+  },
+  {
+   "id": "pyq_forensic_medicine_court_of_law",
+   "subjectId": "forensic_medicine",
+   "name": "Court of Law"
+  },
+  {
+   "id": "pyq_forensic_medicine_death_and_investigations",
+   "subjectId": "forensic_medicine",
+   "name": "Death and Investigations"
+  },
+  {
+   "id": "pyq_forensic_medicine_death_and_postmortem_changes",
+   "subjectId": "forensic_medicine",
+   "name": "Death and postmortem changes"
+  },
+  {
+   "id": "pyq_forensic_medicine_forensic_identification",
+   "subjectId": "forensic_medicine",
+   "name": "Forensic Identification"
+  },
+  {
+   "id": "pyq_forensic_medicine_forensic_thanatology",
+   "subjectId": "forensic_medicine",
+   "name": "Forensic Thanatology"
+  },
+  {
+   "id": "pyq_forensic_medicine_forensic_toxicology",
+   "subjectId": "forensic_medicine",
+   "name": "Forensic Toxicology"
+  },
+  {
+   "id": "pyq_forensic_medicine_forensic_traumatology",
+   "subjectId": "forensic_medicine",
+   "name": "Forensic Traumatology"
+  },
+  {
+   "id": "pyq_forensic_medicine_indian_legal_system_and_medical_jurisprudence",
+   "subjectId": "forensic_medicine",
+   "name": "Indian Legal System & Medical Jurisprudence"
+  },
+  {
+   "id": "pyq_forensic_medicine_ipc_sections",
+   "subjectId": "forensic_medicine",
+   "name": "IPC Sections"
+  },
+  {
+   "id": "pyq_forensic_medicine_law_and_medicine_identification_autopsy_and_burn",
+   "subjectId": "forensic_medicine",
+   "name": "Law & Medicine, Identification, Autopsy & Burn"
+  },
+  {
+   "id": "pyq_forensic_medicine_medical_jurisprudence",
+   "subjectId": "forensic_medicine",
+   "name": "Medical Jurisprudence"
+  },
+  {
+   "id": "pyq_forensic_medicine_medico_legal_procedures",
+   "subjectId": "forensic_medicine",
+   "name": "Medico legal procedures"
+  },
+  {
+   "id": "pyq_forensic_medicine_sexual_jurisprudence",
+   "subjectId": "forensic_medicine",
+   "name": "Sexual Jurisprudence"
+  },
+  {
+   "id": "pyq_forensic_medicine_toxicology___1",
+   "subjectId": "forensic_medicine",
+   "name": "Toxicology - 1"
+  },
+  {
+   "id": "pyq_forensic_medicine_toxicology___general",
+   "subjectId": "forensic_medicine",
+   "name": "Toxicology - General"
+  },
+  {
+   "id": "pyq_forensic_medicine_traces_of_evidences",
+   "subjectId": "forensic_medicine",
+   "name": "Traces of Evidences"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_anatomy_of_the_female_genital_tract",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Anatomy of the female genital tract"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_cervical_carcinoma",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Cervical Carcinoma"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_diagnosis_in_obstetrics",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Diagnosis in obstetrics"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_gynaecological_oncology",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Gynaecological oncology"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_gynecology",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Gynecology"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_infeility_(eggsplantation!)",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Infeility (Eggs'plantation!)"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_medical_illness_complicating_pregnancy",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Medical Illness Complicating Pregnancy"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_obstetrics",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Obstetrics"
+  },
+  {
+   "id": "pyq_gynaecology_and_obstetrics_sexuality_and_intersexuality",
+   "subjectId": "gynaecology_and_obstetrics",
+   "name": "Sexuality and intersexuality"
+  },
+  {
+   "id": "pyq_medicine_blood",
+   "subjectId": "medicine",
+   "name": "Blood"
+  },
+  {
+   "id": "pyq_medicine_cardiology",
+   "subjectId": "medicine",
+   "name": "Cardiology"
+  },
+  {
+   "id": "pyq_medicine_cns",
+   "subjectId": "medicine",
+   "name": "C.N.S"
+  },
+  {
+   "id": "pyq_medicine_copd_and_asthma",
+   "subjectId": "medicine",
+   "name": "COPD and Asthma"
+  },
+  {
+   "id": "pyq_medicine_cvs",
+   "subjectId": "medicine",
+   "name": "C.V.S"
+  },
+  {
+   "id": "pyq_medicine_diabetes_mellitus",
+   "subjectId": "medicine",
+   "name": "Diabetes Mellitus"
+  },
+  {
+   "id": "pyq_medicine_emergency_medicine",
+   "subjectId": "medicine",
+   "name": "Emergency Medicine"
+  },
+  {
+   "id": "pyq_medicine_fluids_and_electrolyte_imbalance",
+   "subjectId": "medicine",
+   "name": "Fluids and Electrolyte Imbalance"
+  },
+  {
+   "id": "pyq_medicine_genetics",
+   "subjectId": "medicine",
+   "name": "Genetics"
+  },
+  {
+   "id": "pyq_medicine_git",
+   "subjectId": "medicine",
+   "name": "GIT"
+  },
+  {
+   "id": "pyq_medicine_hematology",
+   "subjectId": "medicine",
+   "name": "Hematology"
+  },
+  {
+   "id": "pyq_medicine_liver",
+   "subjectId": "medicine",
+   "name": "Liver"
+  },
+  {
+   "id": "pyq_medicine_nephrology___kidney_disease",
+   "subjectId": "medicine",
+   "name": "Nephrology / Kidney Disease"
+  },
+  {
+   "id": "pyq_medicine_neurology",
+   "subjectId": "medicine",
+   "name": "Neurology"
+  },
+  {
+   "id": "pyq_medicine_obstetrics",
+   "subjectId": "medicine",
+   "name": "Obstetrics"
+  },
+  {
+   "id": "pyq_medicine_oncology",
+   "subjectId": "medicine",
+   "name": "Oncology"
+  },
+  {
+   "id": "pyq_medicine_pulmonology",
+   "subjectId": "medicine",
+   "name": "Pulmonology"
+  },
+  {
+   "id": "pyq_medicine_rheumatology___connective_tissue_disorder",
+   "subjectId": "medicine",
+   "name": "Rheumatology / Connective Tissue Disorder"
+  },
+  {
+   "id": "pyq_medicine_stroke_and_tia",
+   "subjectId": "medicine",
+   "name": "Stroke and TIA"
+  },
+  {
+   "id": "pyq_microbiology_general_microbiology",
+   "subjectId": "microbiology",
+   "name": "General Microbiology"
+  },
+  {
+   "id": "pyq_microbiology_parasitology",
+   "subjectId": "microbiology",
+   "name": "Parasitology"
+  },
+  {
+   "id": "pyq_microbiology_parasitology_pa_1_(protozoology)",
+   "subjectId": "microbiology",
+   "name": "Parasitology Pa 1 (Protozoology)"
+  },
+  {
+   "id": "pyq_microbiology_parasitology_pa_2_(helminthology)",
+   "subjectId": "microbiology",
+   "name": "Parasitology Pa 2 (Helminthology)"
+  },
+  {
+   "id": "pyq_microbiology_systemic_bacteriology",
+   "subjectId": "microbiology",
+   "name": "Systemic Bacteriology"
+  },
+  {
+   "id": "pyq_microbiology_systemic_bacteriology_(gram_positive_bacilli_gram_negative_bacilli)",
+   "subjectId": "microbiology",
+   "name": "Systemic Bacteriology (Gram Positive Bacilli, Gram Negative Bacilli)"
+  },
+  {
+   "id": "pyq_microbiology_systemic_bacteriology_(haemophilus_yersinia_spirochaetes_ricketssia_chlamydia_mycoplasma_and_miscellaneous_bacteria)",
+   "subjectId": "microbiology",
+   "name": "Systemic Bacteriology (Haemophilus, Yersinia, Spirochaetes, Ricketssia, Chlamydia, Mycoplasma and Miscellaneous Bacteria)"
+  },
+  {
+   "id": "pyq_microbiology_virology",
+   "subjectId": "microbiology",
+   "name": "Virology"
+  },
+  {
+   "id": "pyq_microbiology_virology_pa_2_(rna_virus_pa_12_and_miscellaneous_viruses)",
+   "subjectId": "microbiology",
+   "name": "Virology Pa-2 (RNA Virus Pa-1,2 & Miscellaneous Viruses)"
+  },
+  {
+   "id": "pyq_ophthalmology_conjunctiva",
+   "subjectId": "ophthalmology",
+   "name": "Conjunctiva"
+  },
+  {
+   "id": "pyq_ophthalmology_diseases_of_lens",
+   "subjectId": "ophthalmology",
+   "name": "Diseases of Lens"
+  },
+  {
+   "id": "pyq_ophthalmology_diseases_of_orbit_lids_and_lacrimal_apparatus",
+   "subjectId": "ophthalmology",
+   "name": "Diseases of orbit, Lids and lacrimal apparatus"
+  },
+  {
+   "id": "pyq_ophthalmology_glaucoma",
+   "subjectId": "ophthalmology",
+   "name": "Glaucoma"
+  },
+  {
+   "id": "pyq_ophthalmology_lens",
+   "subjectId": "ophthalmology",
+   "name": "Lens"
+  },
+  {
+   "id": "pyq_ophthalmology_ocular_injuries",
+   "subjectId": "ophthalmology",
+   "name": "Ocular Injuries"
+  },
+  {
+   "id": "pyq_ophthalmology_optics",
+   "subjectId": "ophthalmology",
+   "name": "Optics"
+  },
+  {
+   "id": "pyq_ophthalmology_orbit",
+   "subjectId": "ophthalmology",
+   "name": "Orbit"
+  },
+  {
+   "id": "pyq_ophthalmology_sclera",
+   "subjectId": "ophthalmology",
+   "name": "Sclera"
+  },
+  {
+   "id": "pyq_ophthalmology_squint___strabismus",
+   "subjectId": "ophthalmology",
+   "name": "Squint / Strabismus"
+  },
+  {
+   "id": "pyq_ophthalmology_uveitis",
+   "subjectId": "ophthalmology",
+   "name": "Uveitis"
+  },
+  {
+   "id": "pyq_orthopaedics_arthritis",
+   "subjectId": "orthopaedics",
+   "name": "Arthritis"
+  },
+  {
+   "id": "pyq_orthopaedics_bone_and_joint_infections",
+   "subjectId": "orthopaedics",
+   "name": "Bone and Joint Infections"
+  },
+  {
+   "id": "pyq_orthopaedics_bone_tumour",
+   "subjectId": "orthopaedics",
+   "name": "Bone Tumour"
+  },
+  {
+   "id": "pyq_orthopaedics_general_+_upper_limb_traumatology",
+   "subjectId": "orthopaedics",
+   "name": "General + Upper Limb Traumatology"
+  },
+  {
+   "id": "pyq_orthopaedics_joint_disorders",
+   "subjectId": "orthopaedics",
+   "name": "Joint disorders"
+  },
+  {
+   "id": "pyq_orthopaedics_management_in_orthopedics",
+   "subjectId": "orthopaedics",
+   "name": "Management In Orthopedics"
+  },
+  {
+   "id": "pyq_orthopaedics_metabolic_disorders",
+   "subjectId": "orthopaedics",
+   "name": "Metabolic Disorders"
+  },
+  {
+   "id": "pyq_orthopaedics_miscellaneous",
+   "subjectId": "orthopaedics",
+   "name": "Miscellaneous"
+  },
+  {
+   "id": "pyq_orthopaedics_ohopaedics_q_bank",
+   "subjectId": "orthopaedics",
+   "name": "Ohopaedics Q Bank"
+  },
+  {
+   "id": "pyq_orthopaedics_orthopedics_oncology",
+   "subjectId": "orthopaedics",
+   "name": "Orthopedics Oncology"
+  },
+  {
+   "id": "pyq_orthopaedics_pediatric_orthopedics",
+   "subjectId": "orthopaedics",
+   "name": "Pediatric Orthopedics"
+  },
+  {
+   "id": "pyq_orthopaedics_peripheral_nerve_injuries",
+   "subjectId": "orthopaedics",
+   "name": "Peripheral Nerve Injuries"
+  },
+  {
+   "id": "pyq_orthopaedics_spinal_injuries",
+   "subjectId": "orthopaedics",
+   "name": "Spinal Injuries"
+  },
+  {
+   "id": "pyq_orthopaedics_spine",
+   "subjectId": "orthopaedics",
+   "name": "Spine"
+  },
+  {
+   "id": "pyq_orthopaedics_spine_+_pelvis_+_lower_limb_traumatology",
+   "subjectId": "orthopaedics",
+   "name": "Spine + Pelvis + Lower Limb Traumatology"
+  },
+  {
+   "id": "pyq_orthopaedics_sports_injuries",
+   "subjectId": "orthopaedics",
+   "name": "Sports Injuries"
+  },
+  {
+   "id": "pyq_pathology_blood_banking_and_transfusion_medicine",
+   "subjectId": "pathology",
+   "name": "Blood Banking and Transfusion Medicine"
+  },
+  {
+   "id": "pyq_pathology_bone_disorders",
+   "subjectId": "pathology",
+   "name": "Bone Disorders"
+  },
+  {
+   "id": "pyq_pathology_breast_pathology",
+   "subjectId": "pathology",
+   "name": "Breast Pathology"
+  },
+  {
+   "id": "pyq_pathology_cell_injury",
+   "subjectId": "pathology",
+   "name": "Cell Injury"
+  },
+  {
+   "id": "pyq_pathology_central_nervous_system",
+   "subjectId": "pathology",
+   "name": "Central Nervous System"
+  },
+  {
+   "id": "pyq_pathology_cvs_blood_vessels_and_vasculitis",
+   "subjectId": "pathology",
+   "name": "CVS, Blood Vessels and Vasculitis"
+  },
+  {
+   "id": "pyq_pathology_endocrinology",
+   "subjectId": "pathology",
+   "name": "Endocrinology"
+  },
+  {
+   "id": "pyq_pathology_female_genital_tract",
+   "subjectId": "pathology",
+   "name": "Female Genital Tract"
+  },
+  {
+   "id": "pyq_pathology_gastrointestinal_tract",
+   "subjectId": "pathology",
+   "name": "Gastrointestinal Tract"
+  },
+  {
+   "id": "pyq_pathology_genetics",
+   "subjectId": "pathology",
+   "name": "Genetics"
+  },
+  {
+   "id": "pyq_pathology_hematology:_red_blood_cells",
+   "subjectId": "pathology",
+   "name": "Hematology: Red Blood Cells"
+  },
+  {
+   "id": "pyq_pathology_hematology:_white_blood_cells",
+   "subjectId": "pathology",
+   "name": "Hematology: White Blood Cells"
+  },
+  {
+   "id": "pyq_pathology_histology",
+   "subjectId": "pathology",
+   "name": "Histology"
+  },
+  {
+   "id": "pyq_pathology_liver_biliary_system_and_pancreas",
+   "subjectId": "pathology",
+   "name": "Liver, Biliary System and Pancreas"
+  },
+  {
+   "id": "pyq_pathology_platelet_and_bleeding_disorders",
+   "subjectId": "pathology",
+   "name": "Platelet and Bleeding Disorders"
+  },
+  {
+   "id": "pyq_pathology_platelets_and_blood_transfusion",
+   "subjectId": "pathology",
+   "name": "Platelets and Blood Transfusion"
+  },
+  {
+   "id": "pyq_pathology_renal_system",
+   "subjectId": "pathology",
+   "name": "Renal System"
+  },
+  {
+   "id": "pyq_pathology_respiratory_system",
+   "subjectId": "pathology",
+   "name": "Respiratory System"
+  },
+  {
+   "id": "pyq_pediatrics_central_nervous_system",
+   "subjectId": "pediatrics",
+   "name": "Central Nervous system"
+  },
+  {
+   "id": "pyq_pediatrics_fluid_and_electrolyte_disturbances",
+   "subjectId": "pediatrics",
+   "name": "Fluid and Electrolyte Disturbances"
+  },
+  {
+   "id": "pyq_pediatrics_general_considerations___infectious_diseases",
+   "subjectId": "pediatrics",
+   "name": "General Considerations - Infectious Diseases"
+  },
+  {
+   "id": "pyq_pediatrics_growth",
+   "subjectId": "pediatrics",
+   "name": "Growth"
+  },
+  {
+   "id": "pyq_pediatrics_inborn_errors_of_metabolism",
+   "subjectId": "pediatrics",
+   "name": "Inborn Errors of Metabolism"
+  },
+  {
+   "id": "pyq_pediatrics_infectious_disease",
+   "subjectId": "pediatrics",
+   "name": "Infectious disease"
+  },
+  {
+   "id": "pyq_pediatrics_infectious_diseases",
+   "subjectId": "pediatrics",
+   "name": "Infectious Diseases"
+  },
+  {
+   "id": "pyq_pediatrics_malnutrition",
+   "subjectId": "pediatrics",
+   "name": "Malnutrition"
+  },
+  {
+   "id": "pyq_pediatrics_musculoskeletal_disorders_in_children",
+   "subjectId": "pediatrics",
+   "name": "Musculoskeletal Disorders in Children"
+  },
+  {
+   "id": "pyq_pediatrics_neonatology",
+   "subjectId": "pediatrics",
+   "name": "Neonatology"
+  },
+  {
+   "id": "pyq_pediatrics_nutrition_and_malnutrition",
+   "subjectId": "pediatrics",
+   "name": "Nutrition and Malnutrition"
+  },
+  {
+   "id": "pyq_pediatrics_paediatrics",
+   "subjectId": "pediatrics",
+   "name": "Paediatrics"
+  },
+  {
+   "id": "pyq_pediatrics_pediatric_cardiology",
+   "subjectId": "pediatrics",
+   "name": "Pediatric Cardiology"
+  },
+  {
+   "id": "pyq_pediatrics_pediatric_endocrinology",
+   "subjectId": "pediatrics",
+   "name": "Pediatric Endocrinology"
+  },
+  {
+   "id": "pyq_pediatrics_pediatric_gastroenterology",
+   "subjectId": "pediatrics",
+   "name": "Pediatric Gastroenterology"
+  },
+  {
+   "id": "pyq_pediatrics_pediatric_nephrology",
+   "subjectId": "pediatrics",
+   "name": "Pediatric Nephrology"
+  },
+  {
+   "id": "pyq_pediatrics_pediatric_neurology",
+   "subjectId": "pediatrics",
+   "name": "Pediatric Neurology"
+  },
+  {
+   "id": "pyq_pediatrics_pediatric_respiratory_disorders",
+   "subjectId": "pediatrics",
+   "name": "Pediatric Respiratory Disorders"
+  },
+  {
+   "id": "pyq_pharmacology_ans_pharmacology",
+   "subjectId": "pharmacology",
+   "name": "ANS Pharmacology"
+  },
+  {
+   "id": "pyq_pharmacology_anticancer_drugs",
+   "subjectId": "pharmacology",
+   "name": "Anticancer Drugs"
+  },
+  {
+   "id": "pyq_pharmacology_antimicrobials_:_anti_bacterial_drugs",
+   "subjectId": "pharmacology",
+   "name": "Antimicrobials : Anti Bacterial Drugs"
+  },
+  {
+   "id": "pyq_pharmacology_autacoids",
+   "subjectId": "pharmacology",
+   "name": "Autacoids"
+  },
+  {
+   "id": "pyq_pharmacology_cell_wall_synthesis_inhibitors",
+   "subjectId": "pharmacology",
+   "name": "Cell Wall Synthesis Inhibitors"
+  },
+  {
+   "id": "pyq_pharmacology_chemotherapy_of_specific_microbial_diseases",
+   "subjectId": "pharmacology",
+   "name": "Chemotherapy of Specific Microbial Diseases"
+  },
+  {
+   "id": "pyq_pharmacology_cns_pharmacology",
+   "subjectId": "pharmacology",
+   "name": "CNS Pharmacology"
+  },
+  {
+   "id": "pyq_pharmacology_cvs_pharmacology",
+   "subjectId": "pharmacology",
+   "name": "CVS Pharmacology"
+  },
+  {
+   "id": "pyq_pharmacology_cytotoxic_anticancer_drugs",
+   "subjectId": "pharmacology",
+   "name": "Cytotoxic Anticancer Drugs"
+  },
+  {
+   "id": "pyq_pharmacology_drugs_affecting_blood_and_blood_formation",
+   "subjectId": "pharmacology",
+   "name": "Drugs Affecting Blood and Blood formation"
+  },
+  {
+   "id": "pyq_pharmacology_endocrine_pharmacology",
+   "subjectId": "pharmacology",
+   "name": "Endocrine Pharmacology"
+  },
+  {
+   "id": "pyq_pharmacology_gastro_intestinal_tract",
+   "subjectId": "pharmacology",
+   "name": "Gastro-Intestinal Tract"
+  },
+  {
+   "id": "pyq_pharmacology_general_pharmacology",
+   "subjectId": "pharmacology",
+   "name": "General Pharmacology"
+  },
+  {
+   "id": "pyq_pharmacology_git_pharmacology",
+   "subjectId": "pharmacology",
+   "name": "GIT Pharmacology"
+  },
+  {
+   "id": "pyq_pharmacology_hypolipidemic",
+   "subjectId": "pharmacology",
+   "name": "Hypolipidemic"
+  },
+  {
+   "id": "pyq_pharmacology_immunomodulators",
+   "subjectId": "pharmacology",
+   "name": "Immunomodulators"
+  },
+  {
+   "id": "pyq_pharmacology_mycobacterial_diseases_(tb_leprosy_and_mac)",
+   "subjectId": "pharmacology",
+   "name": "Mycobacterial Diseases (TB, Leprosy and MAC)"
+  },
+  {
+   "id": "pyq_pharmacology_nsaids_gout_and_rheumatoid_ahritis",
+   "subjectId": "pharmacology",
+   "name": "NSAIDs, Gout and Rheumatoid Ahritis"
+  },
+  {
+   "id": "pyq_pharmacology_osteoporosis_sex_hormones_and_ocps",
+   "subjectId": "pharmacology",
+   "name": "Osteoporosis, Sex Hormones and OCPs"
+  },
+  {
+   "id": "pyq_pharmacology_renal_pharmacology",
+   "subjectId": "pharmacology",
+   "name": "Renal Pharmacology"
+  },
+  {
+   "id": "pyq_pharmacology_respiratory_pharmacology",
+   "subjectId": "pharmacology",
+   "name": "Respiratory Pharmacology"
+  },
+  {
+   "id": "pyq_physiology_blood_physiology",
+   "subjectId": "physiology",
+   "name": "Blood Physiology"
+  },
+  {
+   "id": "pyq_physiology_cardiovascular_system",
+   "subjectId": "physiology",
+   "name": "Cardiovascular System"
+  },
+  {
+   "id": "pyq_physiology_endocrine_and_reproductive_system",
+   "subjectId": "physiology",
+   "name": "Endocrine and Reproductive System"
+  },
+  {
+   "id": "pyq_physiology_endocrinology_and_reproduction",
+   "subjectId": "physiology",
+   "name": "Endocrinology and Reproduction"
+  },
+  {
+   "id": "pyq_physiology_excretory_system",
+   "subjectId": "physiology",
+   "name": "Excretory System"
+  },
+  {
+   "id": "pyq_physiology_gastrointestinal_system",
+   "subjectId": "physiology",
+   "name": "Gastrointestinal System"
+  },
+  {
+   "id": "pyq_physiology_general_physiology",
+   "subjectId": "physiology",
+   "name": "General physiology"
+  },
+  {
+   "id": "pyq_physiology_heart_circulation_and_blood",
+   "subjectId": "physiology",
+   "name": "Heart, Circulation, and Blood"
+  },
+  {
+   "id": "pyq_physiology_nerve_muscle_physiology",
+   "subjectId": "physiology",
+   "name": "Nerve Muscle Physiology"
+  },
+  {
+   "id": "pyq_physiology_respiratory_system",
+   "subjectId": "physiology",
+   "name": "Respiratory System"
+  },
+  {
+   "id": "pyq_physiology_respiratory_system_pa_1",
+   "subjectId": "physiology",
+   "name": "Respiratory System Pa 1"
+  },
+  {
+   "id": "pyq_physiology_special_senses",
+   "subjectId": "physiology",
+   "name": "Special Senses"
+  },
+  {
+   "id": "pyq_psychiatry_basics_of_psychiatry",
+   "subjectId": "psychiatry",
+   "name": "Basics of Psychiatry"
+  },
+  {
+   "id": "pyq_psychiatry_child_psychiatry",
+   "subjectId": "psychiatry",
+   "name": "Child Psychiatry"
+  },
+  {
+   "id": "pyq_psychiatry_eating_disorders",
+   "subjectId": "psychiatry",
+   "name": "Eating Disorders"
+  },
+  {
+   "id": "pyq_psychiatry_forensic_psychiatry",
+   "subjectId": "psychiatry",
+   "name": "Forensic Psychiatry"
+  },
+  {
+   "id": "pyq_psychiatry_miscellaneous",
+   "subjectId": "psychiatry",
+   "name": "Miscellaneous"
+  },
+  {
+   "id": "pyq_psychiatry_mood_disorders",
+   "subjectId": "psychiatry",
+   "name": "Mood Disorders"
+  },
+  {
+   "id": "pyq_psychiatry_neurotic_stress_related_and_somatoform_disorders",
+   "subjectId": "psychiatry",
+   "name": "Neurotic, Stress Related and Somatoform Disorders"
+  },
+  {
+   "id": "pyq_psychiatry_organic_mental_disorders",
+   "subjectId": "psychiatry",
+   "name": "Organic Mental Disorders"
+  },
+  {
+   "id": "pyq_psychiatry_personality_disorders",
+   "subjectId": "psychiatry",
+   "name": "Personality Disorders"
+  },
+  {
+   "id": "pyq_psychiatry_psychology",
+   "subjectId": "psychiatry",
+   "name": "Psychology"
+  },
+  {
+   "id": "pyq_psychiatry_schizophrenia_spectrum_and_other_psychotic_disorders",
+   "subjectId": "psychiatry",
+   "name": "Schizophrenia Spectrum and Other Psychotic Disorders"
+  },
+  {
+   "id": "pyq_psychiatry_sexual_disorders",
+   "subjectId": "psychiatry",
+   "name": "Sexual Disorders"
+  },
+  {
+   "id": "pyq_psychiatry_sleep_disorders",
+   "subjectId": "psychiatry",
+   "name": "Sleep Disorders"
+  },
+  {
+   "id": "pyq_psychiatry_substance_related_and_addictive_disorders",
+   "subjectId": "psychiatry",
+   "name": "Substance-Related and Addictive Disorders"
+  },
+  {
+   "id": "pyq_radiology_basics_of_radiology",
+   "subjectId": "radiology",
+   "name": "Basics of Radiology"
+  },
+  {
+   "id": "pyq_radiology_gastrointestinal_radiology",
+   "subjectId": "radiology",
+   "name": "Gastrointestinal Radiology"
+  },
+  {
+   "id": "pyq_radiology_genitourinary_radiology",
+   "subjectId": "radiology",
+   "name": "Genitourinary Radiology"
+  },
+  {
+   "id": "pyq_radiology_head_and_neck_imaging",
+   "subjectId": "radiology",
+   "name": "Head & Neck Imaging"
+  },
+  {
+   "id": "pyq_radiology_musculoskeletal_radiology",
+   "subjectId": "radiology",
+   "name": "Musculoskeletal Radiology"
+  },
+  {
+   "id": "pyq_radiology_neuroradiology",
+   "subjectId": "radiology",
+   "name": "Neuroradiology"
+  },
+  {
+   "id": "pyq_radiology_nuclear_medicine",
+   "subjectId": "radiology",
+   "name": "Nuclear medicine"
+  },
+  {
+   "id": "pyq_radiology_obgy_imaging",
+   "subjectId": "radiology",
+   "name": "OBGy Imaging"
+  },
+  {
+   "id": "pyq_radiology_radiotherapy",
+   "subjectId": "radiology",
+   "name": "Radiotherapy"
+  },
+  {
+   "id": "pyq_radiology_thoracic_radiology",
+   "subjectId": "radiology",
+   "name": "Thoracic Radiology"
+  },
+  {
+   "id": "pyq_radiology_ultrasound",
+   "subjectId": "radiology",
+   "name": "ULTRASOUND"
+  },
+  {
+   "id": "pyq_skin_bacterial_infections",
+   "subjectId": "skin",
+   "name": "Bacterial Infections"
+  },
+  {
+   "id": "pyq_skin_cutaneous_infections",
+   "subjectId": "skin",
+   "name": "Cutaneous Infections"
+  },
+  {
+   "id": "pyq_skin_immunobullous_disorders",
+   "subjectId": "skin",
+   "name": "Immunobullous Disorders"
+  },
+  {
+   "id": "pyq_skin_integrated_essentials",
+   "subjectId": "skin",
+   "name": "Integrated Essentials"
+  },
+  {
+   "id": "pyq_skin_introduction_to_dermatology",
+   "subjectId": "skin",
+   "name": "Introduction to Dermatology"
+  },
+  {
+   "id": "pyq_skin_miscellaneous_disorders",
+   "subjectId": "skin",
+   "name": "Miscellaneous Disorders"
+  },
+  {
+   "id": "pyq_skin_mycobacterial_infections",
+   "subjectId": "skin",
+   "name": "Mycobacterial Infections"
+  },
+  {
+   "id": "pyq_skin_papulosquamous_disorders",
+   "subjectId": "skin",
+   "name": "Papulosquamous Disorders"
+  },
+  {
+   "id": "pyq_skin_pigmentary_disorders",
+   "subjectId": "skin",
+   "name": "Pigmentary Disorders"
+  },
+  {
+   "id": "pyq_skin_sexually_transmitted_infections",
+   "subjectId": "skin",
+   "name": "Sexually Transmitted Infections"
+  },
+  {
+   "id": "pyq_skin_skin_appendages_and_their_disorders",
+   "subjectId": "skin",
+   "name": "Skin Appendages and their Disorders"
+  },
+  {
+   "id": "pyq_skin_systemic_diseases_and_skin",
+   "subjectId": "skin",
+   "name": "Systemic Diseases and Skin"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_allied_health_disciplines",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Allied Health Disciplines"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_biostatistics",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Biostatistics"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_communicable_and_non_communicable_diseases",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Communicable and Non-communicable Diseases"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_concept_of_health_and_disease",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Concept of Health and Disease"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_environment_and_health",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Environment and Health"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_health_care_of_the_community_in_india",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Health Care of The Community in India"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_health_planning_and_management",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Health Planning and Management"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_infectious_disease_epidemiology",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Infectious Disease Epidemiology"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_international_health",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "International Health"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_national_health_programs",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "National Health Programs"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_nutrition_and_health",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Nutrition and Health"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_screening",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Screening"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_screening_of_diseases",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Screening of Diseases"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_vaccines_and_cold_chain",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Vaccines and Cold Chain"
+  },
+  {
+   "id": "pyq_social_and_preventive_medicine_water",
+   "subjectId": "social_and_preventive_medicine",
+   "name": "Water"
+  },
+  {
+   "id": "pyq_surgery_cardiothoracic_vascular_surgery",
+   "subjectId": "surgery",
+   "name": "Cardiothoracic Vascular Surgery"
+  },
+  {
+   "id": "pyq_surgery_cerebrovascular_diseases",
+   "subjectId": "surgery",
+   "name": "Cerebrovascular Diseases"
+  },
+  {
+   "id": "pyq_surgery_endocrine_surgery",
+   "subjectId": "surgery",
+   "name": "Endocrine Surgery"
+  },
+  {
+   "id": "pyq_surgery_gallbladder",
+   "subjectId": "surgery",
+   "name": "Gallbladder"
+  },
+  {
+   "id": "pyq_surgery_gastrointestinal_surgery",
+   "subjectId": "surgery",
+   "name": "Gastrointestinal Surgery"
+  },
+  {
+   "id": "pyq_surgery_head_and_neck",
+   "subjectId": "surgery",
+   "name": "Head And Neck"
+  },
+  {
+   "id": "pyq_surgery_hepatobiliary_pancreatic_surgery",
+   "subjectId": "surgery",
+   "name": "Hepatobiliary Pancreatic Surgery"
+  },
+  {
+   "id": "pyq_surgery_neurosurgery",
+   "subjectId": "surgery",
+   "name": "Neurosurgery"
+  },
+  {
+   "id": "pyq_surgery_oesophagus",
+   "subjectId": "surgery",
+   "name": "Oesophagus"
+  },
+  {
+   "id": "pyq_surgery_oncology",
+   "subjectId": "surgery",
+   "name": "Oncology"
+  },
+  {
+   "id": "pyq_surgery_oral_cavity",
+   "subjectId": "surgery",
+   "name": "Oral Cavity"
+  },
+  {
+   "id": "pyq_surgery_others",
+   "subjectId": "surgery",
+   "name": "Others"
+  },
+  {
+   "id": "pyq_surgery_plastic_surgery",
+   "subjectId": "surgery",
+   "name": "Plastic Surgery"
+  },
+  {
+   "id": "pyq_surgery_small_and_large_intestine",
+   "subjectId": "surgery",
+   "name": "Small & Large Intestine"
+  },
+  {
+   "id": "pyq_surgery_spleen",
+   "subjectId": "surgery",
+   "name": "Spleen"
+  },
+  {
+   "id": "pyq_surgery_trauma",
+   "subjectId": "surgery",
+   "name": "Trauma"
+  },
+  {
+   "id": "pyq_surgery_urology",
+   "subjectId": "surgery",
+   "name": "Urology"
+  }
+ ]
+}
