@@ -113,3 +113,7 @@ To enable spontaneous pop-up questions over other apps:
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE) (or applicable open source license). Dataset contents belong to their respective creators under the MedMCQA research release.
+
+## Previous-year papers
+
+The recalled NEET PG / JIPMER / DNB papers under `app/src/main/assets/pyq/` are **not committed** (rights review pending). Generate them locally with the scripts in `tools/pyq-import` (see `QUESTION_CONTENT_SPEC.md`); without them the app simply has no Papers tab.

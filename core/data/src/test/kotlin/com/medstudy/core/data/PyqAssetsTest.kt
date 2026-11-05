@@ -5,12 +5,18 @@ import com.google.gson.reflect.TypeToken
 import java.io.File
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import org.junit.Assume.assumeTrue
+import org.junit.Before
 import org.junit.Test
 
 /** Sanity checks on the bundled previous-year papers (assets/pyq), produced by tools/pyq-import. */
 class PyqAssetsTest {
     private val assets = File("../../app/src/main/assets")
     private val gson = Gson()
+
+    /** The papers are not committed (see .gitignore); these checks only run where they have been generated. */
+    @Before
+    fun papersArePresent() = assumeTrue(File(assets, "pyq/index.json").isFile)
 
     private val index: PyqIndexJson by lazy { gson.fromJson(File(assets, "pyq/index.json").readText(), PyqIndexJson::class.java) }
 
