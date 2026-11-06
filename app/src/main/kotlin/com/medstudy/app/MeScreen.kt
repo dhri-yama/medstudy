@@ -56,7 +56,9 @@ import com.medstudy.core.designsystem.IconCircleButton
 import com.medstudy.core.designsystem.NotchedCard
 import com.medstudy.core.designsystem.PillButton
 import com.medstudy.core.designsystem.PillStyle
-import com.medstudy.core.designsystem.StudyAvatar
+import io.github.dhriyama.blobmates.BlobmateOptions
+import io.github.dhriyama.blobmates.Shape
+import io.github.dhriyama.blobmates.android.BlobmateView
 import com.medstudy.core.designsystem.StudyCard
 import com.medstudy.core.designsystem.StudyChip
 import com.medstudy.core.designsystem.StudyTextField
@@ -163,7 +165,8 @@ private fun ProfileHeader(profile: UserProfile, onSettings: () -> Unit) {
                     .background(StudyTheme.colors.canvas)
                     .padding(5.dp),
             ) {
-                StudyAvatar(profile.name, size = 102.dp)
+                // The same name always gives the same blob; an avatar maker can later pass its own options here.
+                BlobmateView(profile.name.ifBlank { "MedStudy" }, size = 102.dp, options = BlobmateOptions(shape = Shape.Circle))
             }
         }
         Text(profile.name, style = MaterialTheme.typography.headlineLarge.copy(fontSize = 30.sp), color = StudyTheme.colors.ink, textAlign = TextAlign.Center)

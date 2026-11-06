@@ -66,6 +66,9 @@ dependencies {
     implementation(project(":feature:practice"))
     implementation(project(":feature:progress"))
     
+    // Friendly blob avatars (profile picture)
+    implementation("com.github.dhri-yama.blobmates:blobmates-android:v0.3.0")
+
     // Gson for JSON parsing (MedMCQA data loading)
     implementation("com.google.code.gson:gson:2.10.1")
     

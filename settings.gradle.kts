@@ -11,6 +11,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // Blobmates avatars are published from GitHub tags by JitPack.
+        maven("https://jitpack.io")
     }
 }
 
