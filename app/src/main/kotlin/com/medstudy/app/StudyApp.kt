@@ -265,6 +265,8 @@ fun StudyApp(
             else PaperSummary(paper.id, paper.title, paper.year, paper.kind == com.medstudy.core.model.PaperKind.RECALL, ids, ids.filterTo(HashSet()) { it in attempted })
         }
     }
+    // The blob is generated from the account id, so two people with the same name get different blobs.
+    val avatarSeed = remember(accountVersion, profile) { if (container.account.isSignedIn) container.account.userId else "" }
     val planRows = progressState.plan?.blocks.orEmpty()
         .map { PlanRow(it, LocalDate.parse(it.studyDateIso)) }
         .sortedBy(PlanRow::date)
@@ -383,7 +385,7 @@ fun StudyApp(
         Scaffold(containerColor = StudyTheme.colors.canvas) { padding ->
             val contentModifier = Modifier.padding(top = padding.calculateTopPadding())
             Box(Modifier.fillMaxSize()) {
-            CompositionLocalProvider(LocalNavBarInset provides navInset) {
+            CompositionLocalProvider(LocalNavBarInset provides navInset, LocalAvatarSeed provides avatarSeed) {
             when (destination) {
                 StudyDestination.TODAY -> TodayScreen(
                     name = profile!!.name,
