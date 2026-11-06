@@ -51,7 +51,6 @@ import androidx.compose.ui.unit.sp
 import com.medstudy.core.designsystem.NotchedCard
 import com.medstudy.core.designsystem.PillButton
 import com.medstudy.core.designsystem.PillStyle
-import com.medstudy.core.designsystem.StudyAvatar
 import com.medstudy.core.designsystem.StudyChip
 import com.medstudy.core.designsystem.StudyProgressBar
 import com.medstudy.core.designsystem.StudyTheme
@@ -256,7 +255,7 @@ private fun dueLabel(area: WeakArea): String =
 @Composable
 private fun Header(name: String, today: LocalDate, streak: Int, modifier: Modifier = Modifier) {
     Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        StudyAvatar(name)
+        ProfileBlob(name, size = 48.dp)
         Column(Modifier.weight(1f)) {
             Text("Hey, $name", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
             Text(
