@@ -58,7 +58,8 @@ import com.medstudy.core.designsystem.PillButton
 import com.medstudy.core.designsystem.PillStyle
 import io.github.dhriyama.blobmates.BlobmateOptions
 import io.github.dhriyama.blobmates.Shape
-import io.github.dhriyama.blobmates.android.BlobmateView
+import io.github.dhriyama.blobmates.android.LiveBlobmateView
+import io.github.dhriyama.blobmates.runtime.ReactOptions
 import com.medstudy.core.designsystem.StudyCard
 import com.medstudy.core.designsystem.StudyChip
 import com.medstudy.core.designsystem.StudyTextField
@@ -165,8 +166,12 @@ private fun ProfileHeader(profile: UserProfile, onSettings: () -> Unit) {
                     .background(StudyTheme.colors.canvas)
                     .padding(5.dp),
             ) {
-                // The same name always gives the same blob; an avatar maker can later pass its own options here.
-                BlobmateView(profile.name.ifBlank { "MedStudy" }, size = 102.dp, options = BlobmateOptions(shape = Shape.Circle))
+                // The same name always gives the same blob (an avatar maker can later pass its own pins). It blinks, its eyes follow
+                // your touch and it bounces when tapped; the library stops all motion when "Remove animations" is on.
+                LiveBlobmateView(
+                    profile.name.ifBlank { "MedStudy" }, size = 102.dp, mood = "happy",
+                    pins = BlobmateOptions(shape = Shape.Circle), react = ReactOptions(),
+                )
             }
         }
         Text(profile.name, style = MaterialTheme.typography.headlineLarge.copy(fontSize = 30.sp), color = StudyTheme.colors.ink, textAlign = TextAlign.Center)
