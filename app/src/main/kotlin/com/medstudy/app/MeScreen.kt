@@ -160,11 +160,8 @@ private fun ProfileHeader(profile: UserProfile, onSettings: () -> Unit) {
             Box(
                 Modifier
                     .align(Alignment.TopCenter)
-                    .offset(y = 66.dp)
-                    .size(112.dp)
-                    .clip(CircleShape)
-                    .background(StudyTheme.colors.canvas)
-                    .padding(5.dp),
+                    .offset(y = 71.dp)
+                    .size(102.dp),
             ) {
                 // The same name always gives the same blob (an avatar maker can later pass its own pins). It blinks, its eyes follow
                 // your touch and it bounces when tapped; the library stops all motion when "Remove animations" is on.
