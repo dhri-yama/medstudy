@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive-icon foreground: the target and syringe artwork, scaled to sit inside the 66dp safe zone. Background is ic_launcher_background. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <group android:pivotX="232" android:pivotY="280" android:scaleX="0.56" android:scaleY="0.56" android:translateX="24" android:translateY="-24">
+        <path android:fillColor="#F4F8FB" android:pathData="M50,280a182,182 0 1,0 364,0a182,182 0 1,0 -364,0z" />
+        <path android:fillColor="#19B3A6" android:pathData="M84,280a148,148 0 1,0 296,0a148,148 0 1,0 -296,0z" />
+        <path android:fillColor="#F4F8FB" android:pathData="M118,280a114,114 0 1,0 228,0a114,114 0 1,0 -228,0z" />
+        <path android:fillColor="#19B3A6" android:pathData="M152,280a80,80 0 1,0 160,0a80,80 0 1,0 -160,0z" />
+        <path android:fillColor="#F4F8FB" android:pathData="M186,280a46,46 0 1,0 92,0a46,46 0 1,0 -92,0z" />
+        <path android:fillColor="#FF6B57" android:pathData="M212,280a20,20 0 1,0 40,0a20,20 0 1,0 -40,0z" />
+        <group android:translateX="232" android:translateY="280" android:rotation="-45">
+        <path android:fillColor="#FFFFFF" android:strokeColor="#0B2545" android:strokeWidth="3" android:strokeLineJoin="round" android:pathData="M0,0L24,-5L70,-5L70,5L24,5z" />
+        <path android:fillColor="#CBD5E1" android:strokeColor="#0B2545" android:strokeWidth="5" android:strokeLineJoin="round" android:pathData="M71,-13h12a5,5 0 0 1 5,5v16a5,5 0 0 1 -5,5h-12a5,5 0 0 1 -5,-5v-16a5,5 0 0 1 5,-5z" />
+        <path android:fillColor="#FFFFFF" android:strokeColor="#0B2545" android:strokeWidth="6" android:strokeLineJoin="round" android:pathData="M95,-24h138a9,9 0 0 1 9,9v30a9,9 0 0 1 -9,9h-138a9,9 0 0 1 -9,-9v-30a9,9 0 0 1 9,-9z" />
+        <path android:fillColor="#19B3A6" android:pathData="M105,-15h82a5,5 0 0 1 5,5v20a5,5 0 0 1 -5,5h-82a5,5 0 0 1 -5,-5v-20a5,5 0 0 1 5,-5z" />
+        <path android:strokeColor="#0B2545" android:strokeWidth="3" android:strokeLineCap="round" android:pathData="M208,-15V-5M221,-15V-5M234,-15V-5" />
+        <path android:fillColor="#FFFFFF" android:strokeColor="#0B2545" android:strokeWidth="5" android:strokeLineJoin="round" android:pathData="M243,-38h0a5,5 0 0 1 5,5v66a5,5 0 0 1 -5,5h0a5,5 0 0 1 -5,-5v-66a5,5 0 0 1 5,-5z" />
+        <path android:fillColor="#CBD5E1" android:strokeColor="#0B2545" android:strokeWidth="4" android:strokeLineJoin="round" android:pathData="M246,-6h48a0,0 0 0 1 0,0v12a0,0 0 0 1 0,0h-48a0,0 0 0 1 0,0v-12a0,0 0 0 1 0,0z" />
+        <path android:fillColor="#FFFFFF" android:strokeColor="#0B2545" android:strokeWidth="5" android:strokeLineJoin="round" android:pathData="M298,-27h0a6,6 0 0 1 6,6v42a6,6 0 0 1 -6,6h0a6,6 0 0 1 -6,-6v-42a6,6 0 0 1 6,-6z" />
+        </group>
+    </group>
+</vector>
