@@ -1,3 +1,84 @@
 - neetpg2024-q006: key says serum ceruloplasmin as the definitive test; many references give hepatic copper concentration. Recheck.
 - neetpg2024-q013: key says knee and wrist; common teaching is elbow and wrist for 16-18 years. Recheck.
 - neetpg2024-q018: Millard-Gubler vs Foville with horizontal gaze palsy. Recheck.
+- neetpg2022-q019: Official teaching is 'every 3 weeks for 5 years or until age 18 whichever is longer' for no carditis; some references say 21. Keep paper key.
+- neetpg2022-q038: Textbook (ICMR) is +350 kcal in 2nd and 3rd trimester; option A says 300. Recheck.
+- neetpg2022-q039: Key B (prolapse of membranes) is unusual; ruptured membranes (A) is the classic contraindication. Recheck.
+- neetpg2022-q044: Key C (Mala) seems unusual for lactating woman with heavy bleeding. Recheck.
+- neetpg2022-q064: image-dependent; stem is clipped here, explanation is generic. Recheck against paper.
+- neetpg2022-q089: key says mitochondrial DNA is NOT part of NETs; literature does describe mitochondrial DNA in NETs. Recheck.
+- neetpg2022-q095: key chosen (acute and chronic alveolar haemorrhage) is disputed; DAD is the textbook finding.
+- neetpg2022-q058: depends on image; confirm which fracture is shown.
+- neetpg2022-q060: depends on image; confirm numbering.
+- neetpg2022-q123: Dichotomous (acute-angle) branching is classically Aspergillus; key says Mucor. Recheck.
+- neetpg2022-q104: option A in the source is garbled ('a. Continue breast feeding not observed'); check wording.
+- neetpg2022-q133: image dependent; verify against figure.
+- neetpg2022-q147: image dependent; stab wound with/without evisceration.
+- neetpg2022-q170: stem is clipped; check wording ('which is not used?') against the paper.
+- neetpg2022-q192: key D (100-bed facility) unclear; recheck source.
+- neetpg2022-q183: check source.
+- neetpg2022-q195: check source.
+- neetpg2022-q197: image-dependent.
+- neetpg2021-q044: Cannonball lung mets make this 'high risk' by many rules (score depends on hCG, interval, tumour size); official key says methotrexate with folinic acid. Recheck.
+- neetpg2021-q041: Transverse lie may occur in uterus didelphys; question wording. Recheck.
+- neetpg2021-q008: Dose wording in key (0.5 mg daily before bedtime for 7 days) — verify.
+- neetpg2021-q055: image-dependent; verify.
+- neetpg2021-q067: image-dependent; verify.
+- neetpg2021-q078: key (discard pack, new pack with alternate method) differs from standard guidance (backup + EC). Recheck.
+- neetpg2021-q072: MCV 80 with Hb 9 — the stem's units garbled; keep key.
+- neetpg2021-q099: image-dependent; verify drug.
+- neetpg2021-q146: key B (wait and watch) conflicts with standard teaching that retrograde urethrogram is the next step. Recheck.
+- neetpg2021-q129: chemical distributed with doxycycline after floods — key malathion seems odd; recheck.
+- neetpg2021-q133: AQI table is not fully visible; verify.
+- neetpg2021-q113: lingual vs marginal mandibular; verify.
+- neetpg2021-q194: key says MRI; a metallic intraocular foreign body is a contraindication — recheck source.
+- neetpg2021-q152: key gallstone ileus; stem says previous hysterectomy (adhesions) — recheck.
+- neetpg2021-q196: carcinoma in situ vs dysplasia; recheck key.
+- neetpg2021-q178 q182 q191 q192: image-dependent.
+- neetpg2023-q006: stem shows persistent cough; key PCP (P. jirovecii). Verify.
+- neetpg2023-q022: McArdle disease does not cause hypoglycaemia; check options.
+- neetpg2023-q039: partial penectomy chosen by key; some guidelines prefer organ-sparing/ glansectomy. Recheck.
+- neetpg2023-q014 q017 q018: image-dependent; verify.
+- neetpg2023-q059: Rinne rule of thumb recollection; verify the exact dB bands.
+- neetpg2023-q053: image-dependent; verify.
+- neetpg2023-q085: key 'angiography'; nimodipine is also standard.
+- neetpg2023-q090 q087 q083: image-dependent.
+- neetpg2023-q116: key vitamin C looks wrong; stem likely about lathyrism toxin. Recheck.
+- neetpg2023-q135: lewy body dementia vs Parkinson's; recheck.
+- neetpg2023-q146: key conflicts with 14-week standard; recheck.
+- neetpg2023-q107: histoplasmosis vs cryptococcosis; check stem.
+- neetpg2023-q126: image-dependent.
+- neetpg2023-q172: Letulle vs Rokitansky for HIV bodies; key Rokitansky. verify.
+- neetpg2023-q177: statement about proportion of AD disorders; check source.
+- neetpg2023-q184: verify section 314 wording.
+- neetpg2023-q168 q164 q167 q176 q179 q181: image-dependent.
+- neetpg2020-q017: lateral pons vs lateral medulla; recheck.
+- neetpg2020-q005: confirm closure timings.
+- neetpg2020-q058: key immediate caesarean section; with 38 weeks twin A breech + preeclampsia this is accepted.
+- neetpg2020-q088: stem has 'yellow rhombic crystals' but key says Barberio test; verify.
+- neetpg2020-q073: MCV 101 and smear details truncated; verify.
+- neetpg2020-q097: key bethanechol (patient has COPD and diabetes, a relative caution).
+- neetpg2020-q102: key says pituitary disease though a TRH rise points to hypothalamic; recheck stem.
+- neetpg2020-q122: key polio; recheck.
+- neetpg2020-q128: key hypoventilation looks inconsistent with values; recheck.
+- neetpg2020-q130: lomefloxacin key odd; recheck.
+- neetpg2020-q153: guidelines vary (37-39 vs 40-42 C); key 42.
+- neetpg2020-q162: key 'V2 receptor agonism' is wrong for tolvaptan; question probably about the mechanism of thirst; verify.
+- neetpg2020-q175 q173 q181 q182 q198 q201: image-dependent.
+- neetpg2020-q198: key ichthyosis vulgaris looks wrong.
+- neetpg2020-q209: confirm which criterion is not part of the Wilson transplant selection list.
+- neetpg2020-q224: prospective screening definition is debatable; key immigrants.
+- neetpg2020-q239: key says surgery indicated if diameter > some size; verify option text.
+- neetpg2020-q278: image-dependent; verify age by ossification.
+- neetpg2020-q275: policy wording in key; verify.
+- neetpg2025-q025: key familial hypercholesterolemia; Tangier more consistent with HDL 5 and orange tonsils. Recheck.
+- neetpg2025-q042: key 'decreased calcium excretion' contradicts thiazide benefit for calcium stones. Recheck.
+- neetpg2025-q069: key fluoride supplementation looks wrong; defluoridation intended.
+- neetpg2025-q074: key says 60 mg iron; WIFS is 100 mg + 500 mcg (60 mg for 6-10 y). Recheck.
+- neetpg2025-q080: age 2 vs typical adolescent; verify.
+- neetpg2025-q070: NUHM arithmetic; verify.
+- neetpg2025-q097: calcium numbers not visible; verify.
+- neetpg2025-q102: image-dependent; verify.
+- neetpg2025-q148: delusional perception vs hallucination; verify.
+- neetpg2025-q153: nevus depigmentosus vs vitiligo; image-dependent.
+- neetpg2025-q125 q126 q127 q128 q129 q130 q131 q133 q134 q135 q139 q140: image-dependent.
