@@ -165,7 +165,7 @@ private fun ProfileHeader(profile: UserProfile, onSettings: () -> Unit) {
         Text(profile.name, style = MaterialTheme.typography.headlineLarge.copy(fontSize = 30.sp), color = StudyTheme.colors.ink, textAlign = TextAlign.Center)
         Text("Joined in ${profile.joinedYear}", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted)
         Row(Modifier.padding(top = 10.dp, bottom = 20.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            StudyChip(profile.exam, container = StudyTheme.colors.surface)
+            StudyChip(profile.examLabel, container = StudyTheme.colors.surface)
             StudyChip("${profile.dailyQuestionGoal} a day", container = StudyTheme.colors.surface)
         }
     }
@@ -273,9 +273,9 @@ private fun OverlayCard(
 @Composable
 private fun EditProfile(profile: UserProfile, onSave: (UserProfile) -> Unit, onBack: () -> Unit, modifier: Modifier = Modifier) {
     var name by rememberSaveable(profile) { mutableStateOf(profile.name) }
-    var exam by rememberSaveable(profile) { mutableStateOf(profile.exam) }
+    var exams by rememberSaveable(profile) { mutableStateOf(profile.exams) }
     var goal by rememberSaveable(profile) { mutableFloatStateOf(profile.dailyQuestionGoal.toFloat()) }
-    val edited = profile.copy(name = name.trim(), exam = exam, dailyQuestionGoal = goal.toInt())
+    val edited = profile.copy(name = name.trim(), exams = exams, dailyQuestionGoal = goal.toInt())
     Column(
         modifier = modifier.fillMaxSize().windowInsetsPadding(WindowInsets.statusBars).verticalScroll(rememberScrollState())
             .padding(20.dp),
@@ -286,13 +286,15 @@ private fun EditProfile(profile: UserProfile, onSave: (UserProfile) -> Unit, onB
             StudyTextField(name, { name = it }, "Name")
             Text("Preparing for", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.muted)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                UserProfileStore.EXAMS.forEach { option -> FilterPill(option, exam == option, { exam = option }) }
+                UserProfileStore.EXAMS.forEach { option ->
+                    FilterPill(option, option in exams, { exams = if (option in exams) exams - option else exams + option })
+                }
             }
             Text("${goal.toInt()} questions a day", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink)
             Slider(value = goal, onValueChange = { goal = it }, valueRange = 5f..50f, steps = 8, colors = studySliderColors())
             PillButton(
                 "Save changes", onClick = { onSave(edited) },
-                enabled = edited != profile && edited.name.isNotBlank(), modifier = Modifier.fillMaxWidth(),
+                enabled = edited != profile && edited.name.isNotBlank() && exams.isNotEmpty(), modifier = Modifier.fillMaxWidth(),
             )
         }
         Spacer(Modifier.height(LocalNavBarInset.current))

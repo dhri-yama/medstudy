@@ -46,6 +46,17 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
         adoptLocalData()
     }
 
+    /** Signs in (or creates the account) with a Google ID token; [rawNonce] is the un-hashed nonce whose SHA-256 was given to Google. Returns the Google display name. */
+    suspend fun signInWithGoogle(idToken: String, rawNonce: String): String? = withContext(Dispatchers.IO) {
+        val json = request(
+            "auth/v1/token?grant_type=id_token", "POST",
+            JSONObject().put("provider", "google").put("id_token", idToken).put("nonce", rawNonce), auth = false,
+        )
+        storeSession(json)
+        adoptLocalData()
+        json.getJSONObject("user").optJSONObject("user_metadata")?.let { it.optString("full_name").ifBlank { it.optString("name") } }?.takeIf { it.isNotBlank() }
+    }
+
     fun signOut() = prefs.edit().clear().apply()
 
     suspend fun sync(): Int = withContext(Dispatchers.IO) {
@@ -140,12 +151,21 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
         val row = JSONObject()
             .put("user_id", userId)
             .put("display_name", profile.name)
-            .put("exam_id", UserProfileStore.EXAM_IDS.getValue(profile.exam))
+            .put("exam_id", UserProfileStore.EXAM_IDS.getValue(profile.primaryExam))
             .put("daily_question_goal", profile.dailyQuestionGoal)
         request(
             "rest/v1/profiles?on_conflict=user_id", "POST", JSONArray().put(row),
             extraHeaders = mapOf("Prefer" to "resolution=merge-duplicates,return=minimal"),
         )
+        // The full list of exams goes in profile_exams. shortcut: best effort, so profile sync still works before that table exists.
+        runCatching {
+            request("rest/v1/profile_exams?user_id=eq.$userId", "DELETE", null, extraHeaders = mapOf("Prefer" to "return=minimal"))
+            request(
+                "rest/v1/profile_exams", "POST",
+                JSONArray(profile.exams.map { JSONObject().put("user_id", userId).put("exam_id", UserProfileStore.EXAM_IDS.getValue(it)) }),
+                extraHeaders = mapOf("Prefer" to "return=minimal"),
+            )
+        }
         Unit
     }
 
@@ -155,9 +175,14 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
         val rows = requestArray("rest/v1/profiles?select=display_name,exam_id,daily_question_goal&limit=1")
         if (rows.length() == 0) return@withContext null
         val row = rows.getJSONObject(0)
-        val exam = UserProfileStore.EXAM_IDS.entries.firstOrNull { it.value == row.getString("exam_id") }?.key
-            ?: return@withContext null
-        UserProfile(row.getString("display_name"), exam, row.getInt("daily_question_goal"))
+        fun label(id: String) = UserProfileStore.EXAM_IDS.entries.firstOrNull { it.value == id }?.key
+        val primary = label(row.getString("exam_id")) ?: return@withContext null
+        val all = runCatching {
+            val chosen = requestArray("rest/v1/profile_exams?select=exam_id")
+            List(chosen.length()) { label(chosen.getJSONObject(it).getString("exam_id")) }.filterNotNull()
+        }.getOrDefault(emptyList())
+        // The primary exam always leads the list.
+        UserProfile(row.getString("display_name"), listOf(primary) + (all - primary), row.getInt("daily_question_goal"))
     }
 
     private suspend fun adoptLocalData() {

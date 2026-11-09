@@ -30,15 +30,18 @@ android {
         }
         buildConfigField("String", "SUPABASE_URL", "\"${local.getProperty("SUPABASE_URL", "")}\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"${local.getProperty("SUPABASE_ANON_KEY", "")}\"")
+        // The Google Cloud *Web* OAuth client id (the same one pasted into Supabase > Auth > Providers > Google). Blank = Google sign-in disabled.
+        buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"${local.getProperty("GOOGLE_WEB_CLIENT_ID", "")}\"")
     }
 
     buildTypes {
         // Previous-year papers are flagged REVIEW_REQUIRED (recalled content from a coaching provider); release builds leave them out until that is settled.
-        // DEV_SKIP_AUTH=true in local.properties skips sign-up/sign-in in debug builds (no account, no server trial, full access). Never honoured in release.
+        // Sign-in is required by default. For local testing only, build with  ./gradlew :app:installDebug -PDEV_SKIP_AUTH=true
+        // to skip sign-up/sign-in (no account, no server trial, full access). It is deliberately NOT read from local.properties,
+        // so an APK built normally can never have it switched on by accident. Never honoured in release.
         debug {
             buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "true")
-            val local = Properties().apply { rootProject.file("local.properties").takeIf { it.exists() }?.reader()?.use(::load) }
-            buildConfigField("boolean", "DEV_SKIP_AUTH", (local.getProperty("DEV_SKIP_AUTH", "false") == "true").toString())
+            buildConfigField("boolean", "DEV_SKIP_AUTH", (providers.gradleProperty("DEV_SKIP_AUTH").orNull == "true").toString())
         }
         release {
             buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "false")
@@ -81,6 +84,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.5")
     implementation(libs.androidx.compose.icons)
     implementation(libs.android.billing)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play)
+    implementation(libs.googleid)
     debugImplementation(libs.androidx.compose.ui.tooling)
     testImplementation(libs.junit)
 }

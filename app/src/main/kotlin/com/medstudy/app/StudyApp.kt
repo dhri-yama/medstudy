@@ -102,7 +102,7 @@ fun StudyApp(
     val profileStore = remember { UserProfileStore(context) }
     var profile by remember {
         // Debug-only shortcut (DEV_SKIP_AUTH in local.properties): a ready-made profile instead of onboarding.
-        mutableStateOf(profileStore.load() ?: if (BuildConfig.DEV_SKIP_AUTH) UserProfile("Dev tester", UserProfileStore.EXAMS.first(), 10) else null)
+        mutableStateOf(profileStore.load() ?: if (BuildConfig.DEV_SKIP_AUTH) UserProfile("Dev tester", listOf(UserProfileStore.EXAMS.first()), 10) else null)
     }
     // Bumped when the account changes (sign-in, sign-out) so the gate below re-checks it.
     var accountVersion by remember { mutableIntStateOf(0) }

@@ -58,7 +58,7 @@ fun AccountSection(
                     onClick = { run { account.pushProfile(profile); "Synced, ${account.sync()} new from the cloud" } },
                     enabled = !busy, modifier = Modifier.fillMaxWidth(),
                 )
-                PillButton("Sign out", onClick = { account.signOut(); signedIn = false; message = null; onSignedOut() }, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
+                PillButton("Log out", onClick = { account.signOut(); signedIn = false; message = null; onSignedOut() }, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
             }
             else -> {
                 Text("Sign in to back up your progress and use it on another phone.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.body)

@@ -36,7 +36,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -82,7 +82,11 @@ import com.medstudy.core.designsystem.studySliderColors
 
 /** Local learner profile; also the user-id source for later sync. */
 /** [joinedYear] is local only (not synced); it is set once, the first time the profile is saved. */
-data class UserProfile(val name: String, val exam: String, val dailyQuestionGoal: Int, val joinedYear: Int = java.time.LocalDate.now().year)
+data class UserProfile(val name: String, val exams: List<String>, val dailyQuestionGoal: Int, val joinedYear: Int = java.time.LocalDate.now().year) {
+    /** The first chosen exam; the one older app versions and the cloud's single exam column know about. */
+    val primaryExam: String get() = exams.firstOrNull() ?: UserProfileStore.EXAMS.first()
+    val examLabel: String get() = exams.joinToString(" · ")
+}
 
 class UserProfileStore(context: Context) {
     private val prefs = context.applicationContext.getSharedPreferences("profile", Context.MODE_PRIVATE)
@@ -91,13 +95,13 @@ class UserProfileStore(context: Context) {
         if (!prefs.getBoolean(KEY_DONE, false)) null
         else UserProfile(
             prefs.getString(KEY_NAME, "").orEmpty(),
-            prefs.getString(KEY_EXAM, EXAMS.first()).orEmpty(),
+            prefs.getString(KEY_EXAM, EXAMS.first()).orEmpty().split(SEPARATOR).filter { it in EXAMS }.ifEmpty { listOf(EXAMS.first()) },
             prefs.getInt(KEY_GOAL, 10),
             prefs.getInt(KEY_JOINED, java.time.LocalDate.now().year),
         )
 
     fun save(profile: UserProfile) {
-        prefs.edit().putString(KEY_NAME, profile.name).putString(KEY_EXAM, profile.exam)
+        prefs.edit().putString(KEY_NAME, profile.name).putString(KEY_EXAM, profile.exams.joinToString(SEPARATOR))
             .putInt(KEY_GOAL, profile.dailyQuestionGoal).putBoolean(KEY_DONE, true)
             .apply { if (!prefs.contains(KEY_JOINED)) putInt(KEY_JOINED, profile.joinedYear) }.apply()
     }
@@ -106,6 +110,7 @@ class UserProfileStore(context: Context) {
         /** App label -> exams.id in the cloud database. */
         val EXAM_IDS = mapOf("NEET PG" to "neet_pg", "AIIMS" to "aiims", "INI-CET" to "inicet")
         val EXAMS = EXAM_IDS.keys.toList()
+        private const val SEPARATOR = ","
         private const val KEY_DONE = "onboarded"
         private const val KEY_NAME = "name"
         private const val KEY_EXAM = "exam"
@@ -120,14 +125,18 @@ private val ExamDescriptions = mapOf(
     "INI-CET" to "Institutes of National Importance entrance",
 )
 
-private const val LastStep = 3
+private const val NameStep = 1
+private const val ExamsStep = 2
+private const val LastStep = 4
 private const val AccountStep = LastStep
-private val StepTitles = listOf("Hi! What should we call you?", "Which exam are you preparing for?", "How many questions a day?", "Create your account")
+private val StepTitles = listOf(
+    "Your PG entrance prep, made simple", "Hi! What should we call you?", "What are you preparing for?", "How many questions a day?", "Create your account",
+)
 private val StepSubtitles = listOf(
-    "Welcome to MedStudy", "We'll shape your plan around it", "Start small, you can change it in Me",
+    "Welcome to MedStudy", "Let's get to know you", "Pick one or more, we'll shape your plan around them", "Start small, you can change it in Me",
     "Your 15-day free trial starts now",
 )
-private val StepColors = listOf(0, 2, 3, 5)
+private val StepColors = listOf(1, 0, 2, 3, 5)
 
 /**
  * Full-screen onboarding: each step is a screen-sized pastel gradient that fades into the next, with
@@ -138,7 +147,8 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
     // An existing user who just isn't signed in yet goes straight to the account step with their profile filled in.
     var step by rememberSaveable { mutableIntStateOf(if (existingProfile != null) AccountStep else 0) }
     var name by rememberSaveable { mutableStateOf(existingProfile?.name.orEmpty()) }
-    var exam by rememberSaveable { mutableStateOf(existingProfile?.exam ?: UserProfileStore.EXAMS.first()) }
+    // Kept in the order the learner picked them; the first one is the primary exam.
+    var exams by rememberSaveable { mutableStateOf(existingProfile?.exams ?: emptyList()) }
     var goal by rememberSaveable { mutableFloatStateOf((existingProfile?.dailyQuestionGoal ?: 10).toFloat()) }
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
@@ -153,7 +163,8 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
     val bottom by animateColorAsState(gradient.bottom, tween(600), label = "bottom")
     val deep by animateColorAsState(gradient.deep, tween(600), label = "deep")
     val canContinue = when (step) {
-        0 -> name.isNotBlank()
+        NameStep -> name.isNotBlank()
+        ExamsStep -> exams.isNotEmpty()
         AccountStep -> email.isNotBlank() && password.length >= 6 && !busy
         else -> true
     }
@@ -163,7 +174,7 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
             busy = true
             error = null
             try {
-                val local = UserProfile(name.trim().ifBlank { email.substringBefore('@') }, exam, goal.toInt())
+                val local = UserProfile(name.trim().ifBlank { email.substringBefore('@') }, exams.ifEmpty { listOf(UserProfileStore.EXAMS.first()) }, goal.toInt())
                 if (signInMode) {
                     account.signIn(email.trim(), password)
                     val saved = account.pullProfile()
@@ -176,6 +187,33 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
                 } else {
                     error = "Check your email to confirm your account, then sign in."
                     signInMode = true
+                }
+            } catch (e: Exception) {
+                error = e.message ?: "Something went wrong. Try again."
+            } finally {
+                busy = false
+            }
+        }
+    }
+
+    val context = androidx.compose.ui.platform.LocalContext.current
+    fun continueWithGoogle() {
+        scope.launch {
+            busy = true
+            error = null
+            try {
+                val token = GoogleSignIn.request(context)
+                if (token != null) {
+                    val googleName = account.signInWithGoogle(token.idToken, token.rawNonce) ?: token.displayName
+                    // An account that already has a saved profile keeps it; a brand-new one uses what was chosen here.
+                    val saved = account.pullProfile()
+                    val local = UserProfile(
+                        name.trim().ifBlank { googleName ?: email.substringBefore('@') }.ifBlank { "Learner" },
+                        exams.ifEmpty { listOf(UserProfileStore.EXAMS.first()) }, goal.toInt(),
+                    )
+                    if (saved == null) account.pushProfile(local)
+                    runCatching { account.sync() }
+                    onDone(saved ?: local)
                 }
             } catch (e: Exception) {
                 error = e.message ?: "Something went wrong. Try again."
@@ -234,15 +272,17 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
                         )
                     }
                     when (current) {
-                        0 -> NameStep(name, { name = it }, onDone = ::next, onHaveAccount = { signInMode = true; step = AccountStep })
-                        1 -> ExamStep(exam, deep) { picked ->
-                            if (picked != exam) haptics.performHapticFeedback(HapticFeedbackType.LongPress)
-                            exam = picked
+                        0 -> IntroStep(onHaveAccount = { signInMode = true; step = AccountStep })
+                        NameStep -> NameStep(name, { name = it }, onDone = ::next)
+                        ExamsStep -> ExamStep(exams, deep) { picked ->
+                            haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                            exams = if (picked in exams) exams - picked else exams + picked
                         }
-                        2 -> GoalStep(goal, { goal = it }, name, exam) { haptics.performHapticFeedback(HapticFeedbackType.LongPress) }
+                        3 -> GoalStep(goal, { goal = it }, name, exams) { haptics.performHapticFeedback(HapticFeedbackType.LongPress) }
                         else -> AccountFields(
                             email, { email = it }, password, { password = it }, signInMode,
                             onToggleMode = { signInMode = !signInMode; error = null }, error = error, onSubmit = ::next,
+                            onGoogle = ::continueWithGoogle, busy = busy,
                         )
                     }
                 }
@@ -252,6 +292,7 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
                 if (step > 0 && existingProfile == null) PillButton("Back", onClick = { step -= 1 }, style = PillStyle.Secondary)
                 PillButton(
                     text = when {
+                        step == 0 -> "Get started"
                         step != AccountStep -> "Next"
                         busy -> "Please wait…"
                         signInMode -> "Sign in"
@@ -271,11 +312,11 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
 @Composable
 private fun Bubbles(step: Int) {
     val spec = tween<androidx.compose.ui.unit.Dp>(900)
-    val ax by animateDpAsState(listOf(70.dp, 20.dp, 110.dp, 50.dp)[step], spec, label = "ax")
-    val ay by animateDpAsState(listOf(-60.dp, 40.dp, -20.dp, 10.dp)[step], spec, label = "ay")
-    val bx by animateDpAsState(listOf(-90.dp, -30.dp, -120.dp, -60.dp)[step], spec, label = "bx")
-    val by by animateDpAsState(listOf(120.dp, 60.dp, 150.dp, 90.dp)[step], spec, label = "by")
-    val cx by animateDpAsState(listOf(40.dp, 90.dp, 10.dp, 60.dp)[step], spec, label = "cx")
+    val ax by animateDpAsState(listOf(70.dp, 20.dp, 110.dp, 40.dp, 50.dp)[step], spec, label = "ax")
+    val ay by animateDpAsState(listOf(-60.dp, 40.dp, -20.dp, 20.dp, 10.dp)[step], spec, label = "ay")
+    val bx by animateDpAsState(listOf(-90.dp, -30.dp, -120.dp, -70.dp, -60.dp)[step], spec, label = "bx")
+    val by by animateDpAsState(listOf(120.dp, 60.dp, 150.dp, 100.dp, 90.dp)[step], spec, label = "by")
+    val cx by animateDpAsState(listOf(40.dp, 90.dp, 10.dp, 70.dp, 60.dp)[step], spec, label = "cx")
     Box(Modifier.fillMaxSize()) {
         Box(Modifier.align(Alignment.TopEnd).offset(x = ax, y = ay).size(240.dp).clip(CircleShape).background(Color.White.copy(alpha = 0.18f)))
         Box(Modifier.align(Alignment.BottomStart).offset(x = bx, y = -by).size(280.dp).clip(CircleShape).background(Color.White.copy(alpha = 0.14f)))
@@ -284,7 +325,7 @@ private fun Bubbles(step: Int) {
 }
 
 @Composable
-private fun NameStep(name: String, onNameChange: (String) -> Unit, onDone: () -> Unit, onHaveAccount: () -> Unit) {
+private fun NameStep(name: String, onNameChange: (String) -> Unit, onDone: () -> Unit) {
     val focus = remember { FocusRequester() }
     LaunchedEffect(Unit) { runCatching { focus.requestFocus() } }
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -297,11 +338,6 @@ private fun NameStep(name: String, onNameChange: (String) -> Unit, onDone: () ->
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
             keyboardActions = KeyboardActions(onNext = { onDone() }),
         )
-        Text(
-            "I already have an account",
-            style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink,
-            modifier = Modifier.clip(CircleShape).clickable(role = Role.Button, onClick = onHaveAccount).padding(vertical = 8.dp, horizontal = 4.dp),
-        )
         AnimatedVisibility(visible = name.isNotBlank(), enter = fadeIn(tween(250)), exit = fadeOut(tween(150))) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 StudyAvatar(name, size = 56.dp)
@@ -312,10 +348,10 @@ private fun NameStep(name: String, onNameChange: (String) -> Unit, onDone: () ->
 }
 
 @Composable
-private fun ExamStep(selected: String, deep: Color, onPick: (String) -> Unit) {
+private fun ExamStep(selected: List<String>, deep: Color, onToggle: (String) -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         UserProfileStore.EXAMS.forEach { option ->
-            val isSelected = option == selected
+            val isSelected = option in selected
             val scale by animateFloatAsState(if (isSelected) 1.03f else 1f, spring(Spring.DampingRatioMediumBouncy), label = "scale")
             val shape = RoundedCornerShape(24.dp)
             Row(
@@ -325,7 +361,7 @@ private fun ExamStep(selected: String, deep: Color, onPick: (String) -> Unit) {
                     .clip(shape)
                     .background(StudyTheme.colors.surface)
                     .border(if (isSelected) 2.dp else 0.dp, if (isSelected) deep else Color.Transparent, shape)
-                    .selectable(selected = isSelected, role = Role.RadioButton, onClick = { onPick(option) })
+                    .toggleable(value = isSelected, role = Role.Checkbox, onValueChange = { onToggle(option) })
                     .padding(20.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -335,7 +371,7 @@ private fun ExamStep(selected: String, deep: Color, onPick: (String) -> Unit) {
                     Text(ExamDescriptions[option].orEmpty(), style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted)
                 }
                 Box(
-                    Modifier.size(28.dp).clip(CircleShape).background(if (isSelected) deep else StudyTheme.colors.canvas),
+                    Modifier.size(28.dp).clip(RoundedCornerShape(8.dp)).background(if (isSelected) deep else StudyTheme.colors.canvas),
                     contentAlignment = Alignment.Center,
                 ) {
                     if (isSelected) Icon(Icons.Outlined.Check, contentDescription = "Selected", tint = Color.White, modifier = Modifier.size(18.dp))
@@ -345,8 +381,33 @@ private fun ExamStep(selected: String, deep: Color, onPick: (String) -> Unit) {
     }
 }
 
+/** First screen: what the product is, in a few lines. Nothing is asked of the learner yet. */
 @Composable
-private fun GoalStep(goal: Float, onGoalChange: (Float) -> Unit, name: String, exam: String, onPreset: () -> Unit) {
+private fun IntroStep(onHaveAccount: () -> Unit) {
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        listOf(
+            "Thousands of exam-style questions" to "Every question comes with the reasoning behind the answer.",
+            "Previous year papers" to "NEET PG, JIPMER and DNB papers, practised in their original order.",
+            "A plan that fits your day" to "Set a daily goal, keep a streak and see what to revise next.",
+        ).forEach { (title, body) ->
+            Column(
+                Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp)).background(Color.White.copy(alpha = 0.7f)).padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(2.dp),
+            ) {
+                Text(title, style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink)
+                Text(body, style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.body)
+            }
+        }
+        Text(
+            "I already have an account",
+            style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink,
+            modifier = Modifier.clip(CircleShape).clickable(role = Role.Button, onClick = onHaveAccount).padding(vertical = 8.dp, horizontal = 4.dp),
+        )
+    }
+}
+
+@Composable
+private fun GoalStep(goal: Float, onGoalChange: (Float) -> Unit, name: String, exams: List<String>, onPreset: () -> Unit) {
     val value = goal.toInt()
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         AnimatedContent(
@@ -367,7 +428,7 @@ private fun GoalStep(goal: Float, onGoalChange: (Float) -> Unit, name: String, e
             }
         }
         Text(
-            "${name.trim().ifBlank { "You" }}, preparing for $exam.",
+            "${name.trim().ifBlank { "You" }}, preparing for ${exams.joinToString(", ")}.",
             style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink, modifier = Modifier.padding(top = 8.dp),
         )
     }
@@ -383,8 +444,12 @@ private fun AccountFields(
     onToggleMode: () -> Unit,
     error: String?,
     onSubmit: () -> Unit,
+    onGoogle: () -> Unit,
+    busy: Boolean,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        PillButton("Continue with Google", onClick = onGoogle, enabled = !busy, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
+        Text("or use your email", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink, modifier = Modifier.align(Alignment.CenterHorizontally))
         StudyTextField(
             email, onEmailChange, "Email", hintInside = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next),
