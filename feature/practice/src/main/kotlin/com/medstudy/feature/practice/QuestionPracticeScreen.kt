@@ -64,7 +64,19 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import com.medstudy.core.designsystem.StudyMotion
+import com.medstudy.core.designsystem.rememberReducedMotion
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -143,6 +155,29 @@ fun QuestionPracticeScreen(
     val isLast = state.position == state.questions.lastIndex
     val stemText = question.content.filterIsInstance<ContentBlock.Text>().firstOrNull()?.text.orEmpty()
     val (cleanStem, sourceTag) = remember(question.id) { splitSourceTag(stemText) }
+
+    // Motion only plays for something the user just did: a reveal that happens while this question is on screen
+    // (not when paging back to an answered one) and a bookmark toggle (not the state a question arrives with).
+    val reducedMotion = rememberReducedMotion()
+    val haptics = LocalHapticFeedback.current
+    val revealedOnArrival = remember(question.id) { state.isRevealed }
+    LaunchedEffect(question.id, state.isRevealed) {
+        if (state.isRevealed && !revealedOnArrival) haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+    }
+    val bookmarkScale = remember { Animatable(1f) }
+    var bookmarkSeen by remember(question.id) { mutableStateOf(state.isBookmarked) }
+    LaunchedEffect(question.id, state.isBookmarked) {
+        if (state.isBookmarked != bookmarkSeen) {
+            bookmarkSeen = state.isBookmarked
+            if (!reducedMotion) {
+                bookmarkScale.snapTo(0.8f)
+                bookmarkScale.animateTo(1f, StudyMotion.popSpring)
+            }
+        }
+    }
+    val bookmarkTint by animateColorAsState(
+        if (state.isBookmarked) gradient.deep else StudyTheme.colors.ink, StudyMotion.standard(), label = "bookmarkTint",
+    )
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -232,7 +267,7 @@ fun QuestionPracticeScreen(
             if (question.provenance.contentKind == ContentKind.DEMO) item {
                 Text("DEMO CONTENT ONLY", style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.muted, fontWeight = FontWeight.SemiBold)
             }
-            items(question.options, key = QuestionOption::id) { option ->
+            items(question.options, key = { "${question.id}:${it.id}" }) { option ->
                 AnswerOption(
                     option = option,
                     selected = option.id in state.selectedOptionIds,
@@ -248,7 +283,15 @@ fun QuestionPracticeScreen(
                 item { Text(state.error, color = StudyTheme.colors.error, style = MaterialTheme.typography.bodySmall) }
             }
             if (state.isRevealed) {
-                item { AnswerReview(question, state.result) }
+                item(key = "review:${question.id}") {
+                    // Saved, so scrolling the review off screen and back does not replay the entrance.
+                    var shown by rememberSaveable(question.id) { mutableStateOf(revealedOnArrival || reducedMotion) }
+                    LaunchedEffect(Unit) { shown = true }
+                    AnimatedVisibility(
+                        visible = shown,
+                        enter = fadeIn(StudyMotion.standard()) + expandVertically(StudyMotion.standard()),
+                    ) { AnswerReview(question, state.result) }
+                }
                 item {
                     Text(
                         if (reported) "Thanks, we'll take a look." else "Something wrong with this question? Report it",
@@ -272,9 +315,10 @@ fun QuestionPracticeScreen(
                 .padding(end = 20.dp, bottom = contentPadding.calculateBottomPadding() + 16.dp)
                 .shadow(8.dp, CircleShape),
             // The circle stays white; only the icon fills in (in the subject's deep shade) once saved.
-            tint = if (state.isBookmarked) gradient.deep else StudyTheme.colors.ink,
+            tint = bookmarkTint,
             size = 60.dp,
             iconSize = 32.dp,
+            iconModifier = Modifier.graphicsLayer { scaleX = bookmarkScale.value; scaleY = bookmarkScale.value },
         )
         }
     }
@@ -338,6 +382,14 @@ private fun SessionSummary(
         percent >= 50 -> "Nice effort"
         else -> "Keep going"
     }
+    // The score counts up once, when the summary first appears (not again after a rotation).
+    val reducedMotion = rememberReducedMotion()
+    var counted by rememberSaveable { mutableStateOf(reducedMotion) }
+    val progress = remember { Animatable(if (counted) 1f else 0f) }
+    LaunchedEffect(Unit) {
+        progress.animateTo(1f, tween(400, easing = StudyMotion.EaseOut))
+        counted = true
+    }
     Column(
         modifier = modifier.fillMaxSize().background(StudyTheme.colors.canvas).windowInsetsPadding(WindowInsets.systemBars).padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -358,14 +410,17 @@ private fun SessionSummary(
             }
             Column {
                 Text(
-                    percent?.let { "$it%" } ?: "-",
+                    percent?.let { "${(it * progress.value).toInt()}%" } ?: "-",
                     style = MaterialTheme.typography.headlineLarge.copy(fontSize = 64.sp, lineHeight = 68.sp),
                     color = StudyTheme.colors.ink,
                 )
                 Text("correct", style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink)
             }
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier.fillMaxWidth().graphicsLayer { alpha = progress.value },
+        ) {
             SummaryStat("Correct", state.correctCount, StudyTheme.colors.successTint, StudyTheme.colors.success, Modifier.weight(1f))
             SummaryStat("Missed", state.missedCount, StudyTheme.colors.errorTint, StudyTheme.colors.error, Modifier.weight(1f))
             SummaryStat("Shown", state.shownCount, StudyTheme.colors.surface, StudyTheme.colors.ink, Modifier.weight(1f))
@@ -442,10 +497,16 @@ private fun AnswerOption(
         else -> colors.canvas
     }
     val badgeText = if (badgeFill == colors.canvas) colors.ink else colors.onAccent
+    // Selecting is quick; the correct / wrong reveal is a touch slower so the change of state reads.
+    val spec = if (revealed) StudyMotion.standard<Color>() else StudyMotion.fast()
+    val backgroundShown by animateColorAsState(background, spec, label = "optionFill")
+    val borderShown by animateColorAsState(border, spec, label = "optionBorder")
+    val badgeShown by animateColorAsState(badgeFill, spec, label = "optionBadge")
+    val badgeTextShown by animateColorAsState(badgeText, spec, label = "optionBadgeText")
     Surface(
         shape = RoundedCornerShape(16.dp),
-        color = background,
-        border = BorderStroke(if (selected || revealed && correct) 1.5.dp else 1.dp, border),
+        color = backgroundShown,
+        border = BorderStroke(if (selected || revealed && correct) 1.5.dp else 1.dp, borderShown),
         modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
@@ -455,14 +516,18 @@ private fun AnswerOption(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Box(Modifier.size(32.dp).clip(CircleShape).background(badgeFill), contentAlignment = Alignment.Center) {
-                Text(option.label, style = MaterialTheme.typography.labelLarge, color = badgeText)
+            Box(Modifier.size(32.dp).clip(CircleShape).background(badgeShown), contentAlignment = Alignment.Center) {
+                Text(option.label, style = MaterialTheme.typography.labelLarge, color = badgeTextShown)
             }
             Column(Modifier.weight(1f).padding(vertical = 4.dp)) {
                 option.content.forEach { block -> QuestionContentBlock(block, imageResource, onImageClick = onImageClick) }
             }
-            if (revealed && correct) Text("Correct", style = MaterialTheme.typography.labelMedium, color = colors.success)
-            if (wrongPick) Text("Your answer", style = MaterialTheme.typography.labelMedium, color = colors.error)
+            AnimatedVisibility(revealed && correct, enter = fadeIn(StudyMotion.standard())) {
+                Text("Correct", style = MaterialTheme.typography.labelMedium, color = colors.success)
+            }
+            AnimatedVisibility(wrongPick, enter = fadeIn(StudyMotion.standard())) {
+                Text("Your answer", style = MaterialTheme.typography.labelMedium, color = colors.error)
+            }
         }
     }
 }
@@ -483,10 +548,6 @@ private fun AnswerReview(question: Question, result: AttemptResult?) {
         if (explanation.isNotBlank()) {
             Text("Explanation", style = MaterialTheme.typography.titleLarge, color = colors.ink)
             Text(explanation, style = MaterialTheme.typography.bodyMedium, color = colors.body)
-            // Papers have no published explanations; ours are written by us and not yet reviewed.
-            if (question.examPaperId != null) {
-                Text("Written by MedStudy, not from the paper, and not yet reviewed.", style = MaterialTheme.typography.bodySmall, color = colors.muted)
-            }
         } else {
             // Previous-year papers carry an answer key but no explanations.
             Text("Correct answer", style = MaterialTheme.typography.titleLarge, color = colors.ink)

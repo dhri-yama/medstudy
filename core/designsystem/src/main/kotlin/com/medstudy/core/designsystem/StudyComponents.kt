@@ -3,7 +3,15 @@ package com.medstudy.core.designsystem
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.LocalIndication
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
@@ -125,11 +133,17 @@ fun NotchedCard(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val shape = RoundedCornerShape(24.dp)
+    val interaction = remember { MutableInteractionSource() }
     Box(
         modifier = modifier
+            .pressScale(interaction, enabled = onClick != null)
             .clip(shape)
             .background(gradient.brush)
-            .then(if (onClick != null) Modifier.clickable(role = Role.Button, onClick = onClick) else Modifier),
+            .then(
+                if (onClick != null) {
+                    Modifier.clickable(interaction, LocalIndication.current, role = Role.Button, onClick = onClick)
+                } else Modifier,
+            ),
     ) {
         decoration?.invoke(this)
         if (tab != null) {
@@ -160,6 +174,8 @@ fun StudyProgressBar(
     fill: Color = StudyTheme.colors.accent,
     track: Color = StudyTheme.colors.track,
 ) {
+    // Starts at its value (no entrance animation, so it does not replay while a list scrolls); animates only on change.
+    val shown by animateFloatAsState(progress.coerceIn(0f, 1f), StudyMotion.emphasis(), label = "progress")
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -168,7 +184,7 @@ fun StudyProgressBar(
             .background(track)
             .semantics { contentDescription = description },
     ) {
-        Box(Modifier.fillMaxHeight().fillMaxWidth(progress.coerceIn(0f, 1f)).clip(CircleShape).background(fill))
+        Box(Modifier.fillMaxHeight().fillMaxWidth(shown.coerceIn(0f, 1f)).clip(CircleShape).background(fill))
     }
 }
 
@@ -187,19 +203,22 @@ fun PillButton(
 ) {
     val height = if (small) 32.dp else 44.dp
     val padding = PaddingValues(horizontal = if (small) 14.dp else 20.dp)
-    val sized = modifier.heightIn(min = height)
+    val interaction = remember { MutableInteractionSource() }
+    val sized = modifier.pressScale(interaction, enabled).heightIn(min = height)
     val label: @Composable () -> Unit = {
         Text(text, style = MaterialTheme.typography.labelLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
     }
     when (style) {
         PillStyle.Primary -> Button(
             onClick = onClick, modifier = sized, enabled = enabled, shape = CircleShape, contentPadding = padding,
+            interactionSource = interaction,
             colors = ButtonDefaults.buttonColors(
                 containerColor = containerColor, contentColor = StudyTheme.colors.onAccent,
             ),
         ) { label() }
         PillStyle.Secondary -> OutlinedButton(
             onClick = onClick, modifier = sized, enabled = enabled, shape = CircleShape, contentPadding = padding,
+            interactionSource = interaction,
             border = BorderStroke(1.dp, StudyTheme.colors.hairline),
             colors = ButtonDefaults.outlinedButtonColors(
                 containerColor = StudyTheme.colors.surface, contentColor = StudyTheme.colors.ink,
@@ -252,13 +271,19 @@ fun TaskRow(
     trailing: (@Composable () -> Unit)? = null,
 ) {
     val shape = RoundedCornerShape(18.dp)
+    val interaction = remember { MutableInteractionSource() }
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .pressScale(interaction, enabled = onClick != null)
             .shadow(2.dp, shape, ambientColor = Color(0x0A14142B), spotColor = Color(0x0A14142B))
             .clip(shape)
             .background(StudyTheme.colors.surface)
-            .then(if (onClick != null) Modifier.clickable(role = Role.Button, onClick = onClick) else Modifier)
+            .then(
+                if (onClick != null) {
+                    Modifier.clickable(interaction, LocalIndication.current, role = Role.Button, onClick = onClick)
+                } else Modifier,
+            )
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -337,24 +362,39 @@ fun SegmentedTabs(
     onSelect: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        labels.forEachIndexed { index, label ->
-            val selected = index == selectedIndex
-            val fill by animateColorAsState(if (selected) StudyTheme.colors.accent else StudyTheme.colors.surface, tween(200), label = "tabFill")
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .height(46.dp)
-                    .clip(CircleShape)
-                    .background(fill)
-                    .border(1.dp, if (selected) StudyTheme.colors.accent else StudyTheme.colors.hairline, CircleShape)
-                    .selectable(selected = selected, role = Role.Tab, onClick = { onSelect(index) }),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    label, style = MaterialTheme.typography.labelLarge,
-                    color = if (selected) StudyTheme.colors.onAccent else StudyTheme.colors.ink, maxLines = 1,
+    val gap = 8.dp
+    val reduced = rememberReducedMotion()
+    BoxWithConstraints(modifier = modifier.fillMaxWidth().height(46.dp)) {
+        val tabWidth = (maxWidth - gap * (labels.size - 1).coerceAtLeast(0)) / labels.size.coerceAtLeast(1)
+        // The white resting pills, then one ink pill that slides to the selected tab, then the labels on top.
+        Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
+            labels.forEach { _ ->
+                Box(
+                    Modifier.width(tabWidth).fillMaxHeight().clip(CircleShape)
+                        .background(StudyTheme.colors.surface).border(1.dp, StudyTheme.colors.hairline, CircleShape),
                 )
+            }
+        }
+        val indicatorX by animateDpAsState(
+            (tabWidth + gap) * selectedIndex, if (reduced) tween(0) else StudyMotion.emphasis(), label = "tabIndicator",
+        )
+        Box(Modifier.offset(x = indicatorX).width(tabWidth).fillMaxHeight().clip(CircleShape).background(StudyTheme.colors.accent))
+        Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
+            labels.forEachIndexed { index, label ->
+                val selected = index == selectedIndex
+                val textColor by animateColorAsState(
+                    if (selected) StudyTheme.colors.onAccent else StudyTheme.colors.ink, StudyMotion.standard(), label = "tabText",
+                )
+                Box(
+                    modifier = Modifier
+                        .width(tabWidth)
+                        .fillMaxHeight()
+                        .clip(CircleShape)
+                        .selectable(selected = selected, role = Role.Tab, onClick = { onSelect(index) }),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(label, style = MaterialTheme.typography.labelLarge, color = textColor, maxLines = 1)
+                }
             }
         }
     }
@@ -371,17 +411,21 @@ fun IconCircleButton(
     tint: Color = StudyTheme.colors.ink,
     size: Dp = 44.dp,
     iconSize: Dp = 22.dp,
+    /** Applied to the icon only (e.g. a scale pop), not the circle. */
+    iconModifier: Modifier = Modifier,
 ) {
+    val interaction = remember { MutableInteractionSource() }
     Box(
         modifier = modifier
             .size(size)
+            .pressScale(interaction)
             .clip(CircleShape)
             .background(container)
-            .clickable(role = Role.Button, onClickLabel = contentDescription, onClick = onClick)
+            .clickable(interaction, LocalIndication.current, role = Role.Button, onClickLabel = contentDescription, onClick = onClick)
             .semantics { this.contentDescription = contentDescription },
         contentAlignment = Alignment.Center,
     ) {
-        Icon(icon, contentDescription = null, tint = tint, modifier = Modifier.size(iconSize))
+        Icon(icon, contentDescription = null, tint = tint, modifier = iconModifier.size(iconSize))
     }
 }
 
@@ -455,13 +499,18 @@ fun FilterPill(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
+    val interaction = remember { MutableInteractionSource() }
+    val fill by animateColorAsState(
+        if (selected) StudyTheme.colors.accent else StudyTheme.colors.surface, StudyMotion.fast(), label = "pillFill",
+    )
     Box(
         modifier = modifier
             .heightIn(min = 40.dp)
+            .pressScale(interaction, enabled)
             .clip(CircleShape)
-            .background(if (selected) StudyTheme.colors.accent else StudyTheme.colors.surface)
+            .background(fill)
             .border(1.dp, if (selected) StudyTheme.colors.accent else StudyTheme.colors.hairline, CircleShape)
-            .selectable(selected = selected, enabled = enabled, role = Role.Button, onClick = onClick)
+            .selectable(selected, interaction, LocalIndication.current, enabled = enabled, role = Role.Button, onClick = onClick)
             .padding(horizontal = 16.dp),
         contentAlignment = Alignment.Center,
     ) {

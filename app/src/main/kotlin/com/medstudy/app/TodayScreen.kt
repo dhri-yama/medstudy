@@ -46,6 +46,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.medstudy.core.designsystem.NotchedCard
@@ -95,6 +96,8 @@ fun TodayScreen(
 ) {
     val today = LocalDate.now()
     val continueGradient = StudyTheme.subjectGradient(continueTarget.colorPosition)
+    // Answers are earned inside practice, so on return the count and bar move from what was last shown here.
+    val answeredShown = rememberCatchUp("today.answered", answeredToday)
     Column(
         modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(top = 20.dp, bottom = 20.dp + LocalNavBarInset.current),
         verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -133,8 +136,8 @@ fun TodayScreen(
                 }
                 Column {
                     Row(verticalAlignment = Alignment.Bottom) {
-                        Text(
-                            "$answeredToday", color = StudyTheme.colors.ink,
+                        SlidingCount(
+                            answeredShown, color = StudyTheme.colors.ink,
                             style = MaterialTheme.typography.headlineLarge.copy(fontSize = 48.sp, lineHeight = 52.sp),
                         )
                         Text(
@@ -144,7 +147,7 @@ fun TodayScreen(
                     }
                     Spacer(Modifier.height(8.dp))
                     StudyProgressBar(
-                        progress = if (goal == 0) 0f else answeredToday.toFloat() / goal,
+                        progress = if (goal == 0) 0f else answeredShown.toFloat() / goal,
                         description = "$answeredToday of $goal questions today",
                         fill = continueGradient.deep,
                         track = Color.White.copy(alpha = 0.55f),
@@ -264,11 +267,23 @@ private fun Header(name: String, today: LocalDate, streak: Int, modifier: Modifi
             )
         }
         if (streak > 0) {
-            StudyChip(
-                text = "${pluralize(streak, "day")} streak",
-                icon = Icons.Outlined.LocalFireDepartment,
-                contentColor = StudyTheme.colors.ink,
-            )
+            // Same look as StudyChip, with a number that slides and a flame that pops when the streak grows.
+            val streakShown = rememberCatchUp("today.streak", streak)
+            val pop = rememberStreakPop(streakShown)
+            Row(
+                modifier = Modifier.clip(CircleShape).background(StudyTheme.colors.surface).padding(horizontal = 10.dp, vertical = 4.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Icon(
+                    Icons.Outlined.LocalFireDepartment, contentDescription = null, tint = StudyTheme.colors.ink,
+                    modifier = Modifier.size(14.dp).graphicsLayer { scaleX = pop; scaleY = pop },
+                )
+                SlidingCount(
+                    streakShown, style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink,
+                    text = { "${pluralize(it, "day")} streak" },
+                )
+            }
         }
     }
 }
