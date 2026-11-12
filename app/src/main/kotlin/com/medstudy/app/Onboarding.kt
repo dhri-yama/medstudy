@@ -82,7 +82,11 @@ import com.medstudy.core.designsystem.studySliderColors
 
 /** Local learner profile; also the user-id source for later sync. */
 /** [joinedYear] is local only (not synced); it is set once, the first time the profile is saved. */
-data class UserProfile(val name: String, val exams: List<String>, val dailyQuestionGoal: Int, val joinedYear: Int = java.time.LocalDate.now().year) {
+/** [examDateIso] is the learner's exam day (yyyy-MM-dd), if they have set one. */
+data class UserProfile(
+    val name: String, val exams: List<String>, val dailyQuestionGoal: Int, val joinedYear: Int = java.time.LocalDate.now().year,
+    val examDateIso: String? = null,
+) {
     /** The first chosen exam; the one older app versions and the cloud's single exam column know about. */
     val primaryExam: String get() = exams.firstOrNull() ?: UserProfileStore.EXAMS.first()
     val examLabel: String get() = exams.joinToString(" · ")
@@ -98,13 +102,14 @@ class UserProfileStore(context: Context) {
             prefs.getString(KEY_EXAM, EXAMS.first()).orEmpty().split(SEPARATOR).filter { it in EXAMS }.ifEmpty { listOf(EXAMS.first()) },
             prefs.getInt(KEY_GOAL, 10),
             prefs.getInt(KEY_JOINED, java.time.LocalDate.now().year),
+            prefs.getString(KEY_EXAM_DATE, null),
         )
 
     fun clear() = prefs.edit().clear().apply()
 
     fun save(profile: UserProfile) {
         prefs.edit().putString(KEY_NAME, profile.name).putString(KEY_EXAM, profile.exams.joinToString(SEPARATOR))
-            .putInt(KEY_GOAL, profile.dailyQuestionGoal).putBoolean(KEY_DONE, true)
+            .putInt(KEY_GOAL, profile.dailyQuestionGoal).putBoolean(KEY_DONE, true).putString(KEY_EXAM_DATE, profile.examDateIso)
             .apply { if (!prefs.contains(KEY_JOINED)) putInt(KEY_JOINED, profile.joinedYear) }.apply()
     }
 
@@ -118,6 +123,7 @@ class UserProfileStore(context: Context) {
         private const val KEY_EXAM = "exam"
         private const val KEY_GOAL = "goal"
         private const val KEY_JOINED = "joined"
+        private const val KEY_EXAM_DATE = "exam_date"
     }
 }
 

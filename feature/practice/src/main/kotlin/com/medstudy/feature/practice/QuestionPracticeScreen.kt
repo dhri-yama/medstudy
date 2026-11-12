@@ -437,7 +437,7 @@ private fun SessionSummary(
 }
 
 @Composable
-private fun SummaryStat(label: String, count: Int, container: Color, content: Color, modifier: Modifier = Modifier) {
+internal fun SummaryStat(label: String, count: Int, container: Color, content: Color, modifier: Modifier = Modifier) {
     Column(
         modifier.clip(RoundedCornerShape(18.dp)).background(container).padding(vertical = 14.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -448,7 +448,7 @@ private fun SummaryStat(label: String, count: Int, container: Color, content: Co
 }
 
 @Composable
-private fun QuestionContentBlock(
+internal fun QuestionContentBlock(
     block: ContentBlock,
     imageResource: (String) -> Int?,
     stem: Boolean = false,
@@ -465,7 +465,7 @@ private fun QuestionContentBlock(
 }
 
 @Composable
-private fun AnswerOption(
+internal fun AnswerOption(
     option: QuestionOption,
     selected: Boolean,
     revealed: Boolean,
@@ -533,7 +533,7 @@ private fun AnswerOption(
 }
 
 @Composable
-private fun AnswerReview(question: Question, result: AttemptResult?) {
+internal fun AnswerReview(question: Question, result: AttemptResult?) {
     val colors = StudyTheme.colors
     Column(
         modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(colors.surface).padding(16.dp),
@@ -603,7 +603,7 @@ private fun QuestionImage(
 }
 
 @Composable
-private fun ImageZoomDialog(
+internal fun ImageZoomDialog(
     image: ContentBlock.Image,
     imageResource: (String) -> Int?,
     onDismiss: () -> Unit,

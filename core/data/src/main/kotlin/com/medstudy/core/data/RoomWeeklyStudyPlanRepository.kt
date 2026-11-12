@@ -26,6 +26,14 @@ class RoomWeeklyStudyPlanRepository(
         dao.putPreferences(preferences.toEntity())
     }
 
+    override suspend fun clear() {
+        database.withTransaction {
+            dao.clearAllBlocks()
+            dao.clearPlans()
+            dao.clearPreferences()
+        }
+    }
+
     override suspend fun save(plan: WeeklyStudyPlan) {
         database.withTransaction {
             dao.putPlan(

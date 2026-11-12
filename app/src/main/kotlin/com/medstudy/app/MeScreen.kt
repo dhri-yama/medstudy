@@ -128,6 +128,9 @@ fun MeScreen(
             SectionTitle("Account")
             StudyCard { AccountSection(account, profile, onProfileRestored, onSignedOut = onSignedOut, onAccountDeleted = onAccountDeleted) }
 
+            SectionTitle("Reminders")
+            ReminderCard()
+
             OverlayCard(
                 interval = overlayInterval,
                 enabled = overlayEnabled,
@@ -283,7 +286,12 @@ private fun EditProfile(profile: UserProfile, onSave: (UserProfile) -> Unit, onB
     var name by rememberSaveable(profile) { mutableStateOf(profile.name) }
     var exams by rememberSaveable(profile) { mutableStateOf(profile.exams) }
     var goal by rememberSaveable(profile) { mutableFloatStateOf(profile.dailyQuestionGoal.toFloat()) }
-    val edited = profile.copy(name = name.trim(), exams = exams, dailyQuestionGoal = goal.toInt())
+    var examDate by rememberSaveable(profile) { mutableStateOf(profile.examDateIso) }
+    var pickingExamDate by rememberSaveable { mutableStateOf(false) }
+    val edited = profile.copy(name = name.trim(), exams = exams, dailyQuestionGoal = goal.toInt(), examDateIso = examDate)
+    if (pickingExamDate) {
+        ExamDatePickerDialog(examDate, onPick = { examDate = it; pickingExamDate = false }, onDismiss = { pickingExamDate = false })
+    }
     Column(
         modifier = modifier.fillMaxSize().windowInsetsPadding(WindowInsets.statusBars).verticalScroll(rememberScrollState())
             .padding(20.dp),
@@ -298,6 +306,8 @@ private fun EditProfile(profile: UserProfile, onSave: (UserProfile) -> Unit, onB
                     FilterPill(option, option in exams, { exams = if (option in exams) exams - option else exams + option })
                 }
             }
+            Text("Exam date", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.muted)
+            PillButton(examDateLabel(examDate), onClick = { pickingExamDate = true }, style = PillStyle.Secondary)
             Text("${goal.toInt()} questions a day", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink)
             Slider(value = goal, onValueChange = { goal = it }, valueRange = 5f..50f, steps = 8, colors = studySliderColors())
             PillButton(

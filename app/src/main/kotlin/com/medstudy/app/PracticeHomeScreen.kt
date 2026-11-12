@@ -80,6 +80,7 @@ fun PracticeHomeScreen(
     subjects: List<SubjectSummary>,
     papers: List<PaperSummary>,
     onStartPaper: (List<String>) -> Unit,
+    onStartMockTest: (PaperSummary) -> Unit,
     onDaily: () -> Unit,
     onDue: () -> Unit,
     onMistakes: () -> Unit,
@@ -179,7 +180,7 @@ fun PracticeHomeScreen(
 
     papers.firstOrNull { it.id == openPaperId }?.let { paper ->
         ModalBottomSheet(onDismissRequest = { openPaperId = null }, containerColor = StudyTheme.colors.canvas) {
-            PaperSheet(paper) { ids -> openPaperId = null; onStartPaper(ids) }
+            PaperSheet(paper, onMockTest = { openPaperId = null; onStartMockTest(paper) }) { ids -> openPaperId = null; onStartPaper(ids) }
         }
     }
 }
@@ -230,7 +231,7 @@ private fun PaperRow(paper: PaperSummary, onClick: () -> Unit) {
 }
 
 @Composable
-private fun PaperSheet(paper: PaperSummary, onStart: (List<String>) -> Unit) {
+private fun PaperSheet(paper: PaperSummary, onMockTest: () -> Unit, onStart: (List<String>) -> Unit) {
     val started = paper.answered > 0 && paper.unansweredIds.isNotEmpty()
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(bottom = 28.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text(paper.title, style = MaterialTheme.typography.headlineSmall, color = StudyTheme.colors.ink)
@@ -254,6 +255,11 @@ private fun PaperSheet(paper: PaperSummary, onStart: (List<String>) -> Unit) {
         } else {
             PillButton("Start in paper order", onClick = { onStart(paper.questionIds) }, modifier = Modifier.fillMaxWidth())
         }
+        // Exam conditions: one clock for the whole paper, answers shown only after it is submitted.
+        PillButton(
+            "Timed mock test · ${com.medstudy.feature.practice.MockTestRules.durationMinutes(paper.questionIds.size)} min",
+            onClick = onMockTest, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth(),
+        )
     }
 }
 

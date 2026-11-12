@@ -119,8 +119,10 @@ fun StudyApp(
             profileStore.save(created)
             scope.launch {
                 runCatching {
+                    // A returning account brings its study days and minutes with it; a new one keeps this phone's defaults.
+                    val saved = runCatching { container.account.pullStudySchedule() }.getOrNull()
                     container.weeklyStudyPlan.savePreferences(
-                        container.weeklyStudyPlan.preferences().copy(questionTargetPerDay = created.dailyQuestionGoal),
+                        (saved ?: container.weeklyStudyPlan.preferences()).copy(questionTargetPerDay = created.dailyQuestionGoal),
                     )
                 }
             }
@@ -154,7 +156,7 @@ fun StudyApp(
 
     LaunchedEffect(Unit) {
         container.account.confirmDeviceSlot()
-        if (container.account.isSignedIn) runCatching { container.account.sync() }
+        container.syncSoon()
     }
 
     val entitlement by container.entitlementState.collectAsState()
@@ -178,6 +180,11 @@ fun StudyApp(
         ),
     )
     val practiceState by practiceViewModel.state.collectAsState()
+    val mockTestViewModel: com.medstudy.feature.practice.MockTestViewModel = viewModel(
+        factory = com.medstudy.feature.practice.MockTestViewModel.factory(container.questionCatalog, container.learnerActivity),
+    )
+    val mockTestState by mockTestViewModel.state.collectAsState()
+    var isMockTest by rememberSaveable { mutableStateOf(false) }
     val progressState by progressViewModel.state.collectAsState()
     var destinationName by rememberSaveable { mutableStateOf(StudyDestination.TODAY.name) }
     var isPracticing by rememberSaveable { mutableStateOf(false) }
@@ -206,6 +213,8 @@ fun StudyApp(
                 scope.launch { container.refreshEntitlement() }
                 if (overlayEnabled && overlayAccessGranted) QuestionOverlayService.start(context)
             }
+            // Leaving the app: back up what was done in this visit.
+            if (event == Lifecycle.Event.ON_STOP) container.syncSoon()
         }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
@@ -345,10 +354,20 @@ fun StudyApp(
         }
     }
 
+    var pickingExamDate by rememberSaveable { mutableStateOf(false) }
+    if (pickingExamDate) {
+        ExamDatePickerDialog(
+            profile!!.examDateIso,
+            onPick = { picked -> pickingExamDate = false; applyProfile(profile!!.copy(examDateIso = picked), pushToCloud = true) },
+            onDismiss = { pickingExamDate = false },
+        )
+    }
+
     fun leavePractice(toToday: Boolean = false) {
         isPracticing = false
         if (toToday) destinationName = StudyDestination.TODAY.name
         progressViewModel.refresh()
+        container.syncSoon()
     }
 
     BackHandler(enabled = isPracticing) { leavePractice() }
@@ -361,6 +380,7 @@ fun StudyApp(
     val reducedMotion = rememberReducedMotion()
     val rootScreen = when {
         showPaywall -> RootScreen.PAYWALL
+        isMockTest -> RootScreen.MOCK_TEST
         isPracticing -> RootScreen.PRACTICE
         else -> RootScreen.TABS
     }
@@ -378,6 +398,21 @@ fun StudyApp(
             onSubscribe = { activity?.let { container.billing.launch(it) } },
             onRestore = { scope.launch { if (container.billing.restore()) showPaywall = false } },
             onDismiss = { container.billing.clearMessage(); showPaywall = false },
+        )
+    } else if (shownRoot == RootScreen.MOCK_TEST) {
+        com.medstudy.feature.practice.MockTestScreen(
+            state = mockTestState,
+            onSelectOption = mockTestViewModel::select,
+            onToggleFlag = mockTestViewModel::toggleFlag,
+            onGoTo = mockTestViewModel::goTo,
+            onPrevious = mockTestViewModel::previous,
+            onNext = mockTestViewModel::next,
+            onSubmit = mockTestViewModel::submit,
+            onTick = mockTestViewModel::tick,
+            onExit = { isMockTest = false; progressViewModel.refresh(); container.syncSoon() },
+            imageResource = { assetId ->
+                if (assetId == "demo.media.placeholder-landscape") R.drawable.demo_imaging_placeholder else null
+            },
         )
     } else if (shownRoot == RootScreen.PRACTICE) {
         QuestionPracticeScreen(
@@ -427,6 +462,8 @@ fun StudyApp(
                     weekDays = weekDays,
                     mistakeCount = mistakeCount,
                     trialDaysLeft = trialDaysLeft,
+                    examDaysLeft = examDaysLeft(profile!!.examDateIso, today),
+                    onSetExamDate = { pickingExamDate = true },
                     freeQuestionsLeft = if (isFull) null else questionsLeft,
                     onUpgrade = { showPaywall = true },
                     onQuickFive = {
@@ -463,6 +500,8 @@ fun StudyApp(
                         subjects = subjects,
                         papers = paperSummaries,
                         onStartPaper = { ids -> startSession(ids, "This paper has no questions.") },
+                        // Mock tests are part of the paid plan.
+                        onStartMockTest = { paper -> requireFull { mockTestViewModel.start(paper.title, paper.questionIds); isMockTest = true } },
                         onDaily = ::startDaily,
                         onDue = ::startDue,
                         onMistakes = {

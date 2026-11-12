@@ -85,6 +85,9 @@ fun TodayScreen(
     mistakeCount: Int,
     trialDaysLeft: Int?,
     freeQuestionsLeft: Int?,
+    /** Days until the exam, or null when no date is set. */
+    examDaysLeft: Int?,
+    onSetExamDate: () -> Unit,
     onUpgrade: () -> Unit,
     onQuickFive: () -> Unit,
     onMistakes: () -> Unit,
@@ -102,7 +105,7 @@ fun TodayScreen(
         modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(top = 20.dp, bottom = 20.dp + LocalNavBarInset.current),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        Header(name, today, streak, Modifier.padding(horizontal = 20.dp))
+        Header(name, today, streak, examDaysLeft, onSetExamDate, Modifier.padding(horizontal = 20.dp))
 
         PlanBanner(trialDaysLeft, freeQuestionsLeft, onUpgrade, Modifier.padding(horizontal = 20.dp))
 
@@ -256,7 +259,7 @@ private fun dueLabel(area: WeakArea): String =
         ?: area.accuracy?.let { "${(it * 100).toInt()}% correct" }.orEmpty()
 
 @Composable
-private fun Header(name: String, today: LocalDate, streak: Int, modifier: Modifier = Modifier) {
+private fun Header(name: String, today: LocalDate, streak: Int, examDaysLeft: Int?, onSetExamDate: () -> Unit, modifier: Modifier = Modifier) {
     Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         ProfileBlob(name, size = 48.dp)
         Column(Modifier.weight(1f)) {
@@ -264,6 +267,14 @@ private fun Header(name: String, today: LocalDate, streak: Int, modifier: Modifi
             Text(
                 today.format(DateTimeFormatter.ofPattern("d MMM, EEEE")),
                 style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted,
+            )
+            // The countdown, or a way to set the date; tapping either opens the date picker.
+            Text(
+                examDaysLeft?.let(::examCountdownLabel) ?: "Set your exam date",
+                style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink,
+                modifier = Modifier.clip(CircleShape)
+                    .clickable(role = androidx.compose.ui.semantics.Role.Button, onClickLabel = "Change exam date", onClick = onSetExamDate)
+                    .padding(vertical = 4.dp),
             )
         }
         if (streak > 0) {

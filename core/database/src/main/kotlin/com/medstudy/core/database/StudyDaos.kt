@@ -150,6 +150,16 @@ interface ActivityDao {
     @Query("UPDATE OR IGNORE bookmarks SET userId = :userId WHERE userId = '$LOCAL_USER'")
     suspend fun adoptLocalBookmarks(userId: String)
 
+    /** Attempts added to this phone after [afterRowId] (SQLite numbers rows in the order they are added), for uploading only what is new. */
+    @Query("SELECT * FROM question_attempts WHERE userId = :userId AND rowid > :afterRowId AND rowid <= :upToRowId")
+    suspend fun getAttemptsAdded(userId: String, afterRowId: Long, upToRowId: Long): List<QuestionAttemptEntity>
+
+    @Query("SELECT MAX(rowid) FROM question_attempts WHERE userId = :userId")
+    suspend fun lastAttemptRowId(userId: String): Long?
+
+    @Query("SELECT EXISTS(SELECT 1 FROM question_attempts WHERE id = :id)")
+    suspend fun hasAttempt(id: String): Boolean
+
     @Query("DELETE FROM question_attempts WHERE userId = :userId")
     suspend fun deleteAttempts(userId: String)
 
@@ -183,4 +193,13 @@ interface StudyPlanDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun putPreferences(preferences: StudySchedulePreferencesEntity)
+
+    @Query("DELETE FROM weekly_study_plans")
+    suspend fun clearPlans()
+
+    @Query("DELETE FROM study_blocks")
+    suspend fun clearAllBlocks()
+
+    @Query("DELETE FROM study_schedule_preferences")
+    suspend fun clearPreferences()
 }

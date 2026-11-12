@@ -28,7 +28,7 @@ import com.medstudy.core.designsystem.rememberReducedMotion
 import kotlinx.coroutines.delay
 
 /** The three things the app can show full-screen. */
-enum class RootScreen { PAYWALL, PRACTICE, TABS }
+enum class RootScreen { PAYWALL, MOCK_TEST, PRACTICE, TABS }
 
 private val NoMotion: ContentTransform = EnterTransition.None togetherWith ExitTransition.None
 

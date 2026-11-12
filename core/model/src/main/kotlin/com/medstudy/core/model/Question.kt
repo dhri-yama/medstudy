@@ -78,6 +78,7 @@ enum class PracticeContext {
     TOPIC_PRACTICE,
     BOOKMARK_REVIEW,
     PROGRESS_REVIEW,
+    MOCK_TEST,
 }
 
 data class QuestionAttempt(

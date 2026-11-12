@@ -47,6 +47,10 @@ android {
             buildConfigField("boolean", "DEV_SKIP_AUTH", (providers.gradleProperty("DEV_SKIP_AUTH").orNull == "true").toString())
         }
         release {
+            // Smaller download, and the app's code (including the paywall checks) is renamed so it is harder to read and patch.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             buildConfigField("boolean", "INCLUDE_UNREVIEWED_PYQ", "false")
             buildConfigField("boolean", "DEV_SKIP_AUTH", "false")
         }

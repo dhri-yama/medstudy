@@ -8,4 +8,6 @@ interface WeeklyStudyPlanRepository {
     suspend fun save(plan: WeeklyStudyPlan)
     suspend fun preferences(): StudySchedulePreferences
     suspend fun savePreferences(preferences: StudySchedulePreferences)
+    /** Forgets the plan and its settings, for when a different account signs in on this phone. */
+    suspend fun clear()
 }

@@ -19,4 +19,6 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.compose.icons)
+    implementation(libs.androidx.activity.compose)
+    testImplementation(libs.junit)
 }

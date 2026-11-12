@@ -14,6 +14,8 @@ import kotlinx.coroutines.withContext
 class RoomLearnerActivityRepository(
     private val activityDao: ActivityDao,
     private val userId: () -> String = { LOCAL_USER },
+    /** Told about each removed bookmark (question id, when), so the removal can be passed on to the account. */
+    private val onBookmarkRemoved: (String, Long) -> Unit = { _, _ -> },
 ) : LearnerActivityRepository {
     override suspend fun bookmark(questionId: String, savedAtEpochMillis: Long) {
         withContext(Dispatchers.IO) {
@@ -22,7 +24,10 @@ class RoomLearnerActivityRepository(
     }
 
     override suspend fun removeBookmark(questionId: String) {
-        withContext(Dispatchers.IO) { activityDao.removeBookmark(userId(), questionId) }
+        withContext(Dispatchers.IO) {
+            activityDao.removeBookmark(userId(), questionId)
+            onBookmarkRemoved(questionId, System.currentTimeMillis())
+        }
     }
 
     override suspend fun isBookmarked(questionId: String): Boolean =

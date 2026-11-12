@@ -2,6 +2,10 @@ package com.medstudy.app
 
 import android.content.Context
 import com.medstudy.core.database.ActivityDao
+import com.medstudy.core.database.BookmarkEntity
+import com.medstudy.core.model.StudySchedulePreferences
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import com.medstudy.core.database.LOCAL_USER
 import com.medstudy.core.database.QuestionAttemptEntity
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +39,17 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
     private val prefs = context.applicationContext.getSharedPreferences("auth", Context.MODE_PRIVATE)
     private val baseUrl = BuildConfig.SUPABASE_URL
     private val anonKey = BuildConfig.SUPABASE_ANON_KEY
+
+    /** Per-account sync bookkeeping (what has been uploaded and downloaded), and which account last used this phone. Survives sign-out. */
+    private val syncPrefs = context.applicationContext.getSharedPreferences("sync", Context.MODE_PRIVATE)
+    /** Bookmarks removed on this phone and not yet passed on, as "userId|questionId|removedAtMillis". */
+    private val removalPrefs = context.applicationContext.getSharedPreferences("bookmark_removals", Context.MODE_PRIVATE)
+    private val crashFile = CrashReporter.pendingFile(context)
+    private val syncLock = Mutex()
+    /** Reads this phone's study-plan settings, for uploading them. Set by the app container. */
+    var studySchedule: (suspend () -> StudySchedulePreferences)? = null
+    /** Runs when a different account than last time signs in, so the previous learner's plan is not shown to this one. */
+    var onDifferentAccount: (suspend () -> Unit)? = null
 
     val isConfigured get() = baseUrl.isNotBlank() && anonKey.isNotBlank()
     val userId: String get() = prefs.getString(KEY_USER, null) ?: LOCAL_USER
@@ -155,7 +170,11 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
         }
         blockedSession = null
         signedOutNotice = null
+        val lastUser = syncPrefs.getString(KEY_LAST_USER, null)
+        if (lastUser != null && lastUser != userId) onDifferentAccount?.invoke()
         adoptLocalData()
+        // Answers adopted from before sign-in are older rows, so the next sync uploads this account's answers from the start.
+        syncPrefs.edit().putString(KEY_LAST_USER, userId).remove(KEY_PUSHED + userId).apply()
     }
 
     private class SlotClaim(val allowed: Boolean, val resetAvailableAtMillis: Long?)
@@ -175,11 +194,29 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
         sessionVersion.update { it + 1 }
     }
 
+    /**
+     * Uploads what is new on this phone and downloads what is new on the account: answers, bookmarks, plan settings,
+     * question reports and the last crash. Returns how many answers came from the cloud.
+     * Only answers are required to succeed; the rest is retried on the next sync.
+     */
     suspend fun sync(): Int = withContext(Dispatchers.IO) {
-        check(isSignedIn) { "Not signed in" }
-        val uid = userId
-        val local = activityDao.getAttempts(uid)
-        local.chunked(500).forEach { chunk ->
+        syncLock.withLock {
+            check(isSignedIn) { "Not signed in" }
+            val uid = userId
+            pushAttempts(uid)
+            runCatching { flushReports() }
+            runCatching { flushCrashReport() }
+            runCatching { syncBookmarks(uid) }
+            runCatching { pushStudySchedule(uid) }
+            pullAttempts(uid)
+        }
+    }
+
+    /** Uploads only the answers added to this phone since the last upload. */
+    private suspend fun pushAttempts(uid: String) {
+        val upTo = activityDao.lastAttemptRowId(uid) ?: 0L
+        val after = syncPrefs.getLong(KEY_PUSHED + uid, 0L).coerceAtMost(upTo)
+        activityDao.getAttemptsAdded(uid, after, upTo).chunked(500).forEach { chunk ->
             request(
                 "rest/v1/attempts?on_conflict=id", "POST",
                 JSONArray(chunk.map { it.toRow() }),
@@ -195,24 +232,128 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
                 )
             }
         }
-        runCatching { flushReports() }
-        val known = local.mapTo(HashSet()) { it.id }
+        syncPrefs.edit().putLong(KEY_PUSHED + uid, upTo).apply()
+    }
+
+    /** Downloads only the answers the server received since this phone last asked (everything, the first time). */
+    private suspend fun pullAttempts(uid: String): Int {
+        val since = syncPrefs.getString(KEY_PULLED + uid, null)
+        var newest = since?.let(Instant::parse)
+        val filter = since?.let { "&synced_at=gte.$it" }.orEmpty()
         var offset = 0
         var pulled = 0
         while (true) {
             val rows = requestArray(
-                "rest/v1/attempts?select=*,attempt_selected_options(option_id)" +
-                    "&order=completed_at.asc,id.asc&limit=$PAGE&offset=$offset",
+                "rest/v1/attempts?select=*,attempt_selected_options(option_id)$filter" +
+                    "&order=synced_at.asc,id.asc&limit=$PAGE&offset=$offset",
             )
             for (i in 0 until rows.length()) {
                 val row = rows.getJSONObject(i)
-                if (row.getString("id") in known) continue
+                val syncedAt = OffsetDateTime.parse(row.getString("synced_at")).toInstant()
+                if (newest == null || syncedAt > newest) newest = syncedAt
+                if (activityDao.hasAttempt(row.getString("id"))) continue
                 activityDao.putAttempt(row.toEntity(uid)); pulled++
             }
             if (rows.length() < PAGE) break
             offset += PAGE
         }
-        pulled
+        newest?.let { syncPrefs.edit().putString(KEY_PULLED + uid, it.toString()).apply() }
+        return pulled
+    }
+
+    /** Called when a bookmark is removed on this phone, so the removal reaches the account and the learner's other phone. */
+    fun noteBookmarkRemoved(questionId: String, atMillis: Long) {
+        if (!isSignedIn) return
+        synchronized(removalPrefs) {
+            val pending = removalPrefs.getStringSet(KEY_PENDING, emptySet()).orEmpty() + "$userId|$questionId|$atMillis"
+            removalPrefs.edit().putStringSet(KEY_PENDING, pending).apply()
+        }
+    }
+
+    /**
+     * Two-way bookmark sync. For each question the newer change wins, whether that is saving or removing it,
+     * here or on the account. A question this phone has never touched simply follows the account.
+     */
+    private suspend fun syncBookmarks(uid: String) {
+        val mine = removalPrefs.getStringSet(KEY_PENDING, emptySet()).orEmpty().filter { it.startsWith("$uid|") }
+        val removedHere = mine.associate { it.substringAfter('|').substringBeforeLast('|') to it.substringAfterLast('|').toLong() }
+        val savedHere = activityDao.getBookmarks(uid).associate { it.questionId to it.savedAtEpochMillis }
+
+        class Remote(val savedAt: Long, val removedAt: Long?) { val changedAt get() = removedAt ?: savedAt }
+        val remote = HashMap<String, Remote>()
+        var offset = 0
+        while (true) {
+            val rows = requestArray("rest/v1/bookmarks?select=question_id,saved_at,removed_at&order=question_id.asc&limit=$PAGE&offset=$offset")
+            for (i in 0 until rows.length()) {
+                val row = rows.getJSONObject(i)
+                fun millis(key: String) = OffsetDateTime.parse(row.getString(key)).toInstant().toEpochMilli()
+                remote[row.getString("question_id")] = Remote(millis("saved_at"), if (row.isNull("removed_at")) null else millis("removed_at"))
+            }
+            if (rows.length() < PAGE) break
+            offset += PAGE
+        }
+
+        val upload = JSONArray()
+        for (questionId in savedHere.keys + removedHere.keys + remote.keys) {
+            val there = remote[questionId]
+            val saved = savedHere[questionId]
+            val removed = if (saved == null) removedHere[questionId] else null
+            val changedHere = saved ?: removed
+            when {
+                changedHere == null -> if (there != null && there.removedAt == null) activityDao.putBookmark(BookmarkEntity(uid, questionId, there.savedAt))
+                there == null || changedHere > there.changedAt -> upload.put(
+                    JSONObject().put("question_id", questionId)
+                        .put("saved_at", Instant.ofEpochMilli(saved ?: there?.savedAt ?: changedHere).toString())
+                        .put("removed_at", removed?.let { Instant.ofEpochMilli(it).toString() } ?: JSONObject.NULL),
+                )
+                there.removedAt == null && saved == null -> activityDao.putBookmark(BookmarkEntity(uid, questionId, there.savedAt))
+                there.removedAt != null && saved != null -> activityDao.removeBookmark(uid, questionId)
+            }
+        }
+        if (upload.length() > 0) request("rest/v1/bookmarks?on_conflict=user_id,question_id", "POST", upload, extraHeaders = MERGE)
+        synchronized(removalPrefs) {
+            val left = removalPrefs.getStringSet(KEY_PENDING, emptySet()).orEmpty() - mine.toSet()
+            removalPrefs.edit().putStringSet(KEY_PENDING, left).apply()
+        }
+    }
+
+    /** Marks this phone's plan settings (study days, minutes a day) as changed, to be uploaded on the next sync. */
+    fun markStudyScheduleChanged() {
+        if (isSignedIn) syncPrefs.edit().putBoolean(KEY_SCHEDULE_CHANGED + userId, true).apply()
+    }
+
+    private suspend fun pushStudySchedule(uid: String) {
+        if (!syncPrefs.getBoolean(KEY_SCHEDULE_CHANGED + uid, false)) return
+        val schedule = studySchedule?.invoke() ?: return
+        request(
+            "rest/v1/rpc/set_study_schedule", "POST",
+            JSONObject().put("minutes", schedule.minuteTargetPerDay).put("weekdays", JSONArray(schedule.availableWeekdays.sorted())),
+        )
+        syncPrefs.edit().remove(KEY_SCHEDULE_CHANGED + uid).apply()
+    }
+
+    /** The plan settings saved on the account, or null if it has none yet. */
+    suspend fun pullStudySchedule(): StudySchedulePreferences? = withContext(Dispatchers.IO) {
+        check(isSignedIn) { "Not signed in" }
+        val days = requestArray("rest/v1/profile_study_days?select=weekday")
+        if (days.length() == 0) return@withContext null
+        val rows = requestArray("rest/v1/profiles?select=daily_question_goal,daily_minute_goal&limit=1")
+        if (rows.length() == 0) return@withContext null
+        val row = rows.getJSONObject(0)
+        runCatching {
+            StudySchedulePreferences(
+                availableWeekdays = List(days.length()) { days.getJSONObject(it).getInt("weekday") }.toSet(),
+                questionTargetPerDay = row.getInt("daily_question_goal"),
+                minuteTargetPerDay = row.getInt("daily_minute_goal"),
+            )
+        }.getOrNull()
+    }
+
+    private fun flushCrashReport() {
+        if (!crashFile.exists()) return
+        val report = runCatching { JSONObject(crashFile.readText()) }.getOrNull()
+        if (report != null) request("rest/v1/crash_reports", "POST", report, extraHeaders = mapOf("Prefer" to "return=minimal"))
+        crashFile.delete()
     }
 
     /** Asks the server what this user may do (full access or the free tier). Null when offline or signed out. */
@@ -269,6 +410,7 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
             .put("display_name", profile.name)
             .put("exam_id", UserProfileStore.EXAM_IDS.getValue(profile.primaryExam))
             .put("daily_question_goal", profile.dailyQuestionGoal)
+            .put("exam_date", profile.examDateIso ?: JSONObject.NULL)
         request(
             "rest/v1/profiles?on_conflict=user_id", "POST", JSONArray().put(row),
             extraHeaders = mapOf("Prefer" to "resolution=merge-duplicates,return=minimal"),
@@ -288,7 +430,7 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
     /** The account's saved profile, or null if it has none yet. */
     suspend fun pullProfile(): UserProfile? = withContext(Dispatchers.IO) {
         check(isSignedIn) { "Not signed in" }
-        val rows = requestArray("rest/v1/profiles?select=display_name,exam_id,daily_question_goal&limit=1")
+        val rows = requestArray("rest/v1/profiles?select=display_name,exam_id,daily_question_goal,exam_date&limit=1")
         if (rows.length() == 0) return@withContext null
         val row = rows.getJSONObject(0)
         fun label(id: String) = UserProfileStore.EXAM_IDS.entries.firstOrNull { it.value == id }?.key
@@ -298,7 +440,10 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
             List(chosen.length()) { label(chosen.getJSONObject(it).getString("exam_id")) }.filterNotNull()
         }.getOrDefault(emptyList())
         // The primary exam always leads the list.
-        UserProfile(row.getString("display_name"), listOf(primary) + (all - primary), row.getInt("daily_question_goal"))
+        UserProfile(
+            row.getString("display_name"), listOf(primary) + (all - primary), row.getInt("daily_question_goal"),
+            examDateIso = if (row.isNull("exam_date")) null else row.getString("exam_date"),
+        )
     }
 
     private suspend fun adoptLocalData() {
@@ -383,6 +528,11 @@ class SupabaseAccount(context: Context, private val activityDao: ActivityDao) {
         const val KEY_EMAIL = "email"
         const val KEY_PENDING = "pending"
         const val PAGE = 1000
+        const val KEY_LAST_USER = "last_user"
+        const val KEY_PUSHED = "pushed_row."
+        const val KEY_PULLED = "pulled_since."
+        const val KEY_SCHEDULE_CHANGED = "schedule_changed."
+        val MERGE = mapOf("Prefer" to "resolution=merge-duplicates,return=minimal")
         val IGNORE_DUPLICATES = mapOf("Prefer" to "resolution=ignore-duplicates,return=minimal")
     }
 }

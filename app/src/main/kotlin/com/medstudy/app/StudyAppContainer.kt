@@ -1,6 +1,7 @@
 package com.medstudy.app
 
 import android.content.Context
+import kotlinx.coroutines.launch
 import androidx.room.Room
 import com.medstudy.core.data.MedMcqaRepository
 import com.medstudy.core.data.PyqRepository
@@ -36,6 +37,26 @@ class StudyAppContainer(context: Context) {
 
     val billing by lazy { BillingManager(context.applicationContext, account) { refreshEntitlement() } }
     val questionCatalog = RoomQuestionCatalogRepository(database) { account.userId }
-    val learnerActivity = RoomLearnerActivityRepository(database.activityDao()) { account.userId }
-    val weeklyStudyPlan = com.medstudy.core.data.RoomWeeklyStudyPlanRepository(database)
+    val learnerActivity = RoomLearnerActivityRepository(database.activityDao(), { account.userId }, account::noteBookmarkRemoved)
+    private val roomStudyPlan = com.medstudy.core.data.RoomWeeklyStudyPlanRepository(database)
+    /** The plan repository the screens use: a change to the plan settings is also queued for upload to the account. */
+    val weeklyStudyPlan: com.medstudy.core.data.WeeklyStudyPlanRepository = object : com.medstudy.core.data.WeeklyStudyPlanRepository by roomStudyPlan {
+        override suspend fun savePreferences(preferences: com.medstudy.core.model.StudySchedulePreferences) {
+            roomStudyPlan.savePreferences(preferences)
+            account.markStudyScheduleChanged()
+        }
+    }
+
+    /** Outlives any one screen, so a sync started as the app goes to the background can finish. */
+    private val appScope = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.SupervisorJob() + kotlinx.coroutines.Dispatchers.Default)
+
+    /** Backs up to the account in the background: on launch, after a practice session, and when the app is left. Quietly skipped offline. */
+    fun syncSoon() {
+        appScope.launch { if (account.isSignedIn) runCatching { account.sync() } }
+    }
+
+    init {
+        account.studySchedule = { roomStudyPlan.preferences() }
+        account.onDifferentAccount = { roomStudyPlan.clear() }
+    }
 }
