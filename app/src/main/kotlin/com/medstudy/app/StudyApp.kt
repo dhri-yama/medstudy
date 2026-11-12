@@ -9,6 +9,8 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedContent
+import com.medstudy.core.designsystem.rememberReducedMotion
 import androidx.compose.material3.Slider
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -56,6 +58,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -106,7 +109,10 @@ fun StudyApp(
     }
     // Bumped when the account changes (sign-in, sign-out) so the gate below re-checks it.
     var accountVersion by remember { mutableIntStateOf(0) }
-    val signedIn = remember(accountVersion) { container.account.isSignedIn }
+    // Also changes when the server ends the session (device limit, signed out from another device).
+    val sessionVersion by container.account.sessionVersion.collectAsState()
+    val signedIn = remember(accountVersion, sessionVersion) { container.account.isSignedIn }
+    LaunchedEffect(sessionVersion) { if (!container.account.isSignedIn) container.clearEntitlement() }
     // An account is required: it is what the server-side free trial is attached to.
     if (profile == null || (!signedIn && !BuildConfig.DEV_SKIP_AUTH)) {
         OnboardingScreen(container.account, existingProfile = profile) { created ->
@@ -147,10 +153,14 @@ fun StudyApp(
     }
 
     LaunchedEffect(Unit) {
+        container.account.confirmDeviceSlot()
         if (container.account.isSignedIn) runCatching { container.account.sync() }
     }
 
     val entitlement by container.entitlementState.collectAsState()
+    // "Now" for the plan and trial countdown. It is a state so the day count moves on its own: every minute, and when the app comes back to the front.
+    var nowMillis by remember { mutableLongStateOf(System.currentTimeMillis()) }
+    LaunchedEffect(Unit) { while (true) { kotlinx.coroutines.delay(60_000); nowMillis = System.currentTimeMillis() } }
     var showPaywall by remember { mutableStateOf(false) }
     val billingPrice by container.billing.price.collectAsState()
     val billingMessage by container.billing.message.collectAsState()
@@ -191,6 +201,7 @@ fun StudyApp(
     DisposableEffect(lifecycleOwner, overlayEnabled) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
+                nowMillis = System.currentTimeMillis()
                 overlayAccessGranted = Settings.canDrawOverlays(context)
                 scope.launch { container.refreshEntitlement() }
                 if (overlayEnabled && overlayAccessGranted) QuestionOverlayService.start(context)
@@ -217,7 +228,6 @@ fun StudyApp(
     val todayBlock = progressState.plan?.blocks?.firstOrNull { it.studyDateIso == today.toString() }
 
     // Entitlement: full access during the trial and while subscribed; otherwise the free tier (a daily allowance, no premium modes).
-    val nowMillis = System.currentTimeMillis()
     val isFull = entitlement.isFullAt(nowMillis)
     val trialDaysLeft = entitlement.trialDaysLeft(nowMillis)
     val questionsLeft = entitlement.questionsLeftToday(answeredToday, nowMillis)
@@ -348,7 +358,19 @@ fun StudyApp(
 
     BackHandler(enabled = showPaywall) { showPaywall = false }
     val activity = remember(context) { context.findActivity() }
-    if (showPaywall) {
+    val reducedMotion = rememberReducedMotion()
+    val rootScreen = when {
+        showPaywall -> RootScreen.PAYWALL
+        isPracticing -> RootScreen.PRACTICE
+        else -> RootScreen.TABS
+    }
+    AnimatedContent(
+        targetState = rootScreen,
+        modifier = Modifier.fillMaxSize(),
+        transitionSpec = { rootTransition(initialState, targetState, reducedMotion) },
+        label = "root",
+    ) { shownRoot ->
+    if (shownRoot == RootScreen.PAYWALL) {
         PaywallScreen(
             trialDaysLeft = trialDaysLeft,
             price = billingPrice,
@@ -357,7 +379,7 @@ fun StudyApp(
             onRestore = { scope.launch { if (container.billing.restore()) showPaywall = false } },
             onDismiss = { container.billing.clearMessage(); showPaywall = false },
         )
-    } else if (isPracticing) {
+    } else if (shownRoot == RootScreen.PRACTICE) {
         QuestionPracticeScreen(
             state = practiceState,
             onBack = { leavePractice() },
@@ -386,7 +408,13 @@ fun StudyApp(
             val contentModifier = Modifier.padding(top = padding.calculateTopPadding())
             Box(Modifier.fillMaxSize()) {
             CompositionLocalProvider(LocalNavBarInset provides navInset, LocalAvatarSeed provides avatarSeed) {
-            when (destination) {
+            AnimatedContent(
+                targetState = destination,
+                modifier = Modifier.fillMaxSize(),
+                transitionSpec = { tabTransition(reducedMotion) },
+                label = "tab",
+            ) { shownDestination ->
+            when (shownDestination) {
                 StudyDestination.TODAY -> TodayScreen(
                     name = profile!!.name,
                     goal = goal,
@@ -513,6 +541,8 @@ fun StudyApp(
                         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/account/subscriptions")))
                     },
                     onSignedOut = { container.clearEntitlement(); accountVersion++ },
+                    // Back to a first-run app: no profile, so onboarding starts from the beginning.
+                    onAccountDeleted = { profileStore.clear(); profile = null; container.clearEntitlement() },
                     overlayInterval = overlayInterval,
                     overlayEnabled = overlayEnabled,
                     overlayAccessGranted = overlayAccessGranted,
@@ -543,6 +573,7 @@ fun StudyApp(
                 )
             }
             }
+            }
             StudyBottomBar(
                 items = StudyDestination.entries.map { BottomBarItem(it.title, it.icon) },
                 selectedIndex = destination.ordinal,
@@ -554,6 +585,7 @@ fun StudyApp(
             )
             }
         }
+    }
     }
 }
 
@@ -567,7 +599,11 @@ private tailrec fun Context.findActivity(): Activity? = when (this) {
 fun subscriptionSummary(entitlement: Entitlement, nowMillis: Long): SubscriptionSummary {
     val trialDays = entitlement.trialDaysLeft(nowMillis)
     return when {
-        trialDays != null -> SubscriptionSummary("Free trial", "$trialDays days left. Subscribe any time to keep everything.", paid = false)
+        trialDays != null -> SubscriptionSummary(
+            "Free trial",
+            "${if (trialDays == 1) "1 day" else "$trialDays days"} left, ends ${java.time.Instant.ofEpochMilli(entitlement.endsAtMillis).atZone(java.time.ZoneId.systemDefault()).format(java.time.format.DateTimeFormatter.ofPattern("d MMM"))}. Subscribe any time to keep everything.",
+            paid = false,
+        )
         entitlement.isFullAt(nowMillis) && entitlement.endsAtMillis < Long.MAX_VALUE / 4 -> SubscriptionSummary(
             "MedStudy Plus",
             "Active until " + java.time.Instant.ofEpochMilli(entitlement.endsAtMillis).atZone(java.time.ZoneId.systemDefault())

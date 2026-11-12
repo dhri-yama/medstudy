@@ -32,6 +32,9 @@ android {
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"${local.getProperty("SUPABASE_ANON_KEY", "")}\"")
         // The Google Cloud *Web* OAuth client id (the same one pasted into Supabase > Auth > Providers > Google). Blank = Google sign-in disabled.
         buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"${local.getProperty("GOOGLE_WEB_CLIENT_ID", "")}\"")
+        // Set in gradle.properties (committed): every build links to the same public pages.
+        buildConfigField("String", "PRIVACY_URL", "\"${providers.gradleProperty("PRIVACY_URL").orNull.orEmpty()}\"")
+        buildConfigField("String", "TERMS_URL", "\"${providers.gradleProperty("TERMS_URL").orNull.orEmpty()}\"")
     }
 
     buildTypes {

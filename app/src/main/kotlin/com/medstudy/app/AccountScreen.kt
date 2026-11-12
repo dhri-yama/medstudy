@@ -1,6 +1,16 @@
 package com.medstudy.app
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.window.Dialog
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,6 +40,8 @@ fun AccountSection(
     onProfileRestored: (UserProfile) -> Unit,
     modifier: Modifier = Modifier,
     onSignedOut: () -> Unit = {},
+    /** Called after the account is deleted on the server, while still signed in on this phone, to clear the phone's own profile. */
+    onAccountDeleted: () -> Unit = {},
 ) {
     val scope = rememberCoroutineScope()
     var signedIn by remember { mutableStateOf(account.isSignedIn) }
@@ -37,6 +49,49 @@ fun AccountSection(
     var password by rememberSaveable { mutableStateOf("") }
     var message by remember { mutableStateOf<String?>(null) }
     var busy by remember { mutableStateOf(false) }
+    var confirmDelete by remember { mutableStateOf(false) }
+
+    if (confirmDelete) {
+        Dialog(onDismissRequest = { if (!busy) confirmDelete = false }) {
+            Column(
+                Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(StudyTheme.colors.surface).padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                Text("Delete your account?", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
+                Text(
+                    "Your account, answers, bookmarks and progress are deleted for good, from our servers and from this phone. This can't be undone.",
+                    style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.body,
+                )
+                Text(
+                    "A Google Play subscription is not cancelled by this. Cancel it in Google Play first, or you will keep being charged.",
+                    style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.body,
+                )
+                message?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.error) }
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth().padding(top = 4.dp)) {
+                    PillButton("Cancel", onClick = { confirmDelete = false }, enabled = !busy, style = PillStyle.Secondary)
+                    PillButton(
+                        if (busy) "Deleting…" else "Delete account",
+                        onClick = {
+                            scope.launch {
+                                busy = true
+                                try {
+                                    account.deleteAccount()
+                                    // No suspension between these two, so the screen change they cause cannot cut this short.
+                                    onAccountDeleted()
+                                    account.forgetSession()
+                                } catch (e: Exception) {
+                                    message = e.message ?: "Couldn't delete the account. Check your connection and try again."
+                                } finally {
+                                    busy = false
+                                }
+                            }
+                        },
+                        enabled = !busy, containerColor = StudyTheme.colors.error, modifier = Modifier.weight(1f),
+                    )
+                }
+            }
+        }
+    }
 
     fun run(block: suspend () -> String?) {
         scope.launch {
@@ -58,7 +113,11 @@ fun AccountSection(
                     onClick = { run { account.pushProfile(profile); "Synced, ${account.sync()} new from the cloud" } },
                     enabled = !busy, modifier = Modifier.fillMaxWidth(),
                 )
-                PillButton("Log out", onClick = { account.signOut(); signedIn = false; message = null; onSignedOut() }, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
+                PillButton("Log out", onClick = { scope.launch { busy = true; account.signOut(); busy = false; signedIn = false; message = null; onSignedOut() } }, enabled = !busy, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
+                Text(
+                    "Delete account", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.error, textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth().clip(CircleShape).clickable(enabled = !busy, role = Role.Button) { message = null; confirmDelete = true }.padding(vertical = 10.dp),
+                )
             }
             else -> {
                 Text("Sign in to back up your progress and use it on another phone.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.body)
@@ -86,7 +145,7 @@ fun AccountSection(
                 )
             }
         }
-        message?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.body) }
+        if (!confirmDelete) message?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.body) }
     }
 }
 

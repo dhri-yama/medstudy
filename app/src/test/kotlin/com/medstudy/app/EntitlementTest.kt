@@ -10,23 +10,23 @@ class EntitlementTest {
     private val day = Entitlement.DAY_MILLIS
     private val t0 = 1_000_000_000_000L
 
-    /** Trial that the server said started at t0 and ends 15 days later, fetched at [fetchedAt]. */
-    private fun trial(fetchedAt: Long = t0) = Entitlement(isFull = true, inTrial = true, endsAtMillis = t0 + 15 * day, serverNowMillis = fetchedAt)
+    /** Trial that the server said started at t0 and ends 3 days later, fetched at [fetchedAt]. */
+    private fun trial(fetchedAt: Long = t0) = Entitlement(isFull = true, inTrial = true, endsAtMillis = t0 + 3 * day, serverNowMillis = fetchedAt)
 
     @Test
-    fun `trial counts down and ends on day 15`() {
-        assertEquals(15, trial().trialDaysLeft(t0))
-        assertEquals(14, trial().trialDaysLeft(t0 + day))
-        assertEquals(1, trial().trialDaysLeft(t0 + 14 * day + 1))
-        assertTrue(trial().isFullAt(t0 + 14 * day))
-        assertFalse(trial().isFullAt(t0 + 15 * day))
-        assertNull(trial().trialDaysLeft(t0 + 16 * day))
+    fun `trial counts down and ends on day 3`() {
+        assertEquals(3, trial().trialDaysLeft(t0))
+        assertEquals(2, trial().trialDaysLeft(t0 + day))
+        assertEquals(1, trial().trialDaysLeft(t0 + 2 * day + 1))
+        assertTrue(trial().isFullAt(t0 + 2 * day))
+        assertFalse(trial().isFullAt(t0 + 3 * day))
+        assertNull(trial().trialDaysLeft(t0 + 4 * day))
     }
 
     @Test
     fun `an expired trial is the free tier with a daily allowance`() {
-        val expired = Entitlement(isFull = false, inTrial = false, endsAtMillis = t0 + 15 * day, serverNowMillis = t0 + 16 * day)
-        val now = t0 + 16 * day
+        val expired = Entitlement(isFull = false, inTrial = false, endsAtMillis = t0 + 3 * day, serverNowMillis = t0 + 4 * day)
+        val now = t0 + 4 * day
         assertFalse(expired.isFullAt(now))
         assertEquals(10, expired.questionsLeftToday(0, now))
         assertEquals(3, expired.questionsLeftToday(7, now))
@@ -40,10 +40,10 @@ class EntitlementTest {
 
     @Test
     fun `setting the phone clock back does not extend the trial`() {
-        // The server last answered on day 14 (1 day left); the user rolls the phone clock back to day 1.
-        val lastSeen = trial(fetchedAt = t0 + 14 * day)
+        // The server last answered on day 2 (1 day left); the user rolls the phone clock back to day 1.
+        val lastSeen = trial(fetchedAt = t0 + 2 * day)
         assertEquals(1, lastSeen.trialDaysLeft(t0 + day))
-        assertFalse(lastSeen.isFullAt(t0 + 15 * day))
+        assertFalse(lastSeen.isFullAt(t0 + 3 * day))
     }
 
     @Test
@@ -51,7 +51,7 @@ class EntitlementTest {
         val paid = Entitlement(isFull = true, inTrial = false, endsAtMillis = t0 + 30 * day, serverNowMillis = t0 + 29 * day)
         assertTrue(paid.isFullAt(t0 + 32 * day))
         assertFalse(paid.isFullAt(t0 + 34 * day))
-        assertFalse(trial().isFullAt(t0 + 15 * day + 1))
+        assertFalse(trial().isFullAt(t0 + 3 * day + 1))
     }
 
     @Test

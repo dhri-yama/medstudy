@@ -100,6 +100,8 @@ class UserProfileStore(context: Context) {
             prefs.getInt(KEY_JOINED, java.time.LocalDate.now().year),
         )
 
+    fun clear() = prefs.edit().clear().apply()
+
     fun save(profile: UserProfile) {
         prefs.edit().putString(KEY_NAME, profile.name).putString(KEY_EXAM, profile.exams.joinToString(SEPARATOR))
             .putInt(KEY_GOAL, profile.dailyQuestionGoal).putBoolean(KEY_DONE, true)
@@ -134,7 +136,7 @@ private val StepTitles = listOf(
 )
 private val StepSubtitles = listOf(
     "Welcome to MedStudy", "Let's get to know you", "Pick one or more, we'll shape your plan around them", "Start small, you can change it in Me",
-    "Your 15-day free trial starts now",
+    "Your 3-day free trial starts now",
 )
 private val StepColors = listOf(1, 0, 2, 3, 5)
 
@@ -152,9 +154,16 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
     var goal by rememberSaveable { mutableFloatStateOf((existingProfile?.dailyQuestionGoal ?: 10).toFloat()) }
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
-    var signInMode by rememberSaveable { mutableStateOf(false) }
+    // Someone who already finished onboarding has an account, so they get "Sign in" rather than "Create account".
+    var signInMode by rememberSaveable { mutableStateOf(existingProfile != null) }
     var busy by remember { mutableStateOf(false) }
-    var error by remember { mutableStateOf<String?>(null) }
+    // Starts with the reason the server signed this phone out, if it did.
+    var error by remember { mutableStateOf(account.takeSignedOutNotice()) }
+    // Set when the account is already on 2 devices; the account step then offers "Sign out my other devices".
+    var deviceLimit by remember { mutableStateOf<DeviceLimitException?>(null) }
+    // Forgot password: a code has been emailed, and the account step asks for it and a new password.
+    var resetMode by rememberSaveable { mutableStateOf(false) }
+    var resetCode by rememberSaveable { mutableStateOf("") }
     val scope = rememberCoroutineScope()
     val haptics = LocalHapticFeedback.current
 
@@ -165,17 +174,68 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
     val canContinue = when (step) {
         NameStep -> name.isNotBlank()
         ExamsStep -> exams.isNotEmpty()
-        AccountStep -> email.isNotBlank() && password.length >= 6 && !busy
+        AccountStep -> email.isNotBlank() && password.length >= 6 && !busy && (!resetMode || resetCode.isNotBlank())
         else -> true
+    }
+
+    fun localProfile(fallbackName: String?) = UserProfile(
+        name.trim().ifBlank { fallbackName ?: email.substringBefore('@') }.ifBlank { "Learner" },
+        exams.ifEmpty { listOf(UserProfileStore.EXAMS.first()) }, goal.toInt(),
+    )
+
+    /** Runs a sign-in step, turning a device-limit refusal into the "Sign out my other devices" offer. */
+    fun attempt(block: suspend () -> Unit) {
+        scope.launch {
+            busy = true
+            error = null
+            deviceLimit = null
+            try {
+                block()
+            } catch (e: DeviceLimitException) {
+                deviceLimit = e
+                error = e.message
+            } catch (e: Exception) {
+                error = e.message ?: "Something went wrong. Try again."
+            } finally {
+                busy = false
+            }
+        }
+    }
+
+    fun signOutOtherDevices() = attempt {
+        account.signOutOtherDevices()
+        // An account that already has a saved profile keeps it.
+        val saved = account.pullProfile()
+        val local = localProfile(null)
+        if (saved == null) account.pushProfile(local)
+        runCatching { account.sync() }
+        onDone(saved ?: local)
+    }
+
+    fun forgotPassword() {
+        if (email.isBlank()) { error = "Enter your email first, then tap \"Forgot password?\"."; return }
+        attempt {
+            account.requestPasswordReset(email.trim())
+            password = ""
+            resetCode = ""
+            resetMode = true
+        }
     }
 
     fun submitAccount() {
         scope.launch {
             busy = true
             error = null
+            deviceLimit = null
             try {
                 val local = UserProfile(name.trim().ifBlank { email.substringBefore('@') }, exams.ifEmpty { listOf(UserProfileStore.EXAMS.first()) }, goal.toInt())
-                if (signInMode) {
+                if (resetMode) {
+                    account.resetPassword(email.trim(), resetCode.trim(), password)
+                    val saved = account.pullProfile()
+                    if (saved == null) account.pushProfile(local)
+                    runCatching { account.sync() }
+                    onDone(saved ?: local)
+                } else if (signInMode) {
                     account.signIn(email.trim(), password)
                     val saved = account.pullProfile()
                     runCatching { account.sync() }
@@ -188,6 +248,9 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
                     error = "Check your email to confirm your account, then sign in."
                     signInMode = true
                 }
+            } catch (e: DeviceLimitException) {
+                deviceLimit = e
+                error = e.message
             } catch (e: Exception) {
                 error = e.message ?: "Something went wrong. Try again."
             } finally {
@@ -201,6 +264,7 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
         scope.launch {
             busy = true
             error = null
+            deviceLimit = null
             try {
                 val token = GoogleSignIn.request(context)
                 if (token != null) {
@@ -215,6 +279,9 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
                     runCatching { account.sync() }
                     onDone(saved ?: local)
                 }
+            } catch (e: DeviceLimitException) {
+                deviceLimit = e
+                error = e.message
             } catch (e: Exception) {
                 error = e.message ?: "Something went wrong. Try again."
             } finally {
@@ -281,8 +348,10 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
                         3 -> GoalStep(goal, { goal = it }, name, exams) { haptics.performHapticFeedback(HapticFeedbackType.LongPress) }
                         else -> AccountFields(
                             email, { email = it }, password, { password = it }, signInMode,
-                            onToggleMode = { signInMode = !signInMode; error = null }, error = error, onSubmit = ::next,
+                            onToggleMode = { if (resetMode) resetMode = false else signInMode = !signInMode; error = null; deviceLimit = null }, error = error, onSubmit = ::next,
+                            resetMode = resetMode, resetCode = resetCode, onResetCodeChange = { resetCode = it }, onForgotPassword = ::forgotPassword,
                             onGoogle = ::continueWithGoogle, busy = busy,
+                            deviceLimit = deviceLimit, onSignOutOtherDevices = ::signOutOtherDevices,
                         )
                     }
                 }
@@ -295,6 +364,7 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
                         step == 0 -> "Get started"
                         step != AccountStep -> "Next"
                         busy -> "Please wait…"
+                        resetMode -> "Set new password"
                         signInMode -> "Sign in"
                         else -> "Start free trial"
                     },
@@ -444,31 +514,70 @@ private fun AccountFields(
     onToggleMode: () -> Unit,
     error: String?,
     onSubmit: () -> Unit,
+    resetMode: Boolean,
+    resetCode: String,
+    onResetCodeChange: (String) -> Unit,
+    onForgotPassword: () -> Unit,
     onGoogle: () -> Unit,
     busy: Boolean,
+    deviceLimit: DeviceLimitException?,
+    onSignOutOtherDevices: () -> Unit,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        PillButton("Continue with Google", onClick = onGoogle, enabled = !busy, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
-        Text("or use your email", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink, modifier = Modifier.align(Alignment.CenterHorizontally))
+        if (resetMode) {
+            Text(
+                "If that email has an account, we've sent it a code. Enter the code and choose a new password.",
+                style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink,
+            )
+        } else {
+            PillButton("Continue with Google", onClick = onGoogle, enabled = !busy, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
+            Text("or use your email", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink, modifier = Modifier.align(Alignment.CenterHorizontally))
+        }
         StudyTextField(
             email, onEmailChange, "Email", hintInside = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next),
         )
+        if (resetMode) {
+            StudyTextField(
+                resetCode, onResetCodeChange, "Code from the email", hintInside = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
+            )
+        }
         StudyTextField(
-            password, onPasswordChange, "Password (min 6 characters)", hintInside = true,
+            password, onPasswordChange, if (resetMode) "New password (min 6 characters)" else "Password (min 6 characters)", hintInside = true,
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions(onDone = { onSubmit() }),
         )
         error?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.error, modifier = Modifier.clip(RoundedCornerShape(12.dp)).background(Color.White.copy(alpha = 0.8f)).padding(10.dp)) }
+        if (deviceLimit != null) {
+            val waitUntil = deviceLimit.resetAvailableAtMillis
+            if (waitUntil == null) {
+                PillButton("Sign out my other devices", onClick = onSignOutOtherDevices, enabled = !busy, style = PillStyle.Secondary, modifier = Modifier.fillMaxWidth())
+            } else {
+                val day = java.time.Instant.ofEpochMilli(waitUntil).atZone(java.time.ZoneId.systemDefault())
+                    .format(java.time.format.DateTimeFormatter.ofPattern("d MMM, h:mm a"))
+                Text(
+                    "You signed out your other devices recently. You can do that again after $day.",
+                    style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink,
+                )
+            }
+        }
         if (!signInMode) {
             Text(
-                "No card needed. After 15 days you can subscribe, or keep a limited free plan.",
+                "No card needed. After 3 days you can subscribe, or keep a limited free plan.",
                 style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink,
             )
         }
+        if (signInMode && !resetMode) {
+            Text(
+                "Forgot password?", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink,
+                modifier = Modifier.clip(CircleShape).clickable(enabled = !busy, role = Role.Button, onClick = onForgotPassword).padding(vertical = 8.dp, horizontal = 4.dp),
+            )
+        }
+        LegalLinks(color = StudyTheme.colors.ink)
         Text(
-            if (signInMode) "New here? Create an account" else "Already have an account? Sign in",
+            if (resetMode) "Back to sign in" else if (signInMode) "New here? Create an account" else "Already have an account? Sign in",
             style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink,
             modifier = Modifier.clip(CircleShape).clickable(role = Role.Button, onClick = onToggleMode).padding(vertical = 8.dp, horizontal = 4.dp),
         )

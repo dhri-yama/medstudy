@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 11 and older. The sign-in session stays on this phone: a restored copy would be a device the 2-device limit never counted. -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="auth.xml" />
+    <exclude domain="sharedpref" path="entitlement.xml" />
+</full-backup-content>

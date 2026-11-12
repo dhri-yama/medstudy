@@ -150,6 +150,12 @@ interface ActivityDao {
     @Query("UPDATE OR IGNORE bookmarks SET userId = :userId WHERE userId = '$LOCAL_USER'")
     suspend fun adoptLocalBookmarks(userId: String)
 
+    @Query("DELETE FROM question_attempts WHERE userId = :userId")
+    suspend fun deleteAttempts(userId: String)
+
+    @Query("DELETE FROM bookmarks WHERE userId = :userId")
+    suspend fun deleteBookmarks(userId: String)
+
     @Query("SELECT * FROM question_attempts WHERE userId = :userId ORDER BY completedAtEpochMillis DESC")
     suspend fun getAttempts(userId: String): List<QuestionAttemptEntity>
 

@@ -103,7 +103,7 @@ Sentence case everywhere. Respect system font scaling; never fix text height in 
 - Radii: cards 24dp, hero 28dp, rows 18dp, inputs 16dp, buttons / chips / segmented control: full pill, icon buttons: circle (44-48dp).
 - Elevation: essentially flat. White rows get a soft shadow (y 2dp, blur 8dp, 4% ink). Colored cards have none.
 - Touch targets 48dp minimum.
-- Motion: 150-250ms ease-out for expand/collapse and progress fill. Honor reduced motion. No decorative animation.
+- Motion: feedback on something the user did, never decoration, and never something that has to finish before the next tap. Tokens live in `StudyMotion`: 120ms for press and option select, 200ms for the answer reveal and fades, 250ms ease-out for progress fill, number changes and screen enter. Pressables shrink to 0.97 while held. The only bounce is a single pop on the bookmark toggle and on the streak flame when the streak grows (larger, with a haptic, on day 7, 30, 100 and 365). No entrance staggers, shakes, confetti or looping animation. With the system "Remove animations" setting on, movement is skipped and only colour changes remain.
 - Icons: Material Symbols outlined, 20-24dp, ink or muted. Active nav icon is accent.
 
 ## 4. Components
@@ -231,7 +231,7 @@ Steps slide horizontally (forward from the right, back from the left). Buttons: 
 - Step 2, exam: big white selectable cards (name + one-line description); the chosen card scales up with a bounce, gets a deep-shade border and a check, and gives a haptic tick.
 - Step 3, daily goal: a 96sp number that updates live, "about {n x 3} minutes", a slider, preset pills (5, 10, 20, 30, 50) and a one-line summary.
 Keep it to these four steps; do not add more without a product reason.
-- Step 4, account (required, it is what the server-side trial is attached to): lavender step, "Create your account", subtitle "Your 15-day free trial starts now". White email and password fields (hint inside), a line "No card needed. After 15 days you can subscribe, or keep a limited free plan.", a "Already have an account? Sign in" toggle, and a deep-shade "Start free trial" pill (becomes "Sign in" in sign-in mode). Step 1 also has an "I already have an account" link that jumps here in sign-in mode. An existing user who is not signed in sees only this step, with their profile pre-filled and no Back button.
+- Step 4, account (required, it is what the server-side trial is attached to): lavender step, "Create your account", subtitle "Your 3-day free trial starts now". White email and password fields (hint inside), a line "No card needed. After 3 days you can subscribe, or keep a limited free plan.", a "Already have an account? Sign in" toggle, and a deep-shade "Start free trial" pill (becomes "Sign in" in sign-in mode). Step 1 also has an "I already have an account" link that jumps here in sign-in mode. An existing user who is not signed in sees only this step, with their profile pre-filled and no Back button.
 
 ## 6. Do and do not
 

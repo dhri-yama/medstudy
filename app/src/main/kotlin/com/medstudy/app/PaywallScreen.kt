@@ -80,7 +80,7 @@ fun PaywallScreen(
         Column(Modifier.padding(horizontal = 20.dp).windowInsetsPadding(WindowInsets.navigationBars), verticalArrangement = Arrangement.spacedBy(16.dp)) {
             Text(
                 if (trialDaysLeft != null) "You're on your free trial, $trialDaysLeft days left. Subscribe any time to keep everything."
-                else "Your 15-day free trial has ended. Subscribe to unlock everything, or keep the free plan (${Entitlement.FREE_DAILY_QUESTIONS} questions a day).",
+                else "Your 3-day free trial has ended. Subscribe to unlock everything, or keep the free plan (${Entitlement.FREE_DAILY_QUESTIONS} questions a day).",
                 style = MaterialTheme.typography.bodyLarge, color = StudyTheme.colors.body,
             )
             NotchedCard(
@@ -126,6 +126,7 @@ fun PaywallScreen(
                 style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.muted, textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().clip(CircleShape).clickable(role = Role.Button, onClick = onDismiss).padding(vertical = 12.dp),
             )
+            LegalLinks()
             Spacer(Modifier.height(16.dp))
         }
     }

@@ -44,6 +44,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -81,6 +82,7 @@ fun MeScreen(
     onSeePlans: () -> Unit,
     onManageSubscription: () -> Unit,
     onSignedOut: () -> Unit,
+    onAccountDeleted: () -> Unit,
     overlayInterval: Int,
     overlayEnabled: Boolean,
     overlayAccessGranted: Boolean,
@@ -124,7 +126,7 @@ fun MeScreen(
             }
 
             SectionTitle("Account")
-            StudyCard { AccountSection(account, profile, onProfileRestored, onSignedOut = onSignedOut) }
+            StudyCard { AccountSection(account, profile, onProfileRestored, onSignedOut = onSignedOut, onAccountDeleted = onAccountDeleted) }
 
             OverlayCard(
                 interval = overlayInterval,
@@ -134,6 +136,7 @@ fun MeScreen(
                 onEnable = onEnableOverlay,
                 onDisable = onDisableOverlay,
             )
+            LegalLinks()
             Text(
                 "MedStudy v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})" + if (BuildConfig.DEBUG) " · ${BuildConfig.GIT_SHA}" else "",
                 style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted,
@@ -188,6 +191,8 @@ private fun StatRow(icon: ImageVector, gradient: SubjectGradient, value: String,
 @Composable
 private fun StreakRow(streak: Int) {
     val gradient = StudyTheme.subjectGradient(6)
+    val streakShown = rememberCatchUp("me.streak", streak)
+    val pop = rememberStreakPop(streakShown)
     Row(
         modifier = Modifier.fillMaxWidth().offset(y = (-12).dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -196,9 +201,12 @@ private fun StreakRow(streak: Int) {
         Box(
             Modifier.size(84.dp).clip(RoundedCornerShape(24.dp)).background(gradient.brush),
             contentAlignment = Alignment.Center,
-        ) { Icon(Icons.Outlined.LocalFireDepartment, contentDescription = null, tint = gradient.deep, modifier = Modifier.size(44.dp)) }
+        ) { Icon(Icons.Outlined.LocalFireDepartment, contentDescription = null, tint = gradient.deep, modifier = Modifier.size(44.dp).graphicsLayer { scaleX = pop; scaleY = pop }) }
         Column {
-            Text(pluralize(streak, "day"), style = MaterialTheme.typography.headlineLarge.copy(fontSize = 40.sp, lineHeight = 44.sp), color = StudyTheme.colors.ink)
+            SlidingCount(
+                streakShown, style = MaterialTheme.typography.headlineLarge.copy(fontSize = 40.sp, lineHeight = 44.sp),
+                color = StudyTheme.colors.ink, text = { pluralize(it, "day") },
+            )
             Text(
                 if (streak == 0) "Answer a question today to start" else "Keep it going tomorrow",
                 style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted,

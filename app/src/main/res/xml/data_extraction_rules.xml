@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12 and newer. The sign-in session stays on this phone: a restored copy would be a device the 2-device limit never counted. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="auth.xml" />
+        <exclude domain="sharedpref" path="entitlement.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="auth.xml" />
+        <exclude domain="sharedpref" path="entitlement.xml" />
+    </device-transfer>
+</data-extraction-rules>
