@@ -52,8 +52,15 @@ class StudyAppContainer(context: Context) {
 
     /** Backs up to the account in the background: on launch, after a practice session, and when the app is left. Quietly skipped offline. */
     fun syncSoon() {
-        appScope.launch { if (account.isSignedIn) runCatching { account.sync() } }
+        appScope.launch {
+            if (!account.isSignedIn) return@launch
+            val pulled = runCatching { account.sync() }.getOrDefault(0)
+            if (pulled > 0) answersDownloaded.value += 1
+        }
     }
+
+    /** Goes up when a background sync brings in answers from another phone, so open screens can reload their numbers. */
+    val answersDownloaded = kotlinx.coroutines.flow.MutableStateFlow(0)
 
     init {
         account.studySchedule = { roomStudyPlan.preferences() }

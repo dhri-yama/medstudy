@@ -1,4 +1,4 @@
--- NOT APPLIED YET to project smofafboqldhgpbazpgs. The app's sync needs 009 before this build is used.
+-- APPLIED to project smofafboqldhgpbazpgs as "backup_and_sync".
 -- Bookmark backup, cheaper attempt sync, study-plan settings on the account, and timed mock tests.
 
 -- Bookmarks, one row per saved question. A removed bookmark keeps its row with removed_at set, so the removal

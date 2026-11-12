@@ -179,6 +179,9 @@ fun StudyApp(
             container.weeklyStudyPlan,
         ),
     )
+    // Answers that arrive from the learner's other phone show up without reopening the app.
+    val answersDownloaded by container.answersDownloaded.collectAsState()
+    LaunchedEffect(answersDownloaded) { if (answersDownloaded > 0) progressViewModel.refresh() }
     val practiceState by practiceViewModel.state.collectAsState()
     val mockTestViewModel: com.medstudy.feature.practice.MockTestViewModel = viewModel(
         factory = com.medstudy.feature.practice.MockTestViewModel.factory(container.questionCatalog, container.learnerActivity),

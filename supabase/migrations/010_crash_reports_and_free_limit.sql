@@ -1,4 +1,4 @@
--- NOT APPLIED YET to project smofafboqldhgpbazpgs. The app's sync needs 009 before this build is used.
+-- APPLIED to project smofafboqldhgpbazpgs as "crash_reports_and_free_limit".
 -- Crash reports sent by the app, and a report of accounts answering past the free plan's daily allowance.
 
 -- The app saves a crash on the phone and uploads it the next time it syncs. Read them in the dashboard;
