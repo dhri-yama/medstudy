@@ -1,3 +1,4 @@
+-- APPLIED to project smofafboqldhgpbazpgs as "trial_3_days".
 -- The free trial is 3 days (it was 15). The length lives only here, on the server; the app just shows what my_entitlement() returns.
 -- Existing accounts are measured the same way: their trial ends 3 days after trial_started_at.
 create or replace function public.my_entitlement()

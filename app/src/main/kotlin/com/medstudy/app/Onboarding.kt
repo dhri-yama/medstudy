@@ -330,10 +330,22 @@ fun OnboardingScreen(account: SupabaseAccount, existingProfile: UserProfile? = n
                 Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Text(
-                            StepSubtitles[current], style = MaterialTheme.typography.titleSmall, color = StudyTheme.colors.ink,
+                            // Someone signing back in is not starting a trial or creating anything.
+                            when {
+                                current != AccountStep -> StepSubtitles[current]
+                                resetMode -> "Forgot your password?"
+                                signInMode -> "Good to see you again"
+                                else -> StepSubtitles[current]
+                            },
+                            style = MaterialTheme.typography.titleSmall, color = StudyTheme.colors.ink,
                         )
                         Text(
-                            StepTitles[current],
+                            when {
+                                current != AccountStep -> StepTitles[current]
+                                resetMode -> "Choose a new password"
+                                signInMode -> "Welcome back"
+                                else -> StepTitles[current]
+                            },
                             style = MaterialTheme.typography.headlineLarge.copy(fontSize = 34.sp, lineHeight = 40.sp),
                             color = StudyTheme.colors.ink,
                         )

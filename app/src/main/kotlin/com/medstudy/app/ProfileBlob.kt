@@ -1,5 +1,8 @@
 package com.medstudy.app
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
@@ -18,8 +21,12 @@ val LocalAvatarSeed = staticCompositionLocalOf { "" }
  */
 @Composable
 fun ProfileBlob(name: String, size: Dp, modifier: Modifier = Modifier) {
-    LiveBlobmateView(
-        LocalAvatarSeed.current.ifBlank { name }.ifBlank { "MedStudy" }, modifier = modifier, size = size, mood = "happy",
-        pins = BlobmateOptions(shape = Shape.Circle), react = ReactOptions(),
-    )
+    // The blob labels itself with its seed, which is the account id; screen readers get the learner's name instead.
+    val label = if (name.isBlank()) "Your avatar" else "$name's avatar"
+    Box(modifier.clearAndSetSemantics { contentDescription = label }) {
+        LiveBlobmateView(
+            LocalAvatarSeed.current.ifBlank { name }.ifBlank { "MedStudy" }, size = size, mood = "happy",
+            pins = BlobmateOptions(shape = Shape.Circle), react = ReactOptions(),
+        )
+    }
 }
