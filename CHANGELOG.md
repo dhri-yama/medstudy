@@ -14,6 +14,10 @@ Versions follow `MAJOR.MINOR.PATCH` (see `version.properties`). Add notes under 
 - Log out ends the session on the server; a phone whose session was ended elsewhere returns to sign-in.
 - Forgot password (emailed code), Delete account in Me, and Privacy policy / Terms links (addresses in `gradle.properties`).
 - Free trial is 3 days.
+- Bookmarks, exam date and study-plan settings are backed up to the account; sync uploads and downloads only what is new, and runs on launch, after practice and when the app is left.
+- Timed mock test for previous-year papers (NEET PG pace and marking, question grid, mark for review, results and review).
+- Exam date with a countdown on Today; daily study reminder in Me.
+- Release builds are shrunk and obfuscated; crashes are saved and uploaded to `crash_reports`.
 - Small animations: button press, streak, answer reveal, screen and tab transitions; all respect "Remove animations".
 
 ## 0.1.0
