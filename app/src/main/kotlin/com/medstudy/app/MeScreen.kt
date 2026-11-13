@@ -321,5 +321,5 @@ private fun EditProfile(profile: UserProfile, onSave: (UserProfile) -> Unit, onB
 
 @Composable
 private fun SectionTitle(text: String) {
-    Text(text, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
+    Text(text, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.heading)
 }

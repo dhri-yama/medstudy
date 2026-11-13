@@ -107,7 +107,7 @@ fun PracticeHomeScreen(
                     verticalAlignment = Alignment.Bottom,
                 ) {
                     Column(Modifier.weight(1f)) {
-                        Text("Practice", style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.ink)
+                        Text("Practice", style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.heading)
                         Text("Pick how you want to study.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink)
                     }
                     Box(Modifier.clip(CircleShape).background(StudyTheme.colors.surface).androidClickable(onSaved)) {

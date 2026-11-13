@@ -263,7 +263,7 @@ private fun Header(name: String, today: LocalDate, streak: Int, examDaysLeft: In
     Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         ProfileBlob(name, size = 48.dp)
         Column(Modifier.weight(1f)) {
-            Text("Hey, $name", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
+            Text("Hey, $name", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.heading)
             Text(
                 today.format(DateTimeFormatter.ofPattern("d MMM, EEEE")),
                 style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted,
@@ -430,7 +430,7 @@ private fun Section(
     content: @Composable () -> Unit,
 ) {
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(title, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink, modifier = titleModifier)
+        Text(title, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.heading, modifier = titleModifier)
         content()
     }
 }

@@ -91,7 +91,7 @@ fun ScreenHeader(title: String, onBack: () -> Unit, modifier: Modifier = Modifie
     Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         IconCircleButton(Icons.AutoMirrored.Outlined.ArrowBack, "Back", onBack)
         Column {
-            Text(title, style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.ink)
+            Text(title, style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.heading)
             if (subtitle != null) Text(subtitle, style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted)
         }
     }

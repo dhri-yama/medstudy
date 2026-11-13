@@ -8,6 +8,10 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontVariation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -46,12 +50,19 @@ private val StudyShapes = Shapes(
     extraLarge = RoundedCornerShape(28.dp),
 )
 
-// DESIGN.md section 3.3. System sans for now; weights 400, 500, 600 only.
+/** Newsreader (SIL Open Font License, see THIRD_PARTY_LICENSES), a variable serif bundled for headings only. Body text stays on the system sans. */
+@OptIn(ExperimentalTextApi::class)
+private val HeadingFont = FontFamily(
+    Font(R.font.newsreader, FontWeight.Medium, variationSettings = FontVariation.Settings(FontVariation.weight(500), FontVariation.opticalSizing(28.sp))),
+    Font(R.font.newsreader, FontWeight.SemiBold, variationSettings = FontVariation.Settings(FontVariation.weight(600), FontVariation.opticalSizing(28.sp))),
+)
+
+// DESIGN.md section 3.3. Headings in Newsreader; everything else system sans. Weights 400, 500, 600 only.
 private val StudyTypography = Typography(
-    headlineLarge = TextStyle(fontSize = 28.sp, lineHeight = 34.sp, fontWeight = FontWeight.SemiBold),
-    headlineMedium = TextStyle(fontSize = 24.sp, lineHeight = 30.sp, fontWeight = FontWeight.SemiBold),
-    headlineSmall = TextStyle(fontSize = 22.sp, lineHeight = 28.sp, fontWeight = FontWeight.Medium),
-    titleLarge = TextStyle(fontSize = 18.sp, lineHeight = 24.sp, fontWeight = FontWeight.SemiBold),
+    headlineLarge = TextStyle(fontFamily = HeadingFont, fontSize = 30.sp, lineHeight = 36.sp, fontWeight = FontWeight.SemiBold),
+    headlineMedium = TextStyle(fontFamily = HeadingFont, fontSize = 27.sp, lineHeight = 33.sp, fontWeight = FontWeight.SemiBold),
+    headlineSmall = TextStyle(fontFamily = HeadingFont, fontSize = 24.sp, lineHeight = 30.sp, fontWeight = FontWeight.SemiBold),
+    titleLarge = TextStyle(fontFamily = HeadingFont, fontSize = 21.sp, lineHeight = 27.sp, fontWeight = FontWeight.SemiBold),
     titleMedium = TextStyle(fontSize = 15.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold),
     titleSmall = TextStyle(fontSize = 14.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold),
     bodyLarge = TextStyle(fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight.Normal),

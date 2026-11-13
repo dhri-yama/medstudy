@@ -83,13 +83,13 @@ Ink text on all of these is at least 5:1. Check contrast again if you change a h
 
 ### 3.3 Typography
 
-Font: **Plus Jakarta Sans** (open license; load with `androidx.compose.ui:ui-text-google-fonts`, fall back to the system sans). Weights 400, 500, 600 only.
+Headings: **Newsreader** (SIL Open Font License, bundled as `core/designsystem/src/main/res/font/newsreader.ttf`, licence in `THIRD_PARTY_LICENSES/`), semi-bold, in the deep indigo `heading` token (`#2B2063`) for screen and section titles. Everything else: the system sans. Weights 400, 500, 600 only.
 
 | Role | Size / line | Weight | Example |
 |---|---|---|---|
-| Screen title | 24 / 30 sp | 600 | "Practice" |
-| Card title | 22 / 28 sp | 500 | "Chemistry" |
-| Section title | 18 / 24 sp | 600 | "Continue learning" |
+| Screen title | 27 / 33 sp | 600 (Newsreader) | "Practice" |
+| Card title | 24 / 30 sp | 600 (Newsreader) | "Daily set" |
+| Section title | 21 / 27 sp | 600 (Newsreader) | "Today's plan" |
 | Body | 14 / 20 sp | 400 | Explanations, descriptions |
 | Row title | 15 / 20 sp | 600 | "Physics Assignment" |
 | Caption | 12 / 16 sp | 400 | "15 classes · 3 left" |

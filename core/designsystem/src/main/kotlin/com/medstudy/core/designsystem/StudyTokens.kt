@@ -22,6 +22,8 @@ class StudyColors(
     val canvas: Color = Color(0xFFF6F6F8),
     val surface: Color = Color(0xFFFFFFFF),
     val ink: Color = Color(0xFF14142B),
+    /** Screen and section headings: a deep indigo from the app's purple, so titles belong with the pastel cards and arcs. */
+    val heading: Color = Color(0xFF2B2063),
     val body: Color = Color(0xFF3B3F51),
     val muted: Color = Color(0xFF5F6675),
     val hairline: Color = Color(0xFFE6E7EC),

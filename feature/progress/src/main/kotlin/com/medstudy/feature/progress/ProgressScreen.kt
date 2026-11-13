@@ -127,7 +127,7 @@ fun ProgressScreen(
         item {
             ArcHeader(Modifier.bleed(20.dp), height = 150.dp) {
                 Text(
-                    "Progress", style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.ink,
+                    "Progress", style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.heading,
                     modifier = Modifier.align(Alignment.BottomStart).padding(start = 20.dp, bottom = 22.dp),
                 )
             }
@@ -593,7 +593,7 @@ private fun colorIndexOf(state: ProgressUiState, subjectId: String): Int =
 
 @Composable
 private fun SectionTitle(text: String) {
-    Text(text, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink, modifier = Modifier.padding(top = 8.dp))
+    Text(text, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.heading, modifier = Modifier.padding(top = 8.dp))
 }
 
 @Composable
