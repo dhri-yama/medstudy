@@ -140,20 +140,11 @@ class ProgressViewModel(
         }
     }
 
-    fun moveBlock(blockId: String, dayOffset: Long) {
+    /** Puts a block at [toIndex] in the plan's order; it takes the day of the row it lands on. */
+    fun reorderBlock(blockId: String, toIndex: Int) {
         val currentPlan = mutableState.value.plan ?: return
-        val start = LocalDate.parse(currentPlan.weekStartDateIso)
-        val availableDates = (0L..6L).map(start::plusDays)
-            .filter { it.dayOfWeek.value in mutableState.value.preferences.availableWeekdays }
-        if (availableDates.isEmpty()) return
-        val updatedBlocks = currentPlan.blocks.map { block ->
-            if (block.id != blockId) block else {
-                val currentIndex = availableDates.indexOfFirst { it.toString() == block.studyDateIso }
-                val nextIndex = (currentIndex + dayOffset.toInt()).coerceIn(0, availableDates.lastIndex)
-                block.copy(studyDateIso = availableDates.getOrNull(nextIndex)?.toString() ?: block.studyDateIso)
-            }
-        }
-        savePlan(currentPlan.copy(kind = StudyPlanKind.EDITED, blocks = updatedBlocks))
+        val updatedBlocks = reorderPlanBlocks(currentPlan.blocks, blockId, toIndex)
+        if (updatedBlocks != currentPlan.blocks) savePlan(currentPlan.copy(kind = StudyPlanKind.EDITED, blocks = updatedBlocks))
     }
 
     fun removeBlock(blockId: String) {

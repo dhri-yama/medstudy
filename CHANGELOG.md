@@ -18,6 +18,7 @@ Versions follow `MAJOR.MINOR.PATCH` (see `version.properties`). Add notes under 
 - Timed mock test for previous-year papers (NEET PG pace and marking, question grid, mark for review, results and review).
 - Exam date with a countdown on Today; daily study reminder in Me.
 - Release builds are shrunk and obfuscated; crashes are saved and uploaded to `crash_reports`.
+- Plan: drag a study block up or down to move it to another day, swipe left to remove it (the Edit button and its pop-up are gone).
 - Small animations: button press, streak, answer reveal, screen and tab transitions; all respect "Remove animations".
 
 ## 0.1.0

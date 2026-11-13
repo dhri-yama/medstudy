@@ -564,7 +564,7 @@ fun StudyApp(
                     onQuestionTargetChange = progressViewModel::adjustQuestionTargetPerDay,
                     onMinuteTargetChange = progressViewModel::adjustMinuteTargetPerDay,
                     onRegeneratePlan = { requireFull { progressViewModel.regeneratePlan() } },
-                    onMoveBlock = progressViewModel::moveBlock,
+                    onReorderBlock = progressViewModel::reorderBlock,
                     onRemoveBlock = progressViewModel::removeBlock,
                     onAddBlock = progressViewModel::addBlock,
                     onRetry = progressViewModel::refresh,

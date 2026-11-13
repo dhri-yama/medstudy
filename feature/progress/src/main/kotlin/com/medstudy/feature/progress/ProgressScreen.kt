@@ -95,7 +95,7 @@ fun ProgressScreen(
     onQuestionTargetChange: (Int) -> Unit,
     onMinuteTargetChange: (Int) -> Unit,
     onRegeneratePlan: () -> Unit,
-    onMoveBlock: (String, Long) -> Unit,
+    onReorderBlock: (String, Int) -> Unit,
     onRemoveBlock: (String) -> Unit,
     onAddBlock: (String) -> Unit,
     onRetry: () -> Unit,
@@ -119,7 +119,6 @@ fun ProgressScreen(
     }
 
     var tab by rememberSaveable { mutableIntStateOf(0) }
-    var editing by remember { mutableStateOf<StudyBlock?>(null) }
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 20.dp, top = 0.dp, end = 20.dp, bottom = 20.dp + bottomInset),
@@ -139,26 +138,10 @@ fun ProgressScreen(
             1 -> calendarTab(state, onMonthChange, onSelectDate, onToggleSubject, onReviewQuestion)
             else -> planTab(
                 state, onToggleStudyDay, onQuestionTargetChange, onMinuteTargetChange,
-                onRegeneratePlan, onEditBlock = { editing = it },
+                onRegeneratePlan, onReorderBlock, onRemoveBlock,
             )
         }
         item { Spacer(Modifier.height(8.dp)) }
-    }
-
-    editing?.let { block ->
-        val start = state.plan?.weekStartDateIso?.let(LocalDate::parse) ?: LocalDate.now()
-        val days = (0L..6L).map(start::plusDays).filter { it.dayOfWeek.value in state.preferences.availableWeekdays }
-        EditBlockDialog(
-            block = block,
-            days = days,
-            onMoveTo = { day ->
-                val offset = days.indexOf(day) - days.indexOfFirst { it.toString() == block.studyDateIso }
-                if (offset != 0) onMoveBlock(block.id, offset.toLong())
-                editing = block.copy(studyDateIso = day.toString())
-            },
-            onRemove = { onRemoveBlock(block.id); editing = null },
-            onDismiss = { editing = null },
-        )
     }
 }
 
@@ -433,9 +416,10 @@ private fun LazyListScope.planTab(
     onQuestionTargetChange: (Int) -> Unit,
     onMinuteTargetChange: (Int) -> Unit,
     onRegeneratePlan: () -> Unit,
-    onEditBlock: (StudyBlock) -> Unit,
+    onReorderBlock: (String, Int) -> Unit,
+    onRemoveBlock: (String) -> Unit,
 ) {
-    val planBlocks = state.plan?.blocks.orEmpty().sortedWith(compareBy(StudyBlock::studyDateIso, StudyBlock::position))
+    val planBlocks = state.plan?.blocks.orEmpty().inPlanOrder()
     val totalQuestions = planBlocks.sumOf(StudyBlock::questionTarget)
     val totalMinutes = planBlocks.sumOf(StudyBlock::minuteTarget)
     val heroGradient = StudyTheme.subjectGradient(5)
@@ -478,13 +462,15 @@ private fun LazyListScope.planTab(
     if (planBlocks.isEmpty()) {
         item { Hint("No study blocks yet. Add a topic from Overview, or turn on some study days below.") }
     } else {
-        items(planBlocks, key = StudyBlock::id) { block ->
-            PlanBlockRow(
-                block = block,
-                gradient = StudyTheme.subjectGradient(colorIndexOf(state, block.subjectId)),
-                onClick = { onEditBlock(block) },
+        item(key = "plan-blocks") {
+            PlanBlockList(
+                blocks = planBlocks,
+                gradientOf = { block -> StudyTheme.subjectGradient(colorIndexOf(state, block.subjectId)) },
+                onReorder = onReorderBlock,
+                onRemove = onRemoveBlock,
             )
         }
+        item { Hint("Hold and drag a block to move it to another day. Swipe left to remove it.") }
     }
     item {
         Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -595,72 +581,6 @@ private fun AmountTile(
                 Icons.Outlined.Add, "Increase $title $unit", { if (value < maximum) onIncrease() },
                 modifier = Modifier.dimmedIf(value >= maximum),
             )
-        }
-    }
-}
-
-/** One day's study block: a colored date tile, the topic and its size. Tap it to move it to another day or remove it. */
-@Composable
-private fun PlanBlockRow(block: StudyBlock, gradient: SubjectGradient, onClick: () -> Unit) {
-    val date = LocalDate.parse(block.studyDateIso)
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(22.dp))
-            .background(StudyTheme.colors.surface)
-            .clickable(onClickLabel = "Edit ${block.title}", onClick = onClick)
-            .padding(12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Column(
-            Modifier.size(width = 56.dp, height = 64.dp).clip(RoundedCornerShape(18.dp)).background(gradient.brush),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Text(date.format(DateTimeFormatter.ofPattern("EEE", Locale.getDefault())), style = MaterialTheme.typography.labelSmall, color = StudyTheme.colors.ink)
-            Text(date.dayOfMonth.toString(), style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
-        }
-        Column(Modifier.weight(1f)) {
-            Text(block.title, style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink, maxLines = 2, overflow = TextOverflow.Ellipsis)
-            Text(
-                "${pluralize(block.questionTarget, "question")} · ${block.minuteTarget} min",
-                style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted,
-            )
-        }
-        StudyChip("Edit", container = StudyTheme.colors.canvas)
-    }
-}
-
-/** Move a block to another study day, or remove it. Only days you marked available are offered. */
-@Composable
-private fun EditBlockDialog(
-    block: StudyBlock,
-    days: List<LocalDate>,
-    onMoveTo: (LocalDate) -> Unit,
-    onRemove: () -> Unit,
-    onDismiss: () -> Unit,
-) {
-    Dialog(onDismissRequest = onDismiss) {
-        Column(
-            Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(StudyTheme.colors.surface).padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            Text(block.title, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.ink)
-            Text("Move to", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.muted)
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(days, key = { it.toString() }) { day ->
-                    FilterPill(
-                        label = day.format(DateTimeFormatter.ofPattern("EEE d", Locale.getDefault())),
-                        selected = day.toString() == block.studyDateIso,
-                        onClick = { onMoveTo(day) },
-                    )
-                }
-            }
-            Row(Modifier.fillMaxWidth().padding(top = 4.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                PillButton("Remove", onClick = onRemove, style = PillStyle.Secondary)
-                PillButton("Done", onClick = onDismiss, modifier = Modifier.weight(1f))
-            }
         }
     }
 }
