@@ -465,7 +465,7 @@ fun StudyApp(
                     weekDays = weekDays,
                     mistakeCount = mistakeCount,
                     trialDaysLeft = trialDaysLeft,
-                    examDaysLeft = examDaysLeft(profile!!.examDateIso, today),
+                    examPace = examPace(profile!!.examDateIso, today, progressState.questions.size, progressState.attempts),
                     onSetExamDate = { pickingExamDate = true },
                     freeQuestionsLeft = if (isFull) null else questionsLeft,
                     onUpgrade = { showPaywall = true },

@@ -3,6 +3,7 @@ package com.medstudy.app
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowForward
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.EventAvailable
 import androidx.compose.material.icons.outlined.LocalFireDepartment
@@ -51,7 +53,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.medstudy.core.designsystem.ArcHeader
 import com.medstudy.core.designsystem.FilterPill
 import com.medstudy.core.designsystem.IconCircleButton
 import com.medstudy.core.designsystem.NotchedCard
@@ -60,6 +61,7 @@ import com.medstudy.core.designsystem.PillStyle
 import com.medstudy.core.designsystem.StudyCard
 import com.medstudy.core.designsystem.StudyChip
 import com.medstudy.core.designsystem.StudyTextField
+import com.medstudy.core.designsystem.TabSectionStyle
 import com.medstudy.core.designsystem.StudyTheme
 import com.medstudy.core.designsystem.SubjectGradient
 import com.medstudy.core.designsystem.studySliderColors
@@ -101,19 +103,9 @@ fun MeScreen(
         modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(0.dp),
     ) {
-        ProfileHeader(profile, onSettings = { editing = true })
+        ProfileCard(profile, stats, onEdit = { editing = true }, modifier = Modifier.windowInsetsPadding(WindowInsets.statusBars).padding(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 24.dp))
 
         Column(Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
-            SectionTitle("Stats")
-            Column(verticalArrangement = Arrangement.spacedBy(14.dp), modifier = Modifier.offset(y = (-12).dp)) {
-                StatRow(Icons.Outlined.Quiz, StudyTheme.subjectGradient(0), "${stats.answered}", "Questions answered")
-                StatRow(Icons.Outlined.Percent, StudyTheme.subjectGradient(1), stats.accuracyPercent?.let { "$it%" } ?: "-", "Correct overall")
-                StatRow(Icons.Outlined.EventAvailable, StudyTheme.subjectGradient(2), pluralize(stats.studyDays, "day"), "Days you studied")
-            }
-
-            SectionTitle("Study streak")
-            StreakRow(stats.streak)
-
             SectionTitle("Subscription")
             StudyCard {
                 Text(subscription.title, style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink)
@@ -151,70 +143,66 @@ fun MeScreen(
     }
 }
 
-/** Layered, curved color header (like the reference) with a settings button and the avatar overlapping its lower edge. */
+/** The profile card: a colour banner, the avatar overlapping it, name and exam, three numbers and the edit button. */
 @Composable
-private fun ProfileHeader(profile: UserProfile, onSettings: () -> Unit) {
-    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        ArcHeader(height = HeaderHeightDp.dp) {
-            Box(Modifier.windowInsetsPadding(WindowInsets.statusBars).padding(start = 20.dp, top = 12.dp)) {
-                IconCircleButton(Icons.Outlined.Settings, "Edit profile", onSettings)
-            }
-            Box(
-                Modifier
-                    .align(Alignment.TopCenter)
-                    .offset(y = 71.dp)
-                    .size(102.dp),
-            ) {
-                ProfileBlob(profile.name, size = 102.dp)
-            }
-        }
-        Text(profile.name, style = MaterialTheme.typography.headlineLarge.copy(fontSize = 30.sp), color = StudyTheme.colors.ink, textAlign = TextAlign.Center)
-        Text("Joined in ${profile.joinedYear}", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted)
-        Row(Modifier.padding(top = 10.dp, bottom = 20.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            StudyChip(profile.examLabel, container = StudyTheme.colors.surface)
-            StudyChip("${profile.dailyQuestionGoal} a day", container = StudyTheme.colors.surface)
-        }
-    }
-}
-
-@Composable
-private fun StatRow(icon: ImageVector, gradient: SubjectGradient, value: String, label: String) {
-    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-        Box(
-            Modifier.size(56.dp).clip(RoundedCornerShape(16.dp)).background(gradient.brush),
-            contentAlignment = Alignment.Center,
-        ) { Icon(icon, contentDescription = null, tint = gradient.deep, modifier = Modifier.size(28.dp)) }
-        Column {
-            Text(value, style = MaterialTheme.typography.titleLarge.copy(fontSize = 22.sp), color = StudyTheme.colors.ink)
-            Text(label, style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted)
-        }
-    }
-}
-
-@Composable
-private fun StreakRow(streak: Int) {
-    val gradient = StudyTheme.subjectGradient(6)
-    val streakShown = rememberCatchUp("me.streak", streak)
-    val pop = rememberStreakPop(streakShown)
-    Row(
-        modifier = Modifier.fillMaxWidth().offset(y = (-12).dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(18.dp),
+private fun ProfileCard(profile: UserProfile, stats: MeStats, onEdit: () -> Unit, modifier: Modifier = Modifier) {
+    val a = StudyTheme.subjectGradient(5)
+    val b = StudyTheme.subjectGradient(0)
+    val c = StudyTheme.subjectGradient(1)
+    Column(
+        modifier.fillMaxWidth().clip(RoundedCornerShape(28.dp)).background(StudyTheme.colors.surface).padding(12.dp),
     ) {
-        Box(
-            Modifier.size(84.dp).clip(RoundedCornerShape(24.dp)).background(gradient.brush),
-            contentAlignment = Alignment.Center,
-        ) { Icon(Icons.Outlined.LocalFireDepartment, contentDescription = null, tint = gradient.deep, modifier = Modifier.size(44.dp).graphicsLayer { scaleX = pop; scaleY = pop }) }
-        Column {
-            SlidingCount(
-                streakShown, style = MaterialTheme.typography.headlineLarge.copy(fontSize = 40.sp, lineHeight = 44.sp),
-                color = StudyTheme.colors.ink, text = { pluralize(it, "day") },
+        Box(Modifier.fillMaxWidth()) {
+            Box(
+                Modifier.fillMaxWidth().height(120.dp).clip(RoundedCornerShape(20.dp))
+                    .background(androidx.compose.ui.graphics.Brush.linearGradient(listOf(a.top, b.top, c.bottom))),
             )
+            Box(
+                Modifier.align(Alignment.BottomStart).offset(x = 14.dp, y = 38.dp).size(84.dp)
+                    .clip(CircleShape).background(StudyTheme.colors.surface).padding(5.dp),
+            ) { ProfileBlob(profile.name, size = 74.dp) }
+        }
+        Row(
+            Modifier.fillMaxWidth().padding(top = 48.dp, start = 4.dp, end = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Column(Modifier.weight(1f)) {
+                Text(profile.name, style = TabSectionStyle.copy(fontSize = 24.sp, lineHeight = 30.sp), color = StudyTheme.colors.ink)
+                Text("Joined in ${profile.joinedYear}", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted)
+            }
+            StudyChip(profile.examLabel, container = StudyTheme.colors.canvas)
+        }
+        Box(Modifier.fillMaxWidth().padding(vertical = 14.dp).height(1.dp).background(StudyTheme.colors.hairline))
+        Row(Modifier.fillMaxWidth()) {
+            CardStat(Icons.Outlined.Quiz, "${stats.answered}", "Answered", Modifier.weight(1f))
+            CardStat(Icons.Outlined.Percent, stats.accuracyPercent?.let { "$it%" } ?: "-", "Accuracy", Modifier.weight(1f))
+            CardStat(Icons.Outlined.LocalFireDepartment, "${stats.streak}", "Day streak", Modifier.weight(1f))
+        }
+        Row(
+            Modifier.fillMaxWidth().padding(top = 16.dp).height(56.dp).clip(CircleShape).background(StudyTheme.colors.ink)
+                .clickable(role = androidx.compose.ui.semantics.Role.Button, onClickLabel = "Edit profile", onClick = onEdit)
+                .padding(start = 10.dp, end = 56.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Box(Modifier.size(36.dp).clip(CircleShape).background(Color.White), contentAlignment = Alignment.Center) {
+                Icon(Icons.AutoMirrored.Outlined.ArrowForward, contentDescription = null, tint = StudyTheme.colors.ink, modifier = Modifier.size(20.dp))
+            }
             Text(
-                if (streak == 0) "Answer a question today to start" else "Keep it going tomorrow",
-                style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted,
+                "Edit profile", style = MaterialTheme.typography.titleSmall, color = Color.White,
+                textAlign = TextAlign.Center, modifier = Modifier.weight(1f),
             )
         }
+    }
+}
+
+@Composable
+private fun CardStat(icon: ImageVector, value: String, label: String, modifier: Modifier = Modifier) {
+    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            Icon(icon, contentDescription = null, tint = StudyTheme.colors.ink, modifier = Modifier.size(20.dp))
+            Text(value, style = MaterialTheme.typography.titleLarge.copy(fontSize = 22.sp), color = StudyTheme.colors.ink)
+        }
+        Text(label, style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted)
     }
 }
 
@@ -285,10 +273,9 @@ private fun OverlayCard(
 private fun EditProfile(profile: UserProfile, onSave: (UserProfile) -> Unit, onBack: () -> Unit, modifier: Modifier = Modifier) {
     var name by rememberSaveable(profile) { mutableStateOf(profile.name) }
     var exams by rememberSaveable(profile) { mutableStateOf(profile.exams) }
-    var goal by rememberSaveable(profile) { mutableFloatStateOf(profile.dailyQuestionGoal.toFloat()) }
     var examDate by rememberSaveable(profile) { mutableStateOf(profile.examDateIso) }
     var pickingExamDate by rememberSaveable { mutableStateOf(false) }
-    val edited = profile.copy(name = name.trim(), exams = exams, dailyQuestionGoal = goal.toInt(), examDateIso = examDate)
+    val edited = profile.copy(name = name.trim(), exams = exams, examDateIso = examDate)
     if (pickingExamDate) {
         ExamDatePickerDialog(examDate, onPick = { examDate = it; pickingExamDate = false }, onDismiss = { pickingExamDate = false })
     }
@@ -308,8 +295,6 @@ private fun EditProfile(profile: UserProfile, onSave: (UserProfile) -> Unit, onB
             }
             Text("Exam date", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.muted)
             PillButton(examDateLabel(examDate), onClick = { pickingExamDate = true }, style = PillStyle.Secondary)
-            Text("${goal.toInt()} questions a day", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink)
-            Slider(value = goal, onValueChange = { goal = it }, valueRange = 5f..50f, steps = 8, colors = studySliderColors())
             PillButton(
                 "Save changes", onClick = { onSave(edited) },
                 enabled = edited != profile && edited.name.isNotBlank() && exams.isNotEmpty(), modifier = Modifier.fillMaxWidth(),
@@ -321,5 +306,5 @@ private fun EditProfile(profile: UserProfile, onSave: (UserProfile) -> Unit, onB
 
 @Composable
 private fun SectionTitle(text: String) {
-    Text(text, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.heading)
+    Text(text, style = TabSectionStyle, color = StudyTheme.colors.ink)
 }

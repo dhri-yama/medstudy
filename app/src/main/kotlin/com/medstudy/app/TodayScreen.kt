@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import com.medstudy.core.designsystem.StudyCard
@@ -54,6 +55,7 @@ import com.medstudy.core.designsystem.PillButton
 import com.medstudy.core.designsystem.PillStyle
 import com.medstudy.core.designsystem.StudyChip
 import com.medstudy.core.designsystem.StudyProgressBar
+import com.medstudy.core.designsystem.TabSectionStyle
 import com.medstudy.core.designsystem.StudyTheme
 import com.medstudy.core.designsystem.TaskRow
 import com.medstudy.core.model.StudyBlock
@@ -85,8 +87,8 @@ fun TodayScreen(
     mistakeCount: Int,
     trialDaysLeft: Int?,
     freeQuestionsLeft: Int?,
-    /** Days until the exam, or null when no date is set. */
-    examDaysLeft: Int?,
+    /** The exam countdown and pace, or null when no date is set. */
+    examPace: ExamPace?,
     onSetExamDate: () -> Unit,
     onUpgrade: () -> Unit,
     onQuickFive: () -> Unit,
@@ -105,7 +107,7 @@ fun TodayScreen(
         modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(top = 20.dp, bottom = 20.dp + LocalNavBarInset.current),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        Header(name, today, streak, examDaysLeft, onSetExamDate, Modifier.padding(horizontal = 20.dp))
+        Header(name, streak, Modifier.padding(horizontal = 20.dp))
 
         PlanBanner(trialDaysLeft, freeQuestionsLeft, onUpgrade, Modifier.padding(horizontal = 20.dp))
 
@@ -173,6 +175,8 @@ fun TodayScreen(
             onStartBlock = onStartBlock,
             modifier = Modifier.padding(horizontal = 20.dp),
         )
+
+        ExamCard(examPace, onSetExamDate, Modifier.padding(horizontal = 20.dp))
 
         Section("Quick practice", Modifier.padding(horizontal = 20.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -259,23 +263,11 @@ private fun dueLabel(area: WeakArea): String =
         ?: area.accuracy?.let { "${(it * 100).toInt()}% correct" }.orEmpty()
 
 @Composable
-private fun Header(name: String, today: LocalDate, streak: Int, examDaysLeft: Int?, onSetExamDate: () -> Unit, modifier: Modifier = Modifier) {
+private fun Header(name: String, streak: Int, modifier: Modifier = Modifier) {
     Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         ProfileBlob(name, size = 48.dp)
         Column(Modifier.weight(1f)) {
-            Text("Hey, $name", style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.heading)
-            Text(
-                today.format(DateTimeFormatter.ofPattern("d MMM, EEEE")),
-                style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted,
-            )
-            // The countdown, or a way to set the date; tapping either opens the date picker.
-            Text(
-                examDaysLeft?.let(::examCountdownLabel) ?: "Set your exam date",
-                style = MaterialTheme.typography.labelMedium, color = StudyTheme.colors.ink,
-                modifier = Modifier.clip(CircleShape)
-                    .clickable(role = androidx.compose.ui.semantics.Role.Button, onClickLabel = "Change exam date", onClick = onSetExamDate)
-                    .padding(vertical = 4.dp),
-            )
+            Text("Hey, $name", style = TabSectionStyle.copy(fontSize = 22.sp, lineHeight = 28.sp), color = StudyTheme.colors.ink)
         }
         if (streak > 0) {
             // Same look as StudyChip, with a number that slides and a flame that pops when the streak grows.
@@ -430,7 +422,7 @@ private fun Section(
     content: @Composable () -> Unit,
 ) {
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(title, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.heading, modifier = titleModifier)
+        Text(title, style = TabSectionStyle, color = StudyTheme.colors.ink, modifier = titleModifier)
         content()
     }
 }
@@ -456,4 +448,59 @@ private fun PlanBanner(trialDaysLeft: Int?, freeQuestionsLeft: Int?, onUpgrade: 
         Text(text, style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink, modifier = Modifier.weight(1f))
         Text(if (trialDaysLeft != null) "Plans" else "Upgrade", style = MaterialTheme.typography.labelLarge, color = StudyTheme.colors.ink)
     }
+}
+
+/** Days to the exam, how much of the question bank is covered and whether the recent pace is enough; or an invitation to set the date. */
+@Composable
+private fun ExamCard(pace: ExamPace?, onSetExamDate: () -> Unit, modifier: Modifier = Modifier) {
+    val shape = androidx.compose.foundation.shape.RoundedCornerShape(24.dp)
+    Column(
+        modifier.fillMaxWidth().clip(shape).background(StudyTheme.colors.surface)
+            .dottedBorder(StudyTheme.colors.muted, 24.dp)
+            .clickable(role = Role.Button, onClickLabel = "Change exam date", onClick = onSetExamDate)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+    ) {
+        if (pace == null) {
+            Text("Set your exam date", style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink)
+            Text(
+                "Pick the day and we will count down to it and show whether you are on track.",
+                style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted,
+            )
+            return@Column
+        }
+        val statusGradient = StudyTheme.subjectGradient(if (pace.status == PaceStatus.BEHIND) 3 else 2)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(1f)) {
+                Text(examCountdownLabel(pace.daysLeft), style = MaterialTheme.typography.titleMedium, color = StudyTheme.colors.ink)
+            }
+            when (pace.status) {
+                PaceStatus.ON_TRACK -> StudyChip("On track", container = statusGradient.top)
+                PaceStatus.BEHIND -> StudyChip("Behind", container = statusGradient.top)
+                PaceStatus.NO_DATA -> Unit
+            }
+        }
+        StudyProgressBar(
+            progress = if (pace.total == 0) 0f else pace.covered.toFloat() / pace.total,
+            description = "${pace.covered} of ${pace.total} questions covered",
+            fill = StudyTheme.colors.ink,
+        )
+        Text("${pace.covered} of ${pace.total} questions covered", style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted)
+    }
+}
+
+/** A border of round dots following a rounded rectangle, drawn just inside the edge. */
+private fun Modifier.dottedBorder(color: Color, cornerRadius: androidx.compose.ui.unit.Dp): Modifier = this.drawBehind {
+    val stroke = 2.dp.toPx()
+    drawRoundRect(
+        color = color,
+        topLeft = androidx.compose.ui.geometry.Offset(stroke / 2, stroke / 2),
+        size = androidx.compose.ui.geometry.Size(size.width - stroke, size.height - stroke),
+        cornerRadius = androidx.compose.ui.geometry.CornerRadius(cornerRadius.toPx() - stroke / 2),
+        style = androidx.compose.ui.graphics.drawscope.Stroke(
+            width = stroke,
+            cap = androidx.compose.ui.graphics.StrokeCap.Round,
+            pathEffect = androidx.compose.ui.graphics.PathEffect.dashPathEffect(floatArrayOf(0.01f, 6.dp.toPx())),
+        ),
+    )
 }

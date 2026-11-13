@@ -59,7 +59,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import com.medstudy.core.designsystem.ArcHeader
+import com.medstudy.core.designsystem.TabHeader
 import com.medstudy.core.designsystem.FilterPill
 import com.medstudy.core.designsystem.bleed
 import com.medstudy.core.designsystem.IconCircleButton
@@ -69,6 +69,8 @@ import com.medstudy.core.designsystem.PillStyle
 import com.medstudy.core.designsystem.SegmentedTabs
 import com.medstudy.core.designsystem.StudyChip
 import com.medstudy.core.designsystem.StudyProgressBar
+import com.medstudy.core.designsystem.PageTitleStyle
+import com.medstudy.core.designsystem.SectionTitleStyle
 import com.medstudy.core.designsystem.StudyTheme
 import com.medstudy.core.designsystem.TaskRow
 import com.medstudy.core.model.AttemptResult
@@ -125,12 +127,7 @@ fun ProgressScreen(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         item {
-            ArcHeader(Modifier.bleed(20.dp), height = 150.dp) {
-                Text(
-                    "Progress", style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.heading,
-                    modifier = Modifier.align(Alignment.BottomStart).padding(start = 20.dp, bottom = 22.dp),
-                )
-            }
+            TabHeader("Your plan\nand progress", Modifier.bleed(20.dp))
         }
         item { SegmentedTabs(TabLabels, tab, { tab = it }) }
         when (tab) {
@@ -593,7 +590,7 @@ private fun colorIndexOf(state: ProgressUiState, subjectId: String): Int =
 
 @Composable
 private fun SectionTitle(text: String) {
-    Text(text, style = MaterialTheme.typography.titleLarge, color = StudyTheme.colors.heading, modifier = Modifier.padding(top = 8.dp))
+    Text(text, style = SectionTitleStyle, color = StudyTheme.colors.heading, modifier = Modifier.padding(top = 8.dp))
 }
 
 @Composable

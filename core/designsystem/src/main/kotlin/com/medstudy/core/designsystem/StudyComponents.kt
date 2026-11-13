@@ -56,6 +56,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.layout.positionInParent
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.layout
@@ -352,8 +355,8 @@ fun StudyBottomBar(
 }
 
 /**
- * Top tabs in the same language as the week pills and filter pills: separate pills, the selected one solid ink with white text,
- * the others white with a hairline border and ink text.
+ * Top tabs as plain text on a hairline: the selected label is dark and semi-bold with a thick ink line under it that
+ * slides to the chosen tab; the others are muted. Labels keep their natural width and sit left-aligned.
  */
 @Composable
 fun SegmentedTabs(
@@ -362,43 +365,48 @@ fun SegmentedTabs(
     onSelect: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val gap = 8.dp
     val reduced = rememberReducedMotion()
-    BoxWithConstraints(modifier = modifier.fillMaxWidth().height(46.dp)) {
-        val tabWidth = (maxWidth - gap * (labels.size - 1).coerceAtLeast(0)) / labels.size.coerceAtLeast(1)
-        // The white resting pills, then one ink pill that slides to the selected tab, then the labels on top.
-        Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
-            labels.forEach { _ ->
-                Box(
-                    Modifier.width(tabWidth).fillMaxHeight().clip(CircleShape)
-                        .background(StudyTheme.colors.surface).border(1.dp, StudyTheme.colors.hairline, CircleShape),
-                )
-            }
-        }
-        val indicatorX by animateDpAsState(
-            (tabWidth + gap) * selectedIndex, if (reduced) tween(0) else StudyMotion.emphasis(), label = "tabIndicator",
-        )
-        Box(Modifier.offset(x = indicatorX).width(tabWidth).fillMaxHeight().clip(CircleShape).background(StudyTheme.colors.accent))
-        Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
+    val density = androidx.compose.ui.platform.LocalDensity.current
+    val lefts = remember(labels.size) { androidx.compose.runtime.mutableStateListOf(*Array(labels.size) { 0 }) }
+    val widths = remember(labels.size) { androidx.compose.runtime.mutableStateListOf(*Array(labels.size) { 0 }) }
+    val targetLeft = lefts.getOrElse(selectedIndex) { 0 }.toFloat()
+    val targetWidth = widths.getOrElse(selectedIndex) { 0 }.toFloat()
+    val left by animateFloatAsState(targetLeft, if (reduced) tween(0) else StudyMotion.emphasis(), label = "tabLeft")
+    val width by animateFloatAsState(targetWidth, if (reduced) tween(0) else StudyMotion.emphasis(), label = "tabWidth")
+    Box(modifier.fillMaxWidth().height(44.dp)) {
+        Box(Modifier.align(Alignment.BottomStart).fillMaxWidth().height(1.dp).background(StudyTheme.colors.hairline))
+        Row(horizontalArrangement = Arrangement.spacedBy(26.dp), modifier = Modifier.fillMaxHeight()) {
             labels.forEachIndexed { index, label ->
                 val selected = index == selectedIndex
                 val textColor by animateColorAsState(
-                    if (selected) StudyTheme.colors.onAccent else StudyTheme.colors.ink, StudyMotion.standard(), label = "tabText",
+                    if (selected) StudyTheme.colors.ink else StudyTheme.colors.muted, StudyMotion.standard(), label = "tabText",
                 )
                 Box(
                     modifier = Modifier
-                        .width(tabWidth)
                         .fillMaxHeight()
-                        .clip(CircleShape)
+                        .androidx_onPlaced { l, w -> lefts[index] = l; widths[index] = w }
                         .selectable(selected = selected, role = Role.Tab, onClick = { onSelect(index) }),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(label, style = MaterialTheme.typography.labelLarge, color = textColor, maxLines = 1)
+                    Text(
+                        label,
+                        style = TabGreetingStyle.copy(fontSize = 15.sp, fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium),
+                        color = textColor, maxLines = 1,
+                    )
                 }
             }
         }
+        Box(
+            Modifier.align(Alignment.BottomStart)
+                .offset(x = with(density) { left.toDp() })
+                .width(with(density) { width.toDp() })
+                .height(3.dp).clip(CircleShape).background(StudyTheme.colors.ink),
+        )
     }
 }
+
+private fun Modifier.androidx_onPlaced(onPlaced: (left: Int, width: Int) -> Unit): Modifier =
+    this.onGloballyPositioned { c -> onPlaced(c.positionInParent().x.toInt(), c.size.width) }
 
 /** White circular icon button (back, bookmark). 44dp, comfortably tappable. */
 @Composable
@@ -447,7 +455,7 @@ fun HeroCard(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         IconCircleButton(Icons.AutoMirrored.Outlined.ArrowBack, "Back", onBack)
-        Text(title, style = MaterialTheme.typography.headlineLarge, color = StudyTheme.colors.ink)
+        Text(title, style = PageTitleStyle, color = StudyTheme.colors.heading)
         content()
     }
 }

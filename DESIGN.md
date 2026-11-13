@@ -83,13 +83,13 @@ Ink text on all of these is at least 5:1. Check contrast again if you change a h
 
 ### 3.3 Typography
 
-Headings: **Newsreader** (SIL Open Font License, bundled as `core/designsystem/src/main/res/font/newsreader.ttf`, licence in `THIRD_PARTY_LICENSES/`), semi-bold, in the deep indigo `heading` token (`#2B2063`) for screen and section titles. Everything else: the system sans. Weights 400, 500, 600 only.
+Page and section headings: **Newsreader** (SIL Open Font License, bundled as `core/designsystem/src/main/res/font/newsreader.ttf`, licence in `THIRD_PARTY_LICENSES/`), semi-bold, in the deep indigo `heading` token (`#2B2063`) for page titles and section headings only (the `PageTitleStyle` and `SectionTitleStyle` text styles). The Practice and Plan page headers (greeting and two-line title) use **Poppins** (OFL, `THIRD_PARTY_LICENSES/Poppins-OFL.txt`) via `TabTitleStyle` (30 / 38 sp, 600, ink) and `TabGreetingStyle`. Cards, buttons, body text and every Material text style stay on the system sans. Weights 400, 500, 600 only.
 
 | Role | Size / line | Weight | Example |
 |---|---|---|---|
-| Screen title | 27 / 33 sp | 600 (Newsreader) | "Practice" |
-| Card title | 24 / 30 sp | 600 (Newsreader) | "Daily set" |
-| Section title | 21 / 27 sp | 600 (Newsreader) | "Today's plan" |
+| Screen title | 27 / 33 sp | 600 (Newsreader, `PageTitleStyle`) | "Practice" |
+| Card title | 22 / 28 sp | 500 (system sans) | "Daily set" |
+| Section title | 21 / 27 sp | 600 (Newsreader, `SectionTitleStyle`) | "Today's plan" |
 | Body | 14 / 20 sp | 400 | Explanations, descriptions |
 | Row title | 15 / 20 sp | 600 | "Physics Assignment" |
 | Caption | 12 / 16 sp | 400 | "15 classes · 3 left" |
@@ -121,7 +121,7 @@ on wide cards limit the title to about 60% width; on narrow cards add a 28dp spa
 
 **Pill button.** Primary = accent (ink) fill, white label. Secondary = surface fill, ink label, hairline outline. Height 44dp (small 32dp).
 
-**Segmented control.** Light track (`#EBEBF0`), selected segment is a white pill with an optional leading icon, height 44dp.
+**Top tabs (`SegmentedTabs`).** Plain Poppins labels on a hairline, left-aligned, 44dp tall: the selected label is ink and semi-bold with a 3dp ink line under it that slides to the chosen tab; the others are muted.
 
 **Accordion row.** White, 18dp radius. Title + caption ("5 questions · 60% correct"). Trailing: filled accent check (mastered) or outlined chevron circle. Expanded: progress bar, "n left" caption, small Practice button.
 
@@ -170,7 +170,7 @@ No chevrons or expand arrows. Mistakes lists missed questions with a "Practice n
 **Arc header (Practice, Progress, Me).** The soft layered arcs from the profile header sit at the very top of these three tabs, behind the status bar: four lavender bands fading from a deeper tone at the top edge to the lightest nearest the content, ending in the canvas color (`ArcHeader` / `ArcBackdrop`, scaled to the header height; 196dp on Me, 150dp on Practice and Progress).
 The title sits at the bottom-left over the lightest band, ink on lavender. The header scrolls away with the content. Screens that use it pass no status-bar padding and let the header draw edge to edge (`Modifier.bleed`).
 
-**Progress.** Arc header with the title, then top tabs "Overview / Calendar / Plan": three separate 46dp pills in the same language as the week pills and filter pills. The selected tab is solid ink with white text; the others are white with a hairline border and ink text.
+**Progress.** A big two-line Poppins title (no arc), then top tabs "Overview / Calendar / Plan" in the underline style above.
 (`SegmentedTabs` is used everywhere top tabs appear, e.g. Subject detail's Topics / Mistakes.)
 - Overview: two stat notched cards (answered, accuracy), a "By subject" list (a subject-colored dot, answered and accuracy text, a thin accuracy bar), then "Needs attention":
   topics you've missed (under 70% over 5+ answers) or may be forgetting (recall under 85%), each with a + to add it to the plan. Empty until a topic has 5 answers.

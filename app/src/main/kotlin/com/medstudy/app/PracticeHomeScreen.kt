@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.border
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,12 +41,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.medstudy.core.designsystem.ArcHeader
+import com.medstudy.core.designsystem.StatTile
+import com.medstudy.core.designsystem.TabHeader
+import com.medstudy.core.designsystem.IconCircleButton
+import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material.icons.outlined.ErrorOutline
 import com.medstudy.core.designsystem.NotchedCard
 import com.medstudy.core.designsystem.bleed
 import com.medstudy.core.designsystem.PillButton
 import com.medstudy.core.designsystem.StudyChip
 import com.medstudy.core.designsystem.StudyTextField
+import com.medstudy.core.designsystem.PageTitleStyle
 import com.medstudy.core.designsystem.StudyTheme
 import com.medstudy.core.designsystem.dimmedIf
 import com.medstudy.feature.progress.SubjectSummary
@@ -101,25 +107,11 @@ fun PracticeHomeScreen(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         item {
-            ArcHeader(Modifier.bleed(20.dp), height = 150.dp) {
-                Row(
-                    Modifier.align(Alignment.BottomStart).fillMaxWidth().padding(start = 20.dp, end = 20.dp, bottom = 22.dp),
-                    verticalAlignment = Alignment.Bottom,
-                ) {
-                    Column(Modifier.weight(1f)) {
-                        Text("Practice", style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.heading)
-                        Text("Pick how you want to study.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.ink)
-                    }
-                    Box(Modifier.clip(CircleShape).background(StudyTheme.colors.surface).androidClickable(onSaved)) {
-                        StudyChip(
-                            text = "Saved · $savedCount",
-                            icon = Icons.Outlined.Bookmark,
-                            container = StudyTheme.colors.surface,
-                            modifier = Modifier.padding(horizontal = 4.dp, vertical = 6.dp),
-                        )
-                    }
-                }
-            }
+            TabHeader(
+                "Pick your\npractice",
+                Modifier.bleed(20.dp),
+                titleAction = { IconCircleButton(Icons.Outlined.Bookmark, "Saved questions, $savedCount", onSaved) },
+            )
         }
 
         item {
@@ -142,8 +134,8 @@ fun PracticeHomeScreen(
 
         item {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                QuickAction("Review due", dueCount, StudyTheme.subjectGradient(2).deep, dueCount > 0, onDue, Modifier.weight(1f))
-                QuickAction("Mistakes", mistakeCount, StudyTheme.subjectGradient(3).deep, mistakeCount > 0, onMistakes, Modifier.weight(1f))
+                StatTile("Review due", "$dueCount", Icons.Outlined.Refresh, StudyTheme.subjectGradient(2), Modifier.weight(1f), dueCount > 0, onDue)
+                StatTile("Mistakes", "$mistakeCount", Icons.Outlined.ErrorOutline, StudyTheme.subjectGradient(3), Modifier.weight(1f), mistakeCount > 0, onMistakes)
             }
         }
 
@@ -161,7 +153,7 @@ fun PracticeHomeScreen(
                 if (papers.isEmpty()) {
                     item { Text("No previous year papers in this build.", style = MaterialTheme.typography.bodyMedium, color = StudyTheme.colors.muted) }
                 }
-                items(papers, key = PaperSummary::id) { paper -> PaperRow(paper, onClick = { openPaperId = paper.id }) }
+                itemsIndexed(papers, key = { _, p -> p.id }) { index, paper -> PaperRow(paper, index, onClick = { openPaperId = paper.id }) }
             }
             PracticeTab.SUBJECTS -> {
                 item { StudyTextField(query, { query = it }, "Search subjects", hintInside = true) }
@@ -203,10 +195,11 @@ private fun QuickAction(title: String, count: Int, dot: Color, enabled: Boolean,
 
 /** A plain white row: the year in a tinted square, the paper's name and kind, a thin progress bar. */
 @Composable
-private fun PaperRow(paper: PaperSummary, onClick: () -> Unit) {
-    val gradient = StudyTheme.subjectGradient(1)
+private fun PaperRow(paper: PaperSummary, index: Int, onClick: () -> Unit) {
+    val gradient = StudyTheme.subjectGradient(index)
     Row(
-        Modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp)).background(StudyTheme.colors.surface).androidClickable(onClick).padding(14.dp),
+        Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(StudyTheme.colors.surface)
+            .border(1.dp, StudyTheme.colors.hairline, RoundedCornerShape(24.dp)).androidClickable(onClick).padding(14.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(14.dp),
     ) {
@@ -221,6 +214,7 @@ private fun PaperRow(paper: PaperSummary, onClick: () -> Unit) {
             StudyProgressBar(
                 progress = if (paper.questionIds.isEmpty()) 0f else paper.answered.toFloat() / paper.questionIds.size,
                 description = "${paper.answered} of ${paper.questionIds.size} questions answered",
+                fill = StudyTheme.colors.ink,
             )
         }
         Text(
@@ -268,7 +262,8 @@ private fun PaperSheet(paper: PaperSummary, onMockTest: () -> Unit, onStart: (Li
 private fun SubjectTile(subject: SubjectSummary, modifier: Modifier = Modifier, onClick: () -> Unit) {
     val gradient = StudyTheme.subjectGradient(subject.colorIndex)
     Column(
-        modifier.clip(RoundedCornerShape(20.dp)).background(StudyTheme.colors.surface).androidClickable(onClick).padding(14.dp),
+        modifier.clip(RoundedCornerShape(24.dp)).background(StudyTheme.colors.surface).background(gradient.top.copy(alpha = 0.22f))
+            .border(1.dp, StudyTheme.colors.hairline, RoundedCornerShape(24.dp)).androidClickable(onClick).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {

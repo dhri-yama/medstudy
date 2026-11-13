@@ -57,12 +57,33 @@ private val HeadingFont = FontFamily(
     Font(R.font.newsreader, FontWeight.SemiBold, variationSettings = FontVariation.Settings(FontVariation.weight(600), FontVariation.opticalSizing(28.sp))),
 )
 
-// DESIGN.md section 3.3. Headings in Newsreader; everything else system sans. Weights 400, 500, 600 only.
+/** Poppins (SIL Open Font License, see THIRD_PARTY_LICENSES): the round geometric sans used for the Practice and Plan page headers. */
+private val TabHeaderFont = FontFamily(
+    Font(R.font.poppins_medium, FontWeight.Medium),
+    Font(R.font.poppins_semibold, FontWeight.SemiBold),
+)
+
+/** The big title at the top of Practice and Plan. */
+val TabTitleStyle = TextStyle(fontFamily = TabHeaderFont, fontSize = 30.sp, lineHeight = 38.sp, fontWeight = FontWeight.SemiBold)
+
+/** Section headings and the greeting on the Home page, a step below [TabTitleStyle]. */
+val TabSectionStyle = TextStyle(fontFamily = TabHeaderFont, fontSize = 20.sp, lineHeight = 26.sp, fontWeight = FontWeight.SemiBold)
+
+/** The "Hello, name" line above it. */
+val TabGreetingStyle = TextStyle(fontFamily = TabHeaderFont, fontSize = 14.sp, lineHeight = 20.sp, fontWeight = FontWeight.Medium)
+
+/** Page titles (Practice, Plan, a subject) in the serif. Cards and everything else keep the system sans styles below. */
+val PageTitleStyle = TextStyle(fontFamily = HeadingFont, fontSize = 27.sp, lineHeight = 33.sp, fontWeight = FontWeight.SemiBold)
+
+/** Section headings and the greeting, in the serif, one step smaller than a page title. */
+val SectionTitleStyle = TextStyle(fontFamily = HeadingFont, fontSize = 21.sp, lineHeight = 27.sp, fontWeight = FontWeight.SemiBold)
+
+// DESIGN.md section 3.3. System sans for all body and card text; weights 400, 500, 600 only. Weights 400, 500, 600 only.
 private val StudyTypography = Typography(
-    headlineLarge = TextStyle(fontFamily = HeadingFont, fontSize = 30.sp, lineHeight = 36.sp, fontWeight = FontWeight.SemiBold),
-    headlineMedium = TextStyle(fontFamily = HeadingFont, fontSize = 27.sp, lineHeight = 33.sp, fontWeight = FontWeight.SemiBold),
-    headlineSmall = TextStyle(fontFamily = HeadingFont, fontSize = 24.sp, lineHeight = 30.sp, fontWeight = FontWeight.SemiBold),
-    titleLarge = TextStyle(fontFamily = HeadingFont, fontSize = 21.sp, lineHeight = 27.sp, fontWeight = FontWeight.SemiBold),
+    headlineLarge = TextStyle(fontSize = 28.sp, lineHeight = 34.sp, fontWeight = FontWeight.SemiBold),
+    headlineMedium = TextStyle(fontSize = 24.sp, lineHeight = 30.sp, fontWeight = FontWeight.SemiBold),
+    headlineSmall = TextStyle(fontSize = 22.sp, lineHeight = 28.sp, fontWeight = FontWeight.Medium),
+    titleLarge = TextStyle(fontSize = 18.sp, lineHeight = 24.sp, fontWeight = FontWeight.SemiBold),
     titleMedium = TextStyle(fontSize = 15.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold),
     titleSmall = TextStyle(fontSize = 14.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold),
     bodyLarge = TextStyle(fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight.Normal),

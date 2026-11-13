@@ -42,6 +42,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.background
 import com.medstudy.core.designsystem.StudyProgressBar
 import com.medstudy.core.designsystem.StudyTextField
+import com.medstudy.core.designsystem.PageTitleStyle
 import com.medstudy.core.designsystem.StudyTheme
 import com.medstudy.core.designsystem.TaskRow
 import com.medstudy.core.model.AttemptResult
@@ -91,7 +92,7 @@ fun ScreenHeader(title: String, onBack: () -> Unit, modifier: Modifier = Modifie
     Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         IconCircleButton(Icons.AutoMirrored.Outlined.ArrowBack, "Back", onBack)
         Column {
-            Text(title, style = MaterialTheme.typography.headlineMedium, color = StudyTheme.colors.heading)
+            Text(title, style = PageTitleStyle, color = StudyTheme.colors.heading)
             if (subtitle != null) Text(subtitle, style = MaterialTheme.typography.bodySmall, color = StudyTheme.colors.muted)
         }
     }

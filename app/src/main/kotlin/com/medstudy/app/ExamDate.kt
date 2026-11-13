@@ -42,3 +42,39 @@ fun ExamDatePickerDialog(currentIso: String?, onPick: (String?) -> Unit, onDismi
         onDispose { dialog.dismiss() }
     }
 }
+
+enum class PaceStatus { ON_TRACK, BEHIND, NO_DATA }
+
+/**
+ * Where the learner stands against the exam: how many of the question bank they have covered, how many a day they would
+ * need to cover the rest by exam day, and how many a day they have actually been answering over the last week.
+ */
+data class ExamPace(
+    val daysLeft: Int,
+    val total: Int,
+    val covered: Int,
+    val neededPerDay: Int,
+    val recentPerDay: Int,
+    val status: PaceStatus,
+) {
+    val remaining: Int get() = (total - covered).coerceAtLeast(0)
+}
+
+/** Null when no exam date is set (or it has passed). [attempts] is every answer, newest or oldest first. */
+fun examPace(examDateIso: String?, today: LocalDate, totalQuestions: Int, attempts: List<com.medstudy.core.model.QuestionAttempt>): ExamPace? {
+    val daysLeft = examDaysLeft(examDateIso, today) ?: return null
+    val covered = attempts.map { it.questionId }.distinct().size.coerceAtMost(totalQuestions)
+    val remaining = (totalQuestions - covered).coerceAtLeast(0)
+    val needed = (remaining + maxOf(daysLeft, 1) - 1) / maxOf(daysLeft, 1)
+    // ISO dates compare correctly as text. The last seven days including today.
+    val from = today.minusDays(6).toString()
+    val to = today.toString()
+    val recentCount = attempts.count { it.studyDateIso in from..to }
+    val recent = (recentCount + 3) / 7
+    val status = when {
+        attempts.isEmpty() -> PaceStatus.NO_DATA
+        remaining == 0 || recent >= needed -> PaceStatus.ON_TRACK
+        else -> PaceStatus.BEHIND
+    }
+    return ExamPace(daysLeft, totalQuestions, covered, needed, recent, status)
+}
